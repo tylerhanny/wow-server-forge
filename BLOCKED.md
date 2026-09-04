@@ -17,7 +17,10 @@ do not establish an escape from this diagnostic. Install/runtime/unit tests did 
 The owner subsequently authorized only the exact protected allowance in
 `UPSTREAM_WARNING_EXCEPTION.md`. No dependency edit, pin change, unproven compiler
 substitution, additional warning or general warning suppression is authorized. The
-independent Reviewer must implement that policy and all controls must be rerun.
+protected policy has been implemented and independently reviewed at judge
+`78a5da6d5aed19a932fae53e74226ac5afc2e204`. Both fresh negative controls were rejected
+as required. Clean run `33922537362` passed its real Ubuntu compiler-scope probe and
+configure/provenance checks; complete compilation and all later gate results remain pending.
 See `prelaunch/clean-control-compile-blocker.md` for the exact judge/hash, artifact, diagnostic,
 supported-toolchain audit, skipped stages and concrete owner alternatives.
 Until the complete clean gate and tamper control pass independent review, preserve both

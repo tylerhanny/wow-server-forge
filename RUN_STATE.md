@@ -14,6 +14,12 @@ EXECUTION_STATUS=ACTIVE_PRELAUNCH
 BLOCKER_IDENTIFIED_UTC=2026-09-04T21:00:08Z
 OWNER_EXCEPTION_RECONCILED_UTC=2026-09-04T21:16:15Z
 OWNER_EXCEPTION_POLICY=UPSTREAM_WARNING_EXCEPTION.md
+REVIEWED_JUDGE_SHA=78a5da6d5aed19a932fae53e74226ac5afc2e204
+CLEAN_CONTROL_RUN=33922537362
+AUTHORITY_TAMPER_RUN=33922543117
+ALLOWLIST_TAMPER_RUN=33922549107
+TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
+CLEAN_CONTROL_REVIEW=PENDING_FULL_BUILD_AND_RUNTIME
 PAUSE_UTC=2026-09-04T19:56:13Z
 RESUME_UTC=2026-09-04T20:10:30Z
 RESUME_POLICY=AUTONOMOUS_CONTINUATION_AUTHORIZED
@@ -38,7 +44,7 @@ CURRENT_PHASE=SETUP
 | Director | Persistent orchestrator | Exact owner exception authority, independent audit and fresh controls | main | PRELAUNCH |
 | Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | PRELAUNCH |
 | Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
-| Reviewer | Independent internal Reviewer / Closer | Protected exact-warning allowlist and judge revision under explicit owner authorization | lane/reviewer / .worktrees/reviewer | PRELAUNCH |
+| Reviewer | Independent internal Reviewer / Closer | Review full clean-control evidence; protected warning judge and both negative controls already reviewed | lane/reviewer / .worktrees/reviewer | PRELAUNCH |
 
 Prelaunch evidence and next actions are recorded in `prelaunch/STATUS.md`.
 Internal worker lanes are managed by the Director; Tyler need not create worker tasks.
@@ -74,9 +80,18 @@ warning waiver, identical failing rerun or gameplay implementation is authorized
 Full independent evidence and owner alternatives are recorded in
 `prelaunch/clean-control-compile-blocker.md` (Reviewer source commit `ec81c2e`).
 
-The heartbeat remains ACTIVE and autonomous PRELAUNCH has resumed. Both launch selections
-are preserved, all timestamps remain UNSET, and no live-server work has occurred. The old
-run remains failed. Launch waits for the new complete reviewed evidence, not the policy edit.
+The protected policy is published as judge `78a5da6d5aed19a932fae53e74226ac5afc2e204`.
+Practical independently passed all 73 adversarial cases on the exact committed files;
+Director and Wildcard reviewed requirement preservation. Fresh authority tamper `33922543117`
+and protected-allowlist tamper `33922549107` were rejected at scope before build, with
+independent review and exact artifact identities recorded in `prelaunch/STATUS.md`.
+Clean run `33922537362` passed the real Ubuntu compiler-scope probe and configure/command
+provenance; full compilation is running. All later stages remain pending. Continue reviewing
+this exact run, not a duplicate. The previous failed run remains failed.
+
+The heartbeat remains ACTIVE and autonomous PRELAUNCH continues. Both launch selections
+are preserved, all timestamps remain UNSET, and no live-server work has occurred. Launch
+waits for the new complete reviewed clean evidence, not the policy edit or negative controls alone.
 
 ## Director launch instructions
 
