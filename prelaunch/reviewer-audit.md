@@ -29,3 +29,30 @@ Clean control `87b822fd41bb6013358aa6f5e16ca252ad79761c` was independently sourc
 - SQL grep/newline checks alone do not prove module ownership, syntax, data references, or application. The pinned automatic updater can provide real application evidence for recognized paths. Other layouts must fail or have separately reviewed explicit validation.
 - Runtime data is currently fetched from mutable ac-data `master`; the resolved SHA is now recorded, but a reproducible data pin should be established from a successful control.
 - A default-branch workflow and hash identify the accepted judge; candidates remain untrusted compiled code on disposable runners. A green run from a different workflow SHA is not acceptance, even if its display name matches.
+
+## SQL application requirements for later candidates
+
+The exact pinned [UpdateFetcher.cpp](https://github.com/mod-playerbots/azerothcore-wotlk/blob/47960183bb03b83e8943eb2f0f39c16df9710c9d/src/server/database/Updater/UpdateFetcher.cpp#L159) automatically discovers `modules/<name>/data/sql/<directory>/` when the immediate directory name contains the target database's module name (`auth`, `world`, or `characters`). Canonical directories should be `data/sql/db-auth/`, `data/sql/db-world/`, and `data/sql/db-characters/` to avoid ambiguous substring matches.
+
+The updater traverses up to ten levels and only accepts files whose extension is exactly lowercase `.sql` (lines 74–102). Basenames must be unique across the database's entire update set, not only within the candidate, or it throws. It applies the `MODULE` updates after ordinary updates, computes SHA-1 from the SQL file bytes on the Ubuntu runner, and stores the basename, hash, and `MODULE` state in that database's `updates` table (lines 297, 379–383, 394–406, and 462–468).
+
+Therefore a later SQL-bearing candidate needs all of the following actual evidence before approval:
+
+1. Every module-owned migration is in a recognized unambiguous directory and is observed in the disposable updater's application log.
+2. The disposable database's `updates` row matches each migration basename, SHA-1, and `MODULE` state after startup.
+3. Independent review confirms the SQL touches only owned tables or explicitly scoped owned rows and has no unsafe unrelated effects.
+4. Candidate-specific reference/row assertions verify gameplay data where relevant. An `updates` record proves execution but does not prove every referenced spell, creature, item, faction, or quest is correct.
+
+The current newline/keyword check is only static hygiene. It is not item 1, 2, 3, or 4. No-SQL smoke is unaffected; no new gate behavior is introduced by this note.
+
+## Build hooks and logging boundaries
+
+Pinned root CMake lines 72–87 executes any module `CMakeLists.txt`; pinned module CMake lines 312–315 optionally includes `<module-name>.cmake`. These are valid upstream conventions and are not blanket-prohibited by revision 1. Reviewer must inspect any such candidate code for test/flag/source mutation, substitute binaries, environment access, or arbitrary commands. No `acore.json` / `include.sh` execution was found on the reviewed direct `cmake -S ac` call chain; installer shell behavior is outside that conclusion.
+
+Pinned `Log::GetLoggerByType` selects the nearest logger and does not bubble a message through every parent appender. Stock world config routes `Logger.server` to `Console Server`, while only selected SQL/spell loggers include `Errors`. Consequently an empty `Errors.log` is insufficient to claim all categories were error-free. Review actual console and Server logs. Do not hide, suppress, or approve a baseline error until its cause and impact are independently established.
+
+## Corrected-control checkpoint
+
+Director integrated revision 1 at judge commit `a1754a6bb8c8310fac7e78f1452a5f3fec766e8b`. Corrected clean run: [33911646203](https://github.com/tylerhanny/wow-server-forge/actions/runs/33911646203), candidate `87b822fd41bb6013358aa6f5e16ca252ad79761c`. Independent API inspection confirmed the actual run's head SHA is that judge version and its default-branch check, exact-judge checkout/recording, candidate checkout, and scope checks passed. At this checkpoint, later compilation/runtime/tests remain pending; this is **not** a clean-control pass or permission to start the sprint.
+
+The prior clean run `33911309528` was cancelled after successful configure and incomplete compilation. It is not a failed candidate, a completed compile, or a passing gate.
