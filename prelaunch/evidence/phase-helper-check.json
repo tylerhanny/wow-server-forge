@@ -1,0 +1,103 @@
+{
+  "ScriptSha256": "73618B611261D46EFEEEC19CFDA0429FCD5AB310B32FA550E34ED1F08A586088",
+  "RootRunStateSha256": "102C069E647DD889297EBBF331BDC1D5D685933C2CC8065198A494977BF61B16",
+  "SourceAndStateUnchanged": true,
+  "Cases": [
+    {
+      "Case": "exact_start",
+      "Result": "PASS",
+      "Observed": "BUILD"
+    },
+    {
+      "Case": "tick_before_24",
+      "Result": "PASS",
+      "Observed": "BUILD"
+    },
+    {
+      "Case": "exact_24",
+      "Result": "PASS",
+      "Observed": "CONVERGENCE"
+    },
+    {
+      "Case": "tick_after_24",
+      "Result": "PASS",
+      "Observed": "CONVERGENCE"
+    },
+    {
+      "Case": "tick_before_30",
+      "Result": "PASS",
+      "Observed": "CONVERGENCE"
+    },
+    {
+      "Case": "exact_30",
+      "Result": "PASS",
+      "Observed": "HARVEST"
+    },
+    {
+      "Case": "tick_after_30",
+      "Result": "PASS",
+      "Observed": "HARVEST"
+    },
+    {
+      "Case": "tick_before_36",
+      "Result": "PASS",
+      "Observed": "HARVEST"
+    },
+    {
+      "Case": "exact_36",
+      "Result": "PASS",
+      "Observed": "COMPLETE"
+    },
+    {
+      "Case": "tick_after_36",
+      "Result": "PASS",
+      "Observed": "COMPLETE"
+    },
+    {
+      "Case": "offset_at_24",
+      "Result": "PASS",
+      "Observed": "CONVERGENCE"
+    },
+    {
+      "Case": "future_start",
+      "Result": "PASS",
+      "Observed": "REJECTED"
+    },
+    {
+      "Case": "wrong_boundary",
+      "Result": "PASS",
+      "Observed": "REJECTED"
+    },
+    {
+      "Case": "non_utc_record",
+      "Result": "PASS",
+      "Observed": "REJECTED"
+    },
+    {
+      "Case": "duplicate_key",
+      "Result": "PASS",
+      "Observed": "REJECTED"
+    },
+    {
+      "Case": "invalid_status",
+      "Result": "PASS",
+      "Observed": "REJECTED"
+    },
+    {
+      "Case": "armed_with_times",
+      "Result": "PASS",
+      "Observed": "REJECTED"
+    },
+    {
+      "Case": "recorded_complete",
+      "Result": "PASS",
+      "Observed": "COMPLETE"
+    },
+    {
+      "Case": "actual_armed_copy",
+      "Result": "PASS",
+      "Observed": "ARMED_NOT_STARTED / SETUP / ClockStarted=false"
+    }
+  ],
+  "Count": 19
+}
