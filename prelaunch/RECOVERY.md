@@ -10,14 +10,17 @@ The owner explicitly resumed after the `2026-09-04T19:56:13Z` pause. At resume r
 unstarted. Continue prelaunch and enforce locked `ONE_HUMAN_PLAYABILITY.md` across all lanes.
 The run subsequently failed compilation at `2026-09-04T20:56:03Z`; independent diagnosis
 found an immutable pinned Playerbots unused-parameter/warnings-as-errors conflict. Later
-install/runtime/unit-test steps did not run. Current state is BLOCKED_PRELAUNCH_OWNER_DECISION:
-do not repeat the same known-failing build or infer any warning/dependency exception. Resume
-validation after an explicit owner decision or new evidence resolves the conflict. Do not
-resurrect the disproved first-start log-routing inference.
+install/runtime/unit-test steps did not run. The owner has explicitly authorized only the
+mechanically enforced exact diagnostic allowance in `UPSTREAM_WARNING_EXCEPTION.md`.
+Current state is ACTIVE_PRELAUNCH: finish the protected policy implementation, independent
+review and fresh tamper/clean controls, then launch automatically only on complete success.
+Do not repeat the same known-failing judge, infer another exception, or resurrect the
+disproved first-start log-routing inference.
 
 1. Stay inside this project boundary. Fetch origin without overwriting unexplained work.
 2. Read `AGENTS.md`, `VALIDATION_INTEGRITY.md`, `TEAM_PROTOCOL.md`, `RUN_STATE.md`,
-   `ONE_HUMAN_PLAYABILITY.md`, `prelaunch/STATUS.md`, and applicable handoffs.
+   `ONE_HUMAN_PLAYABILITY.md`, `UPSTREAM_WARNING_EXCEPTION.md`, `prelaunch/STATUS.md`,
+   and applicable handoffs.
 3. Inspect `git worktree list`, worker status/branches and external Actions runs.
    Run `./tools/Get-ForgePhase.ps1` for a read-only phase calculation from recorded
    timestamps. It rejects malformed/reset boundary intervals and never changes state.

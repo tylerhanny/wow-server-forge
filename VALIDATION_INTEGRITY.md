@@ -10,6 +10,16 @@ The implementation must pass the judge. The implementation may not rewrite the j
 
 A candidate does not become acceptable because an agent weakened, skipped, deleted, replaced, mocked, bypassed, or reinterpreted a failing validation.
 
+## Sole explicit owner-authorized upstream baseline exception
+
+On 2026-09-04, the owner authorized exactly the existing pinned Playerbots
+`BTHelpers.cpp:107` / `GetShahrazTankPositionState` unused `botAI` diagnostic as a visible
+non-fatal warning, subject to locked `UPSTREAM_WARNING_EXCEPTION.md`. The independent
+default-branch judge must enforce exact source identity, warning scope and count, reject
+every other warning, retain candidate warning failures and all other gates, and rerun both
+controls. This is an explicit owner policy amendment, not a builder waiver or retroactive
+success. No other exception may be inferred from it.
+
 ## Official gate ownership
 
 Official acceptance tests, validation scripts, reference checks, dependency-pin checks, and disposable startup gates are controlled by the Reviewer/Closer validation lane and must be treated as immutable by builders.
