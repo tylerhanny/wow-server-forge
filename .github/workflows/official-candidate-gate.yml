@@ -1,0 +1,359 @@
+name: Official Candidate Gate
+
+# IMPORTANT:
+# This workflow is the independent judge for Forge candidate branches.
+# It runs from the default branch on a schedule or explicit dispatch.
+# Candidate branches are data/input; their workflow files are never executed.
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Optional exact candidate branch to validate (project/* or review/*)'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: official-candidate-gate-${{ github.event_name == 'workflow_dispatch' && inputs.branch || 'scheduled' }}
+  cancel-in-progress: false
+
+env:
+  AC_REPO: https://github.com/mod-playerbots/azerothcore-wotlk.git
+  AC_COMMIT: 47960183bb03b83e8943eb2f0f39c16df9710c9d
+  PLAYERBOTS_REPO: https://github.com/mod-playerbots/mod-playerbots.git
+  PLAYERBOTS_COMMIT: 2f7d9f774987d0157c6a0d0cc08c40bec3db3945
+
+jobs:
+  discover:
+    name: Discover new candidate branches
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.discover.outputs.matrix }}
+      count: ${{ steps.discover.outputs.count }}
+    steps:
+      - name: Discover branches
+        id: discover
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED_BRANCH: ${{ github.event_name == 'workflow_dispatch' && inputs.branch || '' }}
+        run: |
+          set -euo pipefail
+
+          python3 - <<'PY' > /tmp/candidates.json
+          import json, os, subprocess, sys
+          from datetime import datetime, timezone, timedelta
+
+          repo = os.environ['GITHUB_REPOSITORY']
+          requested = os.environ.get('REQUESTED_BRANCH', '').strip()
+
+          def gh(path):
+              return json.loads(subprocess.check_output(
+                  ['gh', 'api', f'repos/{repo}/{path}'], text=True
+              ))
+
+          names = []
+          if requested:
+              if not (requested.startswith('project/') or requested.startswith('review/')):
+                  raise SystemExit('Manual branch must begin with project/ or review/.')
+              names = [requested]
+          else:
+              page = 1
+              while True:
+                  rows = gh(f'branches?per_page=100&page={page}')
+                  if not rows:
+                      break
+                  names.extend(
+                      r['name'] for r in rows
+                      if r['name'].startswith('project/') or r['name'].startswith('review/')
+                  )
+                  if len(rows) < 100:
+                      break
+                  page += 1
+
+          out = []
+          now = datetime.now(timezone.utc)
+          freshness = timedelta(minutes=35)
+          for name in sorted(set(names)):
+              branch = gh('branches/' + name.replace('/', '%2F'))
+              sha = branch['commit']['sha']
+              commit = gh(f'commits/{sha}')
+              stamp = commit['commit']['committer']['date']
+              dt = datetime.fromisoformat(stamp.replace('Z', '+00:00'))
+              # Scheduled runs only validate recently changed candidates.
+              # Manual dispatch always validates the requested branch.
+              if requested or now - dt <= freshness:
+                  out.append({'branch': name, 'sha': sha})
+
+          print(json.dumps({'include': out}, separators=(',', ':')))
+          PY
+
+          matrix="$(cat /tmp/candidates.json)"
+          count="$(python3 -c 'import json; print(len(json.load(open("/tmp/candidates.json"))["include"]))')"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          echo "Discovered $count candidate(s): $matrix"
+
+  validate:
+    name: Validate ${{ matrix.branch }}
+    needs: discover
+    if: needs.discover.outputs.count != '0'
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    env:
+      CANDIDATE_BRANCH: ${{ matrix.branch }}
+      CANDIDATE_SHA: ${{ matrix.sha }}
+    steps:
+      - name: Checkout candidate as inert input
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.sha }}
+          path: candidate
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Candidate integrity and scope gate
+        id: scope
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git -C candidate remote set-url origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          git -C candidate fetch --no-tags origin main
+
+          changed="$(git -C candidate diff --name-only origin/main...HEAD)"
+          printf '%s\n' "$changed" | tee /tmp/changed-files.txt
+
+          if [[ -z "$changed" ]]; then
+            echo 'Candidate has no changes relative to main.' >&2
+            exit 1
+          fi
+
+          # Candidate branches are not allowed to modify the judge or shared authority.
+          if printf '%s\n' "$changed" | grep -Eq '^(.github/|AGENTS\.md$|VALIDATION_INTEGRITY\.md$|TEAM_PROTOCOL\.md$|FORGE_MISSION\.md$|DEADLINE\.md$|RUN_STATE\.md$|BACKLOG\.md$|HARVEST\.md$|BLOCKED\.md$|IDEA_VAULT\.md$|build/)'; then
+            echo 'Candidate attempted to modify locked/shared Forge authority or validation files.' >&2
+            exit 1
+          fi
+
+          # Candidate branches may contain only their project and project handoff evidence.
+          bad="$(printf '%s\n' "$changed" | grep -Ev '^(projects/[^/]+/|handoffs/[^/]+\.md$)' || true)"
+          if [[ -n "$bad" ]]; then
+            echo 'Candidate changed paths outside projects/<slug>/ and handoffs/<slug>.md:' >&2
+            printf '%s\n' "$bad" >&2
+            exit 1
+          fi
+
+          mapfile -t projects < <(
+            printf '%s\n' "$changed" |
+            awk -F/ '$1 == "projects" && NF >= 3 {print $2}' |
+            sort -u
+          )
+
+          if [[ ${#projects[@]} -ne 1 ]]; then
+            echo "Official gate requires exactly one project per candidate branch; found ${#projects[@]}." >&2
+            printf '%s\n' "${projects[@]:-}" >&2
+            exit 1
+          fi
+
+          project="${projects[0]}"
+          if [[ ! "$project" =~ ^mod-[a-z0-9][a-z0-9-]*$ ]]; then
+            echo "Project directory must use mod-<slug> lowercase naming; got: $project" >&2
+            exit 1
+          fi
+
+          if [[ ! -f "candidate/projects/$project/README.md" ]]; then
+            echo "candidate/projects/$project/README.md is required." >&2
+            exit 1
+          fi
+
+          if find "candidate/projects/$project" -type l -print -quit | grep -q .; then
+            echo 'Symlinks are not permitted in harvest candidates.' >&2
+            exit 1
+          fi
+
+          git -C candidate diff --check origin/main...HEAD
+
+          # Hard live-environment tripwires.
+          if grep -RIn --exclude-dir=.git --exclude='*.md' \
+              -E '192\.168\.4\.77|tylerhanny/mod-adventure-nexus' \
+              "candidate/projects/$project"; then
+            echo 'Candidate contains a forbidden live-server/Adventure-Nexus reference.' >&2
+            exit 1
+          fi
+
+          echo "project=$project" >> "$GITHUB_OUTPUT"
+          echo "Validated candidate scope for $project at ${CANDIDATE_SHA}."
+
+      - name: Checkout exact pinned AzerothCore
+        uses: actions/checkout@v4
+        with:
+          repository: mod-playerbots/azerothcore-wotlk
+          ref: 47960183bb03b83e8943eb2f0f39c16df9710c9d
+          path: ac
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Checkout exact pinned Playerbots
+        uses: actions/checkout@v4
+        with:
+          repository: mod-playerbots/mod-playerbots
+          ref: 2f7d9f774987d0157c6a0d0cc08c40bec3db3945
+          path: ac/modules/mod-playerbots
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Stage candidate module into disposable pinned tree
+        shell: bash
+        env:
+          PROJECT: ${{ steps.scope.outputs.project }}
+        run: |
+          set -euo pipefail
+          [[ "$(git -C ac rev-parse HEAD)" == "$AC_COMMIT" ]]
+          [[ "$(git -C ac/modules/mod-playerbots rev-parse HEAD)" == "$PLAYERBOTS_COMMIT" ]]
+          mkdir -p "ac/modules/$PROJECT"
+          rsync -a --delete --exclude='.git' "candidate/projects/$PROJECT/" "ac/modules/$PROJECT/"
+          echo "Staged $PROJECT into disposable AzerothCore tree."
+
+      - name: Install pinned-build dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get remove -y needrestart || true
+          sudo apt-get install -y \
+            ccache clang-18 cmake curl make unzip build-essential cmake-data \
+            libboost-all-dev libbz2-dev libmysql++-dev libreadline-dev \
+            libssl-dev libtool openssl zlib1g-dev google-perftools \
+            libmysqlclient-dev libncurses-dev rsync
+
+      - name: Configure exact target with warnings as errors
+        shell: bash
+        run: |
+          set -euo pipefail
+          export CCACHE_DIR="$GITHUB_WORKSPACE/.ccache"
+          mkdir -p "$CCACHE_DIR"
+          ccache --max-size=1500M
+
+          cmake -S ac -B ac/build \
+            -DCMAKE_C_COMPILER=clang-18 \
+            -DCMAKE_CXX_COMPILER=clang++-18 \
+            -DCMAKE_INSTALL_PREFIX="$GITHUB_WORKSPACE/ac/env/dist" \
+            -DAPPS_BUILD=all \
+            -DTOOLS_BUILD=none \
+            -DSCRIPTS=static \
+            -DMODULES=static \
+            -DWITH_WARNINGS=ON \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_C_FLAGS='-Werror -ferror-limit=0' \
+            -DCMAKE_CXX_FLAGS='-Werror -ferror-limit=0' \
+            -DBUILD_TESTING=ON \
+            -DNOPCH=true
+
+      - name: Compile complete pinned target
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --build ac/build --config Release -j "$(($(nproc) + 1))"
+
+      - name: Install into disposable server tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          cmake --install ac/build --config Release
+
+          while IFS= read -r -d '' dist; do
+            cp -f "$dist" "${dist%.dist}"
+          done < <(find ac/env/dist/etc -type f -name '*.conf.dist' -print0)
+
+      - name: Validate module-owned SQL and repository data
+        shell: bash
+        env:
+          PROJECT: ${{ steps.scope.outputs.project }}
+        run: |
+          set -euo pipefail
+
+          # Reject obviously destructive unrelated SQL operations in candidate-owned SQL.
+          if find "candidate/projects/$PROJECT" -type f -iname '*.sql' -print0 | \
+             xargs -0 -r grep -Ein '\b(TRUNCATE|DROP[[:space:]]+DATABASE|DROP[[:space:]]+TABLE[[:space:]]+(?!IF[[:space:]]+EXISTS))\b'; then
+            echo 'Potentially destructive SQL requires manual Reviewer disposition.' >&2
+            exit 1
+          fi
+
+          # Every SQL file must be non-empty and end in a newline.
+          while IFS= read -r -d '' sql; do
+            [[ -s "$sql" ]] || { echo "Empty SQL file: $sql" >&2; exit 1; }
+            [[ "$(tail -c1 "$sql" | wc -l)" -eq 1 ]] || {
+              echo "SQL file lacks final newline: $sql" >&2
+              exit 1
+            }
+          done < <(find "candidate/projects/$PROJECT" -type f -iname '*.sql' -print0)
+
+      - name: Prepare disposable runtime data and MySQL
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --branch master --single-branch \
+            https://github.com/ac-data/ac-data.git ac/env/dist/data
+          sudo systemctl start mysql.service
+          mkdir -p ac/env/dist/logs
+
+      - name: Dry-run authserver and worldserver
+        shell: bash
+        env:
+          AC_LOGIN_DATABASE_INFO: localhost;3306;root;root;acore_auth
+          AC_CHARACTER_DATABASE_INFO: localhost;3306;root;root;acore_characters
+          AC_WORLD_DATABASE_INFO: localhost;3306;root;root;acore_world
+          AC_DATA_DIR: ${{ github.workspace }}/ac/env/dist/data
+          AC_LOGS_DIR: ${{ github.workspace }}/ac/env/dist/logs
+        run: |
+          set -euo pipefail
+          timeout 5m ac/env/dist/bin/authserver --dry-run
+          timeout 5m ac/env/dist/bin/worldserver --dry-run
+
+          error_log="ac/env/dist/logs/Errors.log"
+          if [[ -s "$error_log" ]]; then
+            echo 'Errors.log contains startup errors:' >&2
+            cat "$error_log" >&2
+            exit 1
+          fi
+
+      - name: Run pinned unit tests when available
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -x ac/build/src/test/unit_tests ]]; then
+            ac/build/src/test/unit_tests
+          fi
+
+      - name: Publish validation evidence
+        if: always()
+        shell: bash
+        env:
+          PROJECT: ${{ steps.scope.outputs.project }}
+        run: |
+          {
+            echo '## Official Candidate Gate'
+            echo
+            echo "- Candidate branch: \`$CANDIDATE_BRANCH\`"
+            echo "- Candidate SHA: \`$CANDIDATE_SHA\`"
+            echo "- Project: \`${PROJECT:-unknown}\`"
+            echo "- AzerothCore pin: \`$AC_COMMIT\`"
+            echo "- Playerbots pin: \`$PLAYERBOTS_COMMIT\`"
+            echo "- Judge source: default-branch workflow at run start"
+            echo "- Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            echo
+            echo 'A green job means scope integrity, exact-pin configure/build/install, SQL static checks, and disposable dry-run startup all completed successfully.'
+            echo 'It does **not** mean Tyler has performed live/in-game gameplay validation.'
+          } >> "$GITHUB_STEP_SUMMARY"
