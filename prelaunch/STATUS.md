@@ -20,19 +20,22 @@ Judge `6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed` integrates Reviewer implementat
 `e7afa692992b2fcaaef885d1c4473e9fa4352616` and independently approved workflow
 `d31e425a3fa6bd731a180c171727730219d8760a`. Local regressions: 15 passed;
 the real Ubuntu compiler probe is pending inside the existing clean workflow.
-Practical completes its exact-commit audit concurrently with the build.
+Practical APPROVED the exact committed implementation/workflow: all 35 existing independent
+cases passed, including the alias/generated-header checks. No outstanding source finding.
 
 - Clean: [33929246418](https://github.com/tylerhanny/wow-server-forge/actions/runs/33929246418),
   frozen candidate `87b822fd41bb6013358aa6f5e16ca252ad79761c`, dispatched 23:22 UTC.
 - Authority tamper: [33929247980](https://github.com/tylerhanny/wow-server-forge/actions/runs/33929247980),
-  frozen candidate `2d74a0b1599313a9b09c7baf5b961d3744f48ed6`, dispatched 23:22 UTC.
+  frozen candidate `2d74a0b1599313a9b09c7baf5b961d3744f48ed6`, REJECTED at scope
+  before dependency checkout/build. Director verified exact candidate/judge/pins/protected
+  artifact hashes and actual rejection log: `prelaunch/evidence/tamper-33929247980.txt`.
 
 Exact protected hashes and dispositions: `prelaunch/evidence/standing-policy-controls.json`.
 No new external control or launch gate was added. Start the clock immediately once these
 existing controls and required independent evidence review pass. Source review and local
 tests do not establish a passing complete build or runtime gate.
 
-## Historical exact-warning policy â€” controls
+## Historical exact-warning policy — controls
 
 Reviewed judge `78a5da6d5aed19a932fae53e74226ac5afc2e204` integrates Reviewer source
 `2e73998349c65dc442b7fed3008d0df0e007bb29`. Its workflow Git-blob SHA-256 is
