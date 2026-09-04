@@ -19,9 +19,9 @@ playability authority and independent proposal reassessments are required before
 | Owner | Assignment | State |
 |---|---|---|
 | Director | One-human locked authority and external proof; launch coordination | Active |
-| Practical | Hunt Rhythm one-human reassessment | Active |
-| Reviewer | Clean CI monitoring; one-human/Auteur independent review | Active |
-| Wildcard | Three-shortlist one-human paths and final creative choice | Active |
+| Practical | Hunt Rhythm one-human reassessment | Proposal approved; awaits launch |
+| Reviewer | Clean CI monitoring; one-human/Auteur independent review | Proposals reviewed; clean CI pending |
+| Wildcard | Three-shortlist one-human paths and final creative choice | Stormwright selected; awaits launch |
 
 ## Required launch evidence
 
@@ -69,28 +69,33 @@ dependency and runtime evidence. No acceptance requirement was weakened.
 
 - Practical: `mod-hunt-rhythm`, opt-in outdoor kill-XP rhythm, bounded to a small
   bonus with no SQL or persistent economy. Proposal: `notes/practical-first-project.md`.
-- Wildcard: **no implementation concept approved**. The owner rejected The Small Council;
+- Wildcard: **Stormwright selected for launch after the completed tournament**. The owner rejected The Small Council;
   it is preserved only in `IDEA_VAULT.md`. The AI Auteur tournament requires at least five
   mechanically distinct concepts, a shortlist of three evaluated by Director and Reviewer,
   then Wildcard's choice among passing options. See `WILDCARD_AUTEUR.md`.
   - Completed comparison: `prelaunch/wildcard-quality-pass-1.md` (source lane commit
     `ad264556c8fd688ea462ead3ab7ece753f142819`).
   - Shortlist: Stormwright, Holdfast, Warband Arena. Wildcard preference: Stormwright.
-  - Final Director/Reviewer dispositions and Wildcard final choice are pending resume.
+  - Director comparison: `decisions/initial-project-selection.md`.
+  - Independent dispositions: `prelaunch/reviewer-one-human-dispositions.md`, source `0aa6e58`.
+  - Wildcard final choice: `prelaunch/wildcard-final-choice.md`, source `fded6b8`.
+  - All four assessed concepts passed the one-human proposal floor; Stormwright is the
+    selected flagship, Holdfast deferred fallback, Warband deferred for comparative closure risk.
   - Independent asset findings: `prelaunch/stormwright-visual-audit.md` (source lane
     commit `e9a5fba`). These are source/data findings, not client gameplay validation.
 - These are distinct prospective assignments, not started projects or harvest entries.
 
 Every current/future project must also pass locked `ONE_HUMAN_PLAYABILITY.md`. No current
 concept is automatically accepted or rejected. Full human/bot roles, scaling, no-bots behavior
-and complete loop are under independent reassessment; real bot feel remains pending live tests.
+and complete loop have independent proposal dispositions; real bot feel remains pending live tests.
 
 Disposable controls are infrastructure tests and do not count as Forge projects.
 Launch remains forbidden until the rejected tamper and passing clean control are recorded here with exact SHAs and run URLs.
 
 ## Continuity
 
-Task heartbeat: `wow-forge-director-continuity`, **PAUSED by owner**; configured interval 15 minutes.
+Task heartbeat: `wow-forge-director-continuity`, **ACTIVE after explicit owner resume**;
+15-minute interval, with the mandatory one-human policy included. No duplicate was created.
 Recovery procedure: `prelaunch/RECOVERY.md`.
 
 The Director manages internal subagents; separate user-created worker chats are not required.

@@ -46,13 +46,19 @@ flavor-first novelty is insufficient.
 
 Do not contaminate every Wildcard cycle with the practical seed list. Periodically allow a fresh conceptual pass from the technical constraints alone.
 
-Current Wildcard disposition: **SCOUTING — fresh comparative pass required**.
+Current Wildcard disposition: **SELECTED FOR LAUNCH — Stormwright (`mod-stormwright`)**.
+Five-option tournament, Director comparison, independent Reviewer quality/one-human
+dispositions and Wildcard's final creative choice are recorded in
+`decisions/initial-project-selection.md` and `prelaunch/wildcard-final-choice.md`.
+The complete Solo Pilot/ordinary-bot paths are mandatory. Implementation awaits the proven
+clean gate and formal launch. Hunt Rhythm (`mod-hunt-rhythm`) is the distinct Practical
+launch choice with independent solo-path proposal approval. No gameplay implementation has begun.
 The Small Council is **NOT APPROVED** and is retained only in `IDEA_VAULT.md`.
 
 Wildcard selection records must cover all five concepts and eleven fields, compare the
 shortlisted three against the quality dimensions and mandatory YES tests, record Director and
 Reviewer dispositions, and preserve Wildcard's own final choice/rationale. Use
-SELECT / REJECT / FRESH_PASS. No Wildcard implementation is currently approved.
+SELECT / REJECT / FRESH_PASS. Selection does not permit prelaunch implementation.
 The first flagship must pass independent review and the official gate before Wildcard begins
 another project, and BUILD must still permit it.
 

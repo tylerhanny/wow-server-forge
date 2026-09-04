@@ -14,6 +14,7 @@ EXECUTION_STATUS=ACTIVE_PRELAUNCH
 PAUSE_UTC=2026-09-04T19:56:13Z
 RESUME_UTC=2026-09-04T20:10:30Z
 RESUME_POLICY=AUTONOMOUS_CONTINUATION_AUTHORIZED
+HEARTBEAT_STATUS=ACTIVE
 START_UTC=UNSET
 CONVERGENCE_START_UTC=UNSET
 HARVEST_START_UTC=UNSET
@@ -32,9 +33,9 @@ CURRENT_PHASE=SETUP
 | Lane | Agent role | Current project | Branch/worktree | State |
 |---|---|---|---|---|
 | Director | Persistent orchestrator | One-human authority, external proof and launch coordination | main | PRELAUNCH |
-| Practical | Internal Practical Builder | Hunt Rhythm one-human reassessment; clean control submitted | lane/practical / .worktrees/practical | PRELAUNCH |
-| Wildcard | Internal AI Auteur / Flagship Gameplay | One-human reassessment of shortlisted three; final choice pending | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
-| Reviewer | Independent internal Reviewer / Closer | Active clean CI; independent one-human and Auteur dispositions | lane/reviewer / .worktrees/reviewer | PRELAUNCH |
+| Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | PRELAUNCH |
+| Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
+| Reviewer | Independent internal Reviewer / Closer | Active clean CI; one-human/Auteur proposal dispositions recorded | lane/reviewer / .worktrees/reviewer | PRELAUNCH |
 
 Prelaunch evidence and next actions are recorded in `prelaunch/STATUS.md`.
 Internal worker lanes are managed by the Director; Tyler need not create worker tasks.
@@ -51,7 +52,11 @@ The owner explicitly resumed on 2026-09-04; current state was reconciled at
 playability is now mandatory across every lane under `ONE_HUMAN_PLAYABILITY.md`.
 Workers have resumed prelaunch only. Reconcile real CI results, finish any legitimate repair,
 complete independent one-human/Auteur review and choice, then reactivate the existing
-heartbeat and launch only after all prelaunch requirements pass. No implementation is approved yet.
+heartbeat and launch only after all prelaunch requirements pass. The bounded selection is now
+complete: Practical `mod-hunt-rhythm`, Wildcard `mod-stormwright`. Both have independent
+one-human proposal approval. Substantive implementation remains forbidden until formal launch.
+The existing 15-minute Director continuity heartbeat has been reactivated with the mandatory
+one-human policy. This does not start the sprint clock.
 
 ## Director launch instructions
 

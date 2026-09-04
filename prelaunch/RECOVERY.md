@@ -56,7 +56,7 @@ stop feature implementation and classify every attempted project truthfully.
 ## Scheduled continuity
 
 The task heartbeat `wow-forge-director-continuity` has a configured 15-minute interval.
-The owner has authorized reactivation after the one-human authority/shortlist work on resume.
-Update the existing automation; do not create another. It is a
+It was reactivated after the one-human authority and shortlist reviews completed on resume.
+Update the existing automation if needed; do not create another. It is a
 recovery mechanism, not permission to spend a wake-up only reporting unchanged status.
 Pause it after final harvest closure. Never create duplicate continuation automations.
