@@ -3,8 +3,9 @@
 The sprint remains **ARMED_NOT_STARTED**. No timestamps have been started.
 
 **Owner explicitly resumed; reconciled at 2026-09-04T20:10:30Z.** Internal workers and
-monitoring have resumed. The existing clean-control run was still compiling. One-human
-playability authority and independent proposal reassessments are required before launch.
+monitoring resumed, and the one-human authority/reviews/selection are complete. The clean
+run subsequently failed compilation. PRELAUNCH is now blocked on an explicit owner decision
+about the pinned dependency/warning-policy conflict; no sprint clock has started.
 
 ## Infrastructure
 
@@ -18,9 +19,9 @@ playability authority and independent proposal reassessments are required before
 
 | Owner | Assignment | State |
 |---|---|---|
-| Director | One-human locked authority and external proof; launch coordination | Active |
+| Director | One-human authority/selection complete; pinned baseline policy conflict | Owner decision required |
 | Practical | Hunt Rhythm one-human reassessment | Proposal approved; awaits launch |
-| Reviewer | Clean CI monitoring; one-human/Auteur independent review | Proposals reviewed; clean CI pending |
+| Reviewer | Clean-control failure and independent source/toolchain review | Evidence complete; policy blocker |
 | Wildcard | Three-shortlist one-human paths and final creative choice | Stormwright selected; awaits launch |
 
 ## Required launch evidence
@@ -57,9 +58,21 @@ playability authority and independent proposal reassessments are required before
   - Actual result: compilation failed at `2026-09-04T20:56:03Z` with exit 2.
     The compile step ran from `19:35:06Z` to `20:56:03Z`; configure/discovery passed.
     Post-build immutability, install, SQL/data, DB fixture, dry-runs and unit tests were skipped.
-    Log artifacts were preserved. Independent Reviewer is diagnosing the actual compiler log.
+    Log artifacts were preserved. The failure is an unused `botAI` parameter at pinned
+    Playerbots `src/Ai/Raid/BT/BTHelpers.cpp:107:60`, fatal under `-Werror`.
+    Independent audits found no candidate-induced build change or supported-toolchain fix.
   - Expected dry-run proof: `FORGE_SMOKE_CONFIG reload=0 enabled=1 control=314159`.
-- Reviewer judge disposition: **PENDING**.
+- Reviewer clean-control disposition: **FAIL; BLOCKED under current protected contract**.
+  - Full evidence and alternatives: `prelaunch/clean-control-compile-blocker.md`, Reviewer
+    source commit `ec81c2e`. Candidate/judge/pins and extracted build-log hash were also
+    independently checked by Director against the downloaded official artifact.
+  - Practical's frozen smoke-origin audit: **PASS isolation**, five regular project/handoff
+    files only, no build hooks, flags, warning pragmas, header shadows or dependency mutation.
+    This does not imply a passing build.
+
+Current execution disposition: **BLOCKED_PRELAUNCH_OWNER_DECISION**. Both exact pins,
+dependency immutability and warning acceptance remain unchanged. Repeating the same failing
+run or suppressing its diagnostic is not an authorized repair. Later validation remains unrun.
 
 At pause the corrected clean run had passed scope/discovery/configure and was still compiling.
 It has now failed compilation. No full compile/install/runtime/unit-test success is claimed.

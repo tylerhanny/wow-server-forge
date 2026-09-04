@@ -9,8 +9,11 @@ The owner explicitly resumed after the `2026-09-04T19:56:13Z` pause. At resume r
 `2026-09-04T20:10:30Z`, clean-control run `33911646203` was still compiling. The clock remains
 unstarted. Continue prelaunch and enforce locked `ONE_HUMAN_PLAYABILITY.md` across all lanes.
 The run subsequently failed compilation at `2026-09-04T20:56:03Z`; independent diagnosis
-is active. Later install/runtime/unit-test steps did not run. Reconcile current evidence before
-choosing a repair; do not resurrect the disproved first-start log-routing inference.
+found an immutable pinned Playerbots unused-parameter/warnings-as-errors conflict. Later
+install/runtime/unit-test steps did not run. Current state is BLOCKED_PRELAUNCH_OWNER_DECISION:
+do not repeat the same known-failing build or infer any warning/dependency exception. Resume
+validation after an explicit owner decision or new evidence resolves the conflict. Do not
+resurrect the disproved first-start log-routing inference.
 
 1. Stay inside this project boundary. Fetch origin without overwriting unexplained work.
 2. Read `AGENTS.md`, `VALIDATION_INTEGRITY.md`, `TEAM_PROTOCOL.md`, `RUN_STATE.md`,
