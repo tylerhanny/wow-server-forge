@@ -1,5 +1,9 @@
 # Exact upstream warning exception — explicit owner authority
 
+**HISTORICAL / SUPERSEDED:** The owner subsequently replaced this single-diagnostic
+restriction with standing `UPSTREAM_WARNING_POLICY.md` authorization. The text below
+records the policy used for earlier runs; it is not the current warning acceptance rule.
+
 **Authorized by the owner on 2026-09-04. Locked default-branch validation policy.**
 
 This is the sole authorized exception to the existing warnings-as-errors policy. It does

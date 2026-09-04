@@ -2,15 +2,19 @@
 
 The sprint remains **ARMED_NOT_STARTED**. No timestamps have been started.
 
-**Owner explicitly resumed; reconciled at 2026-09-04T20:10:30Z.** Internal workers and
-monitoring resumed, and the one-human authority/reviews/selection are complete. The clean
-run subsequently failed compilation. The owner has now explicitly authorized the exact
-protected warning allowance in `UPSTREAM_WARNING_EXCEPTION.md`. That allowance is implemented
-and independently reviewed. Both tamper controls were rejected, but fresh clean run `33922537362`
-failed on two additional pinned Playerbots diagnostics. PRELAUNCH is now blocked on explicit
-owner resolution; no additional allowance is authorized and no clock has started.
+**Current disposition: ACTIVE PRELAUNCH.** The owner has supplied standing authorization
+in `UPSTREAM_WARNING_POLICY.md` for all warnings exclusively from verified-unchanged
+pinned upstream source to be non-fatal and fully visible. Every project-owned warning
+remains fatal. Reviewer is implementing the protected provenance policy; Practical is
+performing the existing required independent check. Rerun the tamper and complete clean
+controls immediately, then start the clock as soon as the existing minimum gate passes.
+Do not add new prelaunch review, cleanup, hardening, test expansion or policy gates.
+No repeated owner approval is needed for additional qualifying upstream warnings.
 
-## Owner-authorized warning policy — fresh controls
+The records below describe earlier judges and their then-current warning policies.
+Those failed runs remain failed; the standing policy supersedes their warning restrictions.
+
+## Historical exact-warning policy — controls
 
 Reviewed judge `78a5da6d5aed19a932fae53e74226ac5afc2e204` integrates Reviewer source
 `2e73998349c65dc442b7fed3008d0df0e007bb29`. Its workflow Git-blob SHA-256 is
@@ -127,12 +131,10 @@ candidate/judge/pin/protected-file hashes and actual rejection logs. Evidence:
     files only, no build hooks, flags, warning pragmas, header shadows or dependency mutation.
     This does not imply a passing build.
 
-Current execution disposition: **BLOCKED_NEW_UPSTREAM_DIAGNOSTICS**. The exact owner-authorized
-allowance is implemented and independently reviewed; both sets of negative controls were
-rejected as required. Clean run `33922537362` failed on additional immutable diagnostics,
-and the failure-summary correction is independently reviewed. Both pins and all acceptance
-checks remain unchanged. No dependency repair or candidate success is claimed. The skipped
-install/runtime/unit stages remain unproven, and another allowance requires explicit owner authority.
+The historical execution disposition was BLOCKED_NEW_UPSTREAM_DIAGNOSTICS. That owner
+policy conflict is now resolved by `UPSTREAM_WARNING_POLICY.md`; revised control results
+are pending. The skipped install/runtime/unit stages from failed run `33922537362` remain
+unproven. No dependency repair or candidate success is claimed.
 
 At pause the corrected clean run had passed scope/discovery/configure and was still compiling.
 It has now failed compilation. No full compile/install/runtime/unit-test success is claimed.

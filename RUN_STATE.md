@@ -10,10 +10,13 @@ The Director must record the launch timestamps immediately before sprint impleme
 
 ```text
 STATUS=ARMED_NOT_STARTED
-EXECUTION_STATUS=BLOCKED_NEW_UPSTREAM_DIAGNOSTICS
+EXECUTION_STATUS=ACTIVE_PRELAUNCH_POLICY_IMPLEMENTATION
 BLOCKER_IDENTIFIED_UTC=2026-09-04T22:33:12Z
 OWNER_EXCEPTION_RECONCILED_UTC=2026-09-04T21:16:15Z
 OWNER_EXCEPTION_POLICY=UPSTREAM_WARNING_EXCEPTION.md
+STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
+STANDING_WARNING_POLICY_RECONCILED_UTC=2026-09-04T23:07:16Z
+CURRENT_POLICY_CONTROLS=PENDING_REVISED_JUDGE
 REVIEWED_JUDGE_SHA=5269391836586137f983d79122ad9dd8a09fa1fd
 LAST_FULL_CLEAN_JUDGE_SHA=78a5da6d5aed19a932fae53e74226ac5afc2e204
 CLEAN_CONTROL_RUN=33922537362
@@ -42,10 +45,10 @@ CURRENT_PHASE=SETUP
 
 | Lane | Agent role | Current project | Branch/worktree | State |
 |---|---|---|---|---|
-| Director | Persistent orchestrator | Preserve independently confirmed new upstream blockers; owner decision required | main | PRELAUNCH BLOCKED |
+| Director | Persistent orchestrator | Apply standing upstream policy, rerun controls and launch immediately on existing gate success | main | ACTIVE PRELAUNCH |
 | Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | PRELAUNCH |
 | Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
-| Reviewer | Independent internal Reviewer / Closer | Failure evidence and reporting correction complete; owner resolution required | lane/reviewer / .worktrees/reviewer | PRELAUNCH BLOCKED |
+| Reviewer | Independent internal Reviewer / Closer | Implement provenance warning policy and review complete control evidence | lane/reviewer / .worktrees/reviewer | ACTIVE PRELAUNCH |
 
 Prelaunch evidence and next actions are recorded in `prelaunch/STATUS.md`.
 Internal worker lanes are managed by the Director; Tyler need not create worker tasks.
@@ -68,7 +71,11 @@ one-human proposal approval. Substantive implementation remains forbidden until 
 The existing 15-minute Director continuity heartbeat has been reactivated with the mandatory
 one-human policy. This does not start the sprint clock.
 
-## Previous blocker and explicit owner resolution
+## Historical warning failures and earlier owner resolution
+
+This section records the policies and dispositions at the time of those runs. The current
+standing authorization below supersedes every earlier restriction on additional verified
+upstream warnings; historical failures and evidence remain unchanged.
 
 Clean run `33911646203` failed full compilation at `2026-09-04T20:56:03Z`.
 The exact pinned Playerbots source has an unused `botAI` parameter in
@@ -108,6 +115,20 @@ Await explicit owner resolution. No gameplay implementation or clock initializat
 The heartbeat remains ACTIVE for continuity, quiet while this owner-required blocker is
 unchanged. Both launch selections are preserved, all timestamps remain UNSET, and no
 live-server work has occurred. Launch waits for a complete reviewed passing clean control.
+
+## Current standing owner authorization
+
+At reconciliation `2026-09-04T23:07:16Z`, the owner authorized the standing policy in
+`UPSTREAM_WARNING_POLICY.md`: all warnings exclusively from verified-unchanged pinned
+upstream source are non-fatal and fully visible. Project-owned warnings remain fatal.
+This resolves the earlier owner-decision blocker without passing either failed run.
+Reviewer is implementing the revised protected judge; Practical supplies the required
+independent check. Rerun tamper and complete clean controls immediately after that review.
+No approval is needed for additional qualifying upstream warnings. Resolve ordinary
+in-scope defects autonomously. Do not add new prelaunch review, cleanup, hardening,
+test expansion or policy gates. Once the existing minimum gate passes with required
+reviewed evidence, record actual launch timestamps and begin both selected projects
+immediately. Every sprint timestamp remains UNSET until then.
 
 ## Director launch instructions
 

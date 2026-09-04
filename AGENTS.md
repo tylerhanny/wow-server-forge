@@ -126,10 +126,13 @@ Candidate branches must not modify shared authority, the workflow, or validation
 
 A builder may add project-local developer tests, but no builder may weaken, replace, skip, or rewrite the official judge to obtain green status. `VALIDATION_INTEGRITY.md` is controlling authority on this point.
 
-The sole owner-authorized baseline warning allowance is locked in
-`UPSTREAM_WARNING_EXCEPTION.md`: one exact immutable Playerbots diagnostic, independently
-enforced with source identity and full-log checks. It does not authorize candidate warnings,
-additional upstream warnings, dependency edits, or changes to any other finish requirement.
+The standing owner-authorized baseline warning policy is locked in
+`UPSTREAM_WARNING_POLICY.md`: warnings exclusively from verified-unchanged pinned upstream
+source are non-fatal and fully visible, with independent source-provenance/full-log checks.
+Every project-owned warning remains fatal. No dependency edit or other finish requirement
+change is authorized. Additional qualifying upstream warnings require no owner approval.
+After the existing minimum prelaunch gate passes, start the clock immediately; do not
+add review, cleanup, hardening, test expansion or policy gates before launch.
 
 ## Agent lanes
 

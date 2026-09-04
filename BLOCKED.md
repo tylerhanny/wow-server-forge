@@ -2,7 +2,19 @@
 
 This file preserves honest non-harvest outcomes so blocked work does not consume the whole sprint or masquerade as complete.
 
-## PRELAUNCH infrastructure — fresh upstream diagnostics require owner resolution
+## PRELAUNCH infrastructure — owner policy resolved; revised validation pending
+
+**Current disposition:** `UPSTREAM_WARNING_POLICY.md` supplies standing owner authorization
+for all exclusively verified-unchanged pinned upstream warnings, fully visible and
+non-fatal. The former owner-decision blocker is resolved. Implement/review the revised
+judge and immediately rerun the required controls, then start the clock on complete
+reviewed success. Project warnings and all other existing gates remain strict. No new
+prelaunch requirements or further approvals for qualifying upstream warnings are needed.
+
+### Historical failure record under the previous policy
+
+The following describes the earlier runs and their then-current restrictions; it does
+not override the current standing authorization.
 
 The sprint remains ARMED_NOT_STARTED. This is a Forge infrastructure blocker, not an
 attempted gameplay project and not a harvested result.
@@ -40,13 +52,13 @@ at its first error, the two observed errors are not an exhaustive inventory.
 The failure report and independently reviewed failure-summary correction are complete:
 `prelaunch/clean-control-additional-upstream-blocker.md` and
 `prelaunch/failure-summary-reporting-review.md`. Acceptance is unchanged.
-Await explicit owner resolution; no unchanged rerun, broader waiver, source/pin edit,
-gameplay implementation or clock start is authorized.
+At that point another owner decision was required. The standing policy above now resolves
+that decision; the failed runs remain failed, and source/pin edits remain prohibited.
 See `prelaunch/clean-control-compile-blocker.md` for the exact judge/hash, artifact, diagnostic,
 supported-toolchain audit, skipped stages and concrete owner alternatives.
 Until the complete clean gate and tamper control pass independent review, preserve both
 selected projects without implementation and keep every sprint timestamp UNSET. The
-active continuity heartbeat stays quiet while this owner-required blocker is unchanged.
+active continuity heartbeat resumes executable validation under the standing policy.
 
 ## BLOCKED
 

@@ -5,31 +5,25 @@ are approved and preferred; never wait for Tyler to create separate lane tasks.
 
 ## Resume
 
-The owner explicitly resumed after the `2026-09-04T19:56:13Z` pause. At resume reconciliation
-`2026-09-04T20:10:30Z`, clean-control run `33911646203` was still compiling. The clock remains
-unstarted. Continue prelaunch and enforce locked `ONE_HUMAN_PLAYABILITY.md` across all lanes.
-The run subsequently failed compilation at `2026-09-04T20:56:03Z`; independent diagnosis
-found an immutable pinned Playerbots unused-parameter/warnings-as-errors conflict. Later
-install/runtime/unit-test steps did not run. The owner has explicitly authorized only the
-mechanically enforced exact diagnostic allowance in `UPSTREAM_WARNING_EXCEPTION.md`.
-Current state is BLOCKED_NEW_UPSTREAM_DIAGNOSTICS: the protected policy is implemented and independently
-reviewed at judge `78a5da6d5aed19a932fae53e74226ac5afc2e204`. Fresh clean run `33922537362`,
-authority tamper `33922543117`, and allowlist tamper `33922549107` were dispatched against
-that same judge. Both negative controls were rejected as required. Clean run failed full
-compilation at `2026-09-04T22:33:12Z` on new pinned HyjalHelpers.cpp168 and HyjalScripts.cpp39
-unused botAI diagnostics. The original BTHelpers warning appeared once non-fatally. Exact
-capture/source/flag evidence has independent review; install/runtime/unit stages were skipped.
-No further allowance is authorized. The separately reviewed failure-summary correction is
-complete at validation revision `5269391`; require an explicit new owner decision before
-another clean run. See `prelaunch/failure-summary-reporting-review.md` for its limited evidence.
-All clocks remain UNSET. A source-only third unused parameter at HyjalHelpers209 is not an
-observed diagnostic; the first-error stopping behavior means the inventory is incomplete.
-Do not repeat the same known-failing judge, infer another exception, or resurrect the
-disproved first-start log-routing inference.
+The owner resumed the safe pause and has now supplied standing authorization in
+`UPSTREAM_WARNING_POLICY.md`. Warnings exclusively from verified-unchanged pinned
+AzerothCore/Playerbots source are non-fatal and fully visible; every project-owned warning
+remains fatal. Additional qualifying upstream warnings require no further approval.
+The previous full clean runs `33911646203` and `33922537362` remain failed under their
+then-current judges. Their evidence is preserved; neither reached install/runtime/unit
+success. The owner-decision conflict is resolved, and revised validation is executable.
+
+Complete the already-required independent check of the revised judge, rerun tamper and
+complete clean controls immediately, and start the clock as soon as the existing minimum
+pre-start gate passes. Do not add prelaunch review, cleanup, hardening, test expansion or
+policy gates. Resolve other ordinary in-scope blockers autonomously. Stop only for a real
+blocker requiring a new prohibited action, dependency/source modification, destructive
+operation, credentials/human intervention or material scope/policy change. The selected
+Practical and Wildcard projects are unchanged; implementation begins at formal launch.
 
 1. Stay inside this project boundary. Fetch origin without overwriting unexplained work.
 2. Read `AGENTS.md`, `VALIDATION_INTEGRITY.md`, `TEAM_PROTOCOL.md`, `RUN_STATE.md`,
-   `ONE_HUMAN_PLAYABILITY.md`, `UPSTREAM_WARNING_EXCEPTION.md`, `prelaunch/STATUS.md`,
+   `ONE_HUMAN_PLAYABILITY.md`, `UPSTREAM_WARNING_POLICY.md`, `prelaunch/STATUS.md`,
    and applicable handoffs.
 3. Inspect `git worktree list`, worker status/branches and external Actions runs.
    Run `./tools/Get-ForgePhase.ps1` for a read-only phase calculation from recorded
@@ -50,7 +44,8 @@ disproved first-start log-routing inference.
   Reviewer disposition. After judge changes, validate controls against that revision.
 - Preserve failure evidence and explain every judge repair separately. Never turn an
   actual candidate failure into green by weakening the judge.
-- Archive disposable smoke branches after recording proof; they are not harvest projects.
+- Disposable smoke branches are not harvest projects. Record their exact identities;
+  archival housekeeping must not delay launch and can follow the clock start.
 
 ## Immediate launch
 

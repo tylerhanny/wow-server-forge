@@ -10,15 +10,17 @@ The implementation must pass the judge. The implementation may not rewrite the j
 
 A candidate does not become acceptable because an agent weakened, skipped, deleted, replaced, mocked, bypassed, or reinterpreted a failing validation.
 
-## Sole explicit owner-authorized upstream baseline exception
+## Standing explicit owner-authorized upstream warning policy
 
-On 2026-09-04, the owner authorized exactly the existing pinned Playerbots
-`BTHelpers.cpp:107` / `GetShahrazTankPositionState` unused `botAI` diagnostic as a visible
-non-fatal warning, subject to locked `UPSTREAM_WARNING_EXCEPTION.md`. The independent
-default-branch judge must enforce exact source identity, warning scope and count, reject
-every other warning, retain candidate warning failures and all other gates, and rerun both
-controls. This is an explicit owner policy amendment, not a builder waiver or retroactive
-success. No other exception may be inferred from it.
+On 2026-09-04, the owner replaced the earlier single-diagnostic exception with standing
+`UPSTREAM_WARNING_POLICY.md`: warnings originating exclusively from verified-unchanged
+pinned AzerothCore/Playerbots source are non-fatal and fully visible. The independent
+default-branch judge must verify source provenance, reject every project-owned warning,
+retain both pins and all other gates, and rerun both controls. Additional qualifying
+upstream warnings require no owner approval. This is an explicit owner policy amendment,
+not a builder waiver or retroactive success. The old `UPSTREAM_WARNING_EXCEPTION.md`
+is retained only as history. Complete only the existing minimum prelaunch gate, then
+start the clock immediately without additional prelaunch requirements.
 
 ## Official gate ownership
 
