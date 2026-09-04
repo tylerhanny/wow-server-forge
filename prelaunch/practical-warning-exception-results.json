@@ -1,0 +1,519 @@
+{
+  "snapshot": "C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29",
+  "verifier_sha256": "2b3adb4328f5a1ce356b734b3b31a168efe2f021e3320cfd12eed9b70b2c161c",
+  "count": 73,
+  "mismatches": [],
+  "results": [
+    {
+      "case": "canonical_complete_log",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matches": true,
+      "detail": ""
+    },
+    {
+      "case": "legitimate_parallel_progress",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matches": true,
+      "detail": ""
+    },
+    {
+      "case": "crlf_without_overwrite",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matches": true,
+      "detail": ""
+    },
+    {
+      "case": "zero_allowed_warning",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Expected one exact warning, found 0"
+    },
+    {
+      "case": "two_allowed_warnings",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Expected one exact warning, found 2"
+    },
+    {
+      "case": "wrong_parameter",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: C:/Development/WoW Server Forge \u2014 36H Sprint/.worktrees/practical/.forge-local/warning-audit/commit-2e73998349c65dc442b7fed3008d0df0e007bb29/fixture-ac/modules/mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp:107:60: warning: unused parameter 'bot' [-Wunused-parameter]"
+    },
+    {
+      "case": "wrong_function_excerpt",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Allowed diagnostic lacks its exact function/source excerpt"
+    },
+    {
+      "case": "wrong_line",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: C:/Development/WoW Server Forge \u2014 36H Sprint/.worktrees/practical/.forge-local/warning-audit/commit-2e73998349c65dc442b7fed3008d0df0e007bb29/fixture-ac/modules/mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp:108:60: warning: unused parameter 'botAI' [-Wunused-parameter]"
+    },
+    {
+      "case": "wrong_column",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: C:/Development/WoW Server Forge \u2014 36H Sprint/.worktrees/practical/.forge-local/warning-audit/commit-2e73998349c65dc442b7fed3008d0df0e007bb29/fixture-ac/modules/mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp:107:59: warning: unused parameter 'botAI' [-Wunused-parameter]"
+    },
+    {
+      "case": "wrong_category",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: C:/Development/WoW Server Forge \u2014 36H Sprint/.worktrees/practical/.forge-local/warning-audit/commit-2e73998349c65dc442b7fed3008d0df0e007bb29/fixture-ac/modules/mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp:107:60: warning: unused parameter 'botAI' [-Wunused-variable]"
+    },
+    {
+      "case": "same_basename_other_directory",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: C:/Development/WoW Server Forge \u2014 36H Sprint/.worktrees/practical/.forge-local/warning-audit/commit-2e73998349c65dc442b7fed3008d0df0e007bb29/fixture-ac/modules/mod-audit/src/BTHelpers.cpp:107:60: warning: unused parameter 'botAI' [-Wunused-parameter]"
+    },
+    {
+      "case": "candidate_lookalike_path_suffix",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: C:/Development/WoW Server Forge \u2014 36H Sprint/.worktrees/practical/.forge-local/warning-audit/commit-2e73998349c65dc442b7fed3008d0df0e007bb29/fixture-ac/modules/mod-audit/ac/modules/mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp:107:60: warning: unused parameter 'botAI' [-Wunused-parameter]"
+    },
+    {
+      "case": "relative_allowed_path",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: ac/modules/mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp:107:60: warning: unused parameter 'botAI' [-Wunused-parameter]"
+    },
+    {
+      "case": "path_traversal_alias",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: C:/Development/WoW Server Forge \u2014 36H Sprint/.worktrees/practical/.forge-local/warning-audit/commit-2e73998349c65dc442b7fed3008d0df0e007bb29/fixture-ac/modules/mod-playerbots/src/Ai/Raid/BT/../BT/BTHelpers.cpp:107:60: warning: unused parameter 'botAI' [-Wunused-parameter]"
+    },
+    {
+      "case": "candidate_unused_parameter",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: C:/Development/WoW Server Forge \u2014 36H Sprint/.worktrees/practical/.forge-local/warning-audit/commit-2e73998349c65dc442b7fed3008d0df0e007bb29/fixture-ac/modules/mod-audit/src/Audit.cpp:9:1: warning: unused parameter 'botAI' [-Wunused-parameter]"
+    },
+    {
+      "case": "other_upstream_warning",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: C:/Development/WoW Server Forge \u2014 36H Sprint/.worktrees/practical/.forge-local/warning-audit/commit-2e73998349c65dc442b7fed3008d0df0e007bb29/fixture-ac/modules/mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp:11:1: warning: unused variable 'x' [-Wunused-variable]"
+    },
+    {
+      "case": "driver_warning",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: clang++-18: warning: argument unused during compilation [-Wunused-command-line-argument]"
+    },
+    {
+      "case": "linker_warning",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: /usr/bin/ld: warning: missing .note.GNU-stack section implies executable stack"
+    },
+    {
+      "case": "no_path_warning",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: warning: generic unexpected warning"
+    },
+    {
+      "case": "unrelated_compile_error",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Build error remains: C:/Development/WoW Server Forge \u2014 36H Sprint/.worktrees/practical/.forge-local/warning-audit/commit-2e73998349c65dc442b7fed3008d0df0e007bb29/fixture-ac/modules/mod-audit/src/Audit.cpp:9:1: error: no matching function"
+    },
+    {
+      "case": "fatal_error",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Build error remains: fatal error: invalid source"
+    },
+    {
+      "case": "ansi_diagnostic",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Terminal/control bytes in build log"
+    },
+    {
+      "case": "ansi_hidden_extra_warning",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Terminal/control bytes in build log"
+    },
+    {
+      "case": "backspace",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Terminal/control bytes in build log"
+    },
+    {
+      "case": "null_byte",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Terminal/control bytes in build log"
+    },
+    {
+      "case": "bare_carriage_return",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Carriage-return overwrite in build log"
+    },
+    {
+      "case": "empty_log",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Build log is absent, empty, or lacks completion newline"
+    },
+    {
+      "case": "non_utf8",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 582: invalid start byte"
+    },
+    {
+      "case": "missing_final_newline",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Build log is absent, empty, or lacks completion newline"
+    },
+    {
+      "case": "stale_log_hash",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Build log changed or was truncated"
+    },
+    {
+      "case": "stream_hash_mismatch",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Persisted log differs from captured process bytes"
+    },
+    {
+      "case": "incomplete_capture_receipt",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Build log capture is incomplete"
+    },
+    {
+      "case": "missing_capture_receipt",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Build log capture is incomplete"
+    },
+    {
+      "case": "nonzero_build_status",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Complete build did not succeed"
+    },
+    {
+      "case": "missing_build_status",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Complete build did not succeed"
+    },
+    {
+      "case": "boolean_build_status",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Complete build did not succeed"
+    },
+    {
+      "case": "missing_summary",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Expected one complete single-warning summary, found 0"
+    },
+    {
+      "case": "extra_summary",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Expected one complete single-warning summary, found 2"
+    },
+    {
+      "case": "mismatched_summary_count",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unallowlisted warning or warning summary: 2 warnings generated."
+    },
+    {
+      "case": "missing_source_excerpt",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Allowed diagnostic lacks its exact function/source excerpt"
+    },
+    {
+      "case": "misleading_warning_source_filename",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matches": true,
+      "detail": ""
+    },
+    {
+      "case": "forged_progress_hides_warning",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Build progress references an unknown compiler output: [ 99%] Building CXX object forged.cpp.o warning: unexpected diagnostic"
+    },
+    {
+      "case": "forged_progress_hides_warning_summary",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Build progress references an unknown compiler output: [ 99%] Building CXX object forged.cpp.o 2 warnings generated."
+    },
+    {
+      "case": "unlisted_build_object",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Build progress references an unknown compiler output: [ 99%] Building CXX object modules/CMakeFiles/modules.dir/mod-audit/src/Unlisted.cpp.o"
+    },
+    {
+      "case": "canonical_scoped_demotion",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matches": true,
+      "detail": ""
+    },
+    {
+      "case": "candidate_demotion",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Misplaced/missing baseline demotion: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\modules\\mod-audit\\src\\Audit.cpp"
+    },
+    {
+      "case": "missing_baseline_demotion",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Misplaced/missing baseline demotion: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\modules\\mod-playerbots\\src\\Ai\\Raid\\BT\\BTHelpers.cpp"
+    },
+    {
+      "case": "duplicate_baseline_demotion",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Misplaced/missing baseline demotion: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\modules\\mod-playerbots\\src\\Ai\\Raid\\BT\\BTHelpers.cpp"
+    },
+    {
+      "case": "candidate_warnings_disabled",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Git identity/integrity check failed: ls-tree -r --name-only 47960183bb03b83e8943eb2f0f39c16df9710c9d -- deps"
+    },
+    {
+      "case": "candidate_global_demotion",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unauthorized warning demotion: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\modules\\mod-audit\\src\\Audit.cpp"
+    },
+    {
+      "case": "candidate_warning_suppression",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unexpected module warning suppression: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\modules\\mod-audit\\src\\Audit.cpp"
+    },
+    {
+      "case": "candidate_response_file",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Opaque compiler response file: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\modules\\mod-audit\\src\\Audit.cpp"
+    },
+    {
+      "case": "candidate_werror_absent",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Global warnings-as-errors missing: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\modules\\mod-audit\\src\\Audit.cpp"
+    },
+    {
+      "case": "allowed_manifest_but_compiles_candidate",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Compiler source input differs from inventory metadata: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\modules\\mod-playerbots\\src\\Ai\\Raid\\BT\\BTHelpers.cpp"
+    },
+    {
+      "case": "core_warnings_disabled",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Git identity/integrity check failed: ls-tree -r --name-only 47960183bb03b83e8943eb2f0f39c16df9710c9d -- deps"
+    },
+    {
+      "case": "core_all_warnings_suppressed",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: All compiler warnings suppressed: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\src\\server\\game\\World\\World.cpp"
+    },
+    {
+      "case": "core_warning_suppression",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unexpected module warning suppression: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\src\\server\\game\\World\\World.cpp"
+    },
+    {
+      "case": "core_unused_parameter_hidden",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Hidden unused-parameter warning: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\src\\server\\game\\World\\World.cpp"
+    },
+    {
+      "case": "no_candidate_compilation_in_inventory",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Candidate module has no actual compilation"
+    },
+    {
+      "case": "empty_command_inventory",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Missing/empty compile command inventory"
+    },
+    {
+      "case": "duplicate_allowed_compilation",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Allowance must affect exactly one compilation"
+    },
+    {
+      "case": "duplicate_output_object",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Duplicate compiler output provenance"
+    },
+    {
+      "case": "object_output_outside_build",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Compiler output outside build tree: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\modules\\mod-audit\\src\\Audit.cpp"
+    },
+    {
+      "case": "pinned_tracked_dependency_native_w",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matches": true,
+      "detail": ""
+    },
+    {
+      "case": "untracked_dependency_w",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Compiler warnings disabled outside pinned third-party deps: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\deps\\fmt\\fmt\\Injected.cc"
+    },
+    {
+      "case": "tracked_dependency_new_blanket_suppression",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: All compiler warnings suppressed: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\deps\\fmt\\fmt\\format.cc"
+    },
+    {
+      "case": "tracked_dependency_demotion",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Misplaced/missing baseline demotion: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\deps\\fmt\\fmt\\format.cc"
+    },
+    {
+      "case": "tracked_dependency_missing_werror",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Global warnings-as-errors missing: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\deps\\fmt\\fmt\\format.cc"
+    },
+    {
+      "case": "native_unit_test_without_private_warning_interface",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matches": true,
+      "detail": ""
+    },
+    {
+      "case": "unit_test_warnings_disabled",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Compiler warnings disabled outside pinned third-party deps: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\src\\test\\audit_test.cpp"
+    },
+    {
+      "case": "unit_test_extra_suppression",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Unexpected module warning suppression: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\src\\test\\audit_test.cpp"
+    },
+    {
+      "case": "game_source_missing_native_wall",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Core/module warning policy changed: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-2e73998349c65dc442b7fed3008d0df0e007bb29\\fixture-ac\\src\\server\\game\\World\\World.cpp"
+    },
+    {
+      "case": "absent_dependency_checkout",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "detail": "GateFailure: Dependency commit changed: fixture-ac"
+    }
+  ]
+}
