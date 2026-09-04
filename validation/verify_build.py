@@ -206,6 +206,46 @@ def write_json(path, value):
     Path(path).write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
 
 
+def describe_failed_capture(log_path, receipt):
+    """Reporting only: observations never determine source identity or acceptance."""
+    report = {"capture_integrity": "UNVERIFIED", "acceptance_authority": False,
+              "notice": "NON-AUTHORITATIVE observations: capture integrity is not verified",
+              "issues": [], "diagnostics": []}
+    try:
+        raw = Path(log_path).read_bytes()
+    except OSError as error:
+        report["issues"].append(f"Build log unavailable: {error}")
+        return report
+
+    checks = (
+        (receipt.get("capture_complete") is True, "Capture was not completed"),
+        (type(receipt.get("returncode")) is int, "Process exit status is absent"),
+        (bool(raw) and raw.endswith(b"\n"), "Log is empty or lacks its final newline"),
+        (receipt.get("log_sha256") == digest(raw), "Persisted log hash does not match receipt"),
+        (receipt.get("stream_sha256") == digest(raw), "Log does not match captured process bytes"),
+    )
+    report["issues"].extend(message for passed, message in checks if not passed)
+    try:
+        text = raw.decode("utf-8", errors="strict")
+    except UnicodeError:
+        report["issues"].append("Log is not valid UTF-8; observations use replacement characters")
+        text = raw.decode("utf-8", errors="replace")
+    if CONTROL.search(text):
+        report["issues"].append("Terminal/control bytes are present")
+    if "\r" in text.replace("\r\n", ""):
+        report["issues"].append("Carriage-return overwrite is present")
+    if not report["issues"]:
+        report["capture_integrity"] = "VERIFIED_CAPTURE"
+        report["notice"] = "Observed process output only; source identity and acceptance are not established by this report"
+
+    lines = text.splitlines()
+    for index, line in enumerate(lines):
+        if re.search(r"\b(?:warning|(?:fatal\s+)?error)\s*:", line, re.IGNORECASE):
+            report["diagnostics"].append({"log_line": index + 1, "header": line,
+                                          "following_context": lines[index + 1:index + 3]})
+    return report
+
+
 def build(ac, evidence, policy, project):
     ac, evidence = Path(ac).resolve(), Path(evidence).resolve()
     evidence.mkdir(parents=True, exist_ok=True)
@@ -248,6 +288,16 @@ def build(ac, evidence, policy, project):
             process.wait()
     finally:
         receipt["finished_at_unix"] = time.time()
+        if verdict["status"] == "FAIL":
+            # Preserve observations in the existing JSON job summary, even when an
+            # unsuccessful build correctly exits before acceptance-log validation.
+            # Reporting must never replace the original failure or make a PASS.
+            try:
+                verdict["diagnostic_observations"] = describe_failed_capture(evidence / "build.log", receipt)
+            except (OSError, ValueError, TypeError, KeyError) as error:
+                verdict["diagnostic_observations"] = {
+                    "capture_integrity": "UNVERIFIED", "acceptance_authority": False,
+                    "notice": "NON-AUTHORITATIVE: diagnostic reporting failed", "failure": str(error)}
         write_json(evidence / "build-receipt.json", receipt)
         write_json(evidence / "upstream-warning-verdict.json", verdict)
     print(json.dumps(verdict, indent=2), flush=True)
