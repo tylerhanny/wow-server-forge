@@ -2,7 +2,7 @@
 
 This file preserves honest non-harvest outcomes so blocked work does not consume the whole sprint or masquerade as complete.
 
-## PRELAUNCH infrastructure — owner decision required
+## PRELAUNCH infrastructure — exact owner exception authorized; validation pending
 
 The sprint remains ARMED_NOT_STARTED. This is a Forge infrastructure blocker, not an
 attempted gameplay project and not a harvested result.
@@ -14,13 +14,15 @@ Candidate `87b822fd41bb6013358aa6f5e16ca252ad79761c` adds no compiler flags, bui
 warning pragmas or dependency changes. Supported GCC and Clang warning configurations
 do not establish an escape from this diagnostic. Install/runtime/unit tests did not run.
 
-Exact immutable dependencies and all warnings fatal currently conflict. No dependency edit,
-warning suppression, pin change or unproven compiler substitution is authorized. The
-independent Reviewer record and actual artifacts must guide an explicit owner decision.
+The owner subsequently authorized only the exact protected allowance in
+`UPSTREAM_WARNING_EXCEPTION.md`. No dependency edit, pin change, unproven compiler
+substitution, additional warning or general warning suppression is authorized. The
+independent Reviewer must implement that policy and all controls must be rerun.
 See `prelaunch/clean-control-compile-blocker.md` for the exact judge/hash, artifact, diagnostic,
 supported-toolchain audit, skipped stages and concrete owner alternatives.
-Until resolved, preserve both selected projects without implementation and keep every
-sprint timestamp UNSET. The active continuity heartbeat stays quiet on unchanged state.
+Until the complete clean gate and tamper control pass independent review, preserve both
+selected projects without implementation and keep every sprint timestamp UNSET. The
+active continuity heartbeat has resumed autonomous PRELAUNCH under the exact allowance.
 
 ## BLOCKED
 

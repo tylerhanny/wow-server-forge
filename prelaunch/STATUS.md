@@ -4,8 +4,9 @@ The sprint remains **ARMED_NOT_STARTED**. No timestamps have been started.
 
 **Owner explicitly resumed; reconciled at 2026-09-04T20:10:30Z.** Internal workers and
 monitoring resumed, and the one-human authority/reviews/selection are complete. The clean
-run subsequently failed compilation. PRELAUNCH is now blocked on an explicit owner decision
-about the pinned dependency/warning-policy conflict; no sprint clock has started.
+run subsequently failed compilation. The owner has now explicitly authorized the exact
+protected warning allowance in `UPSTREAM_WARNING_EXCEPTION.md`. PRELAUNCH is active again;
+implementation/review of the allowance and fresh controls are pending. No clock has started.
 
 ## Infrastructure
 
@@ -19,9 +20,9 @@ about the pinned dependency/warning-policy conflict; no sprint clock has started
 
 | Owner | Assignment | State |
 |---|---|---|
-| Director | One-human authority/selection complete; pinned baseline policy conflict | Owner decision required |
+| Director | Exact owner-authorized policy, independent review and new controls | Active PRELAUNCH |
 | Practical | Hunt Rhythm one-human reassessment | Proposal approved; awaits launch |
-| Reviewer | Clean-control failure and independent source/toolchain review | Evidence complete; policy blocker |
+| Reviewer | Protected exact-warning allowlist, parser and compiler scope | Implementing authorized policy |
 | Wildcard | Three-shortlist one-human paths and final creative choice | Stormwright selected; awaits launch |
 
 ## Required launch evidence
@@ -62,7 +63,7 @@ about the pinned dependency/warning-policy conflict; no sprint clock has started
     Playerbots `src/Ai/Raid/BT/BTHelpers.cpp:107:60`, fatal under `-Werror`.
     Independent audits found no candidate-induced build change or supported-toolchain fix.
   - Expected dry-run proof: `FORGE_SMOKE_CONFIG reload=0 enabled=1 control=314159`.
-- Reviewer clean-control disposition: **FAIL; BLOCKED under current protected contract**.
+- Reviewer disposition of run `33911646203`: **FAIL; blocked under the then-current contract**.
   - Full evidence and alternatives: `prelaunch/clean-control-compile-blocker.md`, Reviewer
     source commit `ec81c2e`. Candidate/judge/pins and extracted build-log hash were also
     independently checked by Director against the downloaded official artifact.
@@ -70,9 +71,12 @@ about the pinned dependency/warning-policy conflict; no sprint clock has started
     files only, no build hooks, flags, warning pragmas, header shadows or dependency mutation.
     This does not imply a passing build.
 
-Current execution disposition: **BLOCKED_PRELAUNCH_OWNER_DECISION**. Both exact pins,
-dependency immutability and warning acceptance remain unchanged. Repeating the same failing
-run or suppressing its diagnostic is not an authorized repair. Later validation remains unrun.
+Current execution disposition: **ACTIVE_PRELAUNCH**. Only the exact owner-authorized
+upstream-baseline allowance may now be implemented, with protected source identity,
+file-scoped demotion and complete-log rejection of every other warning. Both pins and all
+other checks remain unchanged. This is not a repaired dependency or candidate success.
+The new judge needs independent adversarial review and fresh tamper/complete clean controls.
+Every later stage skipped by the previous run remains unproven.
 
 At pause the corrected clean run had passed scope/discovery/configure and was still compiling.
 It has now failed compilation. No full compile/install/runtime/unit-test success is claimed.
