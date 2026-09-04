@@ -10,5 +10,5 @@
   "function": "GetShahrazTankPositionState",
   "source_line": "TankPositionState GetShahrazTankPositionState(PlayerbotAI* botAI, Player* bot)",
   "diagnostic": "unused parameter 'botAI' [-Wunused-parameter]",
-  "expected_count": 1
+  "expected_count": 2
 }
