@@ -10,8 +10,8 @@ The Director must record the launch timestamps immediately before sprint impleme
 
 ```text
 STATUS=ARMED_NOT_STARTED
-EXECUTION_STATUS=ACTIVE_PRELAUNCH
-BLOCKER_IDENTIFIED_UTC=2026-09-04T21:00:08Z
+EXECUTION_STATUS=BLOCKED_NEW_UPSTREAM_DIAGNOSTICS
+BLOCKER_IDENTIFIED_UTC=2026-09-04T22:33:12Z
 OWNER_EXCEPTION_RECONCILED_UTC=2026-09-04T21:16:15Z
 OWNER_EXCEPTION_POLICY=UPSTREAM_WARNING_EXCEPTION.md
 REVIEWED_JUDGE_SHA=78a5da6d5aed19a932fae53e74226ac5afc2e204
@@ -19,7 +19,7 @@ CLEAN_CONTROL_RUN=33922537362
 AUTHORITY_TAMPER_RUN=33922543117
 ALLOWLIST_TAMPER_RUN=33922549107
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
-CLEAN_CONTROL_REVIEW=PENDING_FULL_BUILD_AND_RUNTIME
+CLEAN_CONTROL_REVIEW=FAIL_NEW_UPSTREAM_DIAGNOSTICS
 PAUSE_UTC=2026-09-04T19:56:13Z
 RESUME_UTC=2026-09-04T20:10:30Z
 RESUME_POLICY=AUTONOMOUS_CONTINUATION_AUTHORIZED
@@ -41,10 +41,10 @@ CURRENT_PHASE=SETUP
 
 | Lane | Agent role | Current project | Branch/worktree | State |
 |---|---|---|---|---|
-| Director | Persistent orchestrator | Exact owner exception authority, independent audit and fresh controls | main | PRELAUNCH |
+| Director | Persistent orchestrator | Preserve independently confirmed new upstream blockers; owner decision required | main | PRELAUNCH BLOCKED |
 | Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | PRELAUNCH |
 | Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
-| Reviewer | Independent internal Reviewer / Closer | Review full clean-control evidence; protected warning judge and both negative controls already reviewed | lane/reviewer / .worktrees/reviewer | PRELAUNCH |
+| Reviewer | Independent internal Reviewer / Closer | Preserve failed-control evidence and fix failure-summary visibility without changing acceptance | lane/reviewer / .worktrees/reviewer | PRELAUNCH |
 
 Prelaunch evidence and next actions are recorded in `prelaunch/STATUS.md`.
 Internal worker lanes are managed by the Director; Tyler need not create worker tasks.
@@ -86,12 +86,25 @@ Director and Wildcard reviewed requirement preservation. Fresh authority tamper 
 and protected-allowlist tamper `33922549107` were rejected at scope before build, with
 independent review and exact artifact identities recorded in `prelaunch/STATUS.md`.
 Clean run `33922537362` passed the real Ubuntu compiler-scope probe and configure/command
-provenance; full compilation is running. All later stages remain pending. Continue reviewing
-this exact run, not a duplicate. The previous failed run remains failed.
+provenance, then failed compilation at `2026-09-04T22:33:12Z`. The authorized BTHelpers warning
+appeared once; new fatal unused `botAI` diagnostics occurred in Playerbots
+`Hyjal/Util/HyjalHelpers.cpp:168:61` and `Hyjal/Util/HyjalScripts.cpp:39:63`. Reviewer and
+Practical independently verified the pinned source and narrow compiler scope. The wrapper
+captured the full failed build and checked equal pre/post dependency identity/Git-clean state.
+Install, SQL, dry-runs, unit tests and later standalone integrity steps were skipped.
+The exact failure evidence is in `prelaunch/evidence/clean-33922537362-director-audit.json`.
+Both failed clean runs remain failed. Do not rerun unchanged known-failing validation.
 
-The heartbeat remains ACTIVE and autonomous PRELAUNCH continues. Both launch selections
-are preserved, all timestamps remain UNSET, and no live-server work has occurred. Launch
-waits for the new complete reviewed clean evidence, not the policy edit or negative controls alone.
+These are fresh owner-required blockers under `UPSTREAM_WARNING_EXCEPTION.md`; no additional
+warning or source/pin edit is authorized. A third unused parameter at HyjalHelpers line 209
+is a source-only finding, not an observed CI diagnostic. Pinned `-Wfatal-errors` means the
+observed failures are not an exhaustive warning inventory. Preserve that distinction.
+Finish only the bounded failure-summary reporting correction and its independent review;
+then await explicit owner resolution. No gameplay implementation or clock initialization.
+
+The heartbeat remains ACTIVE for continuity, quiet while this owner-required blocker is
+unchanged. Both launch selections are preserved, all timestamps remain UNSET, and no
+live-server work has occurred. Launch waits for a complete reviewed passing clean control.
 
 ## Director launch instructions
 

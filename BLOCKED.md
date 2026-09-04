@@ -2,7 +2,7 @@
 
 This file preserves honest non-harvest outcomes so blocked work does not consume the whole sprint or masquerade as complete.
 
-## PRELAUNCH infrastructure — exact owner exception authorized; validation pending
+## PRELAUNCH infrastructure — fresh upstream diagnostics require owner resolution
 
 The sprint remains ARMED_NOT_STARTED. This is a Forge infrastructure blocker, not an
 attempted gameplay project and not a harvested result.
@@ -20,12 +20,32 @@ substitution, additional warning or general warning suppression is authorized. T
 protected policy has been implemented and independently reviewed at judge
 `78a5da6d5aed19a932fae53e74226ac5afc2e204`. Both fresh negative controls were rejected
 as required. Clean run `33922537362` passed its real Ubuntu compiler-scope probe and
-configure/provenance checks; complete compilation and all later gate results remain pending.
+configure/provenance checks, then failed at `2026-09-04T22:33:12Z` on two new fatal
+`unused parameter 'botAI' [-Wunused-parameter]` diagnostics:
+
+- `src/Ai/Raid/Hyjal/Util/HyjalHelpers.cpp:168:61`, `GetKazrogalTankPositionState`.
+- `src/Ai/Raid/Hyjal/Util/HyjalScripts.cpp:39:63`, `ShouldInterruptForArchimondeAirBurst`.
+
+Practical and Reviewer independently verified exact pinned source identities and unused
+bodies. Only BTHelpers received the authorized demotion; it emitted exactly one visible
+warning. The two Hyjal files and candidate retained warnings-as-errors. Complete captured
+build output, exit 2, equal pre/post dependency identity/Git-clean checks and exact hashes
+are preserved in `prelaunch/evidence/clean-33922537362-director-audit.json`. The later
+install/SQL/runtime/dry-run/unit gates did not run. These diagnostics are explicitly outside
+the owner's narrow authorization; no additional allowance or dependency repair is inferred.
+Another unused `botAI` in `GetAzgalorTankPositionState` at HyjalHelpers line 209 is source-only,
+not observed compiler output. Because pinned `-Wfatal-errors` stops each translation unit
+at its first error, the two observed errors are not an exhaustive inventory.
+
+Current action: preserve the failure report and independently review the bounded improvement
+that displays observed diagnostics in failed-job summaries without changing acceptance.
+Then await explicit owner resolution; no unchanged rerun, broader waiver, source/pin edit,
+gameplay implementation or clock start is authorized.
 See `prelaunch/clean-control-compile-blocker.md` for the exact judge/hash, artifact, diagnostic,
 supported-toolchain audit, skipped stages and concrete owner alternatives.
 Until the complete clean gate and tamper control pass independent review, preserve both
 selected projects without implementation and keep every sprint timestamp UNSET. The
-active continuity heartbeat has resumed autonomous PRELAUNCH under the exact allowance.
+active continuity heartbeat stays quiet while this owner-required blocker is unchanged.
 
 ## BLOCKED
 

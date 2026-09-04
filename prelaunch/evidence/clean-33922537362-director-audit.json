@@ -1,0 +1,35 @@
+{
+  "run_id": 33922537362,
+  "result": "FAIL_NEW_UPSTREAM_DIAGNOSTICS",
+  "candidate": "87b822fd41bb6013358aa6f5e16ca252ad79761c",
+  "judge": "78a5da6d5aed19a932fae53e74226ac5afc2e204",
+  "build_exit": 2,
+  "capture_complete": true,
+  "build_log_sha256": "7f5b632de2e4532218fc907542b4ca2832d5e46a701e2761cbd0186096598fcf",
+  "file_scoped_demotions": 1,
+  "dependency_identity_before_after_equal": true,
+  "diagnostics": [
+    "/home/runner/work/wow-server-forge/wow-server-forge/ac/modules/mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp:107:60: warning: unused parameter 'botAI' [-Wunused-parameter]",
+    "/home/runner/work/wow-server-forge/wow-server-forge/ac/modules/mod-playerbots/src/Ai/Raid/Hyjal/Util/HyjalHelpers.cpp:168:61: fatal error: unused parameter 'botAI' [-Wunused-parameter]",
+    "/home/runner/work/wow-server-forge/wow-server-forge/ac/modules/mod-playerbots/src/Ai/Raid/Hyjal/Util/HyjalScripts.cpp:39:63: fatal error: unused parameter 'botAI' [-Wunused-parameter]"
+  ],
+  "artifact_id": 9956799024,
+  "github_reported_artifact_sha256": "de1036ce3788e5613ed34b8eb438b06d551462466350e83ef2406811b2e2486f",
+  "files": {
+    "build-receipt.json": "d7c9daaddddfaa8d6a24edd9b24dd73f5c60c096117efa5e74c5e645347d3bd8",
+    "build.log": "7f5b632de2e4532218fc907542b4ca2832d5e46a701e2761cbd0186096598fcf",
+    "candidate-sha.txt": "4cc989b0e596000d6bfb0a4dee98ce7941e175ac22b3f2c5f527378c5c88a509",
+    "compile-command-provenance.json": "d438d8aeb47a27007a1253a45e0e3416fb0d37d242c147efc350d9caf28d3025",
+    "compile_commands.json": "ecd9e8a0ab4cddee2dc67ff4d49f8c6e3fe61187cc2593eb2277fb48578ef02e",
+    "configure.log": "00e1f26f94692775a650471474f2ddfb4a409898bcbf2df11cd5484f0874038b",
+    "dependency-pins.txt": "44fdf862130e0975859e909ddc1de3cb29587582088544594fe95ab7b0d6936a",
+    "judge-sha.txt": "1cf02442b8b89ae3394a6e527b3c750e63fdc1e62f36cf97b6e5dea6e534e039",
+    "judge-workflow.sha256": "d6ea9b0456e689ff1f32a677b574a735e189bb2fec4e1c3de7d4ae8b6424c644",
+    "ModulesLoader.cpp": "2f0069d344d846e2fd5d3782d32e9c4d9e898e0fcfe6149ea7e915651633613b",
+    "protected-validation.sha256": "38dc46c78f8efb8b87893ff2f8cf6ee368b6fff858193ef8449df8ad6b9aa07a",
+    "source-identity-before.json": "e4056c6823d06888a8df746443466541eaabbe66514e5e9bfa006a2666e246ab",
+    "upstream-warning-verdict.json": "e285e31b380d42ead88adcde0e8c04ffce9597d52dbdaebe73e2772be69fda89",
+    "validation-selftests.log": "ac46271bed41cf20b8aeb7dec2bd955cfe8a2ffc88a3f491b82aa69b5a3b60e9"
+  },
+  "later_stages": "SKIPPED: install/config/SQL/runtime/authserver/worldserver/unit/final integrity; no launch"
+}

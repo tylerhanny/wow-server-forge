@@ -12,11 +12,17 @@ The run subsequently failed compilation at `2026-09-04T20:56:03Z`; independent d
 found an immutable pinned Playerbots unused-parameter/warnings-as-errors conflict. Later
 install/runtime/unit-test steps did not run. The owner has explicitly authorized only the
 mechanically enforced exact diagnostic allowance in `UPSTREAM_WARNING_EXCEPTION.md`.
-Current state is ACTIVE_PRELAUNCH: the protected policy is implemented and independently
+Current state is BLOCKED_NEW_UPSTREAM_DIAGNOSTICS: the protected policy is implemented and independently
 reviewed at judge `78a5da6d5aed19a932fae53e74226ac5afc2e204`. Fresh clean run `33922537362`,
 authority tamper `33922543117`, and allowlist tamper `33922549107` were dispatched against
-that same judge. Reconcile their complete evidence and independent Reviewer disposition,
-then launch automatically only on complete success. Do not dispatch duplicate builds.
+that same judge. Both negative controls were rejected as required. Clean run failed full
+compilation at `2026-09-04T22:33:12Z` on new pinned HyjalHelpers.cpp168 and HyjalScripts.cpp39
+unused botAI diagnostics. The original BTHelpers warning appeared once non-fatally. Exact
+capture/source/flag evidence has independent review; install/runtime/unit stages were skipped.
+No further allowance is authorized. Finish only the separately reviewed failure-summary
+visibility correction, then require an explicit new owner decision before another clean run.
+All clocks remain UNSET. A source-only third unused parameter at HyjalHelpers209 is not an
+observed diagnostic; the first-error stopping behavior means the inventory is incomplete.
 Do not repeat the same known-failing judge, infer another exception, or resurrect the
 disproved first-start log-routing inference.
 

@@ -1,5 +1,5 @@
 {
-  "status": "RUNNING_PRELAUNCH",
+  "status": "BLOCKED_NEW_UPSTREAM_DIAGNOSTICS",
   "sprint_clock": "ARMED_NOT_STARTED",
   "judge_commit": "78a5da6d5aed19a932fae53e74226ac5afc2e204",
   "reviewer_source_commit": "2e73998349c65dc442b7fed3008d0df0e007bb29",
@@ -24,7 +24,12 @@
       "branch": "project/forge-smoke-clean",
       "run_id": 33922537362,
       "expected": "complete gate success",
-      "result": "PENDING"
+      "result": "FAIL_NEW_UPSTREAM_DIAGNOSTICS",
+      "failed_at": "2026-09-04T22:33:12Z",
+      "director_artifact_review": "PASS integrity of failure evidence; no acceptance",
+      "artifact_id": 9956799024,
+      "build_log_sha256": "7f5b632de2e4532218fc907542b4ca2832d5e46a701e2761cbd0186096598fcf",
+      "evidence": "prelaunch/evidence/clean-33922537362-director-audit.json"
     },
     {
       "kind": "authority-tamper",

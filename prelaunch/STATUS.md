@@ -5,9 +5,10 @@ The sprint remains **ARMED_NOT_STARTED**. No timestamps have been started.
 **Owner explicitly resumed; reconciled at 2026-09-04T20:10:30Z.** Internal workers and
 monitoring resumed, and the one-human authority/reviews/selection are complete. The clean
 run subsequently failed compilation. The owner has now explicitly authorized the exact
-protected warning allowance in `UPSTREAM_WARNING_EXCEPTION.md`. PRELAUNCH is active again;
-the protected allowance is implemented and independently reviewed; fresh external controls
-are running. No clock has started.
+protected warning allowance in `UPSTREAM_WARNING_EXCEPTION.md`. That allowance is implemented
+and independently reviewed. Both tamper controls were rejected, but fresh clean run `33922537362`
+failed on two additional pinned Playerbots diagnostics. PRELAUNCH is now blocked on explicit
+owner resolution; no additional allowance is authorized and no clock has started.
 
 ## Owner-authorized warning policy — fresh controls
 
@@ -24,7 +25,7 @@ All three explicit dispatches use this same reviewed default-branch judge:
 
 | Control | Exact candidate | Run | Current evidence |
 |---|---|---|---|
-| Legitimate clean module | `87b822fd41bb6013358aa6f5e16ca252ad79761c` | [33922537362](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922537362) | Real Ubuntu scope probe and configure/provenance passed; compiling since 2026-09-04T21:48:27Z; final result pending |
+| Legitimate clean module | `87b822fd41bb6013358aa6f5e16ca252ad79761c` | [33922537362](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922537362) | FAIL at compile 2026-09-04T22:33:12Z on two new upstream diagnostics; later install/runtime/unit stages skipped |
 | Existing locked-authority tamper | `2d74a0b1599313a9b09c7baf5b961d3744f48ed6` | [33922543117](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922543117) | REJECTED at scope 2026-09-04T21:45:42Z, before dependency checkout/build |
 | Protected warning-allowlist tamper | `697f4d4d0467171fe55036c9de4c3cb5e8cf0912` | [33922549107](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922549107) | REJECTED at scope 2026-09-04T21:45:49Z, before dependency checkout/build |
 
@@ -36,6 +37,24 @@ in `prelaunch/evidence/tamper-33922543117.txt`, `tamper-33922549107.txt`, and
 `owner-exception-controls.json`. The old failed clean run below remains failed.
 The exact-warning policy is an owner-authorized upstream baseline exception, not a dependency
 repair, gameplay candidate, or completed PRELAUNCH. Every sprint timestamp remains UNSET.
+
+The actual Ubuntu preflight passed all 17 tests, including the real compiler probe showing
+candidate unused parameters remain fatal. Configure and actual compile-command provenance
+passed. During the full build, BTHelpers107 emitted its single authorized warning, then new
+fatal unused `botAI` diagnostics appeared in `Hyjal/Util/HyjalHelpers.cpp:168:61`
+(`GetKazrogalTankPositionState`) and `Hyjal/Util/HyjalScripts.cpp:39:63`
+(`ShouldInterruptForArchimondeAirBurst`). Both sources and command scope were independently
+verified by Reviewer and Practical. The complete build capture has exit 2, stream/file SHA-256
+`7f5b632de2e4532218fc907542b4ca2832d5e46a701e2761cbd0186096598fcf`, and equal pre/post
+dependency identity/Git-clean checks. The wrapper performed those checks even though later
+standalone integrity stages were skipped. Artifact `9956799024` and detailed Director audit
+are recorded in `prelaunch/evidence/clean-33922537362-director-audit.json`.
+
+The owner explicitly designated every additional warning a fresh blocker. Do not waive these,
+rerun the same known-failing build, edit dependencies/pins, or launch. Another unused parameter
+at HyjalHelpers209 is source-only evidence, not an observed CI diagnostic; pinned
+`-Wfatal-errors` makes this an incomplete inventory. A separate failure-reporting correction
+will preserve observed warning/error text in FAIL job summaries without changing acceptance.
 
 ## Infrastructure
 
