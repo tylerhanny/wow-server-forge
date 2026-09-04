@@ -144,6 +144,19 @@ Reviewer then:
 6. reruns the official gate;
 7. marks the candidate `READY_FOR_HARVEST` only after all mandatory evidence is real.
 
+### Exact candidate and external final attestation
+
+Freeze a complete candidate commit, including its README and a truthful pre-run handoff,
+before official validation. A commit cannot contain its own SHA. After independent review
+and the official run, Director records the final handoff/evidence on main, explicitly keyed
+to the frozen candidate SHA, exact judge SHA/hash and run. That later coordination commit
+is an external attestation; it is not the implementation that was tested. Its final status
+supersedes the candidate's honestly pending pre-run handoff without changing the accepted SHA.
+
+Any subsequent source, configuration, SQL or installation behavior change creates a new
+candidate requiring a new official gate. This convention grants no validation exemption:
+only the exact frozen implementation and its independently evidenced scope may be harvested.
+
 ## Collision prevention
 
 Before substantive work, every lane must:

@@ -89,6 +89,11 @@ Every current/future project must also pass locked `ONE_HUMAN_PLAYABILITY.md`. N
 concept is automatically accepted or rejected. Full human/bot roles, scaling, no-bots behavior
 and complete loop have independent proposal dispositions; real bot feel remains pending live tests.
 
+Practical independently audited one-human propagation at main
+`2cc3ae60e4607dc0879194a598884128c3e25021`: **PASS, no omissions** across the dedicated
+authority, AGENTS, mission, team protocol, Auteur standard, all four role charters, proposal
+requirements, finish gate and handoff template. This read-only audit did not change the judge.
+
 Disposable controls are infrastructure tests and do not count as Forge projects.
 Launch remains forbidden until the rejected tamper and passing clean control are recorded here with exact SHAs and run URLs.
 
