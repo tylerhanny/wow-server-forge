@@ -1,0 +1,14 @@
+{
+  "authorization": "OWNER-AUTHORIZED BASELINE EXCEPTION: only this exact immutable Playerbots diagnostic",
+  "core_commit": "47960183bb03b83e8943eb2f0f39c16df9710c9d",
+  "playerbots_commit": "2f7d9f774987d0157c6a0d0cc08c40bec3db3945",
+  "path": "src/Ai/Raid/BT/BTHelpers.cpp",
+  "git_blob": "7688e6d4c04f246c87bf80881c238ba2c6bb0a3c",
+  "sha256": "6ad2a48db1f191b2ce6008fbd6d9b2c2f492438965a5211c38ab2b348f2d693c",
+  "line": 107,
+  "column": 60,
+  "function": "GetShahrazTankPositionState",
+  "source_line": "TankPositionState GetShahrazTankPositionState(PlayerbotAI* botAI, Player* bot)",
+  "diagnostic": "unused parameter 'botAI' [-Wunused-parameter]",
+  "expected_count": 1
+}

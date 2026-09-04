@@ -140,6 +140,13 @@ jobs:
           mkdir -p evidence
           printf '%s\n' "$GITHUB_WORKFLOW_SHA" > evidence/judge-sha.txt
           sha256sum judge/.github/workflows/official-candidate-gate.yml > evidence/judge-workflow.sha256
+          sha256sum \
+            judge/.github/workflows/official-candidate-gate.yml \
+            judge/UPSTREAM_WARNING_EXCEPTION.md \
+            judge/validation/upstream-warning-allowlist.json \
+            judge/validation/upstream-warning-hook.cmake \
+            judge/validation/verify_build.py \
+            judge/validation/test_verify_build.py > evidence/protected-validation.sha256
           printf '%s\n' "$CANDIDATE_SHA" > evidence/candidate-sha.txt
           printf '%s\n' "$AC_COMMIT" "$PLAYERBOTS_COMMIT" > evidence/dependency-pins.txt
 
@@ -276,6 +283,16 @@ jobs:
             libssl-dev libtool openssl zlib1g-dev google-perftools \
             libmysqlclient-dev libncurses-dev rsync mysql-server
 
+      - name: Test protected exception and real compiler file scope
+        shell: bash
+        env:
+          PROJECT: ${{ steps.scope.outputs.project }}
+        run: |
+          set -euo pipefail
+          sha256sum -c evidence/protected-validation.sha256
+          python3 -B judge/validation/test_verify_build.py --integration 2>&1 | tee evidence/validation-selftests.log
+          python3 -B judge/validation/verify_build.py identity --ac ac --evidence evidence --project "$PROJECT"
+
       - name: Configure exact target with warnings as errors
         shell: bash
         env:
@@ -289,6 +306,10 @@ jobs:
           cmake -S ac -B ac/build \
             -DCMAKE_C_COMPILER=clang-18 \
             -DCMAKE_CXX_COMPILER=clang++-18 \
+            -DCMAKE_PROJECT_AzerothCore_INCLUDE="$GITHUB_WORKSPACE/judge/validation/upstream-warning-hook.cmake" \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DCMAKE_COLOR_MAKEFILE=OFF \
+            -DCMAKE_COLOR_DIAGNOSTICS=OFF \
             -DCMAKE_INSTALL_PREFIX="$GITHUB_WORKSPACE/ac/env/dist" \
             -DAPPS_BUILD=all \
             -DTOOLS_BUILD=none \
@@ -306,17 +327,31 @@ jobs:
           loader="ac/build/modules/gen_scriptloader/static/ModulesLoader.cpp"
           grep -F "Add${PROJECT//-/_}Scripts();" "$loader"
           cp "$loader" evidence/ModulesLoader.cpp
+          sha256sum -c evidence/protected-validation.sha256
+          git -C judge diff --exit-code "$GITHUB_WORKFLOW_SHA" -- .
+          python3 -B judge/validation/verify_build.py commands --ac ac --evidence evidence --project "$PROJECT"
+          cp ac/build/compile_commands.json evidence/compile_commands.json
 
       - name: Compile complete pinned target
         shell: bash
+        env:
+          PROJECT: ${{ steps.scope.outputs.project }}
         run: |
           set -euo pipefail
-          cmake --build ac/build --config Release -j "$(($(nproc) + 1))" 2>&1 | tee evidence/build.log
+          # OWNER-AUTHORIZED BASELINE EXCEPTION: complete raw capture, exact count,
+          # source/command identities, and exit status are checked fail-closed.
+          sha256sum -c evidence/protected-validation.sha256
+          python3 -B judge/validation/verify_build.py build --ac ac --evidence evidence --project "$PROJECT"
 
       - name: Verify dependencies remained immutable
         shell: bash
+        env:
+          PROJECT: ${{ steps.scope.outputs.project }}
         run: |
           set -euo pipefail
+          sha256sum -c evidence/protected-validation.sha256
+          git -C judge diff --exit-code "$GITHUB_WORKFLOW_SHA" -- .
+          python3 -B judge/validation/verify_build.py check-log --ac ac --evidence evidence --project "$PROJECT"
           git -C ac diff --exit-code "$AC_COMMIT"
           git -C ac/modules/mod-playerbots diff --exit-code "$PLAYERBOTS_COMMIT"
           [[ "$(git -C ac rev-parse HEAD)" == "$AC_COMMIT" ]]
@@ -408,8 +443,13 @@ jobs:
 
       - name: Recheck dependency integrity after install and runtime
         shell: bash
+        env:
+          PROJECT: ${{ steps.scope.outputs.project }}
         run: |
           set -euo pipefail
+          sha256sum -c evidence/protected-validation.sha256
+          git -C judge diff --exit-code "$GITHUB_WORKFLOW_SHA" -- .
+          python3 -B judge/validation/verify_build.py check-log --ac ac --evidence evidence --project "$PROJECT"
           git -C ac diff --exit-code "$AC_COMMIT"
           git -C ac/modules/mod-playerbots diff --exit-code "$PLAYERBOTS_COMMIT"
           [[ "$(git -C ac rev-parse HEAD)" == "$AC_COMMIT" ]]
@@ -446,4 +486,11 @@ jobs:
             echo 'A green job means scope integrity, exact-pin configure/build/install, dependency immutability, SQL static checks, and disposable dry-run startup all completed successfully.'
             echo 'It does **not** mean Tyler has performed live/in-game gameplay validation.'
             echo 'Pinned dry-run initializes scripts, module configuration, databases, and world data, but exits before WorldScript::OnStartup, network service, and the world update loop. Candidates depending on those paths require additional Reviewer runtime evidence.'
+            echo
+            echo 'OWNER-AUTHORIZED BASELINE EXCEPTION: only the immutable Playerbots BTHelpers.cpp:107 unused botAI parameter warning may occur, exactly once. All other warnings or errors and incomplete captures fail.'
+            echo 'Protected validation file hashes are preserved in evidence/protected-validation.sha256.'
+            if [[ -f evidence/upstream-warning-verdict.json ]]; then
+              echo
+              sed 's/^/    /' evidence/upstream-warning-verdict.json
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
