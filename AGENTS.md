@@ -11,6 +11,7 @@ Read, in order, before doing any work:
 5. `DEADLINE.md`
 6. `RUN_STATE.md`
 7. `BACKLOG.md`
+8. `ONE_HUMAN_PLAYABILITY.md` (mandatory before any proposal approval or implementation)
 
 ## Mission hierarchy
 
@@ -76,6 +77,17 @@ Do not restrict all work to Tyler's existing idea list. The Wildcard lane is exp
 
 However, creative freedom never overrides safety, compatibility, completeness, or the harvest deadline.
 
+## Forge-wide one-human playability
+
+`ONE_HUMAN_PLAYABILITY.md` is locked owner authority for **every lane and candidate**.
+Every harvested project must have a complete worthwhile primary loop for one real human,
+solo or with normally controllable pinned Playerbots, with no second client/operated account.
+All custom actions must be human-operable; no unsupported bot cognition may be assumed.
+Director and Reviewer must assess the exact human/bot roles, scaling, no-bots behavior,
+complete loop and later validation assumptions before implementation approval. Optional
+human multiplayer may enhance, but not unlock, the actual feature. Preserve challenge and
+the interesting mechanic. Reassess all current concepts; do not automatically accept/reject.
+
 ## Repository organization
 
 Each implementation project belongs under:
@@ -98,6 +110,8 @@ BLOCKED.md
 IDEA_VAULT.md
 TEAM_PROTOCOL.md
 VALIDATION_INTEGRITY.md
+ONE_HUMAN_PLAYABILITY.md
+WILDCARD_AUTEUR.md
 ```
 
 The Director owns coordination-state changes. Other agents may propose updates but should avoid conflicting edits.
@@ -143,6 +157,54 @@ Has high artistic and game-design freedom. It should independently explore the p
 Wildcard MUST NOT merely mirror Tyler's known wishlist. It may disagree with backlog priorities and propose/build better ideas.
 
 Wildcard remains fully bound by compatibility, isolation, engineering quality, completeness, and deadline rules.
+
+### Mandatory Wildcard creative-quality gate
+
+This standing owner rule applies before **every new Wildcard project receives substantive
+implementation time**, including the first launch assignment. Creative freedom is preserved;
+implementation approval depends on gameplay quality, not novelty alone.
+
+1. Wildcard independently generates **at least five mechanically distinct concepts**,
+   following the full mandatory `WILDCARD_AUTEUR.md` standard. Variations of one theme
+   do not satisfy the requirement; use fresh-context creative subagents when useful.
+2. Shortlist the strongest three. Director and independent Reviewer compare gameplay,
+   installation value and technical credibility instead of accepting the first idea.
+3. Director must judge a selected concept strong on all of these dimensions:
+   - actual moment-to-moment gameplay value and player decisions;
+   - replayability or sustained usefulness;
+   - meaningful impact on how the private server feels or plays;
+   - novelty and differentiation from ordinary AzerothCore convenience modules;
+   - whether it would be worth installing and testing;
+   - credible completion through the full finish gate within remaining sprint time.
+4. Reject concepts whose primary appeal is flavor text, lore garnish, arbitrary whimsy,
+   shallow novelty, cute flavor systems, one-off riddles, journals, trivial collectibles,
+   one-use gimmicks, or technical cleverness with weak gameplay payoff.
+5. Prefer mechanics, decisions, challenge, progression, emergent situations, world activity,
+   social interaction, exploration, repeatable play loops, or useful server capabilities.
+6. Wildcard owns its creative direction and **chooses among concepts passing Director
+   and Reviewer quality/feasibility review**. Director is executive producer and must not
+   force imitation of Tyler's wishlist or generic Practical tooling.
+7. If no concept clears the bar, conduct another fresh ideation pass; never lower the bar
+   to keep the lane busy.
+8. Before implementation, record the five options, three-concept comparison, Director
+   and Reviewer dispositions, Wildcard's selection, short final rationale, coherent V1,
+   completion risk and ownership in durable state and `BACKLOG.md` / `RUN_STATE.md`.
+
+The full `WILDCARD_AUTEUR.md` concept fields and mandatory YES decision tests apply.
+Keep the tournament bounded, moving to implementation when a strong winner passes and
+the phase permits it. Prioritize one showcase-quality flagship. Wildcard may start another
+project only after that flagship passes independent review and the official gate, while BUILD
+permits. Require the name/hook, replay loop, stock-client visible feedback, final creator's
+rationale, 60–90 second demonstration flow and future Tyler screenshot/video checklist.
+Do not expose private chain-of-thought or represent future gameplay tests as completed.
+
+Flavor may support a strong gameplay system; it cannot substitute for one. Creative-quality
+approval never overrides prelaunch, validation, isolation, or deadline rules. During HARVEST
+the no-new-project rule still applies.
+
+**Owner disposition, 2026-09-04:** `mod-small-council` / The Small Council is not approved
+for implementation. Preserve it only as deferred research in `IDEA_VAULT.md`; redirect
+Wildcard through a fresh comparative concept pass.
 
 ### 4. Reviewer / Closer
 
@@ -191,6 +253,10 @@ A project may be listed as `READY FOR LIVE TEST` only when ALL applicable condit
 15. Project README documents purpose, features, configuration, install procedure, known limitations, and exact in-game smoke-test checklist.
 16. Git contains a clean checkpoint/commit representing the candidate.
 17. Remaining uncertainty is explicitly documented and is limited to live/in-game behavior that reasonably requires Tyler's later manual testing.
+18. The complete primary feature satisfies `ONE_HUMAN_PLAYABILITY.md`; README and
+    final handoff each contain `One-Human Playability`, the exact qualifying path/manual
+    steps, and independent `ONE_HUMAN_REVIEW=PASS`. Actual bot competence/feel remains
+    explicitly PENDING LIVE/IN-GAME VALIDATION where applicable.
 
 `Almost done`, `90% complete`, `prototype`, or `should work` does not pass.
 

@@ -1,0 +1,19 @@
+{
+  "kind": "disposable-authority-tamper-control",
+  "repository": "tylerhanny/wow-server-forge",
+  "run_id": 33911649850,
+  "run_url": "https://github.com/tylerhanny/wow-server-forge/actions/runs/33911649850",
+  "candidate_branch": "project/forge-smoke-tamper",
+  "candidate_sha": "2d74a0b1599313a9b09c7baf5b961d3744f48ed6",
+  "judge_sha": "a1754a6bb8c8310fac7e78f1452a5f3fec766e8b",
+  "judge_workflow_sha256": "c7ce13faa48f8336b3b3c161e5ab202c717e7eaf4b1308ece56b147542ee6e81",
+  "artifact": "official-gate-2d74a0b1599313a9b09c7baf5b961d3744f48ed6-1",
+  "artifact_identity_verified": true,
+  "result": "EXPECTED_REJECTION",
+  "failed_step": "Candidate integrity and scope gate",
+  "changed_authority": "VALIDATION_INTEGRITY.md",
+  "actual_rejection_utc": "2026-09-04T19:32:18Z",
+  "reason": "Candidate attempted to modify locked/shared Forge authority or validation files.",
+  "candidate_code_executed": false,
+  "counts_as_forge_project": false
+}

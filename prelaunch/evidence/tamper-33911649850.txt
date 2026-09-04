@@ -1,0 +1,10 @@
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-04T19:32:15.1729737Z   CANDIDATE_SHA: 2d74a0b1599313a9b09c7baf5b961d3744f48ed6
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-04T19:32:16.1193496Z   CANDIDATE_SHA: 2d74a0b1599313a9b09c7baf5b961d3744f48ed6
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-04T19:32:16.1540005Z   CANDIDATE_SHA: 2d74a0b1599313a9b09c7baf5b961d3744f48ed6
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-04T19:32:17.9597905Z ^[[36;1m  echo 'Candidate attempted to modify locked/shared Forge authority or validation files.' >&2^[[0m
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-04T19:32:17.9690228Z   CANDIDATE_SHA: 2d74a0b1599313a9b09c7baf5b961d3744f48ed6
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-04T19:32:18.0114608Z VALIDATION_INTEGRITY.md
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-04T19:32:18.0131909Z Candidate attempted to modify locked/shared Forge authority or validation files.
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-04T19:32:18.0145306Z ##[error]Process completed with exit code 1.
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-04T19:32:18.0425968Z   CANDIDATE_SHA: 2d74a0b1599313a9b09c7baf5b961d3744f48ed6
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-04T19:32:19.1466416Z   CANDIDATE_SHA: 2d74a0b1599313a9b09c7baf5b961d3744f48ed6

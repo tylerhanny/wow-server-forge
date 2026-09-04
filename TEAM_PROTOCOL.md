@@ -6,7 +6,12 @@ This file defines how the persistent Codex threads work as one autonomous team w
 
 ## Team topology
 
-The Forge uses four persistent top-level Codex threads:
+The Forge uses one persistent Director task orchestrating three isolated internal worker lanes.
+The owner explicitly approved this topology on 2026-09-04; separate user-created worker chats
+are not required. The Director may spawn, replace, redirect, or terminate bounded subagents
+while preserving durable repository ownership and independent review.
+
+The four roles are:
 
 1. **Director / Producer** — owns mission, clock, priorities, assignment, scope cuts, and final harvest.
 2. **Practical Builder** — builds high-value, high-probability complete modules.
@@ -35,7 +40,7 @@ Never rely on a statement like "another agent said it passed" when source, commi
 
 ## Local parallelism and worktrees
 
-The four persistent chats must not edit the same working tree concurrently.
+The four roles must not edit the same working tree concurrently.
 
 Use separate Git worktrees/branches. Recommended lane layout:
 
@@ -80,19 +85,43 @@ STATE=BUILDING|READY_FOR_REVIEW|CHANGES_REQUESTED|VALIDATING|READY_FOR_HARVEST|B
 CLAIMED_SCOPE=<short exact scope>
 BUILD_RESULT=<actual evidence or NOT_RUN>
 OFFICIAL_GATE=<PASS|FAIL|NOT_RUN>
+ONE_HUMAN_REVIEW=<PASS|FAIL|PENDING; independent Reviewer disposition>
 REVIEWER=<reviewer state>
 NEXT_ACTION=<single highest-leverage next action>
 ```
 
 The body should also list known limitations, exact validation already performed, and unresolved risk.
 
+README and final handoff must each include a section titled `One-Human Playability`,
+covering supported solo and human-plus-bots configurations, required bot roles/count,
+every human custom action, ordinary-bot assumptions, scaling/no-bots behavior, limitations,
+and exact one-human manual tests through outcome, retry and abort. Confirm no second
+real person/client/operated account is required. Actual bot feel remains PENDING LIVE/IN-GAME
+VALIDATION. Use the full locked `ONE_HUMAN_PLAYABILITY.md` requirements.
+
 ## Assignment behavior
 
 The Director may assign explicit projects through `RUN_STATE.md`/`BACKLOG.md`.
 
+For every lane, implementation approval first requires Director and independent Reviewer
+assessment of the proposal's exact complete one-human path under `ONE_HUMAN_PLAYABILITY.md`.
+An idle-lane claim cannot bypass this gate. “Supports parties” without human/bot responsibilities
+and scaling is not approval. Normal bots must not be tasked with bespoke project cognition.
+
 When a builder becomes idle and BUILD phase still permits new work, it may claim an unclaimed high-priority project consistent with its lane, record that claim durably, and proceed rather than waiting for Tyler.
 
 Wildcard retains independent idea-generation authority and is not required to pick from the seeded practical backlog.
+
+Before claiming a new implementation, Wildcard must pass the mandatory creative-quality
+gate in `AGENTS.md` / `WILDCARD_AUTEUR.md`: independently generate at least five mechanically
+distinct concepts, shortlist three for Director and Reviewer evaluation, and choose creatively
+among passing options. Preserve dispositions and final selection/rationale in durable
+state. A builder may not self-approve this gate or bypass it when idle. If no concept passes,
+the next assignment is fresh ideation, not implementation. The Small Council is not approved.
+
+Wildcard prioritizes one flagship. Unlike general builder queue turnover, a subsequent
+Wildcard implementation requires the flagship to pass independent review and the official
+gate first, and BUILD must still permit another project.
 
 ## Handoff behavior
 
@@ -114,6 +143,19 @@ Reviewer then:
 5. records new candidate SHA after any fix;
 6. reruns the official gate;
 7. marks the candidate `READY_FOR_HARVEST` only after all mandatory evidence is real.
+
+### Exact candidate and external final attestation
+
+Freeze a complete candidate commit, including its README and a truthful pre-run handoff,
+before official validation. A commit cannot contain its own SHA. After independent review
+and the official run, Director records the final handoff/evidence on main, explicitly keyed
+to the frozen candidate SHA, exact judge SHA/hash and run. That later coordination commit
+is an external attestation; it is not the implementation that was tested. Its final status
+supersedes the candidate's honestly pending pre-run handoff without changing the accepted SHA.
+
+Any subsequent source, configuration, SQL or installation behavior change creates a new
+candidate requiring a new official gate. This convention grants no validation exemption:
+only the exact frozen implementation and its independently evidenced scope may be harvested.
 
 ## Collision prevention
 

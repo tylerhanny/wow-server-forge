@@ -37,9 +37,30 @@ These are seed ideas only. Score feasibility before claiming them.
 
 At least one substantial project-selection cycle belongs to the Wildcard lane with NO requirement to choose from the table above.
 
-Wildcard should independently inspect feasible pinned hooks/mechanics and propose/build what it believes is most interesting.
+Wildcard independently inspects feasible pinned hooks/mechanics and generates at least five
+mechanically distinct concepts under `WILDCARD_AUTEUR.md`, shortlists three for Director
+and Reviewer evaluation, and chooses among passing options. The comparison, dispositions,
+selected concept and final rationale must be recorded before substantive
+implementation. If none clears the bar, repeat fresh ideation. Creative independence remains;
+flavor-first novelty is insufficient.
 
 Do not contaminate every Wildcard cycle with the practical seed list. Periodically allow a fresh conceptual pass from the technical constraints alone.
+
+Current Wildcard disposition: **SELECTED FOR LAUNCH — Stormwright (`mod-stormwright`)**.
+Five-option tournament, Director comparison, independent Reviewer quality/one-human
+dispositions and Wildcard's final creative choice are recorded in
+`decisions/initial-project-selection.md` and `prelaunch/wildcard-final-choice.md`.
+The complete Solo Pilot/ordinary-bot paths are mandatory. Implementation awaits the proven
+clean gate and formal launch. Hunt Rhythm (`mod-hunt-rhythm`) is the distinct Practical
+launch choice with independent solo-path proposal approval. No gameplay implementation has begun.
+The Small Council is **NOT APPROVED** and is retained only in `IDEA_VAULT.md`.
+
+Wildcard selection records must cover all five concepts and eleven fields, compare the
+shortlisted three against the quality dimensions and mandatory YES tests, record Director and
+Reviewer dispositions, and preserve Wildcard's own final choice/rationale. Use
+SELECT / REJECT / FRESH_PASS. Selection does not permit prelaunch implementation.
+The first flagship must pass independent review and the official gate before Wildcard begins
+another project, and BUILD must still permit it.
 
 ## Claimed projects
 
@@ -60,10 +81,20 @@ Pinned-API feasibility:
 Technical risk:
 Smallest worthwhile V1:
 Estimated completion confidence before current deadline boundary:
+One-human qualifying path (solo or human-plus-bots):
+Human custom actions and bot/helper responsibilities:
+Why ordinary pinned bot behavior suffices:
+Difficulty/enemy scaling and no-bots behavior:
+Complete primary loop including outcome/retry/abort:
+Bot assumptions pending live/in-game validation:
+Director and independent Reviewer one-human design dispositions:
 Decision: BUILD / SCOUT / DEFER
 ```
 
 ## Queue discipline
+
+- All lanes must pass locked `ONE_HUMAN_PLAYABILITY.md` before implementation approval.
+  Stormwright, Holdfast, Warband Arena and Hunt Rhythm require explicit reassessment.
 
 - Do not duplicate an actively claimed concept without a Director decision.
 - Prefer one owner per project.

@@ -2,6 +2,26 @@
 
 This file preserves honest non-harvest outcomes so blocked work does not consume the whole sprint or masquerade as complete.
 
+## PRELAUNCH infrastructure — owner decision required
+
+The sprint remains ARMED_NOT_STARTED. This is a Forge infrastructure blocker, not an
+attempted gameplay project and not a harvested result.
+
+Clean-control run `33911646203` failed full compilation of exact Playerbots
+`2f7d9f774987d0157c6a0d0cc08c40bec3db3945`: unused parameter `botAI` at
+`src/Ai/Raid/BT/BTHelpers.cpp:107:60`, made fatal by the unchanged warning policy.
+Candidate `87b822fd41bb6013358aa6f5e16ca252ad79761c` adds no compiler flags, build hooks,
+warning pragmas or dependency changes. Supported GCC and Clang warning configurations
+do not establish an escape from this diagnostic. Install/runtime/unit tests did not run.
+
+Exact immutable dependencies and all warnings fatal currently conflict. No dependency edit,
+warning suppression, pin change or unproven compiler substitution is authorized. The
+independent Reviewer record and actual artifacts must guide an explicit owner decision.
+See `prelaunch/clean-control-compile-blocker.md` for the exact judge/hash, artifact, diagnostic,
+supported-toolchain audit, skipped stages and concrete owner alternatives.
+Until resolved, preserve both selected projects without implementation and keep every
+sprint timestamp UNSET. The active continuity heartbeat stays quiet on unchanged state.
+
 ## BLOCKED
 
 None yet.

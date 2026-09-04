@@ -8,6 +8,11 @@ The sprint is an R&D harvest, not deployment.
 
 The output should be a shelf of high-quality candidates that Tyler can later install and test on the real server one at a time.
 
+Every candidate must satisfy locked `ONE_HUMAN_PLAYABILITY.md`: a complete worthwhile
+primary loop usable by Tyler alone or with normally controllable pinned Playerbots. No
+other real person, second client or second operated account may be necessary. Keep the
+actual mechanic and challenge; optional multiplayer enhances an already complete path.
+
 ## Success is measured by finished usable projects
 
 Optimize for:
@@ -49,7 +54,18 @@ Wildcard should ask:
 
 > If I were designing a memorable private WotLK server with these exact technical capabilities, what would I build that the owner might not think to request?
 
-It may pursue unconventional concepts when they are technically feasible and can reach a coherent V1 before the deadline.
+It may pursue unconventional concepts after passing the mandatory Wildcard creative-quality
+gate in `AGENTS.md` and `WILDCARD_AUTEUR.md`: at least five independent mechanically distinct
+options, a shortlist of three evaluated by Director and Reviewer, and Wildcard's durable choice
+among passing concepts before implementation. Selection requires strong gameplay,
+replayability or sustained utility, meaningful server impact, differentiation, installation value,
+and credible completion. Flavor-first systems, shallow novelty and one-use gimmicks do not pass.
+If no option passes, generate another set rather than lowering the bar.
+
+This is the AI Auteur / Flagship Gameplay lane: prioritize one standout complete module,
+with repeated player value and a memorable visible demonstration. Keep selection bounded.
+Another Wildcard project waits for the flagship's review and official-gate pass while BUILD
+permits. Preserve the designer's voice; Director provides quality control, not taste imitation.
 
 The experiment succeeds when at least some Wildcard output feels genuinely independent rather than another variation of the practical backlog.
 
@@ -63,6 +79,9 @@ Before starting a substantial implementation, record a concise internal/project 
 - technical risk;
 - expected implementation size;
 - estimated probability of reaching the finish gate before the current phase deadline.
+- exact one-human path, human/bot/helper roles, ordinary pinned behavior evidence,
+  difficulty/enemy scaling, no-bots behavior, full-loop access/outcome/retry/exit, and
+  remaining bot assumptions under `ONE_HUMAN_PLAYABILITY.md`.
 
 As the sprint progresses, required completion confidence rises.
 
