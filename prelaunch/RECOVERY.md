@@ -19,8 +19,9 @@ that same judge. Both negative controls were rejected as required. Clean run fai
 compilation at `2026-09-04T22:33:12Z` on new pinned HyjalHelpers.cpp168 and HyjalScripts.cpp39
 unused botAI diagnostics. The original BTHelpers warning appeared once non-fatally. Exact
 capture/source/flag evidence has independent review; install/runtime/unit stages were skipped.
-No further allowance is authorized. Finish only the separately reviewed failure-summary
-visibility correction, then require an explicit new owner decision before another clean run.
+No further allowance is authorized. The separately reviewed failure-summary correction is
+complete at validation revision `5269391`; require an explicit new owner decision before
+another clean run. See `prelaunch/failure-summary-reporting-review.md` for its limited evidence.
 All clocks remain UNSET. A source-only third unused parameter at HyjalHelpers209 is not an
 observed diagnostic; the first-error stopping behavior means the inventory is incomplete.
 Do not repeat the same known-failing judge, infer another exception, or resurrect the

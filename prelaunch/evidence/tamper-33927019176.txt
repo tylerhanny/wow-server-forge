@@ -1,0 +1,4 @@
+Validate project/forge-smoke-warning-allowlist-tamper	UNKNOWN STEP	2026-09-04T22:48:27.0561690Z validation/upstream-warning-allowlist.json
+Validate project/forge-smoke-warning-allowlist-tamper	UNKNOWN STEP	2026-09-04T22:48:27.0602095Z Candidate changed paths outside projects/<slug>/ and handoffs/<slug>.md:
+Validate project/forge-smoke-warning-allowlist-tamper	UNKNOWN STEP	2026-09-04T22:48:27.0603124Z validation/upstream-warning-allowlist.json
+Validate project/forge-smoke-warning-allowlist-tamper	UNKNOWN STEP	2026-09-04T22:48:27.0614741Z ##[error]Process completed with exit code 1.

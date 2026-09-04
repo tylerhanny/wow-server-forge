@@ -53,8 +53,16 @@ are recorded in `prelaunch/evidence/clean-33922537362-director-audit.json`.
 The owner explicitly designated every additional warning a fresh blocker. Do not waive these,
 rerun the same known-failing build, edit dependencies/pins, or launch. Another unused parameter
 at HyjalHelpers209 is source-only evidence, not an observed CI diagnostic; pinned
-`-Wfatal-errors` makes this an incomplete inventory. A separate failure-reporting correction
-will preserve observed warning/error text in FAIL job summaries without changing acceptance.
+`-Wfatal-errors` makes this an incomplete inventory. The separately reviewed reporting
+correction at validation revision `5269391` preserves observed warning/error text in future
+FAIL summaries without changing acceptance. Practical passed 17 independent checks;
+Director replayed the real failed artifact without modifying it. Details and evidence limits:
+`prelaunch/failure-summary-reporting-review.md`. No identical failed clean run was repeated.
+Both final reporting-revision negative controls also rejected scope tampering before build:
+`33927009741` at `2026-09-04T22:48:22Z` and `33927019176` at `2026-09-04T22:48:27Z`,
+both under exact judge `5269391836586137f983d79122ad9dd8a09fa1fd`. Director verified their
+candidate/judge/pin/protected-file hashes and actual rejection logs. Evidence:
+`prelaunch/evidence/reporting-revision-negative-controls.json` and matching log excerpts.
 
 ## Infrastructure
 
@@ -68,9 +76,9 @@ will preserve observed warning/error text in FAIL job summaries without changing
 
 | Owner | Assignment | State |
 |---|---|---|
-| Director | Exact owner-authorized policy, independent review and new controls | Active PRELAUNCH |
+| Director | Preserve complete authorized work and new upstream blockers | Owner decision required; clock unset |
 | Practical | Hunt Rhythm one-human reassessment | Proposal approved; awaits launch |
-| Reviewer | Protected exact-warning allowlist and complete fresh control evidence | Judge published; monitoring and reviewing controls |
+| Reviewer | Protected judge, full failed-control evidence and reporting correction | Independent reviews complete; fresh upstream blockers |
 | Wildcard | Three-shortlist one-human paths and final creative choice | Stormwright selected; awaits launch |
 
 ## Required launch evidence
@@ -119,12 +127,12 @@ will preserve observed warning/error text in FAIL job summaries without changing
     files only, no build hooks, flags, warning pragmas, header shadows or dependency mutation.
     This does not imply a passing build.
 
-Current execution disposition: **ACTIVE_PRELAUNCH**. Only the exact owner-authorized
-upstream-baseline allowance may now be implemented, with protected source identity,
-file-scoped demotion and complete-log rejection of every other warning. Both pins and all
-other checks remain unchanged. This is not a repaired dependency or candidate success.
-The new judge needs independent adversarial review and fresh tamper/complete clean controls.
-Every later stage skipped by the previous run remains unproven.
+Current execution disposition: **BLOCKED_NEW_UPSTREAM_DIAGNOSTICS**. The exact owner-authorized
+allowance is implemented and independently reviewed; both sets of negative controls were
+rejected as required. Clean run `33922537362` failed on additional immutable diagnostics,
+and the failure-summary correction is independently reviewed. Both pins and all acceptance
+checks remain unchanged. No dependency repair or candidate success is claimed. The skipped
+install/runtime/unit stages remain unproven, and another allowance requires explicit owner authority.
 
 At pause the corrected clean run had passed scope/discovery/configure and was still compiling.
 It has now failed compilation. No full compile/install/runtime/unit-test success is claimed.

@@ -37,9 +37,10 @@ Another unused `botAI` in `GetAzgalorTankPositionState` at HyjalHelpers line 209
 not observed compiler output. Because pinned `-Wfatal-errors` stops each translation unit
 at its first error, the two observed errors are not an exhaustive inventory.
 
-Current action: preserve the failure report and independently review the bounded improvement
-that displays observed diagnostics in failed-job summaries without changing acceptance.
-Then await explicit owner resolution; no unchanged rerun, broader waiver, source/pin edit,
+The failure report and independently reviewed failure-summary correction are complete:
+`prelaunch/clean-control-additional-upstream-blocker.md` and
+`prelaunch/failure-summary-reporting-review.md`. Acceptance is unchanged.
+Await explicit owner resolution; no unchanged rerun, broader waiver, source/pin edit,
 gameplay implementation or clock start is authorized.
 See `prelaunch/clean-control-compile-blocker.md` for the exact judge/hash, artifact, diagnostic,
 supported-toolchain audit, skipped stages and concrete owner alternatives.

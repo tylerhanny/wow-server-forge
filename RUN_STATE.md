@@ -14,10 +14,11 @@ EXECUTION_STATUS=BLOCKED_NEW_UPSTREAM_DIAGNOSTICS
 BLOCKER_IDENTIFIED_UTC=2026-09-04T22:33:12Z
 OWNER_EXCEPTION_RECONCILED_UTC=2026-09-04T21:16:15Z
 OWNER_EXCEPTION_POLICY=UPSTREAM_WARNING_EXCEPTION.md
-REVIEWED_JUDGE_SHA=78a5da6d5aed19a932fae53e74226ac5afc2e204
+REVIEWED_JUDGE_SHA=5269391836586137f983d79122ad9dd8a09fa1fd
+LAST_FULL_CLEAN_JUDGE_SHA=78a5da6d5aed19a932fae53e74226ac5afc2e204
 CLEAN_CONTROL_RUN=33922537362
-AUTHORITY_TAMPER_RUN=33922543117
-ALLOWLIST_TAMPER_RUN=33922549107
+AUTHORITY_TAMPER_RUN=33927009741
+ALLOWLIST_TAMPER_RUN=33927019176
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
 CLEAN_CONTROL_REVIEW=FAIL_NEW_UPSTREAM_DIAGNOSTICS
 PAUSE_UTC=2026-09-04T19:56:13Z
@@ -44,7 +45,7 @@ CURRENT_PHASE=SETUP
 | Director | Persistent orchestrator | Preserve independently confirmed new upstream blockers; owner decision required | main | PRELAUNCH BLOCKED |
 | Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | PRELAUNCH |
 | Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
-| Reviewer | Independent internal Reviewer / Closer | Preserve failed-control evidence and fix failure-summary visibility without changing acceptance | lane/reviewer / .worktrees/reviewer | PRELAUNCH |
+| Reviewer | Independent internal Reviewer / Closer | Failure evidence and reporting correction complete; owner resolution required | lane/reviewer / .worktrees/reviewer | PRELAUNCH BLOCKED |
 
 Prelaunch evidence and next actions are recorded in `prelaunch/STATUS.md`.
 Internal worker lanes are managed by the Director; Tyler need not create worker tasks.
@@ -99,8 +100,10 @@ These are fresh owner-required blockers under `UPSTREAM_WARNING_EXCEPTION.md`; n
 warning or source/pin edit is authorized. A third unused parameter at HyjalHelpers line 209
 is a source-only finding, not an observed CI diagnostic. Pinned `-Wfatal-errors` means the
 observed failures are not an exhaustive warning inventory. Preserve that distinction.
-Finish only the bounded failure-summary reporting correction and its independent review;
-then await explicit owner resolution. No gameplay implementation or clock initialization.
+The bounded failure-summary reporting correction is complete and independently reviewed
+at revision `5269391836586137f983d79122ad9dd8a09fa1fd`; acceptance is unchanged. Its actual
+failed-artifact replay and tests are in `prelaunch/failure-summary-reporting-review.md`.
+Await explicit owner resolution. No gameplay implementation or clock initialization.
 
 The heartbeat remains ACTIVE for continuity, quiet while this owner-required blocker is
 unchanged. Both launch selections are preserved, all timestamps remain UNSET, and no

@@ -1,0 +1,42 @@
+{
+  "kind": "LOCAL_REPLAY_OF_EXISTING_FAILED_CAPTURE_NOT_CI_RERUN",
+  "reporting_source_commit": "d9ddae5c5aede205d54278cc18b09b9c34fd7383",
+  "verifier_sha256": "7de327ef1f1dc534f4bed9e6e76e8ccd53d146ccf5cde8e26aba3da6708c899c",
+  "original_run": 33922537362,
+  "original_judge": "78a5da6d5aed19a932fae53e74226ac5afc2e204",
+  "original_result": "FAIL",
+  "original_artifact_files_unchanged": true,
+  "corrupted_receipt_remains_non_authoritative": true,
+  "diagnostic_observations": {
+    "capture_integrity": "VERIFIED_CAPTURE",
+    "acceptance_authority": false,
+    "notice": "Observed process output only; source identity and acceptance are not established by this report",
+    "issues": [],
+    "diagnostics": [
+      {
+        "log_line": 1558,
+        "header": "/home/runner/work/wow-server-forge/wow-server-forge/ac/modules/mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp:107:60: warning: unused parameter 'botAI' [-Wunused-parameter]",
+        "following_context": [
+          "  107 | TankPositionState GetShahrazTankPositionState(PlayerbotAI* botAI, Player* bot)",
+          "      |                                                            ^"
+        ]
+      },
+      {
+        "log_line": 1606,
+        "header": "/home/runner/work/wow-server-forge/wow-server-forge/ac/modules/mod-playerbots/src/Ai/Raid/Hyjal/Util/HyjalHelpers.cpp:168:61: fatal error: unused parameter 'botAI' [-Wunused-parameter]",
+        "following_context": [
+          "  168 | TankPositionState GetKazrogalTankPositionState(PlayerbotAI* botAI, Player* bot)",
+          "      |                                                             ^"
+        ]
+      },
+      {
+        "log_line": 1614,
+        "header": "/home/runner/work/wow-server-forge/wow-server-forge/ac/modules/mod-playerbots/src/Ai/Raid/Hyjal/Util/HyjalScripts.cpp:39:63: fatal error: unused parameter 'botAI' [-Wunused-parameter]",
+        "following_context": [
+          "   39 | static bool ShouldInterruptForArchimondeAirBurst(PlayerbotAI* botAI, Player* bot, Player* target)",
+          "      |                                                               ^"
+        ]
+      }
+    ]
+  }
+}
