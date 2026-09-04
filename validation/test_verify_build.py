@@ -2,6 +2,7 @@
 """Protected adversarial checks; --integration also requires real Ubuntu CMake/Clang."""
 
 import copy
+import io
 import json
 import os
 from pathlib import Path
@@ -10,6 +11,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 import verify_build as gate
 
@@ -115,6 +117,91 @@ class CaptureTests(unittest.TestCase):
                 self.check(control + self.raw)
         crlf = self.raw.replace(b"\n", b"\r\n")
         self.assertEqual(self.check(crlf)["allowed_warning_count"], 1)
+
+
+class FailureReportingTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(dir=TEMP_ROOT)
+        self.root = Path(self.temp.name)
+        self.log = self.root / "build.log"
+        self.policy = gate.load_policy()
+        self.source = Path("/forge/ac/modules/mod-playerbots") / self.policy["path"]
+        self.raw = diagnostic(self.policy, self.source) + (
+            b"/forge/ac/modules/mod-playerbots/HyjalHelpers.cpp:168:61: fatal error: unused parameter 'botAI' [-Wunused-parameter]\n"
+            b" 168 | TankPositionState GetKazrogalTankPositionState(PlayerbotAI* botAI, Player* bot)\n"
+            b"     |                                                             ^\n"
+            b"1 error generated.\n"
+        )
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def test_failed_capture_exposes_warning_and_error_without_acceptance(self):
+        self.log.write_bytes(self.raw)
+        capture = {**receipt(self.raw), "returncode": 2}
+        report = gate.describe_failed_capture(self.log, capture)
+        self.assertEqual(report["capture_integrity"], "VERIFIED_CAPTURE")
+        self.assertFalse(report["acceptance_authority"])
+        self.assertEqual(len(report["diagnostics"]), 2)
+        self.assertIn("BTHelpers.cpp:107:60: warning:", report["diagnostics"][0]["header"])
+        self.assertIn("GetShahrazTankPositionState", report["diagnostics"][0]["following_context"][0])
+        self.assertIn("fatal error:", report["diagnostics"][1]["header"])
+        with self.assertRaisesRegex(gate.GateFailure, "Complete build did not succeed"):
+            gate.validate_capture(self.raw, capture, self.policy, self.source)
+
+    def test_partial_mismatched_and_stale_capture_is_non_authoritative(self):
+        self.log.write_bytes(self.raw)
+        cases = ({}, {**receipt(self.raw), "capture_complete": False},
+                 {**receipt(self.raw), "log_sha256": "0" * 64},
+                 {**receipt(self.raw), "stream_sha256": "0" * 64},
+                 {**receipt(self.raw), "returncode": False})
+        for capture in cases:
+            with self.subTest(capture=capture):
+                report = gate.describe_failed_capture(self.log, capture)
+                self.assertEqual(report["capture_integrity"], "UNVERIFIED")
+                self.assertIn("NON-AUTHORITATIVE", report["notice"])
+                self.assertTrue(report["issues"])
+                self.assertFalse(report["acceptance_authority"])
+
+    def test_missing_empty_truncated_or_invalid_log_is_non_authoritative(self):
+        report = gate.describe_failed_capture(self.log, {})
+        self.assertEqual(report["diagnostics"], [])
+        self.assertEqual(report["capture_integrity"], "UNVERIFIED")
+        for raw in (b"", self.raw.rstrip(b"\n"), b"\x1b[31m" + self.raw,
+                    b"\r" + self.raw, b"\xff" + self.raw):
+            with self.subTest(raw=raw[:20]):
+                self.log.write_bytes(raw)
+                report = gate.describe_failed_capture(self.log, receipt(raw))
+                self.assertEqual(report["capture_integrity"], "UNVERIFIED")
+                self.assertIn("NON-AUTHORITATIVE", report["notice"])
+
+    def test_early_failure_keeps_original_reason_and_labels_stale_log(self):
+        self.log.write_bytes(self.raw)
+        with mock.patch.object(gate, "verify_identity", side_effect=gate.GateFailure("original identity failure")), \
+                mock.patch("sys.stdout", new=io.StringIO()), \
+                self.assertRaisesRegex(gate.GateFailure, "original identity failure"):
+            gate.build(self.root / "ac", self.root, self.policy, "mod-candidate")
+        verdict = json.loads((self.root / "upstream-warning-verdict.json").read_text())
+        self.assertEqual(verdict["status"], "FAIL")
+        self.assertEqual(verdict["failure"], "original identity failure")
+        self.assertEqual(verdict["diagnostic_observations"]["capture_integrity"], "UNVERIFIED")
+
+    def test_failed_process_writes_observations_and_still_fails(self):
+        process = mock.Mock(stdout=io.BytesIO(self.raw))
+        process.wait.return_value = 2
+        process.poll.return_value = 2
+        output = mock.Mock(buffer=io.BytesIO())
+        with mock.patch.object(gate, "verify_identity", return_value={}), \
+                mock.patch.object(gate, "verify_commands", return_value={}), \
+                mock.patch.object(gate.subprocess, "Popen", return_value=process), \
+                mock.patch("sys.stdout", output), \
+                self.assertRaisesRegex(gate.GateFailure, "Complete build did not succeed"):
+            gate.build(self.root / "ac", self.root, self.policy, "mod-candidate")
+        verdict = json.loads((self.root / "upstream-warning-verdict.json").read_text())
+        self.assertEqual(verdict["status"], "FAIL")
+        self.assertEqual(verdict["failure"], "Complete build did not succeed")
+        self.assertEqual(verdict["diagnostic_observations"]["capture_integrity"], "VERIFIED_CAPTURE")
+        self.assertEqual(len(verdict["diagnostic_observations"]["diagnostics"]), 2)
 
 
 class GitFixture(unittest.TestCase):

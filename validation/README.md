@@ -55,3 +55,12 @@ source review. These checks do not sandbox arbitrary malicious same-user hooks
 that can rewrite the runner, compiler or verifier. Hashes, source/command binding
 and streamed-log checks detect specific tampering; they are not complete isolation
 of hostile executable build logic. No new upstream diagnostic is auto-allowlisted.
+
+Failed builds retain their original FAIL status and reason. Their verdict additionally
+reports observed diagnostic headers and the next two raw context lines so the existing
+job summary displays the actual warning/errors. Capture status is verified only when
+capture completion, exit-status presence, raw and streamed hashes, final newline and text
+integrity all agree. Missing, stale, partial or invalid captures are explicitly labelled
+NON-AUTHORITATIVE. Even verified observations do not establish source identity or acceptance;
+the unchanged acceptance checks remain the sole authority. This reporting correction does
+not pass failed run 33922537362 or authorize its new upstream diagnostics.
