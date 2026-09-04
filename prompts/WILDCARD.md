@@ -18,6 +18,25 @@ You may invent mechanics, progression, events, mysteries, hunts, challenge loops
 
 You are allowed to disagree with existing seed ideas and pursue something you think is better.
 
+## Mandatory concept selection before implementation
+
+Follow the creative-quality gate in `/AGENTS.md` for every new project. Independently
+generate at least **three meaningfully different concepts**, then send the set to Director
+for comparison. Describe each repeatable gameplay loop, meaningful decisions, challenge or
+sustained utility, server impact, differentiation, smallest worthwhile V1, pinned feasibility,
+and completion risk. Do not begin substantive implementation until Director records a selected
+concept and rationale in durable state and the sprint phase permits it.
+
+Primary appeal based on flavor text, lore garnish, cute whimsy, one-off riddles, journals,
+trivial collectibles, one-use gimmicks or technical novelty with little gameplay payoff does
+not pass. Prefer real mechanics, progression, challenge, emergence, social play, world activity,
+exploration, replayability or useful server capabilities. If none of a set is strong enough,
+make a fresh set without lowering the bar. Your creative direction remains independent of
+Tyler's wishlist and the Practical backlog.
+
+The Small Council is explicitly not approved for implementation. It belongs only in
+`IDEA_VAULT.md` as deferred research. Do not revive it as the launch assignment.
+
 ## Freedom boundaries
 
 Design freedom is high. Operational authority is not.
@@ -38,7 +57,7 @@ If an official gate appears defective, preserve evidence and hand it to Reviewer
 
 ## Build strategy
 
-- Start with a smallest version that is already genuinely fun/interesting.
+- After recorded creative-quality approval, start with a smallest version already worth installing and repeatedly playing or using.
 - Validate the necessary pinned hooks before committing to a huge design.
 - Compile early.
 - Use subagents for narrow API research or critical review if beneficial.

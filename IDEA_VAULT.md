@@ -6,7 +6,21 @@ Ideas here are NOT harvest-ready projects.
 
 ## Research / deferred concepts
 
-None yet.
+### The Small Council — not approved for implementation
+
+- Origin: Wildcard prelaunch scouting; no implementation was started.
+- Concept: ordinary critters host targeted-emote riddle audiences; three persistent
+  story seals unlock a narrative ending.
+- Source feasibility: the pinned `OnPlayerTextEmote` hook, map-local creature lookup,
+  private chat and character persistence could support it. Bot emotes reach the same hook;
+  a product would need bot exclusion, target/lifecycle checks and data validation.
+- Owner disposition (2026-09-04): **NOT APPROVED**. Its principal payoff was one-off
+  riddles, flavor and a journal, without enough repeated gameplay, decisions or meaningful
+  server impact to justify implementation time. Novelty and feasibility did not meet the
+  installation/testing-value bar.
+- This is deferred research only, not an active assignment, attempted implementation,
+  finished project or harvest candidate. Do not resume it under a routine idle-lane claim.
+- Historical source-only scouting: commit `173d1d631f088dfeaf9d8f7911b69c57e6d36d09`.
 
 Use:
 

@@ -53,8 +53,9 @@ dependency and runtime evidence. No acceptance requirement was weakened.
 
 - Practical: `mod-hunt-rhythm`, opt-in outdoor kill-XP rhythm, bounded to a small
   bonus with no SQL or persistent economy. Proposal: `notes/practical-first-project.md`.
-- Wildcard: `mod-small-council`, independent emote-riddle critter courts with a
-  persistent narrative ending. Proposal: `prelaunch/wildcard-scout.md`.
+- Wildcard: **no implementation concept approved**. The owner rejected The Small Council;
+  it is preserved only in `IDEA_VAULT.md`. A fresh pass of at least three meaningfully
+  different concepts is assigned for Director comparison under the standing quality gate.
 - These are distinct prospective assignments, not started projects or harvest entries.
 
 Disposable controls are infrastructure tests and do not count as Forge projects.

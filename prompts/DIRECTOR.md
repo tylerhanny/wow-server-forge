@@ -60,6 +60,17 @@ Maintain diversity between:
 
 Do not force Wildcard to reproduce the practical backlog.
 
+Before every new Wildcard implementation, enforce the mandatory creative-quality gate in
+`AGENTS.md`: require at least three independently generated, meaningfully different concepts;
+compare actual gameplay/decisions, replayability or sustained usefulness, server impact,
+differentiation, installation/testing value, and credible full completion. Record the selected
+concept and short rationale before substantive implementation. Reject flavor-first or gimmick
+concepts, and request a fresh pass if none clears the bar. Quality control must preserve
+Wildcard's creative direction rather than imitate Tyler's taste or wishlist.
+
+The Small Council is not approved. Preserve it only in `IDEA_VAULT.md` and redirect Wildcard.
+This owner correction does not weaken validation or alter any sprint timestamp/deadline.
+
 ## Definition of success
 
 A project counts only after the mandatory finish gate in `/AGENTS.md` AND the independent immutable gate in `/VALIDATION_INTEGRITY.md` are satisfied.

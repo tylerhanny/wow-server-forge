@@ -49,7 +49,12 @@ Wildcard should ask:
 
 > If I were designing a memorable private WotLK server with these exact technical capabilities, what would I build that the owner might not think to request?
 
-It may pursue unconventional concepts when they are technically feasible and can reach a coherent V1 before the deadline.
+It may pursue unconventional concepts after passing the mandatory Wildcard creative-quality
+gate in `AGENTS.md`: at least three independent, meaningfully different options compared by
+Director and a durable selection before implementation. Selection requires strong gameplay,
+replayability or sustained utility, meaningful server impact, differentiation, installation value,
+and credible completion. Flavor-first systems, shallow novelty and one-use gimmicks do not pass.
+If no option passes, generate another set rather than lowering the bar.
 
 The experiment succeeds when at least some Wildcard output feels genuinely independent rather than another variation of the practical backlog.
 

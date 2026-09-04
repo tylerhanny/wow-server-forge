@@ -144,6 +144,43 @@ Wildcard MUST NOT merely mirror Tyler's known wishlist. It may disagree with bac
 
 Wildcard remains fully bound by compatibility, isolation, engineering quality, completeness, and deadline rules.
 
+### Mandatory Wildcard creative-quality gate
+
+This standing owner rule applies before **every new Wildcard project receives substantive
+implementation time**, including the first launch assignment. Creative freedom is preserved;
+implementation approval depends on gameplay quality, not novelty alone.
+
+1. Wildcard independently generates **at least three meaningfully different concepts**.
+   Variations of one mechanic do not satisfy the requirement.
+2. Director compares the concepts instead of accepting the first idea produced.
+3. Director must judge a selected concept strong on all of these dimensions:
+   - actual moment-to-moment gameplay value and player decisions;
+   - replayability or sustained usefulness;
+   - meaningful impact on how the private server feels or plays;
+   - novelty and differentiation from ordinary AzerothCore convenience modules;
+   - whether it would be worth installing and testing;
+   - credible completion through the full finish gate within remaining sprint time.
+4. Reject concepts whose primary appeal is flavor text, lore garnish, arbitrary whimsy,
+   shallow novelty, cute flavor systems, one-off riddles, journals, trivial collectibles,
+   one-use gimmicks, or technical cleverness with weak gameplay payoff.
+5. Prefer mechanics, decisions, challenge, progression, emergent situations, world activity,
+   social interaction, exploration, repeatable play loops, or useful server capabilities.
+6. Wildcard owns its creative direction. Director provides quality control and must not
+   force imitation of Tyler's wishlist or the Practical backlog.
+7. If no concept clears the bar, conduct another fresh ideation pass; never lower the bar
+   to keep the lane busy.
+8. Before implementation, Director records the compared options, selected concept, short
+   rationale, coherent V1, completion risk, and explicit disposition in durable repository
+   state, then records ownership in `BACKLOG.md` / `RUN_STATE.md`.
+
+Flavor may support a strong gameplay system; it cannot substitute for one. Creative-quality
+approval never overrides prelaunch, validation, isolation, or deadline rules. During HARVEST
+the no-new-project rule still applies.
+
+**Owner disposition, 2026-09-04:** `mod-small-council` / The Small Council is not approved
+for implementation. Preserve it only as deferred research in `IDEA_VAULT.md`; redirect
+Wildcard through a fresh comparative concept pass.
+
 ### 4. Reviewer / Closer
 
 Independently reviews work produced by other agents. Responsibilities:
