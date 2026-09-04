@@ -1,0 +1,253 @@
+{
+  "snapshot": "C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616",
+  "verifier_sha256": "8461d5b3ffb4d05962ed39e8ae41a203bd3fac1f1d6d3594a6c572ed49bd6259",
+  "count": 35,
+  "mismatches": [],
+  "results": [
+    {
+      "case": "multiple_verified_upstream_warnings_visible",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matches": true,
+      "reason": ""
+    },
+    {
+      "case": "zero_upstream_warnings_permitted_by_new_policy",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matches": true,
+      "reason": ""
+    },
+    {
+      "case": "verified_upstream_header_warning",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matches": true,
+      "reason": ""
+    },
+    {
+      "case": "project_translation_unit_warning",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Unverified diagnostic/source ownership: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\modules\\mod-audit\\src\\Candidate.cpp"
+    },
+    {
+      "case": "project_header_warning_in_upstream_TU",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Unverified diagnostic/source ownership: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\modules\\mod-audit\\src\\Candidate.hpp"
+    },
+    {
+      "case": "copied_generated_project_warning",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Unverified diagnostic/source ownership: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\build\\Generated.cpp"
+    },
+    {
+      "case": "upstream_primary_with_project_macro_note",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Unverified diagnostic/source ownership: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\modules\\mod-audit\\src\\Candidate.hpp"
+    },
+    {
+      "case": "unknown_upstream_looking_path",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Unverified diagnostic/source ownership: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\src\\Unknown.cpp"
+    },
+    {
+      "case": "relative_diagnostic_path",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Unverified diagnostic/source ownership: src\\Core.cpp"
+    },
+    {
+      "case": "traversal_diagnostic_path",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Unverified diagnostic/source ownership: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\src\\..\\src\\Core.cpp"
+    },
+    {
+      "case": "modified_tracked_header",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Upstream file changed: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\src\\Core.hpp"
+    },
+    {
+      "case": "fatal_error_in_verified_upstream",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Build error remains: C:/Development/WoW Server Forge \u2014 36H Sprint/.worktrees/practical/.forge-local/warning-audit/commit-e7afa692992b2fcaaef885d1c4473e9fa4352616/audit-ac/src/Core.cpp:1:1: fatal error: invalid code"
+    },
+    {
+      "case": "link_error",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Build error remains: clang++: error: linker command failed"
+    },
+    {
+      "case": "unlocated_driver_warning",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Unallowlisted warning or warning summary: clang++: warning: unused argument"
+    },
+    {
+      "case": "nonzero_build_exit",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Complete build did not succeed"
+    },
+    {
+      "case": "partial_capture",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Build log capture is incomplete"
+    },
+    {
+      "case": "changed_stream_hash",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Persisted log differs from captured process bytes"
+    },
+    {
+      "case": "changed_persisted_hash",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Build log changed or was truncated"
+    },
+    {
+      "case": "missing_summary",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Warning summaries (1) do not match observed diagnostics (2)"
+    },
+    {
+      "case": "extra_summary",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Warning summaries (3) do not match observed diagnostics (2)"
+    },
+    {
+      "case": "forged_progress_warning",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Build progress references an unknown compiler output: [99%] Building CXX object unknown.o warning: concealed"
+    },
+    {
+      "case": "ansi_control",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Terminal/control bytes in build log"
+    },
+    {
+      "case": "invalid_utf8",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "'utf-8' codec can't decode byte 0xff in position 687: invalid start byte"
+    },
+    {
+      "case": "truncated_log",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Build log is absent, empty, or lacks completion newline"
+    },
+    {
+      "case": "upstream_demoted_candidate_strict",
+      "expected": "PASS",
+      "actual": "PASS",
+      "matches": true,
+      "reason": ""
+    },
+    {
+      "case": "candidate_demoted",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Misplaced/missing upstream demotion: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\modules\\mod-audit\\src\\Candidate.cpp"
+    },
+    {
+      "case": "generated_project_demoted",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Misplaced/missing upstream demotion: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\build\\Generated.cpp"
+    },
+    {
+      "case": "metadata_actual_input_mismatch",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Compiler source input differs from inventory metadata: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\src\\Core.cpp"
+    },
+    {
+      "case": "physical_location_overridden",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Unproven diagnostic/input remapping: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\modules\\mod-audit\\src\\Candidate.cpp"
+    },
+    {
+      "case": "macro_provenance_truncated",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Truncated diagnostic provenance: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\modules\\mod-audit\\src\\Candidate.cpp"
+    },
+    {
+      "case": "opaque_response_file",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Opaque compiler response file: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\modules\\mod-audit\\src\\Candidate.cpp"
+    },
+    {
+      "case": "project_header_classified_system",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Non-native system include could suppress project warnings: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\modules\\mod-audit\\src\\Candidate.cpp"
+    },
+    {
+      "case": "missing_candidate_compilation",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Candidate module has no actual compilation"
+    },
+    {
+      "case": "project_header_suppression_directive",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Project/generated diagnostic suppression or system linemarker: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\modules\\mod-audit\\src\\Candidate.hpp"
+    },
+    {
+      "case": "generated_header_suppression_directive",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "matches": true,
+      "reason": "Project/generated diagnostic suppression or system linemarker: C:\\Development\\WoW Server Forge \u2014 36H Sprint\\.worktrees\\practical\\.forge-local\\warning-audit\\commit-e7afa692992b2fcaaef885d1c4473e9fa4352616\\audit-ac\\build\\Generated.hpp"
+    }
+  ]
+}
