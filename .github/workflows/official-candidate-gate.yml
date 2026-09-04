@@ -46,7 +46,7 @@ jobs:
           set -euo pipefail
 
           python3 - <<'PY' > /tmp/candidates.json
-          import json, os, subprocess, sys
+          import json, os, subprocess
           from datetime import datetime, timezone, timedelta
 
           repo = os.environ['GITHUB_REPOSITORY']
@@ -267,6 +267,15 @@ jobs:
           set -euo pipefail
           cmake --build ac/build --config Release -j "$(($(nproc) + 1))"
 
+      - name: Verify dependencies remained immutable
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C ac diff --exit-code -- . ':!modules'
+          git -C ac/modules/mod-playerbots diff --exit-code
+          [[ "$(git -C ac rev-parse HEAD)" == "$AC_COMMIT" ]]
+          [[ "$(git -C ac/modules/mod-playerbots rev-parse HEAD)" == "$PLAYERBOTS_COMMIT" ]]
+
       - name: Install into disposable server tree
         shell: bash
         run: |
@@ -284,9 +293,10 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Reject obviously destructive unrelated SQL operations in candidate-owned SQL.
+          # Reject destructive SQL. DROP TABLE IF EXISTS remains allowed for
+          # module-owned repeat-safe migrations; other DROP TABLE forms do not.
           if find "candidate/projects/$PROJECT" -type f -iname '*.sql' -print0 | \
-             xargs -0 -r grep -Ein '\b(TRUNCATE|DROP[[:space:]]+DATABASE|DROP[[:space:]]+TABLE[[:space:]]+(?!IF[[:space:]]+EXISTS))\b'; then
+             xargs -0 -r grep -Pin '\b(TRUNCATE|DROP\s+DATABASE|DROP\s+TABLE\s+(?!IF\s+EXISTS))\b'; then
             echo 'Potentially destructive SQL requires manual Reviewer disposition.' >&2
             exit 1
           fi
@@ -354,6 +364,6 @@ jobs:
             echo "- Judge source: default-branch workflow at run start"
             echo "- Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
             echo
-            echo 'A green job means scope integrity, exact-pin configure/build/install, SQL static checks, and disposable dry-run startup all completed successfully.'
+            echo 'A green job means scope integrity, exact-pin configure/build/install, dependency immutability, SQL static checks, and disposable dry-run startup all completed successfully.'
             echo 'It does **not** mean Tyler has performed live/in-game gameplay validation.'
           } >> "$GITHUB_STEP_SUMMARY"
