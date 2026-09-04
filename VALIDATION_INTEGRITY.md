@@ -95,3 +95,6 @@ Every harvested candidate requires independent Reviewer/Closer approval against 
 A green result produced after test weakening, gate modification, skipped validation, altered pins, or an unverified substitute environment is invalid even if CI reports success.
 
 The correct response to a legitimate failure is to fix the implementation, safely reduce feature scope, or move the candidate to `BLOCKED.md` / `IDEA_VAULT.md`.
+
+## Deliberate disposable tampering control
+This unauthorized candidate authority change MUST be rejected by the default-branch judge.
