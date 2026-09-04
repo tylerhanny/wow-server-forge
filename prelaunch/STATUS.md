@@ -6,7 +6,33 @@ The sprint remains **ARMED_NOT_STARTED**. No timestamps have been started.
 monitoring resumed, and the one-human authority/reviews/selection are complete. The clean
 run subsequently failed compilation. The owner has now explicitly authorized the exact
 protected warning allowance in `UPSTREAM_WARNING_EXCEPTION.md`. PRELAUNCH is active again;
-implementation/review of the allowance and fresh controls are pending. No clock has started.
+the protected allowance is implemented and independently reviewed; fresh external controls
+are running. No clock has started.
+
+## Owner-authorized warning policy — fresh controls
+
+Reviewed judge `78a5da6d5aed19a932fae53e74226ac5afc2e204` integrates Reviewer source
+`2e73998349c65dc442b7fed3008d0df0e007bb29`. Its workflow Git-blob SHA-256 is
+`5c792e61941d16578567499891d46047bab5248bee2bc5bd8962eb6c5c21a7a2`.
+Practical independently exported the exact committed bytes and passed all 73 adversarial
+cases; Director reviewed preservation of the default-branch scope and later mandatory gates.
+Wildcard independently checked owner-requirement traceability. These are source/test reviews,
+not full pinned-build or runtime success. The actual Ubuntu compiler-scope probe is mandatory
+in CI, followed by the complete pinned configure/build/install/config/SQL/integrity/dry-run/unit gate.
+
+All three explicit dispatches use this same reviewed default-branch judge:
+
+| Control | Exact candidate | Run | Current evidence |
+|---|---|---|---|
+| Legitimate clean module | `87b822fd41bb6013358aa6f5e16ca252ad79761c` | [33922537362](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922537362) | Dispatched 2026-09-04T21:45:24Z; final result pending |
+| Existing locked-authority tamper | `2d74a0b1599313a9b09c7baf5b961d3744f48ed6` | [33922543117](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922543117) | Dispatched 2026-09-04T21:45:29Z; rejection pending |
+| Protected warning-allowlist tamper | `697f4d4d0467171fe55036c9de4c3cb5e8cf0912` | [33922549107](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922549107) | Dispatched 2026-09-04T21:45:34Z; rejection pending |
+
+The new negative control changes only `validation/upstream-warning-allowlist.json` from
+expected count 1 to 2 on its disposable candidate branch. Main retains count 1. It must be
+rejected by scope before candidate build. The old failed clean run below remains failed.
+The exact-warning policy is an owner-authorized upstream baseline exception, not a dependency
+repair, gameplay candidate, or completed PRELAUNCH. Every sprint timestamp remains UNSET.
 
 ## Infrastructure
 
@@ -22,7 +48,7 @@ implementation/review of the allowance and fresh controls are pending. No clock 
 |---|---|---|
 | Director | Exact owner-authorized policy, independent review and new controls | Active PRELAUNCH |
 | Practical | Hunt Rhythm one-human reassessment | Proposal approved; awaits launch |
-| Reviewer | Protected exact-warning allowlist, parser and compiler scope | Implementing authorized policy |
+| Reviewer | Protected exact-warning allowlist and complete fresh control evidence | Judge published; monitoring and reviewing controls |
 | Wildcard | Three-shortlist one-human paths and final creative choice | Stormwright selected; awaits launch |
 
 ## Required launch evidence

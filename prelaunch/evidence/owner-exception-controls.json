@@ -1,0 +1,46 @@
+{
+  "status": "RUNNING_PRELAUNCH",
+  "sprint_clock": "ARMED_NOT_STARTED",
+  "judge_commit": "78a5da6d5aed19a932fae53e74226ac5afc2e204",
+  "reviewer_source_commit": "2e73998349c65dc442b7fed3008d0df0e007bb29",
+  "authorization": "Exact owner-authorized upstream baseline warning exception; no dependency repair or candidate success",
+  "hashes": {
+    ".github/workflows/official-candidate-gate.yml": "5c792e61941d16578567499891d46047bab5248bee2bc5bd8962eb6c5c21a7a2",
+    "UPSTREAM_WARNING_EXCEPTION.md": "bf85c9af02a49a290a53b7de0f59c4c7a60dca9dfdebcedc951b222c71f8c7eb",
+    "validation/upstream-warning-allowlist.json": "9d79d5b080c0087dd0f144a89e7363e4e524e2a09dbb2e828173acb1dd315dc5",
+    "validation/upstream-warning-hook.cmake": "16b42cd5a7aba52049aa4d623765a8764ac2e3e85367c9fbabdf67cbf42683f6",
+    "validation/verify_build.py": "2b3adb4328f5a1ce356b734b3b31a168efe2f021e3320cfd12eed9b70b2c161c",
+    "validation/test_verify_build.py": "25d5f7f6d0e1e9d2deb0587b92385e7fe7310cfb546cdb8485d252e7d766837a"
+  },
+  "source_review": {
+    "practical": "APPROVE; 73/73 independent adversarial expected outcomes on exact committed bytes",
+    "director": "APPROVE; default-branch protection and mandatory later stages preserved",
+    "wildcard": "PASS requirement traceability; runtime evidence pending"
+  },
+  "controls": [
+    {
+      "kind": "clean",
+      "candidate": "87b822fd41bb6013358aa6f5e16ca252ad79761c",
+      "branch": "project/forge-smoke-clean",
+      "run_id": 33922537362,
+      "expected": "complete gate success",
+      "result": "PENDING"
+    },
+    {
+      "kind": "authority-tamper",
+      "candidate": "2d74a0b1599313a9b09c7baf5b961d3744f48ed6",
+      "branch": "project/forge-smoke-tamper",
+      "run_id": 33922543117,
+      "expected": "scope rejection before build",
+      "result": "PENDING"
+    },
+    {
+      "kind": "warning-allowlist-tamper",
+      "candidate": "697f4d4d0467171fe55036c9de4c3cb5e8cf0912",
+      "branch": "project/forge-smoke-warning-allowlist-tamper",
+      "run_id": 33922549107,
+      "expected": "scope rejection before build",
+      "result": "PENDING"
+    }
+  ]
+}
