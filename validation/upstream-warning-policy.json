@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "authorization": "OWNER-AUTHORIZED VERIFIED UPSTREAM WARNINGS; project and unknown warnings remain fatal",
+  "core_commit": "47960183bb03b83e8943eb2f0f39c16df9710c9d",
+  "playerbots_commit": "2f7d9f774987d0157c6a0d0cc08c40bec3db3945",
+  "upstream_warnings": "verified-unchanged-tracked-files-only",
+  "project_warnings": "fatal",
+  "unknown_warnings": "fatal",
+  "errors": "fatal"
+}
