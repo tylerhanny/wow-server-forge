@@ -9,6 +9,8 @@ are approved and preferred; never wait for Tyler to create separate lane tasks.
 2. Read `AGENTS.md`, `VALIDATION_INTEGRITY.md`, `TEAM_PROTOCOL.md`, `RUN_STATE.md`,
    `prelaunch/STATUS.md`, and applicable handoffs.
 3. Inspect `git worktree list`, worker status/branches and external Actions runs.
+   Run `./tools/Get-ForgePhase.ps1` for a read-only phase calculation from recorded
+   timestamps. It rejects malformed/reset boundary intervals and never changes state.
 4. Reuse or replace internal lane workers with concrete bounded assignments. Do not
    overlap project ownership. Reviewer must remain independent of builders.
 5. Execute the next repair/build/review action and commit durable evidence.
