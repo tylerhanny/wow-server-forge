@@ -99,3 +99,6 @@ Candidate branches may change only their single project and matching handoff; ch
 this file invalidates the official scope gate. Builders must not change/waive this requirement.
 The external judge, exact dependency pins, no-live-server boundary, independent review,
 prelaunch smoke requirements and fixed sprint deadlines remain fully applicable.
+
+## Deliberate disposable authority-tampering control
+This candidate attempts to alter locked one-human authority and MUST be rejected by the official judge.
