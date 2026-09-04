@@ -54,8 +54,9 @@ dependency and runtime evidence. No acceptance requirement was weakened.
 - Practical: `mod-hunt-rhythm`, opt-in outdoor kill-XP rhythm, bounded to a small
   bonus with no SQL or persistent economy. Proposal: `notes/practical-first-project.md`.
 - Wildcard: **no implementation concept approved**. The owner rejected The Small Council;
-  it is preserved only in `IDEA_VAULT.md`. A fresh pass of at least three meaningfully
-  different concepts is assigned for Director comparison under the standing quality gate.
+  it is preserved only in `IDEA_VAULT.md`. The AI Auteur tournament requires at least five
+  mechanically distinct concepts, a shortlist of three evaluated by Director and Reviewer,
+  then Wildcard's choice among passing options. See `WILDCARD_AUTEUR.md`.
 - These are distinct prospective assignments, not started projects or harvest entries.
 
 Disposable controls are infrastructure tests and do not count as Forge projects.

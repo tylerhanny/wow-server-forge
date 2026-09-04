@@ -150,9 +150,11 @@ This standing owner rule applies before **every new Wildcard project receives su
 implementation time**, including the first launch assignment. Creative freedom is preserved;
 implementation approval depends on gameplay quality, not novelty alone.
 
-1. Wildcard independently generates **at least three meaningfully different concepts**.
-   Variations of one mechanic do not satisfy the requirement.
-2. Director compares the concepts instead of accepting the first idea produced.
+1. Wildcard independently generates **at least five mechanically distinct concepts**,
+   following the full mandatory `WILDCARD_AUTEUR.md` standard. Variations of one theme
+   do not satisfy the requirement; use fresh-context creative subagents when useful.
+2. Shortlist the strongest three. Director and independent Reviewer compare gameplay,
+   installation value and technical credibility instead of accepting the first idea.
 3. Director must judge a selected concept strong on all of these dimensions:
    - actual moment-to-moment gameplay value and player decisions;
    - replayability or sustained usefulness;
@@ -165,13 +167,22 @@ implementation approval depends on gameplay quality, not novelty alone.
    one-use gimmicks, or technical cleverness with weak gameplay payoff.
 5. Prefer mechanics, decisions, challenge, progression, emergent situations, world activity,
    social interaction, exploration, repeatable play loops, or useful server capabilities.
-6. Wildcard owns its creative direction. Director provides quality control and must not
-   force imitation of Tyler's wishlist or the Practical backlog.
+6. Wildcard owns its creative direction and **chooses among concepts passing Director
+   and Reviewer quality/feasibility review**. Director is executive producer and must not
+   force imitation of Tyler's wishlist or generic Practical tooling.
 7. If no concept clears the bar, conduct another fresh ideation pass; never lower the bar
    to keep the lane busy.
-8. Before implementation, Director records the compared options, selected concept, short
-   rationale, coherent V1, completion risk, and explicit disposition in durable repository
-   state, then records ownership in `BACKLOG.md` / `RUN_STATE.md`.
+8. Before implementation, record the five options, three-concept comparison, Director
+   and Reviewer dispositions, Wildcard's selection, short final rationale, coherent V1,
+   completion risk and ownership in durable state and `BACKLOG.md` / `RUN_STATE.md`.
+
+The full `WILDCARD_AUTEUR.md` concept fields and mandatory YES decision tests apply.
+Keep the tournament bounded, moving to implementation when a strong winner passes and
+the phase permits it. Prioritize one showcase-quality flagship. Wildcard may start another
+project only after that flagship passes independent review and the official gate, while BUILD
+permits. Require the name/hook, replay loop, stock-client visible feedback, final creator's
+rationale, 60–90 second demonstration flow and future Tyler screenshot/video checklist.
+Do not expose private chain-of-thought or represent future gameplay tests as completed.
 
 Flavor may support a strong gameplay system; it cannot substitute for one. Creative-quality
 approval never overrides prelaunch, validation, isolation, or deadline rules. During HARVEST

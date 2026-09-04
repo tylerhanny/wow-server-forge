@@ -29,7 +29,7 @@ CURRENT_PHASE=SETUP
 |---|---|---|---|---|
 | Director | Persistent orchestrator | External gate smoke and prelaunch coordination | main | PRELAUNCH |
 | Practical | Internal Practical Builder | Disposable clean control; no harvest project yet | .worktrees/practical | PRELAUNCH |
-| Wildcard | Internal Wildcard Designer / Builder | Fresh three-concept gameplay-quality comparison; none approved | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
+| Wildcard | Internal AI Auteur / Flagship Gameplay | Five-concept tournament; shortlist three for Director/Reviewer; none approved | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
 | Reviewer | Independent internal Reviewer / Closer | Judge audit and evidence-backed repairs | lane/reviewer / .worktrees/reviewer | PRELAUNCH |
 
 Prelaunch evidence and next actions are recorded in `prelaunch/STATUS.md`.

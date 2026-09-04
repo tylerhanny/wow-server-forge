@@ -37,9 +37,10 @@ These are seed ideas only. Score feasibility before claiming them.
 
 At least one substantial project-selection cycle belongs to the Wildcard lane with NO requirement to choose from the table above.
 
-Wildcard independently inspects feasible pinned hooks/mechanics and generates at least three
-meaningfully different concepts for Director comparison under the mandatory creative-quality
-gate in `AGENTS.md`. A selected concept and rationale must be recorded before substantive
+Wildcard independently inspects feasible pinned hooks/mechanics and generates at least five
+mechanically distinct concepts under `WILDCARD_AUTEUR.md`, shortlists three for Director
+and Reviewer evaluation, and chooses among passing options. The comparison, dispositions,
+selected concept and final rationale must be recorded before substantive
 implementation. If none clears the bar, repeat fresh ideation. Creative independence remains;
 flavor-first novelty is insufficient.
 
@@ -48,9 +49,12 @@ Do not contaminate every Wildcard cycle with the practical seed list. Periodical
 Current Wildcard disposition: **SCOUTING — fresh comparative pass required**.
 The Small Council is **NOT APPROVED** and is retained only in `IDEA_VAULT.md`.
 
-Wildcard selection records must identify at least three distinct options, compare the six
-quality dimensions from `AGENTS.md`, and state SELECT / REJECT / FRESH_PASS with a short
-rationale. No Wildcard implementation is currently approved.
+Wildcard selection records must cover all five concepts and eleven fields, compare the
+shortlisted three against the quality dimensions and mandatory YES tests, record Director and
+Reviewer dispositions, and preserve Wildcard's own final choice/rationale. Use
+SELECT / REJECT / FRESH_PASS. No Wildcard implementation is currently approved.
+The first flagship must pass independent review and the official gate before Wildcard begins
+another project, and BUILD must still permit it.
 
 ## Claimed projects
 

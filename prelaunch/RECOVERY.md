@@ -13,6 +13,8 @@ are approved and preferred; never wait for Tyler to create separate lane tasks.
    timestamps. It rejects malformed/reset boundary intervals and never changes state.
 4. Reuse or replace internal lane workers with concrete bounded assignments. Do not
    overlap project ownership. Reviewer must remain independent of builders.
+   For Wildcard, read `WILDCARD_AUTEUR.md`: five distinct concepts, three shortlisted
+   for Director/Reviewer, Wildcard's choice among passing options, and one flagship first.
 5. Execute the next repair/build/review action and commit durable evidence.
 
 ## Prelaunch exit conditions

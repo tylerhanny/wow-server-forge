@@ -61,12 +61,19 @@ Maintain diversity between:
 Do not force Wildcard to reproduce the practical backlog.
 
 Before every new Wildcard implementation, enforce the mandatory creative-quality gate in
-`AGENTS.md`: require at least three independently generated, meaningfully different concepts;
+`AGENTS.md` and `WILDCARD_AUTEUR.md`: require at least five independently generated,
+mechanically distinct concepts and shortlist three for your and Reviewer's evaluation;
 compare actual gameplay/decisions, replayability or sustained usefulness, server impact,
 differentiation, installation/testing value, and credible full completion. Record the selected
-concept and short rationale before substantive implementation. Reject flavor-first or gimmick
+concept chosen by Wildcard among passing options and short final rationale before substantive
+implementation. Act as executive producer, preserving creative ownership. Reject flavor-first or gimmick
 concepts, and request a fresh pass if none clears the bar. Quality control must preserve
 Wildcard's creative direction rather than imitate Tyler's taste or wishlist.
+
+Require all Auteur decision tests and delivery requirements. Keep the tournament bounded.
+Prioritize one showcase flagship; a further Wildcard project may start only after the first
+passes independent review and the official gate, while BUILD permits. Require a real repeatable
+loop, memorable visible demonstration, final creator's rationale and future capture checklist.
 
 The Small Council is not approved. Preserve it only in `IDEA_VAULT.md` and redirect Wildcard.
 This owner correction does not weaken validation or alter any sprint timestamp/deadline.

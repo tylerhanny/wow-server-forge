@@ -100,10 +100,15 @@ When a builder becomes idle and BUILD phase still permits new work, it may claim
 Wildcard retains independent idea-generation authority and is not required to pick from the seeded practical backlog.
 
 Before claiming a new implementation, Wildcard must pass the mandatory creative-quality
-gate in `AGENTS.md`: independently generate at least three meaningfully different concepts,
-obtain Director's comparative quality decision, and preserve the selection/rationale in durable
+gate in `AGENTS.md` / `WILDCARD_AUTEUR.md`: independently generate at least five mechanically
+distinct concepts, shortlist three for Director and Reviewer evaluation, and choose creatively
+among passing options. Preserve dispositions and final selection/rationale in durable
 state. A builder may not self-approve this gate or bypass it when idle. If no concept passes,
 the next assignment is fresh ideation, not implementation. The Small Council is not approved.
+
+Wildcard prioritizes one flagship. Unlike general builder queue turnover, a subsequent
+Wildcard implementation requires the flagship to pass independent review and the official
+gate first, and BUILD must still permit another project.
 
 ## Handoff behavior
 
