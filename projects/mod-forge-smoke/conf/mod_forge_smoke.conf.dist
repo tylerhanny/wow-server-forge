@@ -1,0 +1,5 @@
+# Disposable forge validation control. No gameplay or database behavior.
+# Keep these values for the canonical smoke run.
+
+ForgeSmoke.Enable = 1
+ForgeSmoke.ControlValue = 314159
