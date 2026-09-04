@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent exact-warning gate; candidate-provided acceptance code is never used."""
+"""Independent pinned-file warning provenance gate; candidate policy is never used."""
 
 import argparse
 import hashlib
@@ -12,8 +12,11 @@ import subprocess
 import sys
 import time
 
-POLICY_PATH = Path(__file__).with_name("upstream-warning-allowlist.json")
-DEMOTION = "-Wno-error=unused-parameter"
+POLICY_PATH = Path(__file__).with_name("upstream-warning-policy.json")
+DEMOTION = "-Wno-error"
+SOURCE_SUFFIXES = {".c", ".cc", ".cpp", ".cxx", ".h", ".hh", ".hpp", ".hxx", ".inc", ".inl", ".ipp", ".tcc"}
+PHYSICAL_FLAGS = ["-Xclang", "-fno-diagnostics-use-presumed-location", "-fdiagnostics-absolute-paths",
+                  "-fmacro-backtrace-limit=0", "-ftemplate-backtrace-limit=0"]
 WARNING = re.compile(r"\bwarnings?\b", re.IGNORECASE)
 ERROR = re.compile(r"\b(?:fatal\s+)?error\s*:|\bCMake Error\b", re.IGNORECASE)
 CONTROL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
@@ -36,13 +39,10 @@ def digest(data):
 
 def load_policy(path=POLICY_PATH):
     policy = json.loads(Path(path).read_text(encoding="utf-8"))
-    require(type(policy["expected_count"]) is int and policy["expected_count"] == 1,
-            "Policy must require exactly one diagnostic")
-    require(policy["path"] == "src/Ai/Raid/BT/BTHelpers.cpp", "Unexpected policy source path")
-    require(policy["line"] == 107 and policy["column"] == 60, "Unexpected diagnostic location")
-    require(policy["function"] == "GetShahrazTankPositionState", "Unexpected function")
-    require(policy["diagnostic"] == "unused parameter 'botAI' [-Wunused-parameter]",
-            "Unexpected diagnostic allowance")
+    require(policy["schema"] == 1 and policy["upstream_warnings"] == "verified-unchanged-tracked-files-only",
+            "Unsupported protected upstream warning policy")
+    require(all(policy[key] == "fatal" for key in ("project_warnings", "unknown_warnings", "errors")),
+            "Project/unknown warnings and errors must remain fatal")
     return policy
 
 
@@ -55,51 +55,105 @@ def git(repo, *args):
     return result.stdout
 
 
-def source_path(ac, policy):
-    return Path(ac).resolve() / "modules" / "mod-playerbots" / policy["path"]
-
-
 def verify_identity(ac, policy):
     ac = Path(ac).resolve()
     bots = ac / "modules/mod-playerbots"
+    inventory = {"core_commit": policy["core_commit"], "playerbots_commit": policy["playerbots_commit"], "files": {}}
     for repo, pin in ((ac, policy["core_commit"]), (bots, policy["playerbots_commit"])):
         require(git(repo, "rev-parse", "HEAD").decode().strip() == pin,
                 f"Dependency commit changed: {repo.name}")
         git(repo, "diff", "--exit-code", pin, "--", ".")
         require(not git(repo, "status", "--porcelain", "--untracked-files=no").strip(),
                 f"Dependency tracked tree/index is not clean: {repo.name}")
-    source = source_path(ac, policy)
-    require(source.is_file() and not source.is_symlink(), "Allowed source is absent or symlinked")
-    require(source.resolve() == source, "Allowed source traverses a symlink")
-    blob = git(bots, "rev-parse", f"{policy['playerbots_commit']}:{policy['path']}").decode().strip()
-    require(blob == policy["git_blob"], "Pinned source Git blob mismatch")
-    data = source.read_bytes()
-    require(digest(data) == policy["sha256"], "Allowed source bytes changed")
-    require(git(bots, "show", f"{policy['playerbots_commit']}:{policy['path']}") == data,
-            "Working source differs from pinned blob")
-    lines = data.decode("utf-8").splitlines()
-    require(len(lines) >= policy["line"] and lines[policy["line"] - 1] == policy["source_line"],
-            "Allowed function/source line mismatch")
-    require(policy["function"] in policy["source_line"], "Function identity mismatch")
-    return {key: policy[key] for key in
-            ("core_commit", "playerbots_commit", "path", "git_blob", "sha256", "line", "function")}
+        for item in git(repo, "ls-tree", "-rz", pin).split(b"\0"):
+            if not item:
+                continue
+            metadata, relative = item.split(b"\t", 1)
+            mode, kind, blob = metadata.decode().split()
+            relative = relative.decode("utf-8")
+            if Path(relative).suffix.lower() not in SOURCE_SUFFIXES:
+                continue
+            path = repo / relative
+            require(mode in ("100644", "100755") and kind == "blob", f"Unsupported upstream source mode: {relative}")
+            require(path.is_file() and not path.is_symlink() and path.resolve() == path,
+                    f"Upstream source is absent or aliased: {relative}")
+            raw = path.read_bytes()
+            actual_blob = hashlib.sha1(b"blob " + str(len(raw)).encode() + b"\0" + raw).hexdigest()
+            require(actual_blob == blob, f"Upstream bytes differ from pinned Git blob: {relative}")
+            inventory["files"][path.as_posix()] = {"repository": "playerbots" if repo == bots else "azerothcore",
+                "commit": pin, "path": relative, "git_blob": blob, "sha256": digest(raw)}
+    require(inventory["files"], "Verified upstream source inventory is empty")
+    return inventory
 
 
-def verify_commands(ac, policy, commands_path, project):
+def inventory_identity(inventory):
+    return {"core_commit": inventory["core_commit"], "playerbots_commit": inventory["playerbots_commit"],
+            "tracked_source_files": len(inventory["files"]),
+            "inventory_sha256": digest(json.dumps(inventory, sort_keys=True).encode())}
+
+
+def verified_file(path, inventory):
+    path = Path(path)
+    require(path.is_absolute() and path.as_posix() in inventory["files"], f"Unverified diagnostic/source ownership: {path}")
+    require(path.resolve() == path and path.is_file() and not path.is_symlink(), f"Aliased/missing upstream file: {path}")
+    entry = inventory["files"][path.as_posix()]
+    require(digest(path.read_bytes()) == entry["sha256"], f"Upstream file changed: {path}")
+    return entry
+
+
+def check_project_directives(path):
+    text = Path(path).read_text(encoding="utf-8", errors="replace")
+    # Physical diagnostics defeat #line renaming, but a GNU system linemarker or
+    # diagnostic pragma can suppress the diagnostic entirely. Do not permit those
+    # in project-owned or generated compilation material.
+    pattern = r"(?m)^\s*#\s*(?:pragma\s+(?:GCC|clang)\s+(?:diagnostic|system_header)|\d+\s+\")|\b(?:_Pragma|__pragma)\s*\("
+    require(not re.search(pattern, text), f"Project/generated diagnostic suppression or system linemarker: {path}")
+
+
+def check_project_includes(path, include_dirs, inventory, ac, visited=None):
+    """Check reachable project/generated headers without classifying a build tree as vendor code."""
+    visited = visited if visited is not None else set()
+    path = Path(path)
+    if path in visited or path.as_posix() in inventory["files"]:
+        return
+    require(path.resolve() == path and path.is_file(), f"Aliased/missing project include: {path}")
+    visited.add(path)
+    check_project_directives(path)
+    source = path.read_text(encoding="utf-8", errors="replace")
+    for line in source.splitlines():
+        directive = re.match(r'^\s*#\s*include\s+(.+)', line)
+        if not directive:
+            continue
+        literal = re.match(r'[<"]([^>"]+)[>"]', directive[1])
+        require(literal is not None, f"Unproven computed project include: {path}")
+        name = literal[1]
+        roots = [path.parent] + include_dirs
+        candidates = [Path(name)] if Path(name).is_absolute() else [root / name for root in roots]
+        found = next((target for target in candidates if target.is_file()), None)
+        if found is None:
+            continue # Compiler will diagnose missing project files; standard includes are external.
+        require(found.resolve() == found, f"Aliased project include: {found}")
+        if found.is_relative_to(ac):
+            check_project_includes(found, include_dirs, inventory, ac, visited)
+
+
+def verify_commands(ac, policy, commands_path, project, inventory=None):
     ac = Path(ac).resolve()
-    allowed = source_path(ac, policy)
+    inventory = inventory or verify_identity(ac, policy)
     data = Path(commands_path).read_bytes()
     commands = json.loads(data)
     require(isinstance(commands, list) and commands, "Missing/empty compile command inventory")
     require(re.fullmatch(r"mod-[a-z0-9][a-z0-9-]*", project) and project != "mod-playerbots",
             "A distinct candidate module identity is required")
-    demotions = source_occurrences = candidate_sources = 0
+    demotions = candidate_sources = 0
     progress_objects = []
     pinned_deps = None
     for entry in commands:
-        directory = Path(entry["directory"]).resolve()
+        directory = Path(entry["directory"])
+        require(directory.is_absolute() and directory.resolve() == directory, "Aliased compiler directory")
         path = Path(entry["file"])
-        path = (directory / path).resolve() if not path.is_absolute() else path.resolve()
+        path = directory / path if not path.is_absolute() else path
+        require(path.resolve() == path, f"Aliased compiler source input: {path}")
         args = entry.get("arguments") or shlex.split(entry["command"])
         require(path.is_relative_to(ac), f"Compilation outside disposable source/build tree: {path}")
         require(not any(arg.startswith("@") for arg in args), f"Opaque compiler response file: {path}")
@@ -109,7 +163,8 @@ def verify_commands(ac, policy, commands_path, project):
         require(args.count("-c") == 1 and args.index("-c") + 1 < len(args),
                 f"Missing/ambiguous compiler source input: {path}")
         actual_input = Path(args[args.index("-c") + 1])
-        actual_input = (directory / actual_input).resolve() if not actual_input.is_absolute() else actual_input.resolve()
+        actual_input = directory / actual_input if not actual_input.is_absolute() else actual_input
+        require(actual_input.resolve() == actual_input, f"Aliased actual compiler input: {actual_input}")
         require(actual_input == path, f"Compiler source input differs from inventory metadata: {path}")
         require(args.count("-o") == 1 and args.index("-o") + 1 < len(args),
                 f"Missing/ambiguous compiler output: {path}")
@@ -118,6 +173,22 @@ def verify_commands(ac, policy, commands_path, project):
         require(output.is_relative_to(ac / "build"), f"Compiler output outside build tree: {path}")
         progress_objects.append(output.relative_to(ac / "build").as_posix())
         require("-Werror" in args, f"Global warnings-as-errors missing: {path}")
+        require(all(args.count(flag) == 1 for flag in PHYSICAL_FLAGS), f"Physical diagnostic/macro flags missing or duplicated: {path}")
+        require(args[args.index("-Xclang") + 1] == "-fno-diagnostics-use-presumed-location", f"Unexpected frontend option: {path}")
+        forbidden = ("-fdiagnostics-use-presumed-location", "-ffile-prefix-map", "-fmacro-prefix-map", "-fdebug-prefix-map",
+                     "-ivfsoverlay", "-vfsoverlay", "-remap-file", "-include", "-imacros", "-fmodule", "-fno-caret-diagnostics", "-fno-diagnostics-show")
+        require(not any(arg.startswith(forbidden) for arg in args), f"Unproven diagnostic/input remapping: {path}")
+        require(not any(arg.startswith(("-fmacro-backtrace-limit=", "-ftemplate-backtrace-limit=")) and arg not in PHYSICAL_FLAGS for arg in args),
+                f"Truncated diagnostic provenance: {path}")
+        native_system = {"/usr/include/mysql"} | {
+            (ac / "build/googletest/googletest-src" / suffix).as_posix()
+            for suffix in ("googlemock", "googlemock/include", "googletest", "googletest/include")}
+        for index, arg in enumerate(args):
+            if arg == "-isystem":
+                require(index + 1 < len(args) and args[index + 1] in native_system,
+                        f"Non-native system include could suppress project warnings: {path}")
+            elif arg.startswith(("-isystem", "-idirafter", "-isysroot", "--sysroot")):
+                raise GateFailure(f"Unsupported system-header classification: {path}")
         if "-w" in args:
             # The pinned acore-dependency-interface deliberately uses -w for deps.
             # Preserve only tracked upstream deps, never candidate/core/generated inputs.
@@ -127,14 +198,29 @@ def verify_commands(ac, policy, commands_path, project):
             require(path.is_relative_to(ac / "deps") and path.relative_to(ac).as_posix() in pinned_deps,
                     f"Compiler warnings disabled outside pinned third-party deps: {path}")
         require("-Wno-everything" not in args, f"All compiler warnings suppressed: {path}")
-        require(not any(arg == "-Wno-error" or
-                        (arg.startswith("-Wno-error=") and arg != DEMOTION) for arg in args),
+        require(not any(arg.startswith("-Wno-error=") for arg in args),
                 f"Unauthorized warning demotion: {path}")
         count = args.count(DEMOTION)
-        require(count == (1 if path == allowed else 0), f"Misplaced/missing baseline demotion: {path}")
+        upstream = path.as_posix() in inventory["files"]
+        require(count == (1 if upstream else 0), f"Misplaced/missing upstream demotion: {path}")
+        if upstream:
+            verified_file(path, inventory)
+            require(args.index(DEMOTION) > args.index("-Werror"), f"Upstream demotion ordering changed: {path}")
+        else:
+            require(path.is_relative_to(ac / "build") or path.is_relative_to(ac / "modules" / project),
+                    f"Untracked source added to a dependency tree: {path}")
+            check_project_directives(path)
+        if path.is_relative_to(ac / "modules" / project):
+            include_dirs = []
+            for index, arg in enumerate(args):
+                if arg in ("-I", "-isystem", "-iquote"):
+                    include_dirs.append(Path(args[index + 1]))
+                elif arg.startswith("-I") and len(arg) > 2:
+                    include_dirs.append(Path(arg[2:]))
+            include_dirs = [item if item.is_absolute() else directory / item for item in include_dirs]
+            check_project_includes(path, include_dirs, inventory, ac)
         require("-Wno-unused-parameter" not in args, f"Hidden unused-parameter warning: {path}")
         demotions += count
-        source_occurrences += path == allowed
         candidate_sources += path.is_relative_to(ac / "modules" / project)
         if path.is_relative_to(ac / "modules") or path.is_relative_to(ac / "src"):
             if not path.is_relative_to(ac / "src/test"):
@@ -147,7 +233,10 @@ def verify_commands(ac, policy, commands_path, project):
                     f"Unexpected module warning suppression: {path}")
         compiler_args = [arg for arg in args if Path(arg).name in ("clang-18", "clang++-18")]
         require(len(compiler_args) == 1, f"Unexpected compiler command: {path}")
-    require(demotions == 1 and source_occurrences == 1, "Allowance must affect exactly one compilation")
+    for path in (ac / "modules" / project).rglob("*"):
+        if path.is_file() and path.suffix.lower() in SOURCE_SUFFIXES:
+            check_project_directives(path)
+    require(demotions > 0, "No verified upstream compilation was classified")
     require(candidate_sources > 0, "Candidate module has no actual compilation")
     require(len(set(progress_objects)) == len(progress_objects), "Duplicate compiler output provenance")
     return {"sha256": digest(data), "commands": len(commands), "file_scoped_demotions": demotions,
@@ -164,7 +253,7 @@ def recognized_progress(line, receipt):
     return bool(PROGRESS.fullmatch(line) and not WARNING.search(line) and not ERROR.search(line))
 
 
-def validate_capture(raw, receipt, policy, source):
+def validate_capture(raw, receipt, policy, inventory):
     require(receipt.get("capture_complete") is True, "Build log capture is incomplete")
     require(type(receipt.get("returncode")) is int and receipt["returncode"] == 0,
             "Complete build did not succeed")
@@ -175,30 +264,38 @@ def validate_capture(raw, receipt, policy, source):
     require(not CONTROL.search(text), "Terminal/control bytes in build log")
     require("\r" not in text.replace("\r\n", ""), "Carriage-return overwrite in build log")
     lines = text.splitlines()
-    diagnostic = f"{Path(source).as_posix()}:{policy['line']}:{policy['column']}: warning: {policy['diagnostic']}"
-    source_line = re.compile(rf"^\s*{policy['line']}\s*\|\s*{re.escape(policy['source_line'])}$")
-    allowed = summaries = 0
+    header = re.compile(r"^(.*):(\d+):(\d+): (warning|note): (.+)$")
+    allowed = []
+    summaries = 0
     for index, line in enumerate(lines):
-        require(not ERROR.search(line), f"Build error remains: {line}")
         if recognized_progress(line, receipt):
             continue
-        if not WARNING.search(line):
+        # Source excerpts may contain the words warning/error as ordinary code.
+        if re.match(r"^\s*(?:\d+\s*\||\|)", line):
             continue
-        if line == diagnostic:
-            context = index + 1
-            while context < len(lines) and recognized_progress(lines[context], receipt):
-                context += 1
-            require(context < len(lines) and source_line.fullmatch(lines[context]),
-                    "Allowed diagnostic lacks its exact function/source excerpt")
-            allowed += 1
-        elif line == "1 warning generated.":
-            summaries += 1
-        else:
+        require(not ERROR.search(line), f"Build error remains: {line}")
+        match = header.fullmatch(line)
+        if match:
+            path, row, column, severity, message = match.groups()
+            # Notes retain physical macro spelling/expansion provenance. A project
+            # or unknown note makes an otherwise upstream warning ambiguous/fatal.
+            entry = verified_file(path, inventory)
+            source_lines = Path(path).read_bytes().splitlines()
+            require(1 <= int(row) <= len(source_lines) and 1 <= int(column) <= len(source_lines[int(row) - 1]) + 1,
+                    f"Invalid physical diagnostic location: {line}")
+            if severity == "warning":
+                require(re.search(r"\[-W[^\]]+\]$", message), f"Warning category missing: {line}")
+                allowed.append({"diagnostic": line, "source": entry, "line": int(row), "column": int(column),
+                                "log_line": index + 1, "following_context": lines[index + 1:index + 3]})
+            continue
+        summary = re.fullmatch(r"(\d+) warnings? generated\.", line)
+        if summary:
+            summaries += int(summary[1])
+        elif WARNING.search(line) or re.search(r"\bnote:.*(?:skipp|expansion|backtrace)", line, re.IGNORECASE):
             raise GateFailure(f"Unallowlisted warning or warning summary: {line}")
-    require(allowed == policy["expected_count"], f"Expected one exact warning, found {allowed}")
-    require(summaries == 1, f"Expected one complete single-warning summary, found {summaries}")
-    return {"allowed_warning_count": allowed, "diagnostic": diagnostic,
-            "function": policy["function"], "source_sha256": policy["sha256"]}
+    require(summaries == len(allowed), f"Warning summaries ({summaries}) do not match observed diagnostics ({len(allowed)})")
+    return {"allowed_upstream_warning_count": len(allowed), "upstream_warnings": allowed,
+            "upstream_inventory": inventory_identity(inventory)}
 
 
 def write_json(path, value):
@@ -253,8 +350,11 @@ def build(ac, evidence, policy, project):
     verdict = {"status": "FAIL", "authorization": policy["authorization"]}
     process = None
     try:
-        receipt["identity_before"] = verify_identity(ac, policy)
-        receipt["compile_commands"] = verify_commands(ac, policy, ac / "build/compile_commands.json", project)
+        inventory = verify_identity(ac, policy)
+        receipt["identity_before"] = inventory_identity(inventory)
+        require(json.loads((evidence / "upstream-source-inventory.json").read_text()) == inventory,
+                "Configure-time upstream inventory changed")
+        receipt["compile_commands"] = verify_commands(ac, policy, ac / "build/compile_commands.json", project, inventory)
         command = ["cmake", "--build", str(ac / "build"), "--config", "Release",
                    "-j", str((os.cpu_count() or 1) + 1)]
         receipt["command"] = command
@@ -274,12 +374,13 @@ def build(ac, evidence, policy, project):
         receipt["stream_sha256"] = stream_hash.hexdigest()
         raw = log_path.read_bytes()
         receipt["log_sha256"] = digest(raw)
-        receipt["identity_after"] = verify_identity(ac, policy)
+        after = verify_identity(ac, policy)
+        receipt["identity_after"] = inventory_identity(after)
         require(receipt["identity_before"] == receipt["identity_after"], "Source identity changed during build")
         require(receipt["compile_commands"] ==
-                verify_commands(ac, policy, ac / "build/compile_commands.json", project),
+                verify_commands(ac, policy, ac / "build/compile_commands.json", project, after),
                 "Compile command inventory changed during build")
-        verdict.update(validate_capture(raw, receipt, policy, source_path(ac, policy)))
+        verdict.update(validate_capture(raw, receipt, policy, after))
         verdict["status"] = "PASS"
     except (GateFailure, OSError, ValueError, KeyError, UnicodeError) as error:
         verdict["failure"] = str(error)
@@ -314,8 +415,9 @@ def main():
     policy = load_policy()
     if args.action == "identity":
         value = verify_identity(args.ac, policy)
-        write_json(args.evidence / "source-identity-before.json", value)
-        print(json.dumps(value))
+        write_json(args.evidence / "upstream-source-inventory.json", value)
+        write_json(args.evidence / "source-identity-before.json", inventory_identity(value))
+        print(json.dumps(inventory_identity(value)))
     elif args.action == "commands":
         value = verify_commands(args.ac, policy, args.ac / "build/compile_commands.json", args.project)
         write_json(args.evidence / "compile-command-provenance.json", value)
@@ -326,10 +428,10 @@ def main():
         current = verify_identity(args.ac, policy)
         receipt = json.loads((args.evidence / "build-receipt.json").read_text(encoding="utf-8"))
         require(receipt.get("project") == args.project, "Candidate identity in build receipt changed")
-        require(receipt.get("identity_before") == current == receipt.get("identity_after"),
+        require(receipt.get("identity_before") == inventory_identity(current) == receipt.get("identity_after"),
                 "Pre/post identity receipts do not match verified source")
         value = validate_capture((args.evidence / "build.log").read_bytes(), receipt,
-                                 policy, source_path(args.ac, policy))
+                                 policy, current)
         print(json.dumps(value))
 
 

@@ -1,66 +1,52 @@
-# Protected exact-warning validation
+# Protected upstream warning provenance
 
-This is the **explicit owner-authorized upstream-baseline exception** defined in
-UPSTREAM_WARNING_EXCEPTION.md. Failed run 33911646203 remains failed. Only the
-protected default-branch copies of these files are authoritative.
+UPSTREAM_WARNING_POLICY.md is the current standing owner authority. The former single
+BTHelpers warning limit is superseded; its historical runs remain failed. Only protected
+default-branch policy, source-inventory construction, compiler integration and verifier
+files are authoritative. Candidate changes to these paths fail the existing scope gate.
 
-The allowlist fixes the Playerbots commit, source Git blob, raw SHA-256, physical
-line, function signature, parameter, diagnostic category, and count of one.
-The identity command checks pinned checkouts and clean tracked trees before
-configure. The external CMake hook changes only that verified source's compile
-options in the directory creating the modules target. It edits no dependency
-source, disables no warning, and demotes no candidate warning. Global -Werror,
-WITH_WARNINGS, and all later gate stages remain.
+Before configure, the verifier checks exact AC/Playerbots HEADs and clean tracked trees,
+enumerates source/header files from the pinned Git trees, and verifies each working file's
+raw Git blob and SHA-256. The resulting inventory records repository, commit, relative
+path, blob and raw hash. Untracked, copied, generated or aliased files acquire no upstream
+trust. The same identity checks run before/after compilation and in existing later checks.
 
-Generated compile commands bind the actual -c input to source metadata, use the
-selected compiler, preserve general -Werror, compile the named candidate, and
-place the sole demotion only on the authorized source. Compiler outputs bind
-ordinary progress messages to the inventory. Candidate/core warning suppression
-is rejected. The pinned acore-dependency-interface intentionally uses -w for
-third-party dependencies: only source files actually tracked under the core pin's
-deps/ may retain that existing setting. Pinned src/test/ translation units do
-not necessarily inherit -Wall/-Wextra; their existing configuration is preserved,
-including global -Werror. Candidate translation units still require all three.
+The CMake hook adds -Wno-error only to verified upstream SOURCE properties in each target's
+defining directory. It never demotes the combined modules target. General -Werror and
+WITH_WARNINGS remain; project/generated translation units retain strict flags. Existing
+pinned third-party -w conventions are preserved without adding suppression. All actual
+compiler inputs/outputs and option scope are verified from compile_commands.json.
 
-The wrapper directly captures complete stdout plus stderr and independently
-hashes bytes as they arrive. Log-write/output failures, nonzero build status,
-incomplete receipts, altered/truncated logs, changed source/command identity,
-absent/duplicate diagnostics, mismatched context or warning summaries, and every
-other warning/error fail. Plain output is requested; terminal controls are rejected.
-The permitted warning stays visible in the raw log, artifact, JSON verdict, and
-official summary. Ordinary parallel progress may interpose between header and
-source excerpt; invented compiler outputs are not accepted as progress.
+Compile-only Clang physical-location flags ignore #line aliases and retain complete macro
+and template backtraces. Each warning's physical file/line must resolve to verified raw
+upstream bytes. Project/unknown diagnostic notes make macro provenance ambiguous and fail.
+Project headers included by an upstream translation unit therefore cannot inherit warning
+acceptance. Candidate includes are checked for reachable generated headers that use warning
+pragmas or GNU system linemarkers to hide diagnostics. Input remapping and non-native system
+include options fail closed. Native vendor directories are not labelled project code merely
+because they live in the build tree.
 
-The workflow hashes the policy, parser, CMake hook, tests, owner authority and
-workflow into evidence, and checks identities after configure, build and runtime.
-Source/log receipts are checked again by later integrity steps.
+A warning in an upstream header included by a strict project translation unit may still be
+promoted to a compiler error. This conservative compiler behavior is not an owner-approval
+blocker: if encountered, resolve it within the standing authorization while retaining every
+project warning failure. No error is silently waived and no retry/demotion is implicit here.
 
-Run local parser, Git-identity and command-provenance tests with:
+The entire merged compiler output, independently streamed byte hash, persisted log hash,
+exit code and pre/post source identities are retained. Successful full capture may contain
+zero or multiple exclusively verified upstream warnings; observed counts must match Clang
+summary totals. Every authorized warning is listed with provenance/context in the JSON
+verdict displayed by the existing job summary. Every other warning/error, ambiguous origin,
+missing/incomplete capture or changed identity fails. Failed verdicts retain the original
+reason and observational diagnostics; invalid captures are explicitly non-authoritative.
 
-    python3 -B validation/test_verify_build.py
+Run local regressions with `python3 -B validation/test_verify_build.py`. The official Ubuntu
+workflow runs `--integration` before the full build: actual Clang/CMake source scope, project
+warning failure, project headers under upstream compilation, #line spoofing, mixed macro
+origin and the conservative upstream-header/project-TU boundary. A local machine without
+CMake/Clang must not claim this probe ran. No separate full control or extra launch gate is
+introduced. Install, config/SQL/data, runtime, unit-test and tamper requirements remain.
 
-The protected Ubuntu preflight must also run:
-
-    python3 -B validation/test_verify_build.py --integration
-
-The integration option requires actual CMake and Clang 18. It configures and
-compiles a small disposable fixture with the real hook, verifies option scope,
-observes its one warning, then proves a candidate unused-parameter warning stays
-fatal. That fixture is not a full pinned-server build. A host without these tools
-can run the other tests, but cannot claim the real compiler probe passed. Official
-CI runs it before the full pinned build.
-
-Native optional candidate CMake hooks remain supported and require independent
-source review. These checks do not sandbox arbitrary malicious same-user hooks
-that can rewrite the runner, compiler or verifier. Hashes, source/command binding
-and streamed-log checks detect specific tampering; they are not complete isolation
-of hostile executable build logic. No new upstream diagnostic is auto-allowlisted.
-
-Failed builds retain their original FAIL status and reason. Their verdict additionally
-reports observed diagnostic headers and the next two raw context lines so the existing
-job summary displays the actual warning/errors. Capture status is verified only when
-capture completion, exit-status presence, raw and streamed hashes, final newline and text
-integrity all agree. Missing, stale, partial or invalid captures are explicitly labelled
-NON-AUTHORITATIVE. Even verified observations do not establish source identity or acceptance;
-the unchanged acceptance checks remain the sole authority. This reporting correction does
-not pass failed run 33922537362 or authorize its new upstream diagnostics.
+These checks do not sandbox malicious same-user CMake/build hooks that rewrite the compiler,
+verifier, native vendor material or the runner itself. Independent candidate source review
+remains necessary. Dynamic/computed project includes require explicit provenance rather
+than assumed ownership. This limitation does not authorize hidden project warnings.

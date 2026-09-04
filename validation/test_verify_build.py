@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-"""Protected adversarial checks; --integration also requires real Ubuntu CMake/Clang."""
-
+"""Protected provenance regressions and a real Ubuntu compiler scope probe."""
 import copy
-import io
 import json
 import os
 from pathlib import Path
@@ -11,7 +9,6 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from unittest import mock
 
 import verify_build as gate
 
@@ -22,395 +19,265 @@ TEMP_ROOT = Path(os.environ.get("RUNNER_TEMP", ".forge-local/validation-tests"))
 TEMP_ROOT.mkdir(parents=True, exist_ok=True)
 
 
-def receipt(raw):
-    return {"capture_complete": True, "returncode": 0, "log_sha256": gate.digest(raw),
-            "stream_sha256": gate.digest(raw),
-            "compile_commands": {"progress_objects": ["another.cpp.o", "src/Warning.cpp.o"]}}
+def receipt(raw, commands=None, code=0):
+    return {"capture_complete": True, "returncode": code, "log_sha256": gate.digest(raw),
+            "stream_sha256": gate.digest(raw), "compile_commands": commands or {"progress_objects": []}}
 
 
-def diagnostic(policy, source):
-    return (
-        f"{source.as_posix()}:107:60: warning: {policy['diagnostic']}\n"
-        f"  107 | {policy['source_line']}\n"
-        "      |                                                            ^\n"
-        "1 warning generated.\n"
-    ).encode()
-
-
-class CaptureTests(unittest.TestCase):
-    def setUp(self):
-        self.policy = gate.load_policy()
-        self.source = Path("/forge/ac/modules/mod-playerbots") / self.policy["path"]
-        self.raw = diagnostic(self.policy, self.source) + b"[100%] Built target worldserver\n"
-
-    def check(self, raw, capture=None):
-        return gate.validate_capture(raw, capture or receipt(raw), self.policy, self.source)
-
-    def test_exact_one_warning(self):
-        self.assertEqual(self.check(self.raw)["allowed_warning_count"], 1)
-
-    def test_interleaved_ordinary_progress(self):
-        raw = self.raw.replace(b"\n  107", b"\n[ 84%] Building CXX object another.cpp.o\n  107", 1)
-        self.assertEqual(self.check(raw)["allowed_warning_count"], 1)
-
-    def test_inventory_backed_warning_filename_progress(self):
-        self.assertEqual(self.check(self.raw + b"[99%] Building CXX object src/Warning.cpp.o\n")
-                         ["allowed_warning_count"], 1)
-        for progress in (b"[99%] Building CXX object forged.cpp.o 2 warnings generated.\n",
-                         b"[99%] Building CXX object src/OtherWarning.cpp.o\n"):
-            with self.subTest(progress=progress), self.assertRaises(gate.GateFailure):
-                self.check(self.raw + progress)
-
-    def test_changed_identity_or_diagnostic_is_rejected(self):
-        cases = {
-            "candidate spoof": self.raw.replace(b"mod-playerbots/", b"mod-candidate/"),
-            "near path": self.raw.replace(b"BTHelpers.cpp", b"AlmostBTHelpers.cpp"),
-            "relative path": self.raw.replace(b"/forge/ac/", b"ac/"),
-            "path traversal": self.raw.replace(b"/src/", b"/src/../src/"),
-            "wrong line": self.raw.replace(b":107:60:", b":108:60:"),
-            "wrong column": self.raw.replace(b":107:60:", b":107:61:"),
-            "wrong parameter": self.raw.replace(b"unused parameter 'botAI'", b"unused parameter 'bot'"),
-            "wrong category": self.raw.replace(b"[-Wunused-parameter]", b"[-Wunused-variable]"),
-            "wrong function": self.raw.replace(b"GetShahrazTankPositionState", b"OtherFunction"),
-            "missing context": self.raw.replace(f"  107 | {self.policy['source_line']}\n".encode(), b""),
-            "fake context separator": self.raw.replace(b"\n  107", b"\npretend context\n  107"),
-        }
-        for name, raw in cases.items():
-            with self.subTest(name=name), self.assertRaises(gate.GateFailure):
-                self.check(raw)
-
-    def test_other_diagnostics_and_summaries_are_rejected(self):
-        for extra in (
-            b"/forge/ac/modules/mod-candidate/src/X.cpp:2:1: warning: unused parameter 'x' [-Wunused-parameter]\n",
-            b"/forge/ac/src/Other.cpp:2:1: warning: something else [-Wother]\n",
-            b"clang++-18: warning: driver diagnostic [-Wother]\n",
-            b"CMake Warning at CMakeLists.txt:1 (message):\n",
-            b"/forge/ac/modules/mod-candidate/src/X.cpp:2:1: error: bad source\n",
-            b"unrecognized WARNING format\n",
-            b"2 warnings generated.\n",
-            b"1 warning generated.\n",
-            diagnostic(self.policy, self.source),
-        ):
-            with self.subTest(extra=extra[:80]), self.assertRaises(gate.GateFailure):
-                self.check(self.raw + extra)
-
-    def test_incomplete_empty_cached_and_failed_capture(self):
-        cases = [
-            (b"", receipt(b"")),
-            (b"[100%] Built target worldserver\n", receipt(b"[100%] Built target worldserver\n")),
-            (self.raw.rstrip(b"\n"), receipt(self.raw.rstrip(b"\n"))),
-            (self.raw.replace(b"1 warning generated.\n", b""), receipt(self.raw.replace(b"1 warning generated.\n", b""))),
-            (self.raw, {**receipt(self.raw), "capture_complete": False}),
-            (self.raw, {**receipt(self.raw), "returncode": 2}),
-            (self.raw, {**receipt(self.raw), "returncode": False}),
-            (self.raw[:-10], receipt(self.raw)),
-            (self.raw, {"returncode": 0}),
-            (self.raw, {**receipt(self.raw), "stream_sha256": "0" * 64}),
-        ]
-        for raw, capture in cases:
-            with self.subTest(capture=capture), self.assertRaises(gate.GateFailure):
-                self.check(raw, capture)
-
-    def test_terminal_controls_rejected_and_crlf_supported(self):
-        for control in (b"\x1b[31m", b"\r", b"\x00", b"\x08"):
-            with self.subTest(control=control), self.assertRaises(gate.GateFailure):
-                self.check(control + self.raw)
-        crlf = self.raw.replace(b"\n", b"\r\n")
-        self.assertEqual(self.check(crlf)["allowed_warning_count"], 1)
-
-
-class FailureReportingTests(unittest.TestCase):
+class ProvenanceTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(dir=TEMP_ROOT)
         self.root = Path(self.temp.name)
-        self.log = self.root / "build.log"
-        self.policy = gate.load_policy()
-        self.source = Path("/forge/ac/modules/mod-playerbots") / self.policy["path"]
-        self.raw = diagnostic(self.policy, self.source) + (
-            b"/forge/ac/modules/mod-playerbots/HyjalHelpers.cpp:168:61: fatal error: unused parameter 'botAI' [-Wunused-parameter]\n"
-            b" 168 | TankPositionState GetKazrogalTankPositionState(PlayerbotAI* botAI, Player* bot)\n"
-            b"     |                                                             ^\n"
-            b"1 error generated.\n"
-        )
-
-    def tearDown(self):
-        self.temp.cleanup()
-
-    def test_failed_capture_exposes_warning_and_error_without_acceptance(self):
-        self.log.write_bytes(self.raw)
-        capture = {**receipt(self.raw), "returncode": 2}
-        report = gate.describe_failed_capture(self.log, capture)
-        self.assertEqual(report["capture_integrity"], "VERIFIED_CAPTURE")
-        self.assertFalse(report["acceptance_authority"])
-        self.assertEqual(len(report["diagnostics"]), 2)
-        self.assertIn("BTHelpers.cpp:107:60: warning:", report["diagnostics"][0]["header"])
-        self.assertIn("GetShahrazTankPositionState", report["diagnostics"][0]["following_context"][0])
-        self.assertIn("fatal error:", report["diagnostics"][1]["header"])
-        with self.assertRaisesRegex(gate.GateFailure, "Complete build did not succeed"):
-            gate.validate_capture(self.raw, capture, self.policy, self.source)
-
-    def test_partial_mismatched_and_stale_capture_is_non_authoritative(self):
-        self.log.write_bytes(self.raw)
-        cases = ({}, {**receipt(self.raw), "capture_complete": False},
-                 {**receipt(self.raw), "log_sha256": "0" * 64},
-                 {**receipt(self.raw), "stream_sha256": "0" * 64},
-                 {**receipt(self.raw), "returncode": False})
-        for capture in cases:
-            with self.subTest(capture=capture):
-                report = gate.describe_failed_capture(self.log, capture)
-                self.assertEqual(report["capture_integrity"], "UNVERIFIED")
-                self.assertIn("NON-AUTHORITATIVE", report["notice"])
-                self.assertTrue(report["issues"])
-                self.assertFalse(report["acceptance_authority"])
-
-    def test_missing_empty_truncated_or_invalid_log_is_non_authoritative(self):
-        report = gate.describe_failed_capture(self.log, {})
-        self.assertEqual(report["diagnostics"], [])
-        self.assertEqual(report["capture_integrity"], "UNVERIFIED")
-        for raw in (b"", self.raw.rstrip(b"\n"), b"\x1b[31m" + self.raw,
-                    b"\r" + self.raw, b"\xff" + self.raw):
-            with self.subTest(raw=raw[:20]):
-                self.log.write_bytes(raw)
-                report = gate.describe_failed_capture(self.log, receipt(raw))
-                self.assertEqual(report["capture_integrity"], "UNVERIFIED")
-                self.assertIn("NON-AUTHORITATIVE", report["notice"])
-
-    def test_early_failure_keeps_original_reason_and_labels_stale_log(self):
-        self.log.write_bytes(self.raw)
-        with mock.patch.object(gate, "verify_identity", side_effect=gate.GateFailure("original identity failure")), \
-                mock.patch("sys.stdout", new=io.StringIO()), \
-                self.assertRaisesRegex(gate.GateFailure, "original identity failure"):
-            gate.build(self.root / "ac", self.root, self.policy, "mod-candidate")
-        verdict = json.loads((self.root / "upstream-warning-verdict.json").read_text())
-        self.assertEqual(verdict["status"], "FAIL")
-        self.assertEqual(verdict["failure"], "original identity failure")
-        self.assertEqual(verdict["diagnostic_observations"]["capture_integrity"], "UNVERIFIED")
-
-    def test_failed_process_writes_observations_and_still_fails(self):
-        process = mock.Mock(stdout=io.BytesIO(self.raw))
-        process.wait.return_value = 2
-        process.poll.return_value = 2
-        output = mock.Mock(buffer=io.BytesIO())
-        with mock.patch.object(gate, "verify_identity", return_value={}), \
-                mock.patch.object(gate, "verify_commands", return_value={}), \
-                mock.patch.object(gate.subprocess, "Popen", return_value=process), \
-                mock.patch("sys.stdout", output), \
-                self.assertRaisesRegex(gate.GateFailure, "Complete build did not succeed"):
-            gate.build(self.root / "ac", self.root, self.policy, "mod-candidate")
-        verdict = json.loads((self.root / "upstream-warning-verdict.json").read_text())
-        self.assertEqual(verdict["status"], "FAIL")
-        self.assertEqual(verdict["failure"], "Complete build did not succeed")
-        self.assertEqual(verdict["diagnostic_observations"]["capture_integrity"], "VERIFIED_CAPTURE")
-        self.assertEqual(len(verdict["diagnostic_observations"]["diagnostics"]), 2)
-
-
-class GitFixture(unittest.TestCase):
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(dir=TEMP_ROOT)
-        self.ac = Path(self.temp.name) / "ac"
+        self.ac = self.root / "ac"
         self.bots = self.ac / "modules/mod-playerbots"
+        self.project = self.ac / "modules/mod-candidate"
+        self.source = self.bots / "src/Upstream.cpp"
+        self.header = self.ac / "src/Upstream.h"
+        self.candidate = self.project / "src/Candidate.cpp"
+        self.project_header = self.project / "src/Project.h"
         self.policy = gate.load_policy()
         self.ac.mkdir()
-        self.init_repo(self.ac)
-        (self.ac / "core.txt").write_text("immutable core\n", encoding="utf-8")
+        self.init(self.ac)
+        (self.ac / ".gitignore").write_text("/modules/\n/build/\n")
+        self.header.parent.mkdir()
+        self.header.write_text("inline int upstream_header() { return 1; }\n")
         self.policy["core_commit"] = self.commit(self.ac)
-        self.bots.mkdir(parents=True)
-        self.init_repo(self.bots)
-        self.source = gate.source_path(self.ac, self.policy)
         self.source.parent.mkdir(parents=True)
-        self.source.write_bytes(b"\n" * 106 + self.policy["source_line"].encode() + b"\n{}\n")
+        self.init(self.bots)
+        self.source.write_text("int upstream(int unused) { return 1; }\n")
         self.policy["playerbots_commit"] = self.commit(self.bots)
-        self.policy["sha256"] = gate.digest(self.source.read_bytes())
-        self.policy["git_blob"] = gate.git(self.bots, "rev-parse", f"HEAD:{self.policy['path']}").decode().strip()
+        self.candidate.parent.mkdir(parents=True)
+        self.candidate.write_text("int candidate() { return 1; }\n")
+        self.project_header.write_text("// ordinary project header\n")
+        self.inventory = gate.verify_identity(self.ac, self.policy)
 
     def tearDown(self):
         self.temp.cleanup()
 
     @staticmethod
-    def init_repo(repo):
-        subprocess.run(["git", "init", "-q", str(repo)], check=True)
-        gate.git(repo, "config", "core.autocrlf", "false")
-        gate.git(repo, "config", "user.name", "Forge fixture")
-        gate.git(repo, "config", "user.email", "forge-fixture@example.invalid")
-        gate.git(repo, "config", "commit.gpgsign", "false")
+    def init(path):
+        subprocess.run(["git", "init", "-q", str(path)], check=True)
+        for key, value in (("core.autocrlf", "false"), ("user.name", "Forge fixture"),
+                           ("user.email", "forge-fixture@example.invalid"), ("commit.gpgsign", "false")):
+            gate.git(path, "config", key, value)
 
     @staticmethod
-    def commit(repo):
-        gate.git(repo, "add", ".")
-        gate.git(repo, "commit", "-qm", "isolated fixture")
-        return gate.git(repo, "rev-parse", "HEAD").decode().strip()
+    def commit(path):
+        gate.git(path, "add", ".")
+        gate.git(path, "commit", "-qm", "disposable pinned fixture")
+        return gate.git(path, "rev-parse", "HEAD").decode().strip()
 
-    def test_valid_source_identity(self):
-        self.assertEqual(gate.verify_identity(self.ac, self.policy)["git_blob"], self.policy["git_blob"])
-
-    def test_wrong_commit_blob_hash_and_line(self):
-        for key, value in (
-            ("core_commit", "0" * 40), ("playerbots_commit", "0" * 40),
-            ("git_blob", "0" * 40), ("sha256", "0" * 64), ("source_line", "other function")):
-            with self.subTest(key=key), self.assertRaises(gate.GateFailure):
-                gate.verify_identity(self.ac, {**self.policy, key: value})
-
-    def test_unstaged_and_staged_dependency_changes(self):
-        self.source.write_bytes(self.source.read_bytes() + b"// mutated\n")
-        with self.assertRaises(gate.GateFailure):
-            gate.verify_identity(self.ac, self.policy)
-        gate.git(self.bots, "add", self.policy["path"])
-        with self.assertRaises(gate.GateFailure):
-            gate.verify_identity(self.ac, self.policy)
-
-    def test_core_mutation(self):
-        (self.ac / "core.txt").write_text("changed\n", encoding="utf-8")
-        with self.assertRaises(gate.GateFailure):
-            gate.verify_identity(self.ac, self.policy)
+    def warning(self, path=None):
+        path = path or self.source
+        return (f"{path.as_posix()}:1:18: warning: unused parameter 'unused' [-Wunused-parameter]\n"
+                "    1 | int upstream(int unused) { return 1; }\n"
+                "      |                  ^\n1 warning generated.\n").encode()
 
     def commands(self):
-        base = ["/usr/bin/clang++-18", "-Werror", "-Wall", "-Wextra"]
-        return [
-            {"directory": str(self.ac / "build"), "file": str(self.source),
-             "arguments": base + [gate.DEMOTION, "-o", "modules/baseline.cpp.o", "-c", str(self.source)]},
-            {"directory": str(self.ac / "build"), "file": str(self.ac / "modules/mod-candidate/src/X.cpp"),
-             "arguments": base + ["-o", "modules/candidate.cpp.o", "-c", str(self.ac / "modules/mod-candidate/src/X.cpp")]},
-        ]
+        base = ["/usr/bin/clang++-18", "-Werror", "-Wall", "-Wextra"] + gate.PHYSICAL_FLAGS
+        return [{"directory": str(self.ac / "build"), "file": str(path),
+                 "arguments": base + ([gate.DEMOTION] if path == self.source else []) +
+                 ["-o", str(index) + ".cpp.o", "-c", str(path)]}
+                for index, path in enumerate((self.source, self.candidate))]
 
-    def check_commands(self, commands):
-        path = Path(self.temp.name) / "compile_commands.json"
-        path.write_text(json.dumps(commands), encoding="utf-8")
-        return gate.verify_commands(self.ac, self.policy, path, "mod-candidate")
+    def check_commands(self, rows):
+        target = self.root / "commands.json"
+        target.write_text(json.dumps(rows))
+        return gate.verify_commands(self.ac, self.policy, target, "mod-candidate", self.inventory)
 
-    def test_file_scoped_command_inventory(self):
-        self.assertEqual(self.check_commands(self.commands())["file_scoped_demotions"], 1)
+    def test_exact_inventory_and_command_scope(self):
+        self.assertEqual(len(self.inventory["files"]), 2)
+        info = self.check_commands(self.commands())
+        self.assertEqual(info["file_scoped_demotions"], 1)
+        self.assertEqual(info["candidate_sources"], 1)
 
-    def test_command_tampering(self):
-        operations = [
-            lambda c: c[1]["arguments"].append(gate.DEMOTION),
-            lambda c: c[0]["arguments"].remove(gate.DEMOTION),
-            lambda c: c[0]["arguments"].append(gate.DEMOTION),
-            lambda c: c.append(copy.deepcopy(c[0])),
-            lambda c: c[1]["arguments"].remove("-Werror"),
-            lambda c: c[1]["arguments"].remove("-Wextra"),
-            lambda c: c[1]["arguments"].append("-Wno-error"),
-            lambda c: c[1]["arguments"].append("-Wno-unused-parameter"),
-            lambda c: c[1]["arguments"].append("-Wno-shadow"),
-            lambda c: c[1]["arguments"].append("-w"),
-            lambda c: c[1]["arguments"].append("@hidden-flags"),
-            lambda c: c[1]["arguments"].insert(0, "/usr/bin/echo"),
-            lambda c: c[1]["arguments"].__setitem__(0, "/tmp/clang++-18"),
-            lambda c: c[0]["arguments"].__setitem__(-1, c[1]["file"]),
-        ]
-        for index, operation in enumerate(operations):
-            commands = self.commands()
-            operation(commands)
-            with self.subTest(operation=index), self.assertRaises(gate.GateFailure):
-                self.check_commands(commands)
-
-    def test_missing_candidate_and_core_suppression(self):
-        for flag in ("-w", "-Wno-everything", "-Wno-shadow"):
-            commands = self.commands()
-            core = copy.deepcopy(commands[1])
-            core["file"] = str(self.ac / "src/Other.cpp")
-            core["arguments"][-1] = core["file"]
-            core["arguments"][core["arguments"].index("-o") + 1] = "src/core.cpp.o"
-            core["arguments"].append(flag)
-            commands.append(core)
-            with self.subTest(flag=flag), self.assertRaises(gate.GateFailure):
-                self.check_commands(commands)
-        commands = self.commands()
-        commands[1]["file"] = str(self.bots / "src/Another.cpp")
-        commands[1]["arguments"][-1] = commands[1]["file"]
+    def test_changed_pin_and_staged_or_unstaged_source(self):
         with self.assertRaises(gate.GateFailure):
-            self.check_commands(commands)
-
-    def test_only_pinned_dependency_sources_keep_native_w(self):
-        dependency = self.ac / "deps/library/Dependency.cpp"
-        dependency.parent.mkdir(parents=True)
-        dependency.write_text("int dependency() { return 1; }\n", encoding="utf-8")
-        gate.git(self.ac, "add", "deps/library/Dependency.cpp")
-        gate.git(self.ac, "commit", "-qm", "pinned dependency fixture")
-        self.policy["core_commit"] = gate.git(self.ac, "rev-parse", "HEAD").decode().strip()
-        commands = self.commands()
-        dep_command = copy.deepcopy(commands[1])
-        dep_command["file"] = str(dependency)
-        dep_command["arguments"][-1] = str(dependency)
-        dep_command["arguments"][dep_command["arguments"].index("-o") + 1] = "deps/library.cpp.o"
-        dep_command["arguments"].append("-w")
-        commands.append(dep_command)
-        self.check_commands(commands)
-        dep_command["file"] = str(dependency.with_name("Untracked.cpp"))
-        dep_command["arguments"][-1] = dep_command["file"]
+            gate.verify_identity(self.ac, {**self.policy, "playerbots_commit": "0" * 40})
+        self.source.write_text("changed\n")
         with self.assertRaises(gate.GateFailure):
-            self.check_commands(commands)
-
-    def test_pinned_test_sources_keep_existing_warning_configuration(self):
-        commands = self.commands()
-        core_test = copy.deepcopy(commands[1])
-        core_test["file"] = str(self.ac / "src/test/ExistingTest.cpp")
-        core_test["arguments"][-1] = core_test["file"]
-        core_test["arguments"][core_test["arguments"].index("-o") + 1] = "src/test/existing.cpp.o"
-        core_test["arguments"].remove("-Wall")
-        core_test["arguments"].remove("-Wextra")
-        commands.append(core_test)
-        self.check_commands(commands)
-        core_test["arguments"].append("-w")
+            gate.verify_identity(self.ac, self.policy)
+        gate.git(self.bots, "add", ".")
         with self.assertRaises(gate.GateFailure):
-            self.check_commands(commands)
+            gate.verify_identity(self.ac, self.policy)
 
+    def test_multiple_and_zero_verified_warnings(self):
+        for raw, count in ((self.warning(), 1), (self.warning() * 3, 3), (b"[100%] Built target modules\n", 0)):
+            result = gate.validate_capture(raw, receipt(raw), self.policy, self.inventory)
+            self.assertEqual(result["allowed_upstream_warning_count"], count)
 
-class RealCMakeScopeTests(unittest.TestCase):
-    @unittest.skipUnless(INTEGRATION, "real Ubuntu preflight requested with --integration")
-    def test_real_cmake_file_scope_and_candidate_warning_failure(self):
-        # This is a tiny actual configure/compile, not a claimed pinned-server build.
-        for tool in ("cmake", "clang-18", "clang++-18"):
-            self.assertIsNotNone(shutil.which(tool), f"Required real preflight tool missing: {tool}")
-        with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as temp:
-            root = Path(temp)
-            ac = root / "ac"
-            source = ac / "modules/mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp"
-            candidate = ac / "modules/mod-candidate/src/Probe.cpp"
-            source.parent.mkdir(parents=True)
-            candidate.parent.mkdir(parents=True)
-            policy = gate.load_policy()
-            prefix = "enum class TankPositionState { Unknown }; struct PlayerbotAI {}; struct Player {};\n"
-            code = prefix + "\n" * 105 + policy["source_line"] + "\n{ (void)bot; return TankPositionState::Unknown; }\n"
-            source.write_text(code, encoding="utf-8", newline="\n")
-            self.assertEqual(source.read_text().splitlines()[106], policy["source_line"])
-            candidate.write_text("int candidate_probe() { return 1; }\n", encoding="utf-8")
-            hook_dir = root / "judge"
-            hook_dir.mkdir()
-            shutil.copyfile(Path(__file__).with_name("upstream-warning-hook.cmake"), hook_dir / "upstream-warning-hook.cmake")
-            policy["sha256"] = gate.digest(source.read_bytes())
-            (hook_dir / "upstream-warning-allowlist.json").write_text(json.dumps(policy), encoding="utf-8")
-            (ac / "CMakeLists.txt").write_text(
-                "cmake_minimum_required(VERSION 3.24)\nproject(AzerothCore LANGUAGES CXX C)\nadd_subdirectory(modules)\n",
-                encoding="utf-8")
-            (ac / "modules/CMakeLists.txt").write_text(
-                "add_library(modules STATIC mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp mod-candidate/src/Probe.cpp)\n",
-                encoding="utf-8")
-            configure = [
-                "cmake", "-S", str(ac), "-B", str(ac / "build"),
-                "-DCMAKE_C_COMPILER=clang-18", "-DCMAKE_CXX_COMPILER=clang++-18",
-                "-DCMAKE_C_FLAGS=-Werror -Wall -Wextra -fno-color-diagnostics",
-                "-DCMAKE_CXX_FLAGS=-Werror -Wall -Wextra -fno-color-diagnostics",
-                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON", "-DCMAKE_COLOR_MAKEFILE=OFF",
-                f"-DCMAKE_PROJECT_AzerothCore_INCLUDE={hook_dir / 'upstream-warning-hook.cmake'}",
-            ]
-            result = subprocess.run(configure, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            self.assertEqual(result.returncode, 0, result.stdout.decode())
-            inventory = gate.verify_commands(ac, policy, ac / "build/compile_commands.json", "mod-candidate")
-            result = subprocess.run(["cmake", "--build", str(ac / "build"), "-j", "2"],
-                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            self.assertEqual(result.returncode, 0, result.stdout.decode())
-            gate.validate_capture(result.stdout, {**receipt(result.stdout), "compile_commands": inventory}, policy, source)
-            candidate.write_text("int candidate_probe(int unused_candidate) { return 1; }\n", encoding="utf-8")
-            result = subprocess.run(["cmake", "--build", str(ac / "build"), "--clean-first", "-j", "2"],
-                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-            self.assertNotEqual(result.returncode, 0, "Candidate warning was incorrectly demoted")
-            self.assertIn(b"unused_candidate", result.stdout)
-            self.assertIn(b"error:", result.stdout)
+    def test_project_unknown_copied_and_generated_warning_paths_fail(self):
+        for path in (self.candidate, self.project_header, self.ac / "build/Generated.cpp",
+                     self.bots / "src/Untracked.cpp", self.source.parent / "../src/Upstream.cpp"):
+            raw = self.warning(path)
+            with self.subTest(path=path), self.assertRaises(gate.GateFailure):
+                gate.validate_capture(raw, receipt(raw), self.policy, self.inventory)
+        self.candidate.write_bytes(self.source.read_bytes())
+        with self.assertRaises(gate.GateFailure):
+            gate.verified_file(self.candidate, self.inventory)
+
+    def test_changed_warning_source_bytes_fail(self):
+        raw = self.warning()
+        self.source.write_text("changed after inventory\n")
+        with self.assertRaises(gate.GateFailure):
+            gate.validate_capture(raw, receipt(raw), self.policy, self.inventory)
+
+    def test_project_macro_note_is_fatal(self):
+        raw = self.warning() + f"{self.project_header.as_posix()}:1:1: note: expanded from macro 'PROJECT'\n".encode()
+        with self.assertRaises(gate.GateFailure):
+            gate.validate_capture(raw, receipt(raw), self.policy, self.inventory)
+
+    def test_upstream_header_warning_can_be_classified_but_errors_never_waived(self):
+        raw = self.warning(self.header)
+        self.assertEqual(gate.validate_capture(raw, receipt(raw), self.policy, self.inventory)["allowed_upstream_warning_count"], 1)
+        for raw in (raw.replace(b"warning:", b"fatal error:"), b"clang: error: actual compiler error\n"):
             with self.assertRaises(gate.GateFailure):
-                gate.validate_capture(result.stdout, {**receipt(result.stdout), "returncode": result.returncode,
-                                                       "compile_commands": inventory},
-                                      policy, source)
-            print("REAL_CMAKE_SCOPE_PROBE=PASS; exact source warned, candidate warning remained fatal")
+                gate.validate_capture(raw, receipt(raw), self.policy, self.inventory)
+
+    def test_missing_truncated_corrupt_failed_capture(self):
+        raw = self.warning()
+        for data, capture in ((b"", receipt(b"")), (raw[:-1], receipt(raw)),
+                              (raw, {**receipt(raw), "capture_complete": False}),
+                              (raw, {**receipt(raw), "stream_sha256": "0" * 64}),
+                              (raw, receipt(raw, code=2)), (raw, receipt(raw, code=False)),
+                              (b"\x1b[31m" + raw, receipt(b"\x1b[31m" + raw)),
+                              (b"\r" + raw, receipt(b"\r" + raw))):
+            with self.subTest(capture=capture), self.assertRaises(gate.GateFailure):
+                gate.validate_capture(data, capture, self.policy, self.inventory)
+
+    def test_unknown_warnings_and_summary_mismatch_fail(self):
+        for raw in (self.warning().replace(b"1 warning generated.", b"2 warnings generated."),
+                    self.warning().replace(b"1 warning generated.\n", b""),
+                    self.warning() + b"clang: warning: unknown driver warning\n",
+                    self.warning() + b"CMake Warning at CMakeLists.txt:1\n"):
+            with self.assertRaises(gate.GateFailure):
+                gate.validate_capture(raw, receipt(raw), self.policy, self.inventory)
+
+    def test_candidate_or_unknown_demotion_and_missing_candidate_fail(self):
+        rows = self.commands()
+        rows[1]["arguments"].insert(1, gate.DEMOTION)
+        with self.assertRaises(gate.GateFailure):
+            self.check_commands(rows)
+        with self.assertRaises(gate.GateFailure):
+            self.check_commands(self.commands()[:1])
+        rows = self.commands()
+        rows[0]["file"] = str(self.bots / "src/Unknown.cpp")
+        rows[0]["arguments"][-1] = rows[0]["file"]
+        with self.assertRaises(gate.GateFailure):
+            self.check_commands(rows)
+
+    def test_source_binding_suppression_and_remapping_fail(self):
+        for extra in ("-w", "-Wno-everything", "-Wno-unused-parameter", "-Wno-error=unused-parameter",
+                      "-fmacro-backtrace-limit=1", "-fdiagnostics-use-presumed-location", "-ffile-prefix-map=x=y",
+                      "-ivfsoverlay=fake", "-include=fake", "-isystem/fake"):
+            rows = self.commands()
+            rows[1]["arguments"].append(extra)
+            with self.subTest(extra=extra), self.assertRaises(gate.GateFailure):
+                self.check_commands(rows)
+        rows = self.commands()
+        rows[0]["arguments"][-1] = str(self.candidate)
+        with self.assertRaises(gate.GateFailure):
+            self.check_commands(rows)
+
+    def test_system_linemarker_and_warning_pragmas_fail(self):
+        for text in ('# 1 "upstream.h" 3\n', '#pragma GCC system_header\n',
+                     '#pragma clang diagnostic ignored "-Wunused"\n', '_Pragma("GCC system_header")\n'):
+            self.project_header.write_text(text)
+            with self.subTest(text=text), self.assertRaises(gate.GateFailure):
+                self.check_commands(self.commands())
+
+    def test_generated_project_header_is_checked(self):
+        generated = self.ac / "build/Generated.hpp"
+        generated.parent.mkdir()
+        generated.write_text("#pragma GCC system_header\ninline int hidden(int unused) { return 1; }\n")
+        self.candidate.write_text(f'#include "{generated.as_posix()}"\nint candidate() {{ return 1; }}\n', encoding="utf-8")
+        with self.assertRaises(gate.GateFailure):
+            self.check_commands(self.commands())
+
+    def test_native_dependency_warning_convention(self):
+        dep = self.ac / "deps/Native.c"
+        dep.parent.mkdir()
+        dep.write_text("int native(void) { return 1; }\n")
+        self.policy["core_commit"] = self.commit(self.ac)
+        self.inventory = gate.verify_identity(self.ac, self.policy)
+        rows = self.commands()
+        item = copy.deepcopy(rows[0])
+        item["file"] = str(dep)
+        item["arguments"][-1] = str(dep)
+        item["arguments"][item["arguments"].index("-o") + 1] = "native.o"
+        item["arguments"].append("-w")
+        self.check_commands(rows + [item])
+
+    def test_failed_report_keeps_observations_non_authoritative(self):
+        raw = self.warning()
+        path = self.root / "build.log"
+        path.write_bytes(raw)
+        report = gate.describe_failed_capture(path, receipt(raw, code=2))
+        self.assertEqual(report["capture_integrity"], "VERIFIED_CAPTURE")
+        self.assertFalse(report["acceptance_authority"])
+        self.assertEqual(len(report["diagnostics"]), 1)
+        for capture in ({}, {**receipt(raw), "stream_sha256": "bad"}):
+            self.assertEqual(gate.describe_failed_capture(path, capture)["capture_integrity"], "UNVERIFIED")
+
+    @unittest.skipUnless(INTEGRATION, "real Ubuntu compiler probe requires --integration")
+    def test_real_cmake_scope_headers_macros_and_physical_locations(self):
+        for tool in ("cmake", "clang-18", "clang++-18"):
+            self.assertIsNotNone(shutil.which(tool))
+        self.source.write_text('#include "../../mod-candidate/src/Project.h"\nint upstream(int unused) { return 1; }\n')
+        self.policy["playerbots_commit"] = self.commit(self.bots)
+        (self.ac / "CMakeLists.txt").write_text('cmake_minimum_required(VERSION 3.24)\nproject(AzerothCore LANGUAGES CXX C)\nadd_subdirectory(modules)\n')
+        (self.ac / "modules/CMakeLists.txt").write_text('add_library(modules STATIC mod-playerbots/src/Upstream.cpp mod-candidate/src/Candidate.cpp)\n')
+        self.policy["core_commit"] = self.commit(self.ac)
+        self.inventory = gate.verify_identity(self.ac, self.policy)
+        inventory_path = self.root / "inventory.json"
+        gate.write_json(inventory_path, self.inventory)
+        configure = ["cmake", "-S", str(self.ac), "-B", str(self.ac / "build"),
+                     "-DCMAKE_C_COMPILER=clang-18", "-DCMAKE_CXX_COMPILER=clang++-18",
+                     "-DCMAKE_CXX_FLAGS=-Werror -Wall -Wextra -fno-color-diagnostics",
+                     "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON", "-DCMAKE_COLOR_MAKEFILE=OFF",
+                     f"-DCMAKE_PROJECT_AzerothCore_INCLUDE={Path(__file__).with_name('upstream-warning-hook.cmake').resolve()}",
+                     f"-DFORGE_UPSTREAM_INVENTORY={inventory_path}"]
+        result = subprocess.run(configure, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        self.assertEqual(result.returncode, 0, result.stdout.decode())
+        commands = gate.verify_commands(self.ac, self.policy, self.ac / "build/compile_commands.json", "mod-candidate", self.inventory)
+
+        def compile_now():
+            return subprocess.run(["cmake", "--build", str(self.ac / "build"), "--clean-first", "-j", "2"],
+                                  stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+        result = compile_now()
+        self.assertEqual(result.returncode, 0, result.stdout.decode())
+        gate.validate_capture(result.stdout, receipt(result.stdout, commands), self.policy, self.inventory)
+        self.candidate.write_text("int candidate(int unused_project) { return 1; }\n")
+        result = compile_now()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(b"unused_project", result.stdout)
+        self.candidate.write_text("int candidate() { return 1; }\n")
+        for text in ('inline int bad_header(int unused_project) { return 1; }\n',
+                     f'#line 1 "{self.source.as_posix()}"\ninline int bad_header(int unused_project) {{ return 1; }}\n'):
+            self.project_header.write_text(text)
+            result = compile_now()
+            self.assertEqual(result.returncode, 0, result.stdout.decode())
+            self.assertIn(self.project_header.as_posix().encode(), result.stdout)
+            with self.assertRaises(gate.GateFailure):
+                gate.validate_capture(result.stdout, receipt(result.stdout, commands), self.policy, self.inventory)
+        self.project_header.write_text('#define PROJECT_DIVIDE (1 / 0)\n')
+        self.source.write_text('#include "../../mod-candidate/src/Project.h"\nint upstream(int unused) { return PROJECT_DIVIDE; }\n')
+        self.policy["playerbots_commit"] = self.commit(self.bots)
+        self.inventory = gate.verify_identity(self.ac, self.policy)
+        result = compile_now()
+        self.assertEqual(result.returncode, 0, result.stdout.decode())
+        self.assertIn(b"expanded from macro", result.stdout)
+        with self.assertRaises(gate.GateFailure):
+            gate.validate_capture(result.stdout, receipt(result.stdout, commands), self.policy, self.inventory)
+        self.project_header.write_text("// clear\n")
+        self.header.write_text("inline int upstream_header(int unused_upstream) { return 1; }\n")
+        self.policy["core_commit"] = self.commit(self.ac)
+        self.candidate.write_text(f'#include "{self.header.as_posix()}"\nint candidate() {{ return 1; }}\n', encoding="utf-8")
+        result = compile_now()
+        self.assertNotEqual(result.returncode, 0, "Project TU must not silently demote header diagnostics")
+        self.assertIn(b"unused_upstream", result.stdout)
+        print("REAL_CMAKE_PROVENANCE_PROBE=PASS; upstream warnings visible, project/header/macro/spoof warnings rejected")
 
 
 if __name__ == "__main__":
