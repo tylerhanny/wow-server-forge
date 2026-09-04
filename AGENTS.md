@@ -5,10 +5,12 @@ This repository is an isolated autonomous R&D forge for standalone AzerothCore 3
 Read, in order, before doing any work:
 
 1. `AGENTS.md`
-2. `FORGE_MISSION.md`
-3. `DEADLINE.md`
-4. `RUN_STATE.md`
-5. `BACKLOG.md`
+2. `VALIDATION_INTEGRITY.md`
+3. `TEAM_PROTOCOL.md`
+4. `FORGE_MISSION.md`
+5. `DEADLINE.md`
+6. `RUN_STATE.md`
+7. `BACKLOG.md`
 
 ## Mission hierarchy
 
@@ -84,7 +86,7 @@ projects/<project-slug>/
 
 Each project must be independently understandable and contain its own source, config, SQL/data, README, and validation notes as applicable.
 
-Use branches or worktrees for concurrent implementation when supported. Do not let two builders edit the same project simultaneously unless the Director explicitly assigns a handoff.
+Use branches or worktrees for concurrent implementation as defined in `TEAM_PROTOCOL.md`. Do not let two builders edit the same project simultaneously unless the Director explicitly assigns a handoff.
 
 Shared forge coordination files include:
 
@@ -94,9 +96,21 @@ BACKLOG.md
 HARVEST.md
 BLOCKED.md
 IDEA_VAULT.md
+TEAM_PROTOCOL.md
+VALIDATION_INTEGRITY.md
 ```
 
 The Director owns coordination-state changes. Other agents may propose updates but should avoid conflicting edits.
+
+## Official independent judge
+
+`.github/workflows/official-candidate-gate.yml` is the external acceptance judge.
+
+It runs from the default branch, treats `project/*` and `review/*` branches as inert candidate input, and validates candidates against the exact pinned AzerothCore + Playerbots target in disposable GitHub Actions runners.
+
+Candidate branches must not modify shared authority, the workflow, or validation inputs. They may contain only one `projects/<mod-slug>/` candidate plus its `handoffs/<slug>.md` evidence.
+
+A builder may add project-local developer tests, but no builder may weaken, replace, skip, or rewrite the official judge to obtain green status. `VALIDATION_INTEGRITY.md` is controlling authority on this point.
 
 ## Agent lanes
 
@@ -104,7 +118,7 @@ The Director owns coordination-state changes. Other agents may propose updates b
 
 Owns the mission and deadline. Responsibilities:
 
-- initialize `RUN_STATE.md` at launch;
+- initialize `RUN_STATE.md` at launch only after official-gate smoke validation succeeds;
 - calculate exact phase timestamps;
 - maintain the backlog and project claims;
 - choose projects based on value, novelty, feasibility, and completion probability;
@@ -170,12 +184,13 @@ A project may be listed as `READY FOR LIVE TEST` only when ALL applicable condit
 8. Module-owned SQL/config/data is complete and validated.
 9. Disposable worldserver startup/module-load validation succeeds when feasible for that project.
 10. Static/deterministic reference validation passes where applicable.
-11. Independent Reviewer has inspected the actual implementation.
-12. Review findings that affect correctness/safety/completeness are fixed.
-13. `git diff --check` or equivalent whitespace/syntax hygiene passes.
-14. Project README documents purpose, features, configuration, install procedure, known limitations, and exact in-game smoke-test checklist.
-15. Git contains a clean checkpoint/commit representing the candidate.
-16. Remaining uncertainty is explicitly documented and is limited to live/in-game behavior that reasonably requires Tyler's later manual testing.
+11. The official independent candidate gate passes for the exact candidate SHA.
+12. Independent Reviewer has inspected the actual implementation and gate evidence.
+13. Review findings that affect correctness/safety/completeness are fixed.
+14. `git diff --check` or equivalent whitespace/syntax hygiene passes.
+15. Project README documents purpose, features, configuration, install procedure, known limitations, and exact in-game smoke-test checklist.
+16. Git contains a clean checkpoint/commit representing the candidate.
+17. Remaining uncertainty is explicitly documented and is limited to live/in-game behavior that reasonably requires Tyler's later manual testing.
 
 `Almost done`, `90% complete`, `prototype`, or `should work` does not pass.
 
@@ -211,6 +226,7 @@ The final category will happen later and must never be inferred from CI success.
 
 - Keep projects isolated.
 - Commit meaningful completed checkpoints.
+- Builders do not push directly to `main`.
 - Do not commit dependency source trees or giant generated build directories.
 - Do not commit secrets.
 - Do not rewrite or destroy another agent's unexplained work simply to make a branch clean.
