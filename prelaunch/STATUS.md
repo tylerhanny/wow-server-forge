@@ -45,7 +45,7 @@ playability authority and independent proposal reassessments are required before
   - Judge `a1754a6bb8c8310fac7e78f1452a5f3fec766e8b`.
   - Run: https://github.com/tylerhanny/wow-server-forge/actions/runs/33911649850
   - Actual authority rejection retained in `prelaunch/evidence/tamper-33911649850.txt`.
-- Clean control configure/compile/install/immutability/config/runtime: **IN PROGRESS**.
+- Clean control configure/compile/install/immutability/config/runtime: **FAILED AT COMPILE; diagnosis active**.
   - Candidate: `87b822fd41bb6013358aa6f5e16ca252ad79761c` (`project/forge-smoke-clean`).
   - Initial judge: `283b0d4d063458cb4db6f1fa81d314ad8a82f080`.
   - Initial run: https://github.com/tylerhanny/wow-server-forge/actions/runs/33911309528
@@ -53,12 +53,18 @@ playability authority and independent proposal reassessments are required before
     independent source audit proved the fourth database fixture was missing. It is
     not accepted as compile/runtime success.
   - Corrected judge: `a1754a6bb8c8310fac7e78f1452a5f3fec766e8b`.
-  - Active corrected run: https://github.com/tylerhanny/wow-server-forge/actions/runs/33911646203
+  - Corrected run: https://github.com/tylerhanny/wow-server-forge/actions/runs/33911646203
+  - Actual result: compilation failed at `2026-09-04T20:56:03Z` with exit 2.
+    The compile step ran from `19:35:06Z` to `20:56:03Z`; configure/discovery passed.
+    Post-build immutability, install, SQL/data, DB fixture, dry-runs and unit tests were skipped.
+    Log artifacts were preserved. Independent Reviewer is diagnosing the actual compiler log.
   - Expected dry-run proof: `FORGE_SMOKE_CONFIG reload=0 enabled=1 control=314159`.
 - Reviewer judge disposition: **PENDING**.
 
 At pause the corrected clean run had passed scope/discovery/configure and was still compiling.
-Compile/install/runtime/unit-test success remains unproven until its actual result is inspected.
+It has now failed compilation. No full compile/install/runtime/unit-test success is claimed.
+The earlier proposed missing-schema error-file defect was independently disproved in
+`prelaunch/first-start-log-routing-review.md`; no fixture/judge change was made for it.
 
 Reviewer repair rationale and exact source evidence: `prelaunch/reviewer-audit.md`.
 The repair preserves both dependency pins and warnings-as-errors, adds the missing

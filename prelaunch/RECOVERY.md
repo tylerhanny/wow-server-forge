@@ -8,6 +8,9 @@ are approved and preferred; never wait for Tyler to create separate lane tasks.
 The owner explicitly resumed after the `2026-09-04T19:56:13Z` pause. At resume reconciliation
 `2026-09-04T20:10:30Z`, clean-control run `33911646203` was still compiling. The clock remains
 unstarted. Continue prelaunch and enforce locked `ONE_HUMAN_PLAYABILITY.md` across all lanes.
+The run subsequently failed compilation at `2026-09-04T20:56:03Z`; independent diagnosis
+is active. Later install/runtime/unit-test steps did not run. Reconcile current evidence before
+choosing a repair; do not resurrect the disproved first-start log-routing inference.
 
 1. Stay inside this project boundary. Fetch origin without overwriting unexplained work.
 2. Read `AGENTS.md`, `VALIDATION_INTEGRITY.md`, `TEAM_PROTOCOL.md`, `RUN_STATE.md`,
