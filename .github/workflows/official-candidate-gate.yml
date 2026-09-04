@@ -36,6 +36,17 @@ jobs:
       matrix: ${{ steps.discover.outputs.matrix }}
       count: ${{ steps.discover.outputs.count }}
     steps:
+      - name: Require default-branch judge
+        shell: bash
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF" == "refs/heads/$DEFAULT_BRANCH" ]] || {
+            echo 'Official acceptance must use the default-branch workflow.' >&2
+            exit 1
+          }
+
       - name: Discover branches
         id: discover
         shell: bash
@@ -114,6 +125,24 @@ jobs:
       CANDIDATE_BRANCH: ${{ matrix.branch }}
       CANDIDATE_SHA: ${{ matrix.sha }}
     steps:
+      - name: Checkout exact judge version for evidence
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: judge
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Record immutable judge identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence
+          printf '%s\n' "$GITHUB_WORKFLOW_SHA" > evidence/judge-sha.txt
+          sha256sum judge/.github/workflows/official-candidate-gate.yml > evidence/judge-workflow.sha256
+          printf '%s\n' "$CANDIDATE_SHA" > evidence/candidate-sha.txt
+          printf '%s\n' "$AC_COMMIT" "$PLAYERBOTS_COMMIT" > evidence/dependency-pins.txt
+
       - name: Checkout candidate as inert input
         uses: actions/checkout@v4
         with:
@@ -129,9 +158,10 @@ jobs:
           set -euo pipefail
 
           git -C candidate remote set-url origin "https://github.com/${GITHUB_REPOSITORY}.git"
-          git -C candidate fetch --no-tags origin main
+          git -C candidate fetch --no-tags origin "$GITHUB_WORKFLOW_SHA"
+          [[ "$(git -C candidate rev-parse HEAD)" == "$CANDIDATE_SHA" ]]
 
-          changed="$(git -C candidate diff --name-only origin/main...HEAD)"
+          changed="$(git -C candidate diff --name-only "$GITHUB_WORKFLOW_SHA"...HEAD)"
           printf '%s\n' "$changed" | tee /tmp/changed-files.txt
 
           if [[ -z "$changed" ]]; then
@@ -176,12 +206,22 @@ jobs:
             exit 1
           fi
 
+          if printf '%s\n' "$changed" | grep '^handoffs/' | grep -Fvx "handoffs/$project.md"; then
+            echo 'Candidate changed another project handoff.' >&2
+            exit 1
+          fi
+
+          [[ -d "candidate/projects/$project/src" ]] || {
+            echo 'A discoverable native module src/ directory is required.' >&2
+            exit 1
+          }
+
           if find "candidate/projects/$project" -type l -print -quit | grep -q .; then
             echo 'Symlinks are not permitted in harvest candidates.' >&2
             exit 1
           fi
 
-          git -C candidate diff --check origin/main...HEAD
+          git -C candidate diff --check "$GITHUB_WORKFLOW_SHA"...HEAD
 
           # Hard live-environment tripwires.
           if grep -RIn --exclude-dir=.git --exclude='*.md' \
@@ -234,10 +274,12 @@ jobs:
             ccache clang-18 cmake curl make unzip build-essential cmake-data \
             libboost-all-dev libbz2-dev libmysql++-dev libreadline-dev \
             libssl-dev libtool openssl zlib1g-dev google-perftools \
-            libmysqlclient-dev libncurses-dev rsync
+            libmysqlclient-dev libncurses-dev rsync mysql-server
 
       - name: Configure exact target with warnings as errors
         shell: bash
+        env:
+          PROJECT: ${{ steps.scope.outputs.project }}
         run: |
           set -euo pipefail
           export CCACHE_DIR="$GITHUB_WORKSPACE/.ccache"
@@ -259,20 +301,24 @@ jobs:
             -DCMAKE_C_FLAGS='-Werror -ferror-limit=0' \
             -DCMAKE_CXX_FLAGS='-Werror -ferror-limit=0' \
             -DBUILD_TESTING=ON \
-            -DNOPCH=true
+            -DNOPCH=true 2>&1 | tee evidence/configure.log
+
+          loader="ac/build/modules/gen_scriptloader/static/ModulesLoader.cpp"
+          grep -F "Add${PROJECT//-/_}Scripts();" "$loader"
+          cp "$loader" evidence/ModulesLoader.cpp
 
       - name: Compile complete pinned target
         shell: bash
         run: |
           set -euo pipefail
-          cmake --build ac/build --config Release -j "$(($(nproc) + 1))"
+          cmake --build ac/build --config Release -j "$(($(nproc) + 1))" 2>&1 | tee evidence/build.log
 
       - name: Verify dependencies remained immutable
         shell: bash
         run: |
           set -euo pipefail
-          git -C ac diff --exit-code -- . ':!modules'
-          git -C ac/modules/mod-playerbots diff --exit-code
+          git -C ac diff --exit-code "$AC_COMMIT"
+          git -C ac/modules/mod-playerbots diff --exit-code "$PLAYERBOTS_COMMIT"
           [[ "$(git -C ac rev-parse HEAD)" == "$AC_COMMIT" ]]
           [[ "$(git -C ac/modules/mod-playerbots rev-parse HEAD)" == "$PLAYERBOTS_COMMIT" ]]
 
@@ -280,7 +326,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cmake --install ac/build --config Release
+          cmake --install ac/build --config Release 2>&1 | tee evidence/install.log
 
           while IFS= read -r -d '' dist; do
             cp -f "$dist" "${dist%.dist}"
@@ -316,21 +362,32 @@ jobs:
           set -euo pipefail
           git clone --depth 1 --branch master --single-branch \
             https://github.com/ac-data/ac-data.git ac/env/dist/data
+          git -C ac/env/dist/data rev-parse HEAD > evidence/runtime-data-sha.txt
           sudo systemctl start mysql.service
+          # GitHub-hosted disposable MySQL fixture; never a remote database.
+          mysql --host=127.0.0.1 --user=root --password=root --execute='SELECT 1'
           mkdir -p ac/env/dist/logs
 
       - name: Dry-run authserver and worldserver
         shell: bash
         env:
+          PROJECT: ${{ steps.scope.outputs.project }}
           AC_LOGIN_DATABASE_INFO: localhost;3306;root;root;acore_auth
           AC_CHARACTER_DATABASE_INFO: localhost;3306;root;root;acore_characters
           AC_WORLD_DATABASE_INFO: localhost;3306;root;root;acore_world
+          AC_PLAYERBOTS_DATABASE_INFO: localhost;3306;root;root;acore_playerbots
           AC_DATA_DIR: ${{ github.workspace }}/ac/env/dist/data
           AC_LOGS_DIR: ${{ github.workspace }}/ac/env/dist/logs
         run: |
           set -euo pipefail
-          timeout 5m ac/env/dist/bin/authserver --dry-run
-          timeout 5m ac/env/dist/bin/worldserver --dry-run
+          timeout 5m ac/env/dist/bin/authserver --dry-run 2>&1 | tee evidence/authserver-dry-run.log
+          grep -F 'Dry run completed, terminating.' evidence/authserver-dry-run.log
+          timeout 5m ac/env/dist/bin/worldserver --dry-run 2>&1 | tee evidence/worldserver-dry-run.log
+          grep -F 'WORLD: World Initialized In ' evidence/worldserver-dry-run.log
+          grep -F 'AzerothCore Dry Run Completed, Terminating.' evidence/worldserver-dry-run.log
+          if [[ "$PROJECT" == mod-forge-smoke ]]; then
+            grep -F 'FORGE_SMOKE_CONFIG reload=0 enabled=1 control=314159' evidence/worldserver-dry-run.log
+          fi
 
           error_log="ac/env/dist/logs/Errors.log"
           if [[ -s "$error_log" ]]; then
@@ -339,13 +396,34 @@ jobs:
             exit 1
           fi
 
-      - name: Run pinned unit tests when available
+      - name: Run required pinned unit tests
         shell: bash
         run: |
           set -euo pipefail
-          if [[ -x ac/build/src/test/unit_tests ]]; then
-            ac/build/src/test/unit_tests
-          fi
+          [[ -x ac/build/src/test/unit_tests ]] || {
+            echo 'BUILD_TESTING=ON must produce the pinned unit test executable.' >&2
+            exit 1
+          }
+          ac/build/src/test/unit_tests 2>&1 | tee evidence/unit-tests.log
+
+      - name: Recheck dependency integrity after install and runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C ac diff --exit-code "$AC_COMMIT"
+          git -C ac/modules/mod-playerbots diff --exit-code "$PLAYERBOTS_COMMIT"
+          [[ "$(git -C ac rev-parse HEAD)" == "$AC_COMMIT" ]]
+          [[ "$(git -C ac/modules/mod-playerbots rev-parse HEAD)" == "$PLAYERBOTS_COMMIT" ]]
+
+      - name: Preserve gate logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-gate-${{ matrix.sha }}-${{ github.run_attempt }}
+          path: |
+            evidence/
+            ac/env/dist/logs/
+          if-no-files-found: error
 
       - name: Publish validation evidence
         if: always()
@@ -361,9 +439,11 @@ jobs:
             echo "- Project: \`${PROJECT:-unknown}\`"
             echo "- AzerothCore pin: \`$AC_COMMIT\`"
             echo "- Playerbots pin: \`$PLAYERBOTS_COMMIT\`"
-            echo "- Judge source: default-branch workflow at run start"
+            echo "- Judge commit: \`$GITHUB_WORKFLOW_SHA\`"
+            echo "- Judge workflow SHA-256: \`$(cut -d' ' -f1 evidence/judge-workflow.sha256)\`"
             echo "- Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
             echo
             echo 'A green job means scope integrity, exact-pin configure/build/install, dependency immutability, SQL static checks, and disposable dry-run startup all completed successfully.'
             echo 'It does **not** mean Tyler has performed live/in-game gameplay validation.'
+            echo 'Pinned dry-run initializes scripts, module configuration, databases, and world data, but exits before WorldScript::OnStartup, network service, and the world update loop. Candidates depending on those paths require additional Reviewer runtime evidence.'
           } >> "$GITHUB_STEP_SUMMARY"
