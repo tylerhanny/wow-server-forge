@@ -6,7 +6,12 @@ This file defines how the persistent Codex threads work as one autonomous team w
 
 ## Team topology
 
-The Forge uses four persistent top-level Codex threads:
+The Forge uses one persistent Director task orchestrating three isolated internal worker lanes.
+The owner explicitly approved this topology on 2026-09-04; separate user-created worker chats
+are not required. The Director may spawn, replace, redirect, or terminate bounded subagents
+while preserving durable repository ownership and independent review.
+
+The four roles are:
 
 1. **Director / Producer** — owns mission, clock, priorities, assignment, scope cuts, and final harvest.
 2. **Practical Builder** — builds high-value, high-probability complete modules.
@@ -35,7 +40,7 @@ Never rely on a statement like "another agent said it passed" when source, commi
 
 ## Local parallelism and worktrees
 
-The four persistent chats must not edit the same working tree concurrently.
+The four roles must not edit the same working tree concurrently.
 
 Use separate Git worktrees/branches. Recommended lane layout:
 

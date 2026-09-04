@@ -27,10 +27,13 @@ CURRENT_PHASE=SETUP
 
 | Lane | Agent role | Current project | Branch/worktree | State |
 |---|---|---|---|---|
-| Director | Director / Producer | Forge coordination | main/coordination | ARMED |
-| Practical | Practical Builder | Unassigned | — | ARMED |
-| Wildcard | Wildcard Designer / Builder | Unassigned | — | ARMED |
-| Reviewer | Reviewer / Closer | Unassigned | — | ARMED |
+| Director | Persistent orchestrator | External gate smoke and prelaunch coordination | main | PRELAUNCH |
+| Practical | Internal Practical Builder | Disposable clean control; no harvest project yet | .worktrees/practical | PRELAUNCH |
+| Wildcard | Internal Wildcard Designer / Builder | Independent pinned-API scouting | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
+| Reviewer | Independent internal Reviewer / Closer | Judge audit and evidence-backed repairs | lane/reviewer / .worktrees/reviewer | PRELAUNCH |
+
+Prelaunch evidence and next actions are recorded in `prelaunch/STATUS.md`.
+Internal worker lanes are managed by the Director; Tyler need not create worker tasks.
 
 ## Director launch instructions
 
