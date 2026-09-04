@@ -32,7 +32,17 @@
       "branch": "project/forge-smoke-tamper",
       "run_id": 33922543117,
       "expected": "scope rejection before build",
-      "result": "PENDING"
+      "result": "REJECTED_AS_REQUIRED",
+      "rejected_at": "2026-09-04T21:45:42Z",
+      "director_artifact_review": "PASS",
+      "evidence": "prelaunch/evidence/tamper-33922543117.txt",
+      "artifact_file_sha256": {
+        "candidate-sha.txt": "68cfebf50c368ca6190c042e716b8cba4537d04ca49b6c7229e63b23d2b03ecb",
+        "dependency-pins.txt": "44fdf862130e0975859e909ddc1de3cb29587582088544594fe95ab7b0d6936a",
+        "judge-sha.txt": "1cf02442b8b89ae3394a6e527b3c750e63fdc1e62f36cf97b6e5dea6e534e039",
+        "judge-workflow.sha256": "d6ea9b0456e689ff1f32a677b574a735e189bb2fec4e1c3de7d4ae8b6424c644",
+        "protected-validation.sha256": "38dc46c78f8efb8b87893ff2f8cf6ee368b6fff858193ef8449df8ad6b9aa07a"
+      }
     },
     {
       "kind": "warning-allowlist-tamper",
@@ -40,7 +50,17 @@
       "branch": "project/forge-smoke-warning-allowlist-tamper",
       "run_id": 33922549107,
       "expected": "scope rejection before build",
-      "result": "PENDING"
+      "result": "REJECTED_AS_REQUIRED",
+      "rejected_at": "2026-09-04T21:45:49Z",
+      "director_artifact_review": "PASS",
+      "evidence": "prelaunch/evidence/tamper-33922549107.txt",
+      "artifact_file_sha256": {
+        "candidate-sha.txt": "4041044995019999a9481ce4dbd5e419824a27d842a6059f9e445e58ff654064",
+        "dependency-pins.txt": "44fdf862130e0975859e909ddc1de3cb29587582088544594fe95ab7b0d6936a",
+        "judge-sha.txt": "1cf02442b8b89ae3394a6e527b3c750e63fdc1e62f36cf97b6e5dea6e534e039",
+        "judge-workflow.sha256": "d6ea9b0456e689ff1f32a677b574a735e189bb2fec4e1c3de7d4ae8b6424c644",
+        "protected-validation.sha256": "38dc46c78f8efb8b87893ff2f8cf6ee368b6fff858193ef8449df8ad6b9aa07a"
+      }
     }
   ]
 }

@@ -24,13 +24,16 @@ All three explicit dispatches use this same reviewed default-branch judge:
 
 | Control | Exact candidate | Run | Current evidence |
 |---|---|---|---|
-| Legitimate clean module | `87b822fd41bb6013358aa6f5e16ca252ad79761c` | [33922537362](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922537362) | Dispatched 2026-09-04T21:45:24Z; final result pending |
-| Existing locked-authority tamper | `2d74a0b1599313a9b09c7baf5b961d3744f48ed6` | [33922543117](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922543117) | Dispatched 2026-09-04T21:45:29Z; rejection pending |
-| Protected warning-allowlist tamper | `697f4d4d0467171fe55036c9de4c3cb5e8cf0912` | [33922549107](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922549107) | Dispatched 2026-09-04T21:45:34Z; rejection pending |
+| Legitimate clean module | `87b822fd41bb6013358aa6f5e16ca252ad79761c` | [33922537362](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922537362) | Real Ubuntu scope probe and configure/provenance passed; compiling since 2026-09-04T21:48:27Z; final result pending |
+| Existing locked-authority tamper | `2d74a0b1599313a9b09c7baf5b961d3744f48ed6` | [33922543117](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922543117) | REJECTED at scope 2026-09-04T21:45:42Z, before dependency checkout/build |
+| Protected warning-allowlist tamper | `697f4d4d0467171fe55036c9de4c3cb5e8cf0912` | [33922549107](https://github.com/tylerhanny/wow-server-forge/actions/runs/33922549107) | REJECTED at scope 2026-09-04T21:45:49Z, before dependency checkout/build |
 
 The new negative control changes only `validation/upstream-warning-allowlist.json` from
-expected count 1 to 2 on its disposable candidate branch. Main retains count 1. It must be
-rejected by scope before candidate build. The old failed clean run below remains failed.
+expected count 1 to 2 on its disposable candidate branch. Main retains count 1. Both negative
+controls were rejected for their intended scope violations. Director downloaded both artifacts
+and verified exact candidate/judge/pin/protected-file hash identities; excerpts and metadata are
+in `prelaunch/evidence/tamper-33922543117.txt`, `tamper-33922549107.txt`, and
+`owner-exception-controls.json`. The old failed clean run below remains failed.
 The exact-warning policy is an owner-authorized upstream baseline exception, not a dependency
 repair, gameplay candidate, or completed PRELAUNCH. Every sprint timestamp remains UNSET.
 
