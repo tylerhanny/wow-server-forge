@@ -1,4 +1,4 @@
-# WoW Server Forge — Run State
+# WoW Server Forge â€” Run State
 
 Status: `ARMED_NOT_STARTED`
 
@@ -10,20 +10,20 @@ The Director must record the launch timestamps immediately before sprint impleme
 
 ```text
 STATUS=ARMED_NOT_STARTED
-EXECUTION_STATUS=ACTIVE_PRELAUNCH_POLICY_IMPLEMENTATION
+EXECUTION_STATUS=ACTIVE_PRELAUNCH_CONTROLS
 BLOCKER_IDENTIFIED_UTC=2026-09-04T22:33:12Z
 OWNER_EXCEPTION_RECONCILED_UTC=2026-09-04T21:16:15Z
 OWNER_EXCEPTION_POLICY=UPSTREAM_WARNING_EXCEPTION.md
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 STANDING_WARNING_POLICY_RECONCILED_UTC=2026-09-04T23:07:16Z
-CURRENT_POLICY_CONTROLS=PENDING_REVISED_JUDGE
-REVIEWED_JUDGE_SHA=5269391836586137f983d79122ad9dd8a09fa1fd
+CURRENT_POLICY_CONTROLS=RUNNING
+REVIEWED_JUDGE_SHA=6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed
 LAST_FULL_CLEAN_JUDGE_SHA=78a5da6d5aed19a932fae53e74226ac5afc2e204
-CLEAN_CONTROL_RUN=33922537362
-AUTHORITY_TAMPER_RUN=33927009741
+CLEAN_CONTROL_RUN=33929246418
+AUTHORITY_TAMPER_RUN=33929247980
 ALLOWLIST_TAMPER_RUN=33927019176
-TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
-CLEAN_CONTROL_REVIEW=FAIL_NEW_UPSTREAM_DIAGNOSTICS
+TAMPER_CONTROL_REVIEW=PENDING_CURRENT_JUDGE
+CLEAN_CONTROL_REVIEW=PENDING_CURRENT_JUDGE
 PAUSE_UTC=2026-09-04T19:56:13Z
 RESUME_UTC=2026-09-04T20:10:30Z
 RESUME_POLICY=AUTONOMOUS_CONTINUATION_AUTHORIZED
@@ -122,8 +122,10 @@ At reconciliation `2026-09-04T23:07:16Z`, the owner authorized the standing poli
 `UPSTREAM_WARNING_POLICY.md`: all warnings exclusively from verified-unchanged pinned
 upstream source are non-fatal and fully visible. Project-owned warnings remain fatal.
 This resolves the earlier owner-decision blocker without passing either failed run.
-Reviewer is implementing the revised protected judge; Practical supplies the required
-independent check. Rerun tamper and complete clean controls immediately after that review.
+The revised judge `6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed` is published.
+Clean `33929246418` and tamper `33929247980` were dispatched at 23:22 UTC.
+Practical completes its exact-revision check concurrently; Reviewer inspects the full clean
+gate. All required evidence must pass before launch.
 No approval is needed for additional qualifying upstream warnings. Resolve ordinary
 in-scope defects autonomously. Do not add new prelaunch review, cleanup, hardening,
 test expansion or policy gates. Once the existing minimum gate passes with required

@@ -5,16 +5,34 @@ The sprint remains **ARMED_NOT_STARTED**. No timestamps have been started.
 **Current disposition: ACTIVE PRELAUNCH.** The owner has supplied standing authorization
 in `UPSTREAM_WARNING_POLICY.md` for all warnings exclusively from verified-unchanged
 pinned upstream source to be non-fatal and fully visible. Every project-owned warning
-remains fatal. Reviewer is implementing the protected provenance policy; Practical is
-performing the existing required independent check. Rerun the tamper and complete clean
-controls immediately, then start the clock as soon as the existing minimum gate passes.
+remains fatal. The protected provenance judge is published and both required controls are running.
+Practical performs the existing independent check concurrently. Start the clock as soon
+as the existing minimum gate passes.
 Do not add new prelaunch review, cleanup, hardening, test expansion or policy gates.
 No repeated owner approval is needed for additional qualifying upstream warnings.
 
 The records below describe earlier judges and their then-current warning policies.
 Those failed runs remain failed; the standing policy supersedes their warning restrictions.
 
-## Historical exact-warning policy — controls
+## Current standing-policy controls
+
+Judge `6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed` integrates Reviewer implementation
+`e7afa692992b2fcaaef885d1c4473e9fa4352616` and independently approved workflow
+`d31e425a3fa6bd731a180c171727730219d8760a`. Local regressions: 15 passed;
+the real Ubuntu compiler probe is pending inside the existing clean workflow.
+Practical completes its exact-commit audit concurrently with the build.
+
+- Clean: [33929246418](https://github.com/tylerhanny/wow-server-forge/actions/runs/33929246418),
+  frozen candidate `87b822fd41bb6013358aa6f5e16ca252ad79761c`, dispatched 23:22 UTC.
+- Authority tamper: [33929247980](https://github.com/tylerhanny/wow-server-forge/actions/runs/33929247980),
+  frozen candidate `2d74a0b1599313a9b09c7baf5b961d3744f48ed6`, dispatched 23:22 UTC.
+
+Exact protected hashes and dispositions: `prelaunch/evidence/standing-policy-controls.json`.
+No new external control or launch gate was added. Start the clock immediately once these
+existing controls and required independent evidence review pass. Source review and local
+tests do not establish a passing complete build or runtime gate.
+
+## Historical exact-warning policy â€” controls
 
 Reviewed judge `78a5da6d5aed19a932fae53e74226ac5afc2e204` integrates Reviewer source
 `2e73998349c65dc442b7fed3008d0df0e007bb29`. Its workflow Git-blob SHA-256 is

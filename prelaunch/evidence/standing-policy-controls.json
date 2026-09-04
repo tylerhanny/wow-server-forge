@@ -1,0 +1,590 @@
+{
+  "kind": "STANDING_UPSTREAM_POLICY_CONTROLS",
+  "status": "RUNNING",
+  "judge_commit": "6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed",
+  "reviewer_source_commit": "e7afa692992b2fcaaef885d1c4473e9fa4352616",
+  "workflow_source_commit": "d31e425a3fa6bd731a180c171727730219d8760a",
+  "authorization": "Standing owner-authorized verified-unchanged upstream warnings, fully visible; every project-owned warning fatal",
+  "hashes": {
+    ".github/workflows/official-candidate-gate.yml": "95bd45e3c63cdd82ad92404c0ef87770063dffbd91464b53d4c14fcc1ce93ce0",
+    "UPSTREAM_WARNING_POLICY.md": "875b1b94276054a459586bc5f1a928d7b01c314c19739cf03a8eb9b68a0de5a3",
+    "validation/upstream-warning-policy.json": "a63facb5291f8d48f2cd2351f891ec7ac61df14086ef2e24ce50f76b62bea822",
+    "validation/upstream-warning-hook.cmake": "74bc5b793ddd8a84ae466ed1512b4de8b74bd82860ca3bfa0bf991fff5abcc1e",
+    "validation/verify_build.py": "8461d5b3ffb4d05962ed39e8ae41a203bd3fac1f1d6d3594a6c572ed49bd6259",
+    "validation/test_verify_build.py": "463e3ac808aaa376a23b94247041c32aa55326e0b47cdca269fb238fae3a0ffb"
+  },
+  "source_review": {
+    "director": "APPROVE; reviewed implementation and unchanged existing later gates",
+    "reviewer": "APPROVE workflow; implementation selftests15PASS, real Ubuntu probe pending in clean control",
+    "practical": "APPROVE exact e7afa692 implementation + d31e425 workflow in published judge6f058257;35/35 existing independent cases passed, including alias/generated-header rejection; no outstanding finding"
+  },
+  "controls": [
+    {
+      "kind": "clean",
+      "candidate": "87b822fd41bb6013358aa6f5e16ca252ad79761c",
+      "branch": "project/forge-smoke-clean",
+      "run_id": 33929246418,
+      "expected": "complete existing gate success",
+      "result": "RUNNING",
+      "url": "https://github.com/tylerhanny/wow-server-forge/actions/runs/33929246418",
+      "status": "in_progress",
+      "conclusion": "",
+      "jobs": [
+        {
+          "completedAt": "2026-09-04T23:22:30Z",
+          "conclusion": "success",
+          "databaseId": 101204298313,
+          "name": "Discover new candidate branches",
+          "startedAt": "2026-09-04T23:22:26Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-04T23:22:27Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-04T23:22:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:27Z",
+              "conclusion": "success",
+              "name": "Require default-branch judge",
+              "number": 2,
+              "startedAt": "2026-09-04T23:22:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:27Z",
+              "conclusion": "success",
+              "name": "Discover branches",
+              "number": 3,
+              "startedAt": "2026-09-04T23:22:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:27Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 4,
+              "startedAt": "2026-09-04T23:22:27Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/tylerhanny/wow-server-forge/actions/runs/33929246418/job/101204298313"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "databaseId": 101204315393,
+          "name": "Validate project/forge-smoke-clean",
+          "startedAt": "2026-09-04T23:22:32Z",
+          "status": "in_progress",
+          "steps": [
+            {
+              "completedAt": "2026-09-04T23:22:33Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-04T23:22:32Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:34Z",
+              "conclusion": "success",
+              "name": "Checkout exact judge version for evidence",
+              "number": 2,
+              "startedAt": "2026-09-04T23:22:33Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:34Z",
+              "conclusion": "success",
+              "name": "Record immutable judge identity",
+              "number": 3,
+              "startedAt": "2026-09-04T23:22:34Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:35Z",
+              "conclusion": "success",
+              "name": "Checkout candidate as inert input",
+              "number": 4,
+              "startedAt": "2026-09-04T23:22:34Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:35Z",
+              "conclusion": "success",
+              "name": "Candidate integrity and scope gate",
+              "number": 5,
+              "startedAt": "2026-09-04T23:22:35Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:23:06Z",
+              "conclusion": "success",
+              "name": "Checkout exact pinned AzerothCore",
+              "number": 6,
+              "startedAt": "2026-09-04T23:22:35Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:23:08Z",
+              "conclusion": "success",
+              "name": "Checkout exact pinned Playerbots",
+              "number": 7,
+              "startedAt": "2026-09-04T23:23:06Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:23:08Z",
+              "conclusion": "success",
+              "name": "Stage candidate module into disposable pinned tree",
+              "number": 8,
+              "startedAt": "2026-09-04T23:23:08Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:23:40Z",
+              "conclusion": "success",
+              "name": "Install pinned-build dependencies",
+              "number": 9,
+              "startedAt": "2026-09-04T23:23:08Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:23:46Z",
+              "conclusion": "success",
+              "name": "Test protected upstream policy and real compiler file scope",
+              "number": 10,
+              "startedAt": "2026-09-04T23:23:40Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Configure exact target with project warnings as errors",
+              "number": 11,
+              "startedAt": "2026-09-04T23:23:46Z",
+              "status": "in_progress"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Compile complete pinned target",
+              "number": 12,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Verify dependencies remained immutable",
+              "number": 13,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Install into disposable server tree",
+              "number": 14,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Validate module-owned SQL and repository data",
+              "number": 15,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Prepare disposable runtime data and MySQL",
+              "number": 16,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Dry-run authserver and worldserver",
+              "number": 17,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Run required pinned unit tests",
+              "number": 18,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Recheck dependency integrity after install and runtime",
+              "number": 19,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Preserve gate logs",
+              "number": 20,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Publish validation evidence",
+              "number": 21,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Post Checkout exact pinned Playerbots",
+              "number": 39,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Post Checkout exact pinned AzerothCore",
+              "number": 40,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Post Checkout candidate as inert input",
+              "number": 41,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            },
+            {
+              "completedAt": "0001-01-01T00:00:00Z",
+              "conclusion": "",
+              "name": "Post Checkout exact judge version for evidence",
+              "number": 42,
+              "startedAt": "0001-01-01T00:00:00Z",
+              "status": "pending"
+            }
+          ],
+          "url": "https://github.com/tylerhanny/wow-server-forge/actions/runs/33929246418/job/101204315393"
+        }
+      ]
+    },
+    {
+      "kind": "authority-tamper",
+      "candidate": "2d74a0b1599313a9b09c7baf5b961d3744f48ed6",
+      "branch": "project/forge-smoke-tamper",
+      "run_id": 33929247980,
+      "expected": "scope rejection before dependency checkout/build",
+      "result": "REJECTED_AS_REQUIRED",
+      "url": "https://github.com/tylerhanny/wow-server-forge/actions/runs/33929247980",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "completedAt": "2026-09-04T23:22:32Z",
+          "conclusion": "success",
+          "databaseId": 101204303743,
+          "name": "Discover new candidate branches",
+          "startedAt": "2026-09-04T23:22:28Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-04T23:22:29Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-04T23:22:29Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:29Z",
+              "conclusion": "success",
+              "name": "Require default-branch judge",
+              "number": 2,
+              "startedAt": "2026-09-04T23:22:29Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:30Z",
+              "conclusion": "success",
+              "name": "Discover branches",
+              "number": 3,
+              "startedAt": "2026-09-04T23:22:29Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:30Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 4,
+              "startedAt": "2026-09-04T23:22:30Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/tylerhanny/wow-server-forge/actions/runs/33929247980/job/101204303743"
+        },
+        {
+          "completedAt": "2026-09-04T23:22:41Z",
+          "conclusion": "failure",
+          "databaseId": 101204321579,
+          "name": "Validate project/forge-smoke-tamper",
+          "startedAt": "2026-09-04T23:22:34Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-09-04T23:22:36Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-09-04T23:22:35Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:37Z",
+              "conclusion": "success",
+              "name": "Checkout exact judge version for evidence",
+              "number": 2,
+              "startedAt": "2026-09-04T23:22:36Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:37Z",
+              "conclusion": "success",
+              "name": "Record immutable judge identity",
+              "number": 3,
+              "startedAt": "2026-09-04T23:22:37Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "success",
+              "name": "Checkout candidate as inert input",
+              "number": 4,
+              "startedAt": "2026-09-04T23:22:37Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "failure",
+              "name": "Candidate integrity and scope gate",
+              "number": 5,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Checkout exact pinned AzerothCore",
+              "number": 6,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Checkout exact pinned Playerbots",
+              "number": 7,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Stage candidate module into disposable pinned tree",
+              "number": 8,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Install pinned-build dependencies",
+              "number": 9,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Test protected upstream policy and real compiler file scope",
+              "number": 10,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Configure exact target with project warnings as errors",
+              "number": 11,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Compile complete pinned target",
+              "number": 12,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Verify dependencies remained immutable",
+              "number": 13,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Install into disposable server tree",
+              "number": 14,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Validate module-owned SQL and repository data",
+              "number": 15,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Prepare disposable runtime data and MySQL",
+              "number": 16,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Dry-run authserver and worldserver",
+              "number": 17,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Run required pinned unit tests",
+              "number": 18,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:38Z",
+              "conclusion": "skipped",
+              "name": "Recheck dependency integrity after install and runtime",
+              "number": 19,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:39Z",
+              "conclusion": "success",
+              "name": "Preserve gate logs",
+              "number": 20,
+              "startedAt": "2026-09-04T23:22:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:39Z",
+              "conclusion": "success",
+              "name": "Publish validation evidence",
+              "number": 21,
+              "startedAt": "2026-09-04T23:22:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:39Z",
+              "conclusion": "success",
+              "name": "Post Checkout candidate as inert input",
+              "number": 41,
+              "startedAt": "2026-09-04T23:22:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:39Z",
+              "conclusion": "success",
+              "name": "Post Checkout exact judge version for evidence",
+              "number": 42,
+              "startedAt": "2026-09-04T23:22:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-04T23:22:39Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 43,
+              "startedAt": "2026-09-04T23:22:39Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/tylerhanny/wow-server-forge/actions/runs/33929247980/job/101204321579"
+        }
+      ],
+      "protected_hashes": {
+        ".github/workflows/official-candidate-gate.yml": "95bd45e3c63cdd82ad92404c0ef87770063dffbd91464b53d4c14fcc1ce93ce0",
+        "UPSTREAM_WARNING_POLICY.md": "875b1b94276054a459586bc5f1a928d7b01c314c19739cf03a8eb9b68a0de5a3",
+        "validation/upstream-warning-policy.json": "a63facb5291f8d48f2cd2351f891ec7ac61df14086ef2e24ce50f76b62bea822",
+        "validation/upstream-warning-hook.cmake": "74bc5b793ddd8a84ae466ed1512b4de8b74bd82860ca3bfa0bf991fff5abcc1e",
+        "validation/verify_build.py": "8461d5b3ffb4d05962ed39e8ae41a203bd3fac1f1d6d3594a6c572ed49bd6259",
+        "validation/test_verify_build.py": "463e3ac808aaa376a23b94247041c32aa55326e0b47cdca269fb238fae3a0ffb"
+      },
+      "artifact_files_sha256": {
+        "candidate-sha.txt": "68cfebf50c368ca6190c042e716b8cba4537d04ca49b6c7229e63b23d2b03ecb",
+        "dependency-pins.txt": "44fdf862130e0975859e909ddc1de3cb29587582088544594fe95ab7b0d6936a",
+        "judge-sha.txt": "12704778420b7b9367ec2cc60525fb0fb955c217629e01aae4b19b1848ade32f",
+        "judge-workflow.sha256": "4e9e5c61de7b67c6c33b68e42b22e19bff6c904ac3cad881ca815a9ca74dbf25",
+        "protected-validation.sha256": "4b392eee5a0bd67be2227f17fa1001c6e9dc2097a5ac9366e27c100496505ea4"
+      },
+      "artifacts": {
+        "total_count": 1,
+        "artifacts": [
+          {
+            "id": 9957933264,
+            "node_id": "MDg6QXJ0aWZhY3Q5OTU3OTMzMjY0",
+            "name": "official-gate-2d74a0b1599313a9b09c7baf5b961d3744f48ed6-1",
+            "size_in_bytes": 1411,
+            "url": "https://api.github.com/repos/tylerhanny/wow-server-forge/actions/artifacts/9957933264",
+            "archive_download_url": "https://api.github.com/repos/tylerhanny/wow-server-forge/actions/artifacts/9957933264/zip",
+            "expired": false,
+            "digest": "sha256:e592c4702c9e8d2ab9944bb900f94e87e157eac4d80dd0bcedc302d1a0f59a88",
+            "created_at": "2026-09-04T23:22:39Z",
+            "updated_at": "2026-09-04T23:22:39Z",
+            "expires_at": "2026-12-03T23:22:26Z",
+            "workflow_run": {
+              "id": 33929247980,
+              "repository_id": 1357466861,
+              "head_repository_id": 1357466861,
+              "head_branch": "main",
+              "head_sha": "6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed"
+            }
+          }
+        ]
+      },
+      "director_disposition": "PASS: authority tamper rejected before dependency checkout/build"
+    }
+  ]
+}
