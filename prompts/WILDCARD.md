@@ -20,6 +20,14 @@ You are allowed to disagree with existing seed ideas and pursue something you th
 
 ## Mandatory concept selection before implementation
 
+Read locked `ONE_HUMAN_PLAYABILITY.md`. Add its nine proposal fields to every concept's
+assessment, preserving the real mechanic in a complete solo or human-plus-normal-bots path.
+All unusual/custom decisions and environmental actions must be human-operable. Bots may
+perform ordinary supported combat/follow/stay roles, never required bespoke cognition.
+Document scaling, no-bots behavior and remaining live assumptions; obtain Director and
+Reviewer assessment. The flagship demo must be executable by one human without another
+client/account/person. README and handoff require the full `One-Human Playability` section.
+
 Follow `/WILDCARD_AUTEUR.md` and `/AGENTS.md` for every new project. Independently
 generate at least **five mechanically distinct concepts**, using fresh-context creative scouts
 when useful. Complete all eleven concept fields from the standard. Shortlist the strongest

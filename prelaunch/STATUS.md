@@ -2,9 +2,9 @@
 
 The sprint remains **ARMED_NOT_STARTED**. No timestamps have been started.
 
-**Execution paused by owner at 2026-09-04T19:56:13Z.** Internal workers and local monitoring
-have stopped; heartbeat is paused. The external clean-control build is left running to retain
-evidence. Do not launch or resume autonomous work until the owner requests continuation.
+**Owner explicitly resumed; reconciled at 2026-09-04T20:10:30Z.** Internal workers and
+monitoring have resumed. The existing clean-control run was still compiling. One-human
+playability authority and independent proposal reassessments are required before launch.
 
 ## Infrastructure
 
@@ -18,10 +18,10 @@ evidence. Do not launch or resume autonomous work until the owner requests conti
 
 | Owner | Assignment | State |
 |---|---|---|
-| Director | External control evidence and coordination checkpoint | Paused |
-| Practical | Minimal clean control submitted; practical proposal and phase QA recorded | Paused |
-| Reviewer | Judge repair and visual audit recorded; clean CI and final shortlist review pending | Paused |
-| Wildcard | Five-option Auteur tournament recorded; final choice pending independent floors | Paused |
+| Director | One-human locked authority and external proof; launch coordination | Active |
+| Practical | Hunt Rhythm one-human reassessment | Active |
+| Reviewer | Clean CI monitoring; one-human/Auteur independent review | Active |
+| Wildcard | Three-shortlist one-human paths and final creative choice | Active |
 
 ## Required launch evidence
 
@@ -71,6 +71,10 @@ dependency and runtime evidence. No acceptance requirement was weakened.
   - Independent asset findings: `prelaunch/stormwright-visual-audit.md` (source lane
     commit `e9a5fba`). These are source/data findings, not client gameplay validation.
 - These are distinct prospective assignments, not started projects or harvest entries.
+
+Every current/future project must also pass locked `ONE_HUMAN_PLAYABILITY.md`. No current
+concept is automatically accepted or rejected. Full human/bot roles, scaling, no-bots behavior
+and complete loop are under independent reassessment; real bot feel remains pending live tests.
 
 Disposable controls are infrastructure tests and do not count as Forge projects.
 Launch remains forbidden until the rejected tamper and passing clean control are recorded here with exact SHAs and run URLs.

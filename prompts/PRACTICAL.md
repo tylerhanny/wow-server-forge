@@ -23,6 +23,15 @@ Your job is to turn high-value, technically feasible ideas into COMPLETE standal
 
 ## Practical design preference
 
+Read locked `ONE_HUMAN_PLAYABILITY.md` before proposing or implementing. Every project
+must offer the full primary loop to Tyler alone or with normal pinned Playerbots. Document
+the exact path, human/custom actions, bot/helper roles and ordinary behavior evidence,
+scaling/no-bots behavior, complete outcome/retry/exit and later assumptions. Obtain Director
+and Reviewer one-human feasibility approval before implementation. Never assume bots use
+custom menus, timed objects, precise damage stops or bespoke choreography. README and
+final handoff require `One-Human Playability` and all prescribed one-human smoke tests.
+No second human/client/operated account may be necessary; optional multiplayer is welcome.
+
 Favor systems with strong player value, replayability, usefulness, or operator value and credible completion probability.
 
 Seed ideas in `BACKLOG.md` are optional. You may propose something better.

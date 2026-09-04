@@ -75,10 +75,20 @@ Pinned-API feasibility:
 Technical risk:
 Smallest worthwhile V1:
 Estimated completion confidence before current deadline boundary:
+One-human qualifying path (solo or human-plus-bots):
+Human custom actions and bot/helper responsibilities:
+Why ordinary pinned bot behavior suffices:
+Difficulty/enemy scaling and no-bots behavior:
+Complete primary loop including outcome/retry/abort:
+Bot assumptions pending live/in-game validation:
+Director and independent Reviewer one-human design dispositions:
 Decision: BUILD / SCOUT / DEFER
 ```
 
 ## Queue discipline
+
+- All lanes must pass locked `ONE_HUMAN_PLAYABILITY.md` before implementation approval.
+  Stormwright, Holdfast, Warband Arena and Hunt Rhythm require explicit reassessment.
 
 - Do not duplicate an actively claimed concept without a Director decision.
 - Prefer one owner per project.

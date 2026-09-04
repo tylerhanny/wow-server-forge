@@ -8,6 +8,11 @@ The sprint is an R&D harvest, not deployment.
 
 The output should be a shelf of high-quality candidates that Tyler can later install and test on the real server one at a time.
 
+Every candidate must satisfy locked `ONE_HUMAN_PLAYABILITY.md`: a complete worthwhile
+primary loop usable by Tyler alone or with normally controllable pinned Playerbots. No
+other real person, second client or second operated account may be necessary. Keep the
+actual mechanic and challenge; optional multiplayer enhances an already complete path.
+
 ## Success is measured by finished usable projects
 
 Optimize for:
@@ -74,6 +79,9 @@ Before starting a substantial implementation, record a concise internal/project 
 - technical risk;
 - expected implementation size;
 - estimated probability of reaching the finish gate before the current phase deadline.
+- exact one-human path, human/bot/helper roles, ordinary pinned behavior evidence,
+  difficulty/enemy scaling, no-bots behavior, full-loop access/outcome/retry/exit, and
+  remaining bot assumptions under `ONE_HUMAN_PLAYABILITY.md`.
 
 As the sprint progresses, required completion confidence rises.
 

@@ -51,6 +51,14 @@ Never restart or extend the clock later without explicit owner instruction.
 
 ## Project-selection mandate
 
+For every lane, read and enforce locked `ONE_HUMAN_PLAYABILITY.md` before implementation
+approval. Require the exact solo or human-plus-normal-bots path, all human/custom actions,
+bot/helper roles, supported behavior evidence, scaling, no-bots behavior, complete primary
+loop and later bot assumptions. Obtain independent Reviewer disposition; “supports parties”
+is insufficient. Reject unsupported bot cognition or adapt coherently without deleting the
+interesting mechanic. Require README/handoff `One-Human Playability` and explicit independent
+PASS before harvest, while retaining actual bot competence as pending live/in-game testing.
+
 Maintain diversity between:
 
 - practical/high-probability useful systems;

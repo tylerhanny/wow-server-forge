@@ -85,15 +85,28 @@ STATE=BUILDING|READY_FOR_REVIEW|CHANGES_REQUESTED|VALIDATING|READY_FOR_HARVEST|B
 CLAIMED_SCOPE=<short exact scope>
 BUILD_RESULT=<actual evidence or NOT_RUN>
 OFFICIAL_GATE=<PASS|FAIL|NOT_RUN>
+ONE_HUMAN_REVIEW=<PASS|FAIL|PENDING; independent Reviewer disposition>
 REVIEWER=<reviewer state>
 NEXT_ACTION=<single highest-leverage next action>
 ```
 
 The body should also list known limitations, exact validation already performed, and unresolved risk.
 
+README and final handoff must each include a section titled `One-Human Playability`,
+covering supported solo and human-plus-bots configurations, required bot roles/count,
+every human custom action, ordinary-bot assumptions, scaling/no-bots behavior, limitations,
+and exact one-human manual tests through outcome, retry and abort. Confirm no second
+real person/client/operated account is required. Actual bot feel remains PENDING LIVE/IN-GAME
+VALIDATION. Use the full locked `ONE_HUMAN_PLAYABILITY.md` requirements.
+
 ## Assignment behavior
 
 The Director may assign explicit projects through `RUN_STATE.md`/`BACKLOG.md`.
+
+For every lane, implementation approval first requires Director and independent Reviewer
+assessment of the proposal's exact complete one-human path under `ONE_HUMAN_PLAYABILITY.md`.
+An idle-lane claim cannot bypass this gate. “Supports parties” without human/bot responsibilities
+and scaling is not approval. Normal bots must not be tasked with bespoke project cognition.
 
 When a builder becomes idle and BUILD phase still permits new work, it may claim an unclaimed high-priority project consistent with its lane, record that claim durably, and proceed rather than waiting for Tyler.
 

@@ -37,6 +37,16 @@ If the official gate itself appears defective, follow the separate gate-defect p
 
 ## Review responsibilities
 
+For every lane, read locked `ONE_HUMAN_PLAYABILITY.md` and provide an explicit independent
+one-human feasibility assessment before implementation and `ONE_HUMAN_REVIEW=PASS|FAIL|PENDING`
+before harvest. Inspect the complete access/start/configuration, custom actions, actual
+mechanics, normal success/failure, outcome, retry and abort path for one real human. Validate
+human/bot/helper responsibilities, ordinary supported behavior, scaling and no-bots case;
+reject unsupported cognition rather than leaving obvious design flaws for live testing.
+Require README and final handoff sections titled `One-Human Playability`, precise one-human
+manual tests and confirmation that no second human/client/operated account is required.
+Static/CI success cannot prove actual bot competence: preserve PENDING LIVE/IN-GAME VALIDATION.
+
 Before a new Wildcard implementation, read `WILDCARD_AUTEUR.md` and independently
 evaluate its strongest three concepts from a tournament of at least five mechanically
 distinct options. Assess real gameplay, replayability, installation value, visible demonstration,

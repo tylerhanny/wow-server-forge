@@ -11,6 +11,7 @@ Read, in order, before doing any work:
 5. `DEADLINE.md`
 6. `RUN_STATE.md`
 7. `BACKLOG.md`
+8. `ONE_HUMAN_PLAYABILITY.md` (mandatory before any proposal approval or implementation)
 
 ## Mission hierarchy
 
@@ -76,6 +77,17 @@ Do not restrict all work to Tyler's existing idea list. The Wildcard lane is exp
 
 However, creative freedom never overrides safety, compatibility, completeness, or the harvest deadline.
 
+## Forge-wide one-human playability
+
+`ONE_HUMAN_PLAYABILITY.md` is locked owner authority for **every lane and candidate**.
+Every harvested project must have a complete worthwhile primary loop for one real human,
+solo or with normally controllable pinned Playerbots, with no second client/operated account.
+All custom actions must be human-operable; no unsupported bot cognition may be assumed.
+Director and Reviewer must assess the exact human/bot roles, scaling, no-bots behavior,
+complete loop and later validation assumptions before implementation approval. Optional
+human multiplayer may enhance, but not unlock, the actual feature. Preserve challenge and
+the interesting mechanic. Reassess all current concepts; do not automatically accept/reject.
+
 ## Repository organization
 
 Each implementation project belongs under:
@@ -98,6 +110,8 @@ BLOCKED.md
 IDEA_VAULT.md
 TEAM_PROTOCOL.md
 VALIDATION_INTEGRITY.md
+ONE_HUMAN_PLAYABILITY.md
+WILDCARD_AUTEUR.md
 ```
 
 The Director owns coordination-state changes. Other agents may propose updates but should avoid conflicting edits.
@@ -239,6 +253,10 @@ A project may be listed as `READY FOR LIVE TEST` only when ALL applicable condit
 15. Project README documents purpose, features, configuration, install procedure, known limitations, and exact in-game smoke-test checklist.
 16. Git contains a clean checkpoint/commit representing the candidate.
 17. Remaining uncertainty is explicitly documented and is limited to live/in-game behavior that reasonably requires Tyler's later manual testing.
+18. The complete primary feature satisfies `ONE_HUMAN_PLAYABILITY.md`; README and
+    final handoff each contain `One-Human Playability`, the exact qualifying path/manual
+    steps, and independent `ONE_HUMAN_REVIEW=PASS`. Actual bot competence/feel remains
+    explicitly PENDING LIVE/IN-GAME VALIDATION where applicable.
 
 `Almost done`, `90% complete`, `prototype`, or `should work` does not pass.
 

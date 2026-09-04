@@ -4,6 +4,13 @@ Standing owner authority, adopted 2026-09-04. Applies before every new Wildcard
 implementation and strengthens the earlier creative-quality gate. Safety, exact pins,
 validation integrity, independent review and all phase/deadline rules remain unchanged.
 
+Locked `ONE_HUMAN_PLAYABILITY.md` applies in addition: every concept must preserve its
+complete primary loop with one real human, solo or with ordinary pinned Playerbots. Include
+all nine one-human proposal fields in the tournament and reject unsupported bot cognition.
+The human owns all bespoke menus/decisions/environmental actions; optional multiplayer
+adds value to an already complete path. Director and Reviewer reassess every shortlisted
+concept honestly before selection. No current entry is automatically selected or rejected.
+
 ## Creative ownership and quality floor
 
 Wildcard is the creative owner. It should ask:
@@ -90,6 +97,8 @@ The first flagship must include:
 - visible in-game feedback using the stock client;
 - concise creator's note stating final design rationale, intended experience and tradeoffs;
 - exact 60–90 second in-game demonstration flow;
+- a demonstration executable by one human plus optional ordinary bots, without a second
+  client or human-operated account, and the required `One-Human Playability` documentation;
 - screenshot/video capture checklist for Tyler's later live test;
 - documentation explaining meaningful differences from ordinary WotLK.
 
