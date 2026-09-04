@@ -2,6 +2,10 @@
 
 The sprint remains **ARMED_NOT_STARTED**. No timestamps have been started.
 
+**Execution paused by owner at 2026-09-04T19:56:13Z.** Internal workers and local monitoring
+have stopped; heartbeat is paused. The external clean-control build is left running to retain
+evidence. Do not launch or resume autonomous work until the owner requests continuation.
+
 ## Infrastructure
 
 - Repository cloned into the selected project directory itself.
@@ -14,10 +18,10 @@ The sprint remains **ARMED_NOT_STARTED**. No timestamps have been started.
 
 | Owner | Assignment | State |
 |---|---|---|
-| Director | External tampering control; workflow dispatch/evidence; durable coordination | In progress |
-| Practical | Minimal exact-pin clean module control on `project/forge-smoke-clean` | In progress |
-| Reviewer | Independent judge/source audit and evidence-backed prelaunch repairs | In progress |
-| Wildcard | Independent pinned-API scouting and first-project proposal; no implementation before launch | In progress |
+| Director | External control evidence and coordination checkpoint | Paused |
+| Practical | Minimal clean control submitted; practical proposal and phase QA recorded | Paused |
+| Reviewer | Judge repair and visual audit recorded; clean CI and final shortlist review pending | Paused |
+| Wildcard | Five-option Auteur tournament recorded; final choice pending independent floors | Paused |
 
 ## Required launch evidence
 
@@ -44,6 +48,9 @@ The sprint remains **ARMED_NOT_STARTED**. No timestamps have been started.
   - Expected dry-run proof: `FORGE_SMOKE_CONFIG reload=0 enabled=1 control=314159`.
 - Reviewer judge disposition: **PENDING**.
 
+At pause the corrected clean run had passed scope/discovery/configure and was still compiling.
+Compile/install/runtime/unit-test success remains unproven until its actual result is inspected.
+
 Reviewer repair rationale and exact source evidence: `prelaunch/reviewer-audit.md`.
 The repair preserves both dependency pins and warnings-as-errors, adds the missing
 Playerbots disposable DB connection, and strengthens recorded judge, loader, test,
@@ -57,6 +64,12 @@ dependency and runtime evidence. No acceptance requirement was weakened.
   it is preserved only in `IDEA_VAULT.md`. The AI Auteur tournament requires at least five
   mechanically distinct concepts, a shortlist of three evaluated by Director and Reviewer,
   then Wildcard's choice among passing options. See `WILDCARD_AUTEUR.md`.
+  - Completed comparison: `prelaunch/wildcard-quality-pass-1.md` (source lane commit
+    `ad264556c8fd688ea462ead3ab7ece753f142819`).
+  - Shortlist: Stormwright, Holdfast, Warband Arena. Wildcard preference: Stormwright.
+  - Final Director/Reviewer dispositions and Wildcard final choice are pending resume.
+  - Independent asset findings: `prelaunch/stormwright-visual-audit.md` (source lane
+    commit `e9a5fba`). These are source/data findings, not client gameplay validation.
 - These are distinct prospective assignments, not started projects or harvest entries.
 
 Disposable controls are infrastructure tests and do not count as Forge projects.
@@ -64,7 +77,7 @@ Launch remains forbidden until the rejected tamper and passing clean control are
 
 ## Continuity
 
-Task heartbeat: `wow-forge-director-continuity`, active every 15 minutes.
+Task heartbeat: `wow-forge-director-continuity`, **PAUSED by owner**; configured interval 15 minutes.
 Recovery procedure: `prelaunch/RECOVERY.md`.
 
 The Director manages internal subagents; separate user-created worker chats are not required.

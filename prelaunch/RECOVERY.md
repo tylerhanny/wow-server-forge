@@ -5,6 +5,10 @@ are approved and preferred; never wait for Tyler to create separate lane tasks.
 
 ## Resume
 
+The owner requested a temporary pause at `2026-09-04T19:56:13Z`. Do not resume automatically.
+Wait for the owner's continuation instruction, then inspect clean-control run `33911646203`
+before retrying or launching. The clock remains unstarted and the heartbeat is paused.
+
 1. Stay inside this project boundary. Fetch origin without overwriting unexplained work.
 2. Read `AGENTS.md`, `VALIDATION_INTEGRITY.md`, `TEAM_PROTOCOL.md`, `RUN_STATE.md`,
    `prelaunch/STATUS.md`, and applicable handoffs.
@@ -51,6 +55,7 @@ stop feature implementation and classify every attempted project truthfully.
 
 ## Scheduled continuity
 
-The task heartbeat `wow-forge-director-continuity` is active every 15 minutes. It is a
+The task heartbeat `wow-forge-director-continuity` is **paused by owner**, with a configured
+15-minute interval. Reactivate only after the owner requests continuation. It is a
 recovery mechanism, not permission to spend a wake-up only reporting unchanged status.
 Pause it after final harvest closure. Never create duplicate continuation automations.
