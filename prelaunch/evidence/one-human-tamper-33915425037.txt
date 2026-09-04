@@ -1,0 +1,5 @@
+Validate project/forge-smoke-one-human-tamper	UNKNOWN STEP	2026-09-04T20:16:57.7401821Z ^[[36;1m  echo 'Candidate changed paths outside projects/<slug>/ and handoffs/<slug>.md:' >&2^[[0m
+Validate project/forge-smoke-one-human-tamper	UNKNOWN STEP	2026-09-04T20:16:57.7666748Z ONE_HUMAN_PLAYABILITY.md
+Validate project/forge-smoke-one-human-tamper	UNKNOWN STEP	2026-09-04T20:16:57.7707939Z Candidate changed paths outside projects/<slug>/ and handoffs/<slug>.md:
+Validate project/forge-smoke-one-human-tamper	UNKNOWN STEP	2026-09-04T20:16:57.7709133Z ONE_HUMAN_PLAYABILITY.md
+Validate project/forge-smoke-one-human-tamper	UNKNOWN STEP	2026-09-04T20:16:57.7722312Z ##[error]Process completed with exit code 1.

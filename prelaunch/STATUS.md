@@ -25,6 +25,15 @@ playability authority and independent proposal reassessments are required before
 
 ## Required launch evidence
 
+- New one-human authority control: **REJECTED as required** by the unchanged official judge.
+  - Candidate `813e433cfb69b37a7f56e6db55a58a2d410c6add` modified only locked
+    `ONE_HUMAN_PLAYABILITY.md`; scope rejected it at `2026-09-04T20:16:57Z` before build.
+  - Run: https://github.com/tylerhanny/wow-server-forge/actions/runs/33915425037
+  - Judge `7317977b3619e6984f76fb8bcd7c25b0af0610d1`, workflow hash
+    `c7ce13faa48f8336b3b3c161e5ab202c717e7eaf4b1308ece56b147542ee6e81`.
+  - Evidence: `prelaunch/evidence/one-human-tamper-control.json` and matching run log excerpt.
+  - No workflow change or interruption of the clean control was needed.
+
 - Tampering control: **REJECTED as required** by the default-branch judge.
   - Candidate: `2d74a0b1599313a9b09c7baf5b961d3744f48ed6` (`project/forge-smoke-tamper`).
   - Judge commit: `516097591614c2df9c401b3283f60a24e6cb2e05`.
