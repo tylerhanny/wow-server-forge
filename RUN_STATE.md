@@ -6,28 +6,44 @@ The 36-hour sprint has NOT started yet.
 
 The Director must record the launch timestamps immediately before sprint implementation begins.
 
+## Current safe pause
+
+Owner requested a temporary pause at the first available opportunity; recorded 2026-09-05T00:55:39.347769Z.
+All internal workers are stopped or idle and the existing continuity heartbeat is PAUSED.
+Do not resume diagnosis, dispatch builds, implement projects or start the clock until explicit
+owner resume. The standing upstream-warning authorization remains intact.
+
+Both current control runs finished before this pause. Tamper 33929247980 was rejected as
+required. Clean 33929246418 failed full compilation on pinned upstream WorldMock missing
+pure virtual methods; both server targets built, but the unit-test target did not. Later
+install/SQL/runtime/unit-test stages were skipped. Reviewer disposition is FAIL, preserved
+in `prelaunch/clean-control-pinned-unit-test-blocker.md` (source e892081). This is an actual
+compiler error, outside the warning authorization. No dependency/pin or gate change was made.
+All sprint timestamps remain UNSET. Earlier active/resume instructions below are historical
+and do not override this pause.
+
 ## Launch record
 
 ```text
 STATUS=ARMED_NOT_STARTED
-EXECUTION_STATUS=ACTIVE_PRELAUNCH_CONTROLS
+EXECUTION_STATUS=PAUSED_BY_OWNER
 BLOCKER_IDENTIFIED_UTC=2026-09-04T22:33:12Z
 OWNER_EXCEPTION_RECONCILED_UTC=2026-09-04T21:16:15Z
 OWNER_EXCEPTION_POLICY=UPSTREAM_WARNING_EXCEPTION.md
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 STANDING_WARNING_POLICY_RECONCILED_UTC=2026-09-04T23:07:16Z
-CURRENT_POLICY_CONTROLS=RUNNING
+CURRENT_POLICY_CONTROLS=COMPLETE_CLEAN_FAIL_TAMPER_REJECTED
 REVIEWED_JUDGE_SHA=6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed
-LAST_FULL_CLEAN_JUDGE_SHA=78a5da6d5aed19a932fae53e74226ac5afc2e204
+LAST_FULL_CLEAN_JUDGE_SHA=6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed
 CLEAN_CONTROL_RUN=33929246418
 AUTHORITY_TAMPER_RUN=33929247980
 ALLOWLIST_TAMPER_RUN=33927019176
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
-CLEAN_CONTROL_REVIEW=PENDING_CURRENT_JUDGE
-PAUSE_UTC=2026-09-04T19:56:13Z
+CLEAN_CONTROL_REVIEW=FAIL_PINNED_UPSTREAM_UNIT_TEST_SOURCE
+PAUSE_UTC=2026-09-05T00:55:39.347769Z
 RESUME_UTC=2026-09-04T20:10:30Z
-RESUME_POLICY=AUTONOMOUS_CONTINUATION_AUTHORIZED
-HEARTBEAT_STATUS=ACTIVE
+RESUME_POLICY=WAIT_FOR_EXPLICIT_OWNER_RESUME
+HEARTBEAT_STATUS=PAUSED
 START_UTC=UNSET
 CONVERGENCE_START_UTC=UNSET
 HARVEST_START_UTC=UNSET
@@ -45,10 +61,10 @@ CURRENT_PHASE=SETUP
 
 | Lane | Agent role | Current project | Branch/worktree | State |
 |---|---|---|---|---|
-| Director | Persistent orchestrator | Apply standing upstream policy, rerun controls and launch immediately on existing gate success | main | ACTIVE PRELAUNCH |
-| Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | PRELAUNCH |
-| Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
-| Reviewer | Independent internal Reviewer / Closer | Implement provenance warning policy and review complete control evidence | lane/reviewer / .worktrees/reviewer | ACTIVE PRELAUNCH |
+| Director | Persistent orchestrator | Apply standing upstream policy, rerun controls and launch immediately on existing gate success | main | PAUSED BY OWNER |
+| Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | PAUSED BY OWNER |
+| Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | PAUSED BY OWNER |
+| Reviewer | Independent internal Reviewer / Closer | Implement provenance warning policy and review complete control evidence | lane/reviewer / .worktrees/reviewer | PAUSED BY OWNER |
 
 Prelaunch evidence and next actions are recorded in `prelaunch/STATUS.md`.
 Internal worker lanes are managed by the Director; Tyler need not create worker tasks.

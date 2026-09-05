@@ -1,5 +1,21 @@
 # Director recovery and launch procedure
 
+## Current safe pause
+
+Owner requested a temporary pause at the first available opportunity; recorded 2026-09-05T00:55:39.347769Z.
+All internal workers are stopped or idle and the existing continuity heartbeat is PAUSED.
+Do not resume diagnosis, dispatch builds, implement projects or start the clock until explicit
+owner resume. The standing upstream-warning authorization remains intact.
+
+Both current control runs finished before this pause. Tamper 33929247980 was rejected as
+required. Clean 33929246418 failed full compilation on pinned upstream WorldMock missing
+pure virtual methods; both server targets built, but the unit-test target did not. Later
+install/SQL/runtime/unit-test stages were skipped. Reviewer disposition is FAIL, preserved
+in `prelaunch/clean-control-pinned-unit-test-blocker.md` (source e892081). This is an actual
+compiler error, outside the warning authorization. No dependency/pin or gate change was made.
+All sprint timestamps remain UNSET. Earlier active/resume instructions below are historical
+and do not override this pause.
+
 The durable user mandate is in the repository authorities and this task. Internal workers
 are approved and preferred; never wait for Tyler to create separate lane tasks.
 
