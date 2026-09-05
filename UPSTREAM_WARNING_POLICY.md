@@ -40,6 +40,18 @@ warning within this standing authorization while preserving project warning fail
 the upstream warning itself is not grounds to ask the owner for another exception.
 Candidate build hooks retain the existing independent source-review requirement.
 
+## Exact owner-authorized WorldMock test-fixture exception
+
+`WORLDMOCK_FIXTURE_EXCEPTION.md` records the owner's 2026-09-05 authorization for only
+an exact hash-checked two-method correction to the pinned WorldMock test fixture inside
+disposable CI. The modified fixture must never be committed, installed, or persisted
+outside that environment. Record the exact patch and before/after identities; all production
+source, pins, tests/assertions/coverage and remaining gates stay unchanged. This explicit
+exception supersedes unchanged-source language only for that precise temporary fixture
+delta. It does not permit any other upstream modification or mislabel modified code as
+verified-unchanged upstream. Immediately rerun the two existing controls, then launch on
+complete required evidence without additional prelaunch gates.
+
 ## Immediate prelaunch completion
 
 Apply this amendment, complete the already-required independent review, and rerun the

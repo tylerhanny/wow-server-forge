@@ -6,38 +6,40 @@ The 36-hour sprint has NOT started yet.
 
 The Director must record the launch timestamps immediately before sprint implementation begins.
 
-## Current resume and prelaunch blocker
+## Current authorized fixture correction and controls
 
-Owner explicitly resumed; reconciled 2026-09-05T01:06:37.050300Z. The prior safe pause is lifted.
-The existing continuity heartbeat is ACTIVE and stays quiet while this blocker is unchanged.
-Practical Hunt Rhythm and Wildcard Stormwright ownership/selections are preserved; neither
-implementation nor the 36-hour clock has started. All sprint timestamps remain UNSET.
+At 2026-09-05T01:36:02.615039Z, the Director reconciled the owner's explicit authorization in
+`WORLDMOCK_FIXTURE_EXCEPTION.md`. The exact reviewed WorldMock two-method delta may be
+applied only inside disposable CI after verifying its original hash. No other upstream
+source change is authorized; production source, pins, tests/assertions/coverage and all
+remaining gate requirements are preserved. Record the exact patch and before/after hashes;
+the modified full fixture must never be committed, installed or persisted outside CI.
 
-Tamper run 33929247980 was rejected as required. Clean 33929246418 failed on actual
-pinned upstream WorldMock compile errors: missing GetPlayerbotsDBRevision and
-AddQueryHolderCallback overrides. Both server targets built, but the required whole build
-failed and install/SQL/runtime/unit-test execution were skipped. The standing upstream-warning
-policy worked and remains authorized. No additional warning approval is required.
+The prior clean run 33929246418 remains FAIL, with both server targets built and the
+required unit-test target failing. Tamper 33929247980 was rejected as required. The
+source-policy blocker is now resolved by this exact owner exception. Reviewer implements
+the minimum protected adapter; Director publishes authority and dispatches both existing
+controls immediately. Practical checks containment/adapter scope within the existing
+independent review. No new prelaunch gate or test expansion is authorized.
 
-Evidence: `prelaunch/clean-control-pinned-unit-test-blocker.md`, Reviewer source e892081.
-The Director independently checked the saved raw build hash/diagnostics and reconciled
-GitHub completion at the exact judge SHA. Reviewer found no supported configuration fix preserving the suite. The exact unapplied
-two-method proposal is `prelaunch/worldmock-test-fixture-proposal.md` with adjacent patch
-(Reviewer source b4724d4); it requires explicit owner authorization for that test-only delta. No dependency/test
-source, judge, pin or acceptance requirement has been changed. No identical retry is justified.
-Earlier pause/active instructions below are historical; this current disposition controls.
+The heartbeat is ACTIVE. Hunt Rhythm and Stormwright selections/ownership are preserved.
+All sprint timestamps remain UNSET until complete reviewed prelaunch success, then record
+the actual clock and launch both lanes immediately. Earlier blocker/pause instructions
+below are historical and do not override the current explicit authorization.
 
 ## Launch record
 
 ```text
 STATUS=ARMED_NOT_STARTED
-EXECUTION_STATUS=BLOCKED_PINNED_UPSTREAM_UNIT_TEST_SOURCE
+EXECUTION_STATUS=ACTIVE_PRELAUNCH_FIXTURE_EXCEPTION
 BLOCKER_IDENTIFIED_UTC=2026-09-05T00:47:37Z
 OWNER_EXCEPTION_RECONCILED_UTC=2026-09-04T21:16:15Z
 OWNER_EXCEPTION_POLICY=UPSTREAM_WARNING_EXCEPTION.md
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
+WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
+FIXTURE_EXCEPTION_RECONCILED_UTC=2026-09-05T01:36:02.615039Z
 STANDING_WARNING_POLICY_RECONCILED_UTC=2026-09-04T23:07:16Z
-CURRENT_POLICY_CONTROLS=COMPLETE_CLEAN_FAIL_TAMPER_REJECTED
+CURRENT_POLICY_CONTROLS=RERUN_PENDING_AUTHORIZED_FIXTURE_ADAPTER
 REVIEWED_JUDGE_SHA=6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed
 LAST_FULL_CLEAN_JUDGE_SHA=6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed
 CLEAN_CONTROL_RUN=33929246418
@@ -48,7 +50,7 @@ CLEAN_CONTROL_REVIEW=FAIL_PINNED_UPSTREAM_UNIT_TEST_SOURCE
 PAUSE_UTC=2026-09-05T00:55:39.347769Z
 RESUME_UTC=2026-09-05T01:06:37.050300Z
 RESUME_POLICY=AUTONOMOUS_WITHIN_EXISTING_AUTHORITY
-HEARTBEAT_STATUS=ACTIVE_QUIET_WHILE_BLOCKED
+HEARTBEAT_STATUS=ACTIVE
 START_UTC=UNSET
 CONVERGENCE_START_UTC=UNSET
 HARVEST_START_UTC=UNSET
@@ -66,10 +68,10 @@ CURRENT_PHASE=SETUP
 
 | Lane | Agent role | Current project | Branch/worktree | State |
 |---|---|---|---|---|
-| Director | Persistent orchestrator | Apply standing upstream policy, rerun controls and launch immediately on existing gate success | main | AWAITS AUTHORIZED PRELAUNCH RESOLUTION |
-| Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | AWAITS AUTHORIZED PRELAUNCH RESOLUTION |
-| Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | AWAITS AUTHORIZED PRELAUNCH RESOLUTION |
-| Reviewer | Independent internal Reviewer / Closer | Implement provenance warning policy and review complete control evidence | lane/reviewer / .worktrees/reviewer | AWAITS AUTHORIZED PRELAUNCH RESOLUTION |
+| Director | Persistent orchestrator | Apply standing upstream policy, rerun controls and launch immediately on existing gate success | main | PRELAUNCH |
+| Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | PRELAUNCH |
+| Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
+| Reviewer | Independent internal Reviewer / Closer | Implement provenance warning policy and review complete control evidence | lane/reviewer / .worktrees/reviewer | PRELAUNCH |
 
 Prelaunch evidence and next actions are recorded in `prelaunch/STATUS.md`.
 Internal worker lanes are managed by the Director; Tyler need not create worker tasks.

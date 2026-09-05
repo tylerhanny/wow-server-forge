@@ -1,6 +1,8 @@
 # WorldMock compatibility correction — unapplied owner proposal
 
-**Status: PROPOSED ONLY. No dependency, judge, or CI run has been changed.**
+**Owner authorized this exact proposal on 2026-09-05.** See controlling
+`../WORLDMOCK_FIXTURE_EXCEPTION.md`. The proposal/review below is the preserved
+pre-authorization record; it does not supersede the explicit authorization.
 
 This is the smallest source correction identified for the actual unit-test compilation
 failure in [run 33929246418](https://github.com/tylerhanny/wow-server-forge/actions/runs/33929246418).

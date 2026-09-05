@@ -134,6 +134,18 @@ change is authorized. Additional qualifying upstream warnings require no owner a
 After the existing minimum prelaunch gate passes, start the clock immediately; do not
 add review, cleanup, hardening, test expansion or policy gates before launch.
 
+## Exact owner-authorized WorldMock test-fixture exception
+
+`WORLDMOCK_FIXTURE_EXCEPTION.md` records the owner's 2026-09-05 authorization for only
+an exact hash-checked two-method correction to the pinned WorldMock test fixture inside
+disposable CI. The modified fixture must never be committed, installed, or persisted
+outside that environment. Record the exact patch and before/after identities; all production
+source, pins, tests/assertions/coverage and remaining gates stay unchanged. This explicit
+exception supersedes unchanged-source language only for that precise temporary fixture
+delta. It does not permit any other upstream modification or mislabel modified code as
+verified-unchanged upstream. Immediately rerun the two existing controls, then launch on
+complete required evidence without additional prelaunch gates.
+
 ## Agent lanes
 
 ### 1. Director / Producer

@@ -1,25 +1,25 @@
 # Director recovery and launch procedure
 
-## Current resume and prelaunch blocker
+## Current authorized fixture correction and controls
 
-Owner explicitly resumed; reconciled 2026-09-05T01:06:37.050300Z. The prior safe pause is lifted.
-The existing continuity heartbeat is ACTIVE and stays quiet while this blocker is unchanged.
-Practical Hunt Rhythm and Wildcard Stormwright ownership/selections are preserved; neither
-implementation nor the 36-hour clock has started. All sprint timestamps remain UNSET.
+At 2026-09-05T01:36:02.615039Z, the Director reconciled the owner's explicit authorization in
+`WORLDMOCK_FIXTURE_EXCEPTION.md`. The exact reviewed WorldMock two-method delta may be
+applied only inside disposable CI after verifying its original hash. No other upstream
+source change is authorized; production source, pins, tests/assertions/coverage and all
+remaining gate requirements are preserved. Record the exact patch and before/after hashes;
+the modified full fixture must never be committed, installed or persisted outside CI.
 
-Tamper run 33929247980 was rejected as required. Clean 33929246418 failed on actual
-pinned upstream WorldMock compile errors: missing GetPlayerbotsDBRevision and
-AddQueryHolderCallback overrides. Both server targets built, but the required whole build
-failed and install/SQL/runtime/unit-test execution were skipped. The standing upstream-warning
-policy worked and remains authorized. No additional warning approval is required.
+The prior clean run 33929246418 remains FAIL, with both server targets built and the
+required unit-test target failing. Tamper 33929247980 was rejected as required. The
+source-policy blocker is now resolved by this exact owner exception. Reviewer implements
+the minimum protected adapter; Director publishes authority and dispatches both existing
+controls immediately. Practical checks containment/adapter scope within the existing
+independent review. No new prelaunch gate or test expansion is authorized.
 
-Evidence: `prelaunch/clean-control-pinned-unit-test-blocker.md`, Reviewer source e892081.
-The Director independently checked the saved raw build hash/diagnostics and reconciled
-GitHub completion at the exact judge SHA. Reviewer found no supported configuration fix preserving the suite. The exact unapplied
-two-method proposal is `prelaunch/worldmock-test-fixture-proposal.md` with adjacent patch
-(Reviewer source b4724d4); it requires explicit owner authorization for that test-only delta. No dependency/test
-source, judge, pin or acceptance requirement has been changed. No identical retry is justified.
-Earlier pause/active instructions below are historical; this current disposition controls.
+The heartbeat is ACTIVE. Hunt Rhythm and Stormwright selections/ownership are preserved.
+All sprint timestamps remain UNSET until complete reviewed prelaunch success, then record
+the actual clock and launch both lanes immediately. Earlier blocker/pause instructions
+below are historical and do not override the current explicit authorization.
 
 The durable user mandate is in the repository authorities and this task. Internal workers
 are approved and preferred; never wait for Tyler to create separate lane tasks.
