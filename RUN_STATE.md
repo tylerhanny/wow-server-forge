@@ -48,7 +48,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | READY FOR LIVE TEST at796e27e; delivered early; remains subordinate |
-| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Corrected frozenbde390e; official run33955586542 active; primary priority |
+| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Correcting logger documentation after runtime-fixture failure; source remains frozen; primary priority |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
 The completed selection, creative ownership and one-human approvals are in
@@ -121,8 +121,16 @@ change is authorized. Independently reviewed repair
 the three impact packet calls, with no gameplay/rules/SQL/config/test changes. Final
 docs-only freeze `bde390e3ec1d9df764b5d4e6b0b0e00c40e0d7cc` is under official run
 `33955586542`, judge `8b87494de0261cd82c48c4a0dc11895611fb9d39`. It retains the complete
-gate and required supplemental normal-startup checks. Preserve faileda155817 evidence/
-package and do not release it; the corrected package is prepared but remains unaccepted.
+gate and required supplemental normal-startup checks. That second run passed full build,
+install, both dry-runs, units, executable rules, owned SQL and terrain preparation, but
+FAILED its five-minute supplemental observation: the fixture incorrectly set module
+logging to3, suppressing required INFO output. Exact pinned logging defines WARN=3/INFO=4,
+with native module default4 already enabling INFO. Normal server ready was observed;
+registrar spawning was not observed and cannot be inferred. Final runtime integrity/cache
+save were skipped. Reviewer owns a separate one-line fixture3-to4 correction; Wildcard
+corrects the same mistaken README advice in a docs-only candidate for one required full
+rerun. No source/gameplay/SQL/config change, removed check or extra control is authorized.
+Preserve both failed runs/packages as historical and unreleased.
 No extra control was launched. Field Camp original `ec9eea979c9344853aaf02d46ba9f6632636254b` had independent
 source/one-human PASS with source/config identical to reviewed `b1b8417`. Its official
 run `33952603462` used judge `e7a37fa` and FAILED full compilation: FieldCamp.cpp called
@@ -169,3 +177,9 @@ Their file blobs match their exact frozen commits; that packaging check is not c
 or acceptance. Earlier failed archives remain historical and unreleased. The existing
 continuity heartbeat now records Hunt's delivery and directs recovery to these current run
 bindings, preserving every deadline and avoiding superseded candidate restarts.
+
+Owner guide correction: retain native `Logger.module=4,Console Server` (INFO=4, WARN=3).
+Earlier advice to set3 suppressed INFO and was incorrect. All external guides are corrected;
+Field Camp's final handoff explicitly supersedes its frozen README's false default-threshold
+claim. Independent Reviewer approved this observation-guidance correction: both accepted
+project trees remain unchanged and their actual successful runs used the native setting.

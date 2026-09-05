@@ -122,13 +122,17 @@ HuntRhythm.StepPercent = 2
 HuntRhythm.MaxBonusPercent = 10
 ```
 
-For visible INFO evidence, change the existing `Logger.module` severity in worldserver.conf
-from `4` to `3`, preserving its appenders. The pinned default is
-`Logger.module=4,Console Server`; with unchanged appenders use:
+For visible INFO evidence, retain the native `Logger.module` level `4` in worldserver.conf,
+preserving its appenders. In this exact pinned core, WARN is `3` and INFO is `4`.
+The native default already allows INFO; use:
 
 ```ini
-Logger.module=3,Console Server
+Logger.module=4,Console Server
 ```
+
+Correction to the earlier external guide: do not lower this value to `3`, which suppresses
+INFO messages. The accepted official run used the native setting and observed the marker;
+this documentation correction does not alter the accepted module or validation result.
 
 Start each staged executable in its own terminal. Set `STAGE` to the same absolute prefix
 in each terminal; do not use an existing system service or replace running binaries.

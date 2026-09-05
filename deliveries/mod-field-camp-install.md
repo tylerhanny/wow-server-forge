@@ -97,12 +97,17 @@ FieldCamp.Enable = 1
 FieldCamp.CooldownSeconds = 600
 ```
 
-Cooldown is clamped to 60–3600 seconds. Set the existing `Logger.module` severity to
-INFO (`3`), preserving its appenders. With the pinned default appenders:
+Cooldown is clamped to 60–3600 seconds. Retain the existing `Logger.module` level at
+INFO (`4`), preserving its appenders. The native default already allows INFO:
 
 ```ini
-Logger.module=3,Console Server
+Logger.module=4,Console Server
 ```
+
+Logging erratum: this exact core defines WARN=`3`, INFO=`4`. The earlier external guide's
+numeric advice and the frozen README's claim that the native default hides INFO were
+incorrect. This external correction supersedes that claim. The accepted official run used
+the native setting and observed the marker; the tested project tree remains unchanged.
 
 Start the staged binaries in two terminals, each with `STAGE` assigned to the same
 absolute prefix. Do not start an existing service or replace running binaries.

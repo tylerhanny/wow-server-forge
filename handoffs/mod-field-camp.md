@@ -33,6 +33,11 @@ Git blob; SHA256 `0afa0e660d14a247776dad777d1ada8e7d4ecfa780b8b5885f7d4388d56bf8
 The exact tested source is integrated at `projects/mod-field-camp/` on main. Its archived
 pre-run documents remain preserved; this final attestation supplies the later acceptance.
 
+Logging erratum: the frozen README incorrectly calls the native module logger's default
+a warning threshold. At this exact pin, WARN=3 and INFO=4; native `Logger.module=4,Console Server`
+already permits INFO. Retain level4 as used in the successful official run. The corrected
+external guide supersedes that documentation claim without altering the accepted project tree.
+
 ## Exact independent evidence
 
 - Candidate `796e27e9cfcd05f4c4e4c627e26834ea7be72155`.

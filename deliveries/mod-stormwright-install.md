@@ -8,9 +8,12 @@ the frozen package's honestly pending pre-run status. This guide is not acceptan
 
 **Release status at preparation:** independent source review and source-level
 ONE_HUMAN_REVIEW passed for the minimal three-call impact GUID repair. Corrected candidate
-`bde390e` is pending official run `33955586542`. Original a155817 failed compilation in
-`33952393192`; its install/runtime/unit/supplemental stages did not run and the failure
-remains preserved. Neither source review nor these prepared instructions are acceptance. Director must
+`bde390e` passed full build/install/dry-runs/units in run `33955586542`, but the supplement
+FAILED because its fixture logger level3 suppressed the required INFO4 registrar message.
+Normal server ready was observed; registrar evidence was not. The fixture and mistaken
+logger documentation are being corrected for one full rerun. Original a155817 failed
+compilation in `33952393192`; both failures remain preserved. Neither source review nor
+these prepared instructions are acceptance. Director must
 attach the terminal exact-SHA gate and applicable normal-startup evidence before
 calling this READY FOR LIVE TEST. No client gameplay, public walking route, visual
 readability, class balance or bot competence has been tested by this note.
@@ -165,13 +168,15 @@ Stormwright.Enable = 1
 ```
 
 For visible registrar/outcome evidence, set the existing line in `worldserver.conf`
-to INFO while retaining the configured appenders. At the pinned default appenders:
+to INFO (`4`) while retaining the configured appenders. At the pinned defaults:
 
 ```ini
-Logger.module=3,Console Server
+Logger.module=4,Console Server
 ```
 
-The pinned default is `4,Console Server`, which hides the module's INFO outcome lines.
+The pinned default `4,Console Server` already permits INFO. WARN is `3`; lowering the
+module level to `3` suppresses the INFO registrar/outcome messages. Earlier numeric
+advice was incorrect and is superseded here.
 Start auth/world normally using the owner's ordinary local staging procedure. Inspect
 `STORMWRIGHT_CONFIG reload=false enabled=true`, then
 `STORMWRIGHT_REGISTRAR spawned=true ... derived_z=...`.
