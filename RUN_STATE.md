@@ -47,7 +47,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 |---|---|---|---|
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | Frozen reviewed candidate; official gate running |
-| Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | Approved next slice; separate ownership/worktree |
+| Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | Frozen reviewed subordinate candidate; official gate running |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Frozen reviewed flagship; official gate running |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
@@ -107,8 +107,11 @@ Official run `33952393192` uses judge `aea0f034d9e4767e96891fdf24c6260cd959218f`
 It includes the independently approved normal-startup evidence required by Stormwright's
 OnStartup hook, on the same already-built disposable server after existing checks.
 Actual compilation/install/SQL/startup/gameplay results remain pending. No extra control
-was launched. Field Camp source checkpoint `b1b8417` awaits final review/official validation,
-subordinate to both primary modules. Every ready primary must be delivered immediately.
+was launched. Field Camp frozen `ec9eea979c9344853aaf02d46ba9f6632636254b` retains independent
+source/one-human PASS with source/config identical to reviewed `b1b8417`. Its official
+run `33952603462` uses judge `e7a37fa`; actual acceptance remains pending and subordinate
+to both primary modules. Both builders prepare concrete owner installation/test/rollback
+instructions while Reviewer watches actual execution. Every ready primary is delivered immediately.
 
 The owner directly authorized publishing reviewed cache revision
 `03002fb6c347925e10d08b6c741194f8569174dc`; its unchanged cherry-pick is `332eece`.
