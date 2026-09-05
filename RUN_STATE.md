@@ -32,7 +32,7 @@ CLEAN_CONTROL_RUN=33947235843
 AUTHORITY_TAMPER_RUN=33947239092
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
 CLEAN_CONTROL_REVIEW=PASS_COMPLETE_EXISTING_GATE
-VALIDATION_STATUS=PRELAUNCH_PASS_PROJECT_ACCEPTANCE_PENDING
+VALIDATION_STATUS=HUNT_RHYTHM_ACCEPTED_STORMWRIGHT_AND_FIELD_CAMP_PENDING
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 ```
@@ -46,7 +46,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Lane | Project | Branch/worktree | State |
 |---|---|---|---|
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
-| Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | Frozen reviewed candidate; official gate running |
+| Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | Frozen reviewed subordinate candidate; official gate running |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Frozen reviewed flagship; official gate running |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
@@ -91,15 +91,19 @@ prelaunch launch-prerequisite language in those records. The existing15-minute h
 remains active; report meaningful transitions/results, not unchanged compile status.
 
 Complete prelaunch evidence and native test-skip disclosure: `prelaunch/clean-control-final-pass.md`.
-This certifies only the control; Hunt Rhythm and Stormwright acceptance remains pending.
+This certifies only the control. Hunt Rhythm's separate candidate acceptance is recorded below;
+Stormwright and Field Camp remain pending their actual results and independent evidence review.
 
-Hunt Rhythm candidate `4aaa3ae188e7bcdba2569676911e14142ac378e2` is frozen and pushed.
-Independent source and one-human review passed at source checkpoint `fa31ee9713d634ed1cddde75ed62c9aa71607125`;
-the final candidate changes only review-status documentation. Official run
-`33951428776` was dispatched once on main at 2026-09-05T07:02Z, using the existing
-proven workflow. Actual compilation, installation, runtime and final acceptance remain pending.
-Reviewer owns execution/evidence review; Practical may scout a distinct next project while
-keeping this candidate frozen and available for actual findings. Stormwright implementation continues.
+Hunt Rhythm candidate `4aaa3ae188e7bcdba2569676911e14142ac378e2` is **READY FOR LIVE TEST**.
+Official run `33951428776` passed every required stage at2026-09-05T08:05:00Z under judge
+`e35e85a787d7576d58cb691f6335b638ee8bc342`; independent source, one-human and actual
+artifact review all PASS. Director delivered its exact source ZIP and installation/test/rollback
+guide immediately, without waiting for the other candidates. Final attestation is
+`handoffs/mod-hunt-rhythm.md`; evidence is `deliveries/evidence/mod-hunt-rhythm-33951428776.json`.
+The exact tested project tree is integrated on main without source/config/SQL changes.
+Gameplay/XP/class/pet/bot behavior remains PENDING LIVE/IN-GAME VALIDATION. Practical is
+available for findings; no further project is allowed until both primary modules are accepted
+and Director records that it cannot threaten the protected owner testing window.
 
 Stormwright candidate `a1558178ceee2b92e020928ecb8fd3f59c3c34a2` is frozen; independent
 source/one-human review passed, with source/SQL/config/tests identical to reviewed `c1f3926`.
@@ -122,9 +126,9 @@ reviewed correction `aea0f034` exports the identical paths through GITHUB_ENV at
 the failed request created no run. Stormwright's required run now exercises the cache.
 All acceptance checks, source/pin protections and WorldMock exception boundaries remain.
 
-Owner installation/config/SQL/rollback and one-human test guides are prepared in
-`deliveries/`; they remain pending actual acceptance. Source ZIPs in ignored
-`.forge-local/deliveries/` have been checked file-by-file against the frozen Git blobs
-and remain unreleased. The four completed disposable smoke branch refs were archived
+Owner installation/config/SQL/rollback and one-human test guides are in `deliveries/`.
+Hunt Rhythm's guide and exact source ZIP are delivered; the other two remain pending actual
+acceptance. Source ZIPs in ignored `.forge-local/deliveries/` have been checked file-by-file
+against the frozen Git blobs. The four completed disposable smoke branch refs were archived
 under `forge-controls/2026-09-05/*` tags with evidence in
 `prelaunch/evidence/control-archive.json`; no active candidate/run was affected.

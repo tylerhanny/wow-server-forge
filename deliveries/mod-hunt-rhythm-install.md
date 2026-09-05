@@ -1,10 +1,13 @@
 # Hunt Rhythm — owner install, testing and rollback
 
-Prepared external installation guide, 2026-09-05. Source candidate:
+Released external installation guide, 2026-09-05. Source candidate:
 `4aaa3ae188e7bcdba2569676911e14142ac378e2` (`project/hunt-rhythm`).
-Independent source/one-human review passed; official run `33951428776` is pending at
-preparation. This guide is not acceptance. The final exact-candidate attestation in
-`HARVEST.md` controls readiness and supersedes the frozen package's pre-run status.
+**READY FOR LIVE TEST:** official run `33951428776` and independent source/one-human/
+artifact review passed. [Final exact-candidate attestation](../handoffs/mod-hunt-rhythm.md)
+and [evidence](evidence/mod-hunt-rhythm-33951428776.json) establish readiness and supersede
+the frozen package's honestly pending pre-run status without altering its tested source.
+The source ZIP is `mod-hunt-rhythm-4aaa3ae.zip`, SHA256
+`72f4b97e6ad9c2b59c7cbc8c666e07ba43de5090c27ae76d4e269db5b53af6fb`.
 The commands below are instructions, **not executed evidence**.
 
 This note uses an existing **disposable Ubuntu 24.04 x86-64 checkout and databases**.
