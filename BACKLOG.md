@@ -71,6 +71,11 @@ another project, and BUILD must still permit it.
 | mod-field-repairs | Practical | project/field-repairs / .worktrees/field-repairs | 2026-09-05T13:27:10Z owner authorization | Complete frozen candidate by22:34:32Z today; full independent acceptance | READY_FOR_HARVEST — exact1450d92; official33970121674 and independent source/artifact/one-human PASS; immediate early delivery |
 | mod-triage-night | Wildcard | project/triage-night / .worktrees/triage-night | 2026-09-05T13:27:10Z owner authorization | Complete frozen candidate by22:34:32Z today; full independent acceptance | READY_FOR_HARVEST — exactb404a1b official33971943070 and independent source/artifact/one-human PASS; final handoff complete and delivered after owner resume |
 
+The fixed2026-09-05T22:34:32Z source cutoff has passed. Both additional candidates were
+complete, independently accepted and delivered before it; no unfinished candidate requires
+cutting or abandonment. Both additional slots are closed, with all five sources frozen
+except actual owner-reported fixes. No optional implementation or replacement project.
+
 These consume the entire additional-project authorization. No further project/substitute;
 accepted Hunt Rhythm, Stormwright and Field Camp remain frozen except owner-reported fixes,
 which immediately preempt the additions. Complete proposal dispositions are recorded in the two decision files and

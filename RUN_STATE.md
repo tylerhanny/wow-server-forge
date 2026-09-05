@@ -29,6 +29,8 @@ PRIMARY_MODULES_INDEPENDENTLY_ACCEPTED=YES
 ADDITIONAL_PROJECT_WINDOW_REVIEW=PASS
 ADDITIONAL_PROJECT_AUTHORIZATION=DIRECT_OWNER_TWO_EXACT_LANES
 ADDITIONAL_PROJECT_SOURCE_CUTOFF_UTC=2026-09-05T22:34:32Z
+ADDITIONAL_PROJECT_SOURCE_CUTOFF_RESULT=BOTH_COMPLETE_ACCEPTED_DELIVERED_BEFORE_CUTOFF
+ADDITIONAL_PROJECT_SOURCE_CUTOFF_RECORDED_UTC=2026-09-05T22:41:49Z
 ADDITIONAL_PROJECT_SLOTS=FULLY_ALLOCATED
 HARD_DEADLINE_UTC=2026-09-06T18:34:32Z
 HARD_DEADLINE_AMERICA_NEW_YORK=2026-09-06T14:34:32-04:00
@@ -43,6 +45,20 @@ VALIDATION_STATUS=FIVE_INDEPENDENTLY_ACCEPTED_AND_DELIVERED
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 ```
+
+## Additional-project source cutoff reached
+
+The fixed2026-09-05T22:34:32Z cutoff has passed. Field Repairs exact1450d92 and Triage
+Night exactb404a1b were complete, independently accepted and delivered before it; their
+final handoffs retain the exact official run/review evidence. No unfinished additional
+candidate remains to cut or abandon, and the two allocated slots are closed. No source,
+feature, acceptance test or dependency changed at this boundary. The existing phase
+helper now reports FeatureImplementationAllowed=false and permits owner-feedback fixes.
+BUILD remains the calendar phase until the unchanged2026-09-06T06:34:32Z feature freeze.
+All five accepted modules remain frozen except actual owner-reported fixes. No feedback
+requiring a fix has arrived at this checkpoint; keep the protected owner window available.
+Earlier future-tense additional-lane instructions below are historical and do not reopen
+implementation or create replacement slots.
 
 ## Resume after owner computer update
 
