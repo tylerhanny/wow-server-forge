@@ -1,6 +1,6 @@
 # Triage Night validation record
 
-Current status: **DEVELOPMENT — NOT READY FOR LIVE TEST**.
+Current status: **SOURCE-REVIEWED; FULL OFFICIAL GATE PENDING — NOT READY FOR LIVE TEST**.
 
 Exact pins: AzerothCore47960183bb03b83e8943eb2f0f39c16df9710c9d and
 Playerbots2f7d9f774987d0157c6a0d0cc08c40bec3db3945, stock client12340,
@@ -11,12 +11,13 @@ from the candidate base. No official judge, protected input or dependency file i
 |---|---|
 | Proposal quality and one-human design | Independent Director/Reviewer PASS recorded before implementation on main8d21e8b; this is not implementation acceptance. |
 | First local source checkpoint | fb5abd8f3a369ea92adef4842064405d48ee366f; sent to independent Reviewer without pushing an unfinished remote branch. |
+| Complete reviewed source | e8907bd72940628148150621d7c8143624c47045; complete f629a44 plus the single explicit CommandScript.h include. Final freeze changes review-status documentation only. |
 | Pinned API/data inspection | Relevant native assist/heal, lifetime, position and model references inspected; exact identities in REFERENCES.md. Own follow-through corrected getClass spelling before gate dispatch. |
 | Whitespace/scope hygiene | First source checkpoint git diff --cached --check passed; final candidate must repeat its normal scope/hygiene check. |
-| Independent source review | PENDING for the complete final implementation. |
-| ONE_HUMAN_REVIEW | PENDING for implementation; proposal PASS does not carry automatically. |
+| Independent source review | SOURCE_REVIEW=PASS for e8907bd72940628148150621d7c8143624c47045, including full controller/rules/lifecycle and the scoped corrections. |
+| ONE_HUMAN_REVIEW | Implementation source PASS for e8907bd72940628148150621d7c8143624c47045 and the complete solo priest loop; actual client behavior remains pending. |
 | Module discovery/configure/full compilation | PENDING; no local C++ execution is claimed. |
-| Install/config/SQL/reference checks | PENDING actual official evidence. Owned SQL/model references are complete but static inspection is not SQL application. |
+| Install/config/SQL/reference checks | Independent owned SQL/reference source review PASS; actual official application/install/config evidence PENDING. Static inspection is not SQL application. |
 | Disposable startup/module load/native units | PENDING actual official evidence. No OnStartup actor is required or registered. |
 | Official exact-candidate gate | NOT DISPATCHED. Reviewer owns the one necessary full run after source-ready freeze. |
 | Logged-in encounter, stock health bars/poses, healing and balance | PENDING LIVE/IN-GAME VALIDATION; dry-run/module-load cannot prove them. |
@@ -35,7 +36,7 @@ health across rounds; the AI rejects outside damage and non-pilot healing, disab
 regen and aborts on reset/evade. Public commands enqueue bounded requests for map updates;
 stale controller identities cannot apply stabilization/stop to a new shift. Session records
 are bounded and cleared at logout. Controller leases remain counted through actual cleanup.
-These implementation statements require independent inspection and official compilation.
+These implementation statements passed independent inspection; official compilation remains pending.
 
 ## Required final evidence
 

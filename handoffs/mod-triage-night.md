@@ -1,10 +1,11 @@
 # Triage Night — Wildcard handoff
 
-Status: **DEVELOPMENT; official and independent implementation acceptance PENDING**.
+Status: **SOURCE_REVIEW=PASS; implementation ONE_HUMAN_REVIEW=PASS; official acceptance PENDING**.
 Project: projects/mod-triage-night. Branch: project/triage-night. Exclusive builder:
 Wildcard. First local source checkpoint: fb5abd8f3a369ea92adef4842064405d48ee366f.
-No unfinished remote candidate was pushed; the final reviewed source/candidate SHA will be
-bound before the required official dispatch. Owner-reported fixes preempt this project.
+Complete independently reviewed source: e8907bd72940628148150621d7c8143624c47045.
+The final freeze changes review-status documentation only; its exact SHA will be used for
+the required official dispatch. Owner-reported fixes preempt this project.
 
 Triage Night gives one priest a repeatable support-role encounter: three persistent patients,
 five45-second rounds, four10-second breaks and two6-second stabilization charges. Normal
@@ -33,9 +34,10 @@ aborts on reset/evade. Active casts/channels are allowed. Death/logout/map depar
 configuration reload/disable, partial creation and timeout clean up owned actors. Global
 actor leases and per-login queues/results are bounded.
 
-Independent **ONE_HUMAN_REVIEW=PENDING for implementation**. The pre-implementation proposal
-received independent PASS; this does not certify the code. Actual targetability, stock
-health bars/poses, pressure/balance and optional bot coexistence remain
+Independent **ONE_HUMAN_REVIEW=PASS for implementation source** at
+e8907bd72940628148150621d7c8143624c47045. SOURCE_REVIEW and owned SQL/reference source review
+also passed at that source. Compilation/install/runtime and official acceptance remain pending.
+Actual targetability, stock health bars/poses, pressure/balance and optional bot coexistence remain
 **PENDING LIVE/IN-GAME VALIDATION**.
 
 ## Installation and acceptance pointers

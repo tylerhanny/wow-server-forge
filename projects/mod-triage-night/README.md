@@ -2,8 +2,10 @@
 
 **One priest. Three persistent patients. Five rounds of difficult healing choices.**
 
-Development checkpoint: source review, compilation, installation and official acceptance
-are PENDING. No in-client play or live-server validation is claimed.
+Independent SOURCE_REVIEW=PASS and implementation ONE_HUMAN_REVIEW=PASS for source
+e8907bd72940628148150621d7c8143624c47045. Owned SQL/reference source review also passed.
+Compilation, installation and official acceptance remain PENDING. No in-client play or
+live-server validation is claimed.
 
 Triage Night is a repeatable support-role challenge using your normal healing spells and
 mana. Choose efficient or fast heals, prioritize bleeding against warned bursts, and spend
@@ -97,9 +99,10 @@ another start provide replay. Status retains your last five results for this log
 preset, outcome, reached round, charges used and critical patient-seconds during injury
 steps. These are personal practice records, not equal-conditions competitive rankings.
 
-Independent ONE_HUMAN_REVIEW: **PENDING for implementation**. The approved proposal path
-passed independent review; that disposition does not pre-accept this source. Actual healing
-targetability, stock health bars/poses, gear pressure and optional bot coexistence remain
+Independent **ONE_HUMAN_REVIEW=PASS for the implementation source** at
+e8907bd72940628148150621d7c8143624c47045, for the complete solo priest path above.
+Actual compilation/install/runtime evidence remains pending. Actual healing targetability,
+stock health bars/poses, gear pressure and optional bot coexistence remain
 **PENDING LIVE/IN-GAME VALIDATION**.
 
 ## Ordered in-game smoke checklist
