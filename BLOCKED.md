@@ -9,7 +9,16 @@ Implementation is active from2026-09-05T06:40:42Z under the fixed provisional de
 review; see `prelaunch/clean-control-final-pass.md`. Earlier infrastructure failures below
 remain historical and do not block the two active gameplay projects.
 
-### Triage Night exact candidate publication — owner reply pending
+### Triage Night exact candidate publication — resolved by direct owner approval
+
+At2026-09-05T14:28:20Z the owner's direct conversation instruction explicitly approved
+public-source publication of exact `b404a1bd4614a8b956187f17baf585eee6d16cf6` to
+`https://github.com/tylerhanny/wow-server-forge.git`, branch `project/triage-night`,
+with no alteration. The exact push succeeded and `git ls-remote` verified that complete
+SHA at `refs/heads/project/triage-night`. Reviewer now owns the one required official
+dispatch and actual artifact review. This publication block is resolved; do not ask again
+for the same SHA/branch/destination. A changed SHA has no publication approval under this
+narrow instruction. The historical rejection record below remains truthful.
 
 Complete frozen local candidate `b404a1bd4614a8b956187f17baf585eee6d16cf6` on
 `project/triage-night` has independent source/one-human review and a separate SQL/reference
@@ -28,7 +37,8 @@ The retry was rejected too: the reviewer treated Director/tool evidence as untru
 said publication remained unapproved sensitive egress. No alternate route or bypass was
 attempted. Root requested direct approval for this exact SHA/branch/destination in the
 conversation while continuing Field Repairs acceptance/delivery. Wait for that reply
-before dependent publication. This is distinct from the already-resolved branch/worktree
+before dependent publication; the direct owner reply above now resolves that wait.
+This is distinct from the already-resolved branch/worktree
 creation block; do not recreate local implementation or seek its approval again.
 
 The complete candidate reached its source cutoff early. Its acceptance still requires

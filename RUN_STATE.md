@@ -35,7 +35,7 @@ CLEAN_CONTROL_RUN=33947235843
 AUTHORITY_TAMPER_RUN=33947239092
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
 CLEAN_CONTROL_REVIEW=PASS_COMPLETE_EXISTING_GATE
-VALIDATION_STATUS=FOUR_ACCEPTED_TRIAGE_LOCAL_COMPLETE_AWAITING_PUBLICATION_AND_OWN_GATE
+VALIDATION_STATUS=FOUR_ACCEPTED_TRIAGE_OFFICIAL_33971943070_VALIDATING
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 ```
@@ -53,7 +53,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | READY FOR LIVE TEST at796e27e; delivered early; remains subordinate |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | READY FOR LIVE TEST at60c6a91; official33960843535 and independent review PASS; delivered early |
 | Practical | Field Repairs / mod-field-repairs | project/field-repairs / .worktrees/field-repairs | READY FOR LIVE TEST — exact1450d92; official33970121674 and independent source/artifact/one-human PASS; delivered as mod-field-repairs-v1, exact tag/asset digests verified |
-| Wildcard | Triage Night / mod-triage-night | project/triage-night / .worktrees/triage-night | BLOCKED_PUBLICATION — complete frozen localb404a1b; source/one-human/SQL review PASS; exact remote push approval requested after two automatic rejections; no gate dispatched |
+| Wildcard | Triage Night / mod-triage-night | project/triage-night / .worktrees/triage-night | VALIDATING — exactb404a1b remote SHA verified; official33971943070 under judge8070cf8; source/one-human/SQL review PASS; actual artifact acceptance pending |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
 The completed selection, creative ownership and one-human approvals are in

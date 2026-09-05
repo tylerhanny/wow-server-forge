@@ -153,8 +153,9 @@ warnings remain fatal. Native units: 5909 pass / 5486 native skip / one pre-exis
 The existing cache produced 1826 preprocessed hits / 4 misses and a 7m02s full compile;
 all current-candidate validation still ran. No per-warning cache-hit attribution is claimed.
 
-Four modules are independently accepted. Triage Night is complete and source-reviewed
-locally but awaits exact publication approval and its own official gate; it is not READY.
+Four modules are independently accepted. Triage Night is complete and source-reviewed,
+published unchanged under exact direct owner approval, and awaits its own full official
+gate and independent artifact review; it is not READY.
 The fixed handoff remains2026-09-06T12:34:32Z, followed by the protected six-hour owner window.
 
 ## Current run totals (not final)
@@ -162,7 +163,8 @@ The fixed handoff remains2026-09-06T12:34:32Z, followed by the protected six-hou
 ```text
 Attempted: 5
 Ready for live test: 4
-Blocked: 1 (Triage Night publication approval; complete local source)
+Blocked: 0
+Under official validation: 1 (Triage Night, not yet accepted)
 Abandoned: 0
 Research only: 0
 Wildcard-ready projects: 1

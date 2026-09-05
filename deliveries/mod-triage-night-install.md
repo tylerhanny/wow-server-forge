@@ -1,9 +1,10 @@
 # Triage Night — owner installation, SQL, testing and rollback
 
-**PREPARED, NOT RELEASED.** Candidate SHA/run and final source details are pending.
-Director and independent Reviewer approved the proposal and Wildcard chose it; that is
-not implementation acceptance. This guide will be bound to the exact reviewed candidate
-and its own complete official evidence before READY FOR LIVE TEST.
+**PREPARED, NOT RELEASED.** Exact frozen candidate
+`b404a1bd4614a8b956187f17baf585eee6d16cf6` passed independent source, one-human and SQL
+reference review and was published unchanged under direct owner authorization. Official
+run `33971943070` under judge `8070cf87ba160d08c507e98dc809a949c573f986` is in progress.
+Full actual execution and independent artifact review remain required before READY FOR LIVE TEST.
 
 Triage Night is a solo level80 priest healing challenge. Three patients retain their
 health through five45second injury rounds and finite10second breaks. Ordinary spells,
@@ -171,7 +172,9 @@ PvP and outside a duel, unmounted on dry outdoor ground on a normal world map. F
 ground. Start checks suitable nearby ground/LOS and rejects unavailable samples rather
 than guessing Z. Terrain sampling is not a guarantee of client navigation. During the
 shift, normal casts and channels are allowed. Remain within20horizontal yards and5vertical
-yards of the start, on the same map and exact phase, with normal footing.
+yards of the start, on the same map and exact phase. Stay unmounted, without flying/taxi,
+transport/vehicle, pending teleport or charm. Start-only combat/cast/water/footing checks
+are not additional continuation rules.
 
 Three named patients and their ordinary target/friendly-nameplate health displays show
 competing health states, starting at12000health each. Read incoming-injury warnings, choose spells/targets, and spend
@@ -235,7 +238,10 @@ Enable remains1. These maintenance actions are separate from ordinary play.
 
 For full removal, stop the server normally. Preserve the module's uninstall SQL first,
 archive its configuration and move only mod-triage-night out of the AC modules directory.
-Reconfigure/rebuild/install without it, preserving Playerbots and unrelated modules.
+After preserving them, move its installed `mod_triage_night.conf` and `.conf.dist` out of
+the active `etc/modules/` directory. Reconfigure/rebuild/install without it into a new
+separate prefix, preserving Playerbots and unrelated modules. Installation does not
+automatically remove stale module configs from a reused prefix.
 Use the prior working binary/config backup if reverting an installation failure.
 
 After inspecting the four reserved rows for exact Triage Night ownership, apply the
@@ -244,6 +250,7 @@ whose ScriptName is `npc_triage_night_controller` or `npc_triage_night_patient`,
 those matching templates. With the stopped disposable world database selected:
 
 ```bash
+WORLD_DB=acore_world # Set to the disposable world database, also when using native updates.
 mysql --database="$WORLD_DB" < /path/to/preserved/mod-triage-night/sql/uninstall_world.sql
 ```
 

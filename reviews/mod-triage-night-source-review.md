@@ -25,6 +25,17 @@ review, including the builder's evidence-backed retry. The Director is resolving
 specific publication approval. No remote publication or official dispatch is claimed,
 and this review does not authorize bypassing the block through another route.
 
+Subsequent authorized publication and dispatch: the owner directly approved the exact
+frozen SHA for the specified public repository and branch. The Director performed that
+push and verified remote `refs/heads/project/triage-night` equals
+`b404a1bd4614a8b956187f17baf585eee6d16cf6`; no source or documentation changed. Only then
+the Reviewer dispatched [33971943070](https://github.com/tylerhanny/wow-server-forge/actions/runs/33971943070)
+at `2026-09-05T14:29:03Z`, using actual default-branch judge
+`8070cf87ba160d08c507e98dc809a949c573f986`. Protected workflow/validation bytes match the
+accepted judge `e5fd277de515dbda983993e6f8a52b48cb0816b4`. Scope and pinned checkout passed;
+the full build/runtime and independent artifact disposition remain pending at this update.
+The earlier publication block is resolved, with no alternate-route bypass or extra control.
+
 Exact compatibility remains AzerothCore `47960183bb03b83e8943eb2f0f39c16df9710c9d`,
 Playerbots `2f7d9f774987d0157c6a0d0cc08c40bec3db3945`, Ubuntu 24.04 x86-64 and client12340.
 
