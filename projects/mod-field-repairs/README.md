@@ -5,7 +5,7 @@ outdoors. Review the service notice, confirm once, and see the actual gear and w
 changes. Field Repairs saves a vendor detour without adding free repairs, a surcharge,
 guild-bank spending or an automatic payment mode.
 
-**Implementation checkpoint: independent source review and official compilation,
+**Independent source and one-human implementation review passed. Official compilation,
 installation and startup are PENDING. Not ready for live testing. Actual gameplay and
 client inventory/stat behavior are PENDING LIVE/IN-GAME VALIDATION.**
 
@@ -138,8 +138,11 @@ is assumed. There are no added enemies, encounters or group/difficulty scaling.
 
 Director and independent Reviewer approved the complete proposal before implementation
 in `decisions/field-repairs-selection.md` and `reviews/additional-project-proposal-review.md`.
-**ONE_HUMAN_REVIEW=PASS at proposal scope; implementation review PENDING.** Source feasibility
-does not prove in-game behavior. All manual steps below are **PENDING LIVE/IN-GAME VALIDATION**:
+Independent Reviewer also inspected the complete implementation at
+`e560e72a09ed99c4d3391c90a242f9b8f5a9b277`: **SOURCE_REVIEW=PASS; ONE_HUMAN_REVIEW=PASS
+(source-level complete solo path)**. The final freeze changes only review-status documentation.
+Source review does not prove in-game behavior. All manual steps below are
+**PENDING LIVE/IN-GAME VALIDATION**:
 
 1. Log in alone with an ordinary character and damaged durable gear in a safe outdoor
    normal-world area. Use `.fieldrepair status`; compare damaged count and wallet to the client.

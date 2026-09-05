@@ -1,18 +1,18 @@
-# Field Repairs — implementation checkpoint
+# Field Repairs — source-reviewed candidate handoff
 
 ```text
 PROJECT=mod-field-repairs
 OWNER=Practical
 BRANCH=project/field-repairs
-STATE=IMPLEMENTED_AWAITING_REVIEW
+STATE=SOURCE_REVIEWED_AWAITING_OFFICIAL_GATE
 BUILD_RESULT=NOT_RUN
 OFFICIAL_GATE=NOT_RUN
-SOURCE_REVIEW=PENDING
-ONE_HUMAN_REVIEW=PASS_PROPOSAL_ONLY; IMPLEMENTATION_PENDING
-NEXT_ACTION=Independent exact-source review, then freeze and dispatch one full official gate
+SOURCE_REVIEW=PASS
+ONE_HUMAN_REVIEW=PASS_SOURCE_LEVEL_COMPLETE_SOLO_PATH
+NEXT_ACTION=Reviewer dispatches one full official gate for the frozen candidate SHA
 ```
 
-This is a complete source/docs checkpoint, not READY FOR LIVE TEST. No compiler, install,
+This is an independently source-reviewed candidate, not READY FOR LIVE TEST. No compiler, install,
 runtime or client result is claimed. The final exact candidate SHA is supplied externally
 after the local source checkpoint and subsequent review-status freeze.
 
@@ -51,8 +51,11 @@ precede repair. Unsafe input refuses the whole attempt without altering baseline
 
 ## One-Human Playability
 
-Director and independent Reviewer approved the proposal's complete solo path before code:
-**ONE_HUMAN_REVIEW=PASS at proposal scope; implementation review PENDING**. One ordinary
+Director and independent Reviewer approved the proposal's complete solo path before code.
+Independent Reviewer inspected implementation `e560e72a09ed99c4d3391c90a242f9b8f5a9b277`:
+**SOURCE_REVIEW=PASS; ONE_HUMAN_REVIEW=PASS (source-level complete solo path)**. Final
+freeze changes only review-status documentation. No source/config/check changes remain.
+One ordinary
 level 1–80 character with durable gear, one human, one client and one operated account
 can perform the entire useful loop. No second human/account/client or GM action is needed.
 Zero bots is complete; optional ordinary bots only fight/follow during normal gold earning,
