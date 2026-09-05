@@ -1,7 +1,7 @@
 # WoW Server Forge — Run State
 
 Implementation started at 2026-09-05T06:40:42Z after control33947235843 reached terminal
-SUCCESS. Required artifact review continues independently. The fixed provisional
+SUCCESS. Required artifact review also passed independently. The fixed provisional
 deadline remains2026-09-06T18:34:32Z; it was not reset at implementation start.
 
 ```text
@@ -27,8 +27,8 @@ REVIEWED_JUDGE_SHA=dd283819da03e9ccbebdf9378b5fe3f1cf016380
 CLEAN_CONTROL_RUN=33947235843
 AUTHORITY_TAMPER_RUN=33947239092
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
-CLEAN_CONTROL_REVIEW=SUCCESS_PENDING_REQUIRED_ARTIFACT_REVIEW
-VALIDATION_STATUS=PENDING_REQUIRED_REVIEW
+CLEAN_CONTROL_REVIEW=PASS_COMPLETE_EXISTING_GATE
+VALIDATION_STATUS=PRELAUNCH_PASS_PROJECT_ACCEPTANCE_PENDING
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 ```
@@ -36,7 +36,7 @@ WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 ## Recorded implementation transition
 
 Current run33947235843 is terminal SUCCESS. Both approved builders begin
-actual module source now. Required evidence review and any harness repair continue
+actual module source now. Prelaunch evidence review passed; candidate review and validation continue
 concurrently. No new full control may idle both lanes. Preserve existing start and deadlines.
 
 | Lane | Project | Branch/worktree | State |
@@ -72,3 +72,6 @@ audits/manifests, and Git history through50ac30e. They are never retroactive suc
 The owner sequencing amendment in AGENTS.md and DEADLINE.md supersedes historical
 prelaunch launch-prerequisite language in those records. The existing15-minute heartbeat
 remains active; report meaningful transitions/results, not unchanged compile status.
+
+Complete prelaunch evidence and native test-skip disclosure: `prelaunch/clean-control-final-pass.md`.
+This certifies only the control; Hunt Rhythm and Stormwright acceptance remains pending.

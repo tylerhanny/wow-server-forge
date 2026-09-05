@@ -6,7 +6,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $forgeRoot = Split-Path -Parent $PSScriptRoot
 $runStatePath = Join-Path $forgeRoot 'RUN_STATE.md'
-$stateText = Get-Content -LiteralPath $runStatePath -Raw
+$stateText = Get-Content -LiteralPath $runStatePath -Raw -Encoding utf8
 $fields = @{}
 foreach ($match in [regex]::Matches($stateText, '(?m)^([A-Z_]+)=([^\r\n]+)\r?$')) {
     if ($fields.ContainsKey($match.Groups[1].Value)) {
@@ -16,17 +16,19 @@ foreach ($match in [regex]::Matches($stateText, '(?m)^([A-Z_]+)=([^\r\n]+)\r?$')
 }
 
 $timeKeys = @('START_UTC', 'CONVERGENCE_START_UTC', 'HARVEST_START_UTC', 'HARD_DEADLINE_UTC')
-if ($fields['STATUS'] -eq 'ARMED_NOT_STARTED') {
-    foreach ($key in $timeKeys) {
-        if ($fields[$key] -ne 'UNSET') { throw "An armed sprint must have $key=UNSET." }
-    }
+if ($fields['STATUS'] -eq 'AWAITING_CURRENT_CONTROL') {
+    if ($fields['START_UTC'] -ne 'UNSET') { throw 'Preserve an already recorded implementation start.' }
+    $fixedDeadline = [DateTimeOffset]::Parse($fields['HARD_DEADLINE_UTC'])
     [ordered]@{
-        Status = 'ARMED_NOT_STARTED'
-        RequiredPhase = 'SETUP'
+        Status = 'AWAITING_CURRENT_CONTROL'
+        RequiredPhase = $(if ($AtUtc -ge $fixedDeadline) { 'COMPLETE' } else { 'SETUP' })
         RecordedPhase = $fields['CURRENT_PHASE']
         CurrentUtc = $AtUtc.ToUniversalTime().ToString('o')
-        ClockStarted = $false
-        NextAction = 'Prove both external controls before recording launch.'
+        ImplementationStarted = $false
+        CalendarDeadlineActive = $true
+        HardDeadlineUtc = $fixedDeadline.ToString('o')
+        RemainingHours = [math]::Max([double]0, [math]::Round(($fixedDeadline - $AtUtc).TotalHours, 3))
+        NextAction = 'Finish current attempt; start approved implementation after any terminal result, with validation concurrent.'
     } | ConvertTo-Json
     exit 0
 }
@@ -42,14 +44,12 @@ foreach ($key in $timeKeys) {
     $times[$key] = $parsed
 }
 
-foreach ($boundary in @(
-    @{ Key = 'CONVERGENCE_START_UTC'; Hours = 24 },
-    @{ Key = 'HARVEST_START_UTC'; Hours = 30 },
-    @{ Key = 'HARD_DEADLINE_UTC'; Hours = 36 }
-)) {
-    if ($times[$boundary.Key] -ne $times['START_UTC'].AddHours($boundary.Hours)) {
-        throw "Invalid $($boundary.Key): the clock must not be reset or extended."
-    }
+$receipt = [DateTimeOffset]::Parse($fields['DIRECTIVE_RECEIVED_UTC'])
+if ($times['HARD_DEADLINE_UTC'] -gt $receipt.AddHours(36) -or
+    $times['START_UTC'] -lt $receipt -or
+    $times['CONVERGENCE_START_UTC'] -ne $times['HARD_DEADLINE_UTC'].AddHours(-12) -or
+    $times['HARVEST_START_UTC'] -ne $times['HARD_DEADLINE_UTC'].AddHours(-6)) {
+    throw 'Invalid fixed receipt deadline or reserved closure phases; do not reset or extend the ceiling.'
 }
 
 $phase = if ($AtUtc -ge $times['HARD_DEADLINE_UTC']) { 'COMPLETE' }
@@ -65,9 +65,12 @@ $phase = if ($AtUtc -ge $times['HARD_DEADLINE_UTC']) { 'COMPLETE' }
     StateUpdateRequired = ($phase -ne $fields['CURRENT_PHASE'])
     CurrentUtc = $AtUtc.ToUniversalTime().ToString('o')
     ClockStarted = $true
+    ImplementationStarted = $true
+    DeadlineBasis = $fields['DEADLINE_BASIS']
+    DirectiveReceivedUtc = $receipt.ToString('o')
     StartUtc = $times['START_UTC'].ToString('o')
     HardDeadlineUtc = $times['HARD_DEADLINE_UTC'].ToString('o')
-    RemainingHours = [math]::Max(0, [math]::Round(($times['HARD_DEADLINE_UTC'] - $AtUtc).TotalHours, 3))
+    RemainingHours = [math]::Max([double]0, [math]::Round(($times['HARD_DEADLINE_UTC'] - $AtUtc).TotalHours, 3))
     NewProjectsAllowed = ($phase -eq 'BUILD')
     ConvergenceRequiresExplicitSmallLowRiskDecision = ($phase -eq 'CONVERGENCE')
     FeatureImplementationAllowed = ($phase -in @('BUILD', 'CONVERGENCE'))

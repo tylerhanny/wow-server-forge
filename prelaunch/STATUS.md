@@ -1,5 +1,16 @@
 # Prelaunch validation record
 
+## Current implementation and proven control
+
+Implementation START is2026-09-05T06:40:42Z. Both approved builders are active under
+the fixed provisional deadline2026-09-06T18:34:32Z. Current clean33947235843 passed every
+existing stage and independent evidence review; tamper33947239092 was rejected as required.
+See `prelaunch/clean-control-final-pass.md` and `prelaunch/evidence/startup-fixture-controls.json`.
+No further prelaunch work is required. Continue actual projects and their independent
+acceptance; do not rerun completed controls merely to reproduce historical instructions.
+The older records below remain historical; RUN_STATE.md and current owner authority control.
+
+
 ## Current owner sequencing and deadline
 
 The controlling 2026-09-05 amendment in `AGENTS.md` / `DEADLINE.md` supersedes older
