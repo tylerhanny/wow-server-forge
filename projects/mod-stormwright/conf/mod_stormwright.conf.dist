@@ -1,0 +1,5 @@
+# Stormwright: one human turns the boss's lightning into recovery or damage.
+# Exact target: AzerothCore 47960183bb03b83e8943eb2f0f39c16df9710c9d
+# Playerbots 2f7d9f774987d0157c6a0d0cc08c40bec3db3945
+# Reloading this to 0 aborts active attempts on their next controller update.
+Stormwright.Enable = 1
