@@ -66,6 +66,15 @@ earlier22:34:32Z September5 source cutoff. No automatic concept approval or unre
 queue turnover. Owner feedback preempts; accepted modules remain frozen unless fixing
 an actual finding. The final six-hour owner window is fully preserved.
 
+Execution boundary,2026-09-05T12:28Z: automatic approval review rejected Wildcard's new
+concept-branch creation twice, including after current BUILD/primary acceptance evidence,
+citing insufficient explicit owner authorization for an additional concept lane. Do not
+bypass the rejected mutation through another branch, worktree, agent or file-write route.
+Further proposals/reviews continue read-only and by message; no additional implementation
+or proposal-writing mutation proceeds unless the approval block is resolved. Director's
+calendar finding remains a schedule assessment, not an override of that execution block.
+The three delivered modules and owner-feedback capacity are unaffected.
+
 The latest owner schedule amendment supersedes the old internal convergence/harvest split.
 Keep all current builders/runs active. Hunt Rhythm is the primary Practical candidate;
 Stormwright is the primary Wildcard candidate. Field Camp proceeds only while it does not
