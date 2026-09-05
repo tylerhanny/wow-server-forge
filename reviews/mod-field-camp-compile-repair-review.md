@@ -48,3 +48,8 @@ one-human behavior remain unchanged. Configuration is byte-identical. The remain
 changes honestly document the failed run and pending repaired execution. Independent
 `git diff --check` passes. New compilation/install/runtime evidence is still required;
 actual client arrival, terrain, coexisting hooks, pets and bots remain manual-test limits.
+
+Final candidate `796e27e9cfcd05f4c4e4c627e26834ea7be72155` changes only three review/evidence
+documents from that repaired source. Source/configuration byte identity and whitespace
+were independently checked. One full official run was dispatched: `33955341216`, judge
+`1ea9a4b3671c763b286f681e983e9499c7cb35af`. Its execution result is pending.
