@@ -4,8 +4,8 @@ An opt-in outdoor leveling streak for AzerothCore 3.3.5a. Keep a safe hunting ro
 moving to earn a small capped bonus to eligible kill XP. No database tables, spawned
 enemies, items, client addon, external service, or dependency source changes.
 
-**Status: implemented first checkpoint; compile, install, runtime and independent
-implementation review are PENDING. Not READY FOR LIVE TEST.**
+**Status: implementation and independent source review complete; compile, install,
+runtime and official gate evidence are PENDING. Not READY FOR LIVE TEST.**
 
 Exact target: WoW 3.3.5a build 12340, Ubuntu Server 24.04 x86-64,
 AzerothCore `47960183bb03b83e8943eb2f0f39c16df9710c9d` and Playerbots
@@ -120,7 +120,10 @@ No bots are required: removing all bots leaves the complete solo loop intact. Ra
 population and generated addclass accounts are not requirements of this module.
 
 Proposal quality and one-human design were independently approved before implementation.
-**ONE_HUMAN_REVIEW=PENDING for this implementation.** Actual class pacing, pet/rested XP
+**SOURCE_REVIEW=PASS; ONE_HUMAN_REVIEW=PASS** from the independent Reviewer for source
+revision `fa31ee9713d634ed1cddde75ed62c9aa71607125`; subsequent freeze changes only these
+evidence documents. Official candidate and disposable validation remain pending.
+Actual class pacing, pet/rested XP
 feel, bot pathfinding, bot competence and shared-credit behavior remain **PENDING
 LIVE/IN-GAME VALIDATION**. CI dry-run exits before normal world updates and cannot prove
 these properties.
