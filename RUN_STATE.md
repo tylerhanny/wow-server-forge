@@ -5,13 +5,14 @@ SUCCESS. Required artifact review also passed independently. The fixed provision
 deadline remains2026-09-06T18:34:32Z; it was not reset at implementation start.
 
 ```text
-STATUS=PAUSED
-EXECUTION_STATUS=SAFE_PAUSED_FOR_OWNER_COMPUTER_UPDATE
+STATUS=RUNNING
+EXECUTION_STATUS=OWNER_FEEDBACK_STANDBY_ALL_FIVE_DELIVERED
 PAUSED_UTC=2026-09-05T14:44:59Z
-RESUME_REQUIRES=EXPLICIT_OWNER_REQUEST
+LAST_RESUMED_UTC=2026-09-05T16:37:25Z
+LAST_RESUME_AUTHORIZATION=EXPLICIT_OWNER_CONTINUE
 CURRENT_PHASE=BUILD
 IMPLEMENTATION_PERMISSION=GRANTED_OWNER_TERMINAL_RESULT_DIRECTIVE
-IMPLEMENTATION_STATUS=PAUSED
+IMPLEMENTATION_STATUS=FIVE_FROZEN_CANDIDATES_OWNER_FEEDBACK_ONLY
 DIRECTIVE_RECEIVED_UTC=2026-09-05T06:34:32Z
 DIRECTIVE_RECEIVED_AMERICA_NEW_YORK=2026-09-05T02:34:32-04:00
 DEADLINE_BASIS=PROVISIONAL_OWNER_RECEIPT_PLUS_36H
@@ -31,29 +32,32 @@ ADDITIONAL_PROJECT_SOURCE_CUTOFF_UTC=2026-09-05T22:34:32Z
 ADDITIONAL_PROJECT_SLOTS=FULLY_ALLOCATED
 HARD_DEADLINE_UTC=2026-09-06T18:34:32Z
 HARD_DEADLINE_AMERICA_NEW_YORK=2026-09-06T14:34:32-04:00
-HEARTBEAT_STATUS=PAUSED
+HEARTBEAT_STATUS=ACTIVE
 REVIEWED_JUDGE_SHA=dd283819da03e9ccbebdf9378b5fe3f1cf016380
 CLEAN_CONTROL_RUN=33947235843
 AUTHORITY_TAMPER_RUN=33947239092
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
 CLEAN_CONTROL_REVIEW=PASS_COMPLETE_EXISTING_GATE
-VALIDATION_STATUS=FOUR_DELIVERED_TRIAGE_GATE_AND_REVIEW_PASS_FINAL_HANDOFF_PENDING
+VALIDATION_STATUS=FIVE_INDEPENDENTLY_ACCEPTED_AND_DELIVERED
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 ```
 
-## Owner safe pause — computer update
+## Resume after owner computer update
 
-The owner requested a safe pause after Triage's required official run completed SUCCESS
-and independent final review passed. The continuity heartbeat is PAUSED; no local builder
-or watcher remains active. Passing evidence is preserved in
-`deliveries/evidence/mod-triage-night-33971943070.json` and
-`reviews/mod-triage-night-final-review.md`. The prepared ten-file ZIP matches exactb404a1b.
-Resume only on explicit owner instruction, finish the external final handoff/guide and
-deliver the already-approved public branch/local package without rerunning unchanged source.
-The exact source remains only on its authorized public project branch; no new source
-publication or changed SHA is authorized. Four earlier modules remain delivered and frozen.
-The original START and every fixed deadline remain unchanged by this temporary pause.
+The owner explicitly resumed at2026-09-05T16:37:25Z. The safe pause and local checkpoint
+92571a3 preserved Triage's complete passing evidence; no source or validation rerun was
+needed. Final handoff is now `handoffs/mod-triage-night.md`, with owner guide and compact
+evidence in `deliveries/`. Its ten-file local package matches the exact approved public
+candidateb404a1b. Publication remains within that exact branch/SHA authorization; the
+source was not republished on a different branch or replaced by an untested version.
+
+All five authorized modules are READY FOR LIVE TEST and delivered early. No new projects
+or optional features remain authorized. Keep completed candidates frozen, stay available
+for owner installation/playtesting feedback, and independently re-review/revalidate actual
+fixes. A changed Triage SHA needs new public-source approval under the owner's narrow rule.
+The continuity heartbeat is ACTIVE again and stays quiet without actionable changes.
+The original START, feature freeze, handoff and protected owner window remain unchanged.
 
 ## Recorded implementation transition
 
@@ -63,13 +67,13 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 
 | Lane | Project | Branch/worktree | State |
 |---|---|---|---|
-| Director | Fixed deadline and persistent orchestration | main | Safely paused for owner computer update; explicit resume required |
+| Director | Fixed deadline and persistent orchestration | main | Resumed; five delivered candidates, fixed schedule and owner-feedback support |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | READY FOR LIVE TEST at796e27e; delivered early; remains subordinate |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | READY FOR LIVE TEST at60c6a91; official33960843535 and independent review PASS; delivered early |
 | Practical | Field Repairs / mod-field-repairs | project/field-repairs / .worktrees/field-repairs | READY FOR LIVE TEST — exact1450d92; official33970121674 and independent source/artifact/one-human PASS; delivered as mod-field-repairs-v1, exact tag/asset digests verified |
-| Wildcard | Triage Night / mod-triage-night | project/triage-night / .worktrees/triage-night | PAUSED — exactb404a1b official33971943070 and final independent source/artifact/one-human PASS; final owner handoff/delivery deferred to resume |
-| Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Safely paused; final local review6a5c6d3 saved; all local watchers exited |
+| Wildcard | Triage Night / mod-triage-night | project/triage-night / .worktrees/triage-night | READY FOR LIVE TEST — exactb404a1b official33971943070 and independent source/artifact/one-human PASS; final handoff complete, approved public source/local ZIP delivered |
+| Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | All five final reviews complete; available for actual owner feedback; no validation rerun pending |
 
 The completed selection, creative ownership and one-human approvals are in
 `decisions/initial-project-selection.md`, `prelaunch/wildcard-final-choice.md` and
@@ -77,7 +81,9 @@ The completed selection, creative ownership and one-human approvals are in
 
 ## Fixed calendar and acceptance
 
-All three current candidates are independently accepted and delivered as separate releases.
+All five authorized candidates are independently accepted and delivered. Four have existing
+GitHub releases; Triage is delivered from its exact approved public branch and local ZIP
+with a completed external handoff. All source is frozen except actual owner-reported fixes.
 Stormwright release `mod-stormwright-v1` targets exact60c6a91; its uploaded source ZIP,
 guide and evidence digests match local files. `decisions/post-primary-window.md` records
 the bounded Director window-safety PASS: at most one further Practical and one Wildcard

@@ -153,24 +153,64 @@ warnings remain fatal. Native units: 5909 pass / 5486 native skip / one pre-exis
 The existing cache produced 1826 preprocessed hits / 4 misses and a 7m02s full compile;
 all current-candidate validation still ran. No per-warning cache-hit attribution is claimed.
 
-Four modules are independently accepted. Triage Night is complete and source-reviewed,
-published unchanged under exact direct owner approval, and has now passed its own full
-official gate33971943070 and independent artifact review. The owner requested a safe pause
-for a computer update before its external final handoff/delivery was finished; preserve
-the passing evidence and finish that handoff on explicit resume.
+### Triage Night — additional Wildcard
+
+**READY FOR LIVE TEST — delivered early on 2026-09-05 after the owner's safe pause.**
+One level-80 priest uses ordinary healing spells, real mana and two finite stabilization
+charges to keep three persistent patients alive through five injury rounds. Warned bursts,
+rotating priorities and Training/Veteran pressure support repeat practice, with normal
+success/failure, per-login results, recovery/retry and abort. No bot or second human is needed.
+
+- Exact candidate `b404a1bd4614a8b956187f17baf585eee6d16cf6`, on its unchanged authorized
+  public branch `project/triage-night`.
+  [Browse the exact module source](https://github.com/tylerhanny/wow-server-forge/tree/b404a1bd4614a8b956187f17baf585eee6d16cf6/projects/mod-triage-night).
+- [Official run33971943070](https://github.com/tylerhanny/wow-server-forge/actions/runs/33971943070)
+  PASS under judge `8070cf87ba160d08c507e98dc809a949c573f986`: complete pinned
+  configure/build/install, native SQL application/config loading, auth/world dry-runs,
+  native tests and final dependency integrity. Same exact pins/client/OS as the other modules.
+- Independent source, SQL/reference, actual artifact and **ONE_HUMAN_REVIEW=PASS**.
+- [Final handoff](handoffs/mod-triage-night.md),
+  [independent final review](reviews/mod-triage-night-final-review.md),
+  [evidence](deliveries/evidence/mod-triage-night-33971943070.json), and
+  [exact install/config/SQL/rollback and one-human guide](deliveries/mod-triage-night-install.md).
+- Local source ZIP `mod-triage-night-b404a1b.zip`, ten exact candidate files; SHA256
+  `e3f550732ae110f6e2f37a01ae56a86de8b23650b341613cde2ba83d92b08e68`.
+  The guide can also export the module directly from the already-published exact commit.
+
+Use `.triage help`, then `.triage start` on suitable outdoor ground with one ordinary
+level-80 priest. Heal the numbered patients, react to warnings and use `.triage stabilize
+1`, `2` or `3`. Keep all patients alive for five45second rounds, observe the result, rest
+normally and retry. `.triage status` shows state/results and `.triage stop` aborts.
+The guide contains the complete ordered test and source package has a90second capture plan.
+
+The native world log applied `2026_09_05_00_triage_night.sql` (checksum98F6E4C), observed
+the enabled config marker and finished startup with Errors.log empty. Four owned templates
+and model rows use911100–911103; no permanent spawns or player/economy records are added.
+Rollback SQL is identity-bound and source-reviewed, not executed in CI. Owner database
+collision checks remain required. Four upstream warnings remain visible and project
+warnings remain fatal. Native units:5909 pass /5486 native skip /one pre-existing disabled.
+
+**PENDING LIVE/IN-GAME VALIDATION:** actual direct-heal targetability, stock UI/poses,
+terrain, gear/mana pressure, stabilization feel and replay value. Scripted loss bypasses
+shields; other healer classes, party/AoE support and bot assistance are unclaimed. The
+official run did not log in a priest or jointly validate all five Forge modules together.
+The earlier pause and publication rejections are resolved; no unchanged source was rerun.
+
+All five authorized modules are independently accepted and available for owner testing.
+No project slots remain. Existing source stays frozen except actual owner-reported fixes.
 The fixed handoff remains2026-09-06T12:34:32Z, followed by the protected six-hour owner window.
 
 ## Current run totals (not final)
 
 ```text
 Attempted: 5
-Ready for live test: 4
+Ready for live test: 5
 Blocked: 0
 Under official validation: 0
-Final handoff pending: 1 (Triage Night gate/review PASS; safe owner-requested pause)
+Final handoff pending: 0
 Abandoned: 0
 Research only: 0
-Wildcard-ready projects: 1
+Wildcard-ready projects: 2
 Live server changes: 0 (must remain 0)
 ```
 

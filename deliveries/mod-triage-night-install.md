@@ -1,10 +1,21 @@
 # Triage Night — owner installation, SQL, testing and rollback
 
-**PREPARED, NOT RELEASED.** Exact frozen candidate
-`b404a1bd4614a8b956187f17baf585eee6d16cf6` passed independent source, one-human and SQL
-reference review and was published unchanged under direct owner authorization. Official
-run `33971943070` under judge `8070cf87ba160d08c507e98dc809a949c573f986` is in progress.
-Full actual execution and independent artifact review remain required before READY FOR LIVE TEST.
+**READY FOR LIVE TEST — delivered on 2026-09-05 after the owner's safe pause.** Exact
+candidate `b404a1bd4614a8b956187f17baf585eee6d16cf6` passed
+[official run33971943070](https://github.com/tylerhanny/wow-server-forge/actions/runs/33971943070)
+under judge `8070cf87ba160d08c507e98dc809a949c573f986`, plus independent source,
+one-human, SQL/reference and actual-artifact review. Full build/install, native SQL
+application, config loading, both server dry-runs, native tests and final integrity passed.
+This external final status supersedes the frozen source's truthful pre-run status.
+
+[Exact approved public source](https://github.com/tylerhanny/wow-server-forge/tree/b404a1bd4614a8b956187f17baf585eee6d16cf6/projects/mod-triage-night),
+[final handoff](../handoffs/mod-triage-night.md),
+[independent review](../reviews/mod-triage-night-final-review.md), and
+[evidence](evidence/mod-triage-night-33971943070.json).
+The local module ZIP is `mod-triage-night-b404a1b.zip`, SHA256
+`e3f550732ae110f6e2f37a01ae56a86de8b23650b341613cde2ba83d92b08e68`.
+All ten files match the accepted Git blobs. No owner-server commands or logged-in priest
+playthrough were executed by the Forge. Actual gameplay remains PENDING LIVE/IN-GAME VALIDATION.
 
 Triage Night is a solo level80 priest healing challenge. Three patients retain their
 health through five45second injury rounds and finite10second breaks. Ordinary spells,
@@ -22,15 +33,14 @@ Stock WoW3.3.5a build12340; Ubuntu24.04x86-64; AzerothCore
 Use an already working disposable checkout at these pins, ordinary build dependencies,
 local disposable databases and extracted stock-client data. The Forge does not operate
 the live installation. Keep the previous working binaries/configuration and normal backup.
-Replace the path placeholders. The UNSET candidate deliberately stops this draft.
+Replace the path placeholders. Export the exact accepted candidate below.
 
 ```bash
 set -euo pipefail
 AC=/absolute/path/to/disposable/azerothcore
 FORGE=/absolute/path/to/wow-server-forge
 WORK=/absolute/path/to/new/triage-night-test
-CANDIDATE=UNSET
-test "$CANDIDATE" != UNSET
+CANDIDATE=b404a1bd4614a8b956187f17baf585eee6d16cf6
 PB="$AC/modules/mod-playerbots"
 AC_PIN=47960183bb03b83e8943eb2f0f39c16df9710c9d
 PB_PIN=2f7d9f774987d0157c6a0d0cc08c40bec3db3945
@@ -71,6 +81,8 @@ This is an ordinary installation build, not the official acceptance run. BUILD_T
 omits the upstream unit target for installation; the independent judge still builds/runs
 it and enforces strict project warnings, visible verified-upstream warnings and all other
 checks. Do not copy the CI-only WorldMock correction or warning hook into this checkout.
+The official candidate environment contained Triage Night and pinned Playerbots; a combined
+installation with the other Forge modules was not jointly validated.
 
 ## Owned SQL and collision preflight
 
