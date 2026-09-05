@@ -74,7 +74,9 @@ Start alive, out of combat and not casting, unmounted on dry open outdoor ground
 stock hostile creatures. Face the open area. Start checks nearby terrain and LOS and can
 decline unsuitable positions; no GM teleport or fixed special venue is necessary. These
 checks do not prove pathing or client visibility. During the shift, normal casts and channels
-are allowed. Stay within 20 yards of the start, on the same map/phase and normal footing.
+are allowed. Stay within 20 horizontal yards and five vertical yards of the start, on the
+same map and exact phase, unmounted and without flying/taxi, transport/vehicle, teleport or
+charm control. The start-only combat, cast, water and footing checks are not continuation rules.
 
 Patient One, Patient Two and Patient Three appear five yards ahead. Enable friendly
 nameplates or target each by name and use ordinary healing spells. Their numbered names

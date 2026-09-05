@@ -9,7 +9,7 @@
 namespace TriageNight
 {
 constexpr std::size_t PatientCount = 3;
-constexpr std::uint32_t PatientHealth = 24000;
+constexpr std::uint32_t PatientHealth = 12000;
 constexpr std::uint32_t TimeLimitMs = 360000;
 constexpr std::uint32_t StabilizationMs = 6000;
 constexpr std::uint32_t RoundSeconds = 45;

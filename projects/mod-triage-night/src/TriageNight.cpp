@@ -96,7 +96,7 @@ char const* StartProblem(Player* player)
     if (!Human(player) || !player->IsInWorld() || player->GetSession()->PlayerLogout() ||
         player->HasUnitState(UNIT_STATE_LOGOUT_TIMER) || !player->IsAlive())
         return "start alive and fully in the world";
-    if (player->GetLevel() != 80 || player->GetClass() != CLASS_PRIEST)
+    if (player->GetLevel() != 80 || player->getClass() != CLASS_PRIEST)
         return "the complete V1 requires one level-80 priest with ordinary direct healing spells and healing gear";
     if (player->IsInCombat() || player->IsNonMeleeSpellCast(true))
         return "finish combat and your current cast/channel before starting; casting is allowed throughout the shift";
@@ -343,15 +343,18 @@ private:
         }
         Tell(pilot, "ROUND " + std::to_string(_rules.Round()) + "/5. " + pattern);
     }
-    void Release(std::string const& result)
+    void Release(std::string const& result, bool retireLease = true)
     {
         if (!_ownsLease)
             return;
-        _ownsLease = false;
         auto& store = Store();
         std::lock_guard<std::mutex> lock(store.mutex);
-        if (store.activeRuns)
-            --store.activeRuns;
+        if (retireLease)
+        {
+            _ownsLease = false;
+            if (store.activeRuns)
+                --store.activeRuns;
+        }
         auto const found = store.sessions.find(_pilot);
         if (found != store.sessions.end() && found->second.controller == me->GetGUID())
         {
@@ -389,7 +392,9 @@ private:
                     patient->SetStandState(UNIT_STAND_STATE_STAND);
                 patient->DespawnOrUnsummon(success ? 1500ms : 1ms);
             }
-        Release(result);
+        // Detach the completed session now, but count its actors until the
+        // controller is actually destroyed, including the short success pose.
+        Release(result, false);
         me->DespawnOrUnsummon(success ? 2000ms : 1ms);
     }
 
