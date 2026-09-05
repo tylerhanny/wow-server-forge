@@ -1,0 +1,13 @@
+{
+  "state": "ARCHIVED_AFTER_REVIEWED_EVIDENCE",
+  "date_utc": "2026-09-05",
+  "purpose": "Owner-requested archival of completed disposable control branches; not Forge projects or harvest candidates.",
+  "controls": [
+    {"former_branch": "project/forge-smoke-clean", "tag": "forge-controls/2026-09-05/clean", "commit": "87b822fd41bb6013358aa6f5e16ca252ad79761c"},
+    {"former_branch": "project/forge-smoke-tamper", "tag": "forge-controls/2026-09-05/authority-tamper", "commit": "2d74a0b1599313a9b09c7baf5b961d3744f48ed6"},
+    {"former_branch": "project/forge-smoke-one-human-tamper", "tag": "forge-controls/2026-09-05/one-human-tamper", "commit": "813e433cfb69b37a7f56e6db55a58a2d410c6add"},
+    {"former_branch": "project/forge-smoke-warning-allowlist-tamper", "tag": "forge-controls/2026-09-05/warning-allowlist-tamper", "commit": "697f4d4d0467171fe55036c9de4c3cb5e8cf0912"}
+  ],
+  "procedure": "Created annotated archive tags, atomically published and verified all peeled remote commits, then atomically removed only the four remote branch refs with exact expected-SHA leases.",
+  "evidence": "Existing prelaunch control reports/manifests and Actions artifacts remain unchanged. No candidate module branch or active run was changed."
+}

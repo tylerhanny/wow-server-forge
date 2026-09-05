@@ -121,3 +121,10 @@ An actual dispatch HTTP422 exposed invalid job-level runner.temp expressions. In
 reviewed correction `aea0f034` exports the identical paths through GITHUB_ENV at step scope;
 the failed request created no run. Stormwright's required run now exercises the cache.
 All acceptance checks, source/pin protections and WorldMock exception boundaries remain.
+
+Owner installation/config/SQL/rollback and one-human test guides are prepared in
+`deliveries/`; they remain pending actual acceptance. Source ZIPs in ignored
+`.forge-local/deliveries/` have been checked file-by-file against the frozen Git blobs
+and remain unreleased. The four completed disposable smoke branch refs were archived
+under `forge-controls/2026-09-05/*` tags with evidence in
+`prelaunch/evidence/control-archive.json`; no active candidate/run was affected.
