@@ -153,6 +153,7 @@ jobs:
             judge/validation/worldmock-fixture.patch \
             judge/validation/upstream-warning-hook.cmake \
             judge/validation/verify_build.py \
+            judge/validation/stormwright_runtime.py \
             judge/validation/test_verify_build.py > evidence/protected-validation.sha256
           printf '%s\n' "$CANDIDATE_SHA" > evidence/candidate-sha.txt
           printf '%s\n' "$AC_COMMIT" "$PLAYERBOTS_COMMIT" > evidence/dependency-pins.txt
@@ -511,6 +512,25 @@ jobs:
             exit 1
           }
           ac/build/src/test/unit_tests 2>&1 | tee evidence/unit-tests.log
+
+      - name: Capture required Stormwright normal-startup evidence
+        if: steps.scope.outputs.project == 'mod-stormwright'
+        shell: bash
+        env:
+          PROJECT: ${{ steps.scope.outputs.project }}
+          AC_LOGIN_DATABASE_INFO: localhost;3306;root;root;acore_auth
+          AC_CHARACTER_DATABASE_INFO: localhost;3306;root;root;acore_characters
+          AC_WORLD_DATABASE_INFO: localhost;3306;root;root;acore_world
+          AC_PLAYERBOTS_DATABASE_INFO: localhost;3306;root;root;acore_playerbots
+          AC_DATA_DIR: ${{ github.workspace }}/ac/env/dist/data
+          AC_LOGS_DIR: ${{ github.workspace }}/ac/env/dist/logs
+        run: |
+          set -euo pipefail
+          g++ -std=c++17 -Wall -Wextra -Wpedantic -Werror \
+            candidate/projects/mod-stormwright/tests/rules_test.cpp \
+            -o "$RUNNER_TEMP/stormwright-rules-test" 2>&1 | tee evidence/stormwright-rules-build.log
+          "$RUNNER_TEMP/stormwright-rules-test" 2>&1 | tee evidence/stormwright-rules-test.log
+          python3 -B judge/validation/stormwright_runtime.py
 
       - name: Recheck dependency integrity after install and runtime
         shell: bash
