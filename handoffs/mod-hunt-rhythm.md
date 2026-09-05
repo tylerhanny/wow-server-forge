@@ -43,7 +43,8 @@ remain PENDING LIVE/IN-GAME VALIDATION. The approved proposal does not self-cert
 ## Review focus and limitations
 
 - XP headroom: preserve baseline awards when the added amount cannot safely pass the
-  pinned float +5%, RAF/rested and current-XP accumulation. Do not saturate core awards.
+  pinned float +5%, RAF/rested and current-XP accumulation, or hunter-pet float
+  `Rate.XP.Pet` scaling/current-pet-XP accumulation. Do not saturate core awards.
 - Eligibility precedes any advance/refresh, including loot recipient and no-play-time
   flags; player death/map change preserves opt-in, login/logout/reload clears it.
 - Session state is mutex protected, stores GUIDs rather than Player pointers, and calls

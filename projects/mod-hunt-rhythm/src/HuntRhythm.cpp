@@ -5,6 +5,7 @@
 #include "Creature.h"
 #include "Log.h"
 #include "Map.h"
+#include "Pet.h"
 #include "Player.h"
 #include "ScriptMgr.h"
 #include "World.h"
@@ -214,6 +215,10 @@ public:
 
         ObjectGuid const guid = player->GetGUID();
         uint32 const currentXp = player->GetUInt32Value(PLAYER_XP);
+        Pet* pet = player->GetPet();
+        bool const hunterPet = pet && pet->getPetType() == HUNTER_PET;
+        uint32 const currentPetXp = hunterPet ? pet->GetUInt32Value(UNIT_FIELD_PETEXPERIENCE) : 0;
+        float const petRate = hunterPet ? sWorld->getRate(RATE_XP_PET) : 0.0f;
         std::uint64_t const now = NowMs();
         HuntRhythm::Chain chain;
         HuntRhythm::Settings settings;
@@ -232,6 +237,8 @@ public:
             HuntRhythm::Advance(itr->second, now, settings);
             uint32 const percent = HuntRhythm::Percent(itr->second.kills, settings);
             award = HuntRhythm::AddBonus(amount, percent, currentXp);
+            if (award.added && hunterPet && !HuntRhythm::PetAwardSafe(award.amount, petRate, currentPetXp))
+                award = {amount, 0, true};
             itr->second.bonusDeclined = award.declined;
             notice = itr->second.kills == 1 || percent != previousPercent || award.declined != previousDeclined;
             chain = itr->second;

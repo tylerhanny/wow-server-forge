@@ -25,6 +25,10 @@ ordering; `Player.cpp:2404–2475` favored/trial/partial/RAF/rested/player accum
 All were read at AC `47960183bb03b83e8943eb2f0f39c16df9710c9d` with PB
 `2f7d9f774987d0157c6a0d0cc08c40bec3db3945`. Independent preflight confirmed the
 conservative headroom check must use the core's float expression for its +5% bound.
+Reviewer identified the additional hunter-pet path in `Pet.cpp:886`:
+`RATE_XP_PET` float scaling and current pet XP also need a bound. The correction adds a
+separate conservative guard and compile-time boundary cases; actual compilation remains
+NOT_RUN. Pet/current-XP and nonfinite rate checks do not alter baseline core awards.
 
 No project SQL, custom build hook, dependency edit, new infrastructure, runtime network
 service or live-server operation is involved.

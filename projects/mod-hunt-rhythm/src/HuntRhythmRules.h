@@ -96,6 +96,18 @@ constexpr Award AddBonus(std::uint32_t base, std::uint32_t percent, std::uint32_
 
     return {static_cast<std::uint32_t>(candidate), static_cast<std::uint32_t>(added), false};
 }
+
+constexpr bool PetAwardSafe(std::uint32_t candidate, float petRate, std::uint32_t currentPetXp)
+{
+    // The core scales hunter-pet XP through float before converting to uint32.
+    // Full candidate XP bounds the grouped half-award too. The ordered comparison
+    // rejects NaN/negative results, and double retains the exact uint32 ceiling.
+    float const scaled = static_cast<float>(candidate) * petRate;
+    constexpr std::uint64_t limit = std::numeric_limits<std::uint32_t>::max();
+    if (!(scaled >= 0.0f) || static_cast<double>(scaled) > static_cast<double>(limit))
+        return false;
+    return std::uint64_t(currentPetXp) + static_cast<std::uint64_t>(scaled) <= limit;
+}
 }
 
 #endif

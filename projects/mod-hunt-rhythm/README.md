@@ -46,14 +46,19 @@ normal group range, level disparity, gray-target or tagging rules.
 The bonus is `floor(base kill XP * percentage / 100)`. Very small awards can round the
 bonus to zero. Here "base" means the amount at the pinned `OnPlayerGiveXP` hook, **after**
 normal group share/gray penalties and XP aura adjustments. The core subsequently derives
-pet XP from that amount (solo 100%, grouped 50%); player XP separately receives favored-area
+pet XP from that amount (solo 100%, grouped 50%) and applies `Rate.XP.Pet`;
+player XP separately receives favored-area
 +5%, partial-playtime reduction and either rested or RAF processing. Rested XP consumes
 the normal rested pool. The displayed percentage is not a promise of identical percentage
 changes to every final reward component.
 
 The helper checks the added amount with wide arithmetic and bounds the pinned core's
 float-rounded +5%, worst-case RAF total of 3x, and current XP. When those bounds cannot
-be established, only the added bonus is withheld and ordinary XP is passed through. The
+be established, only the added bonus is withheld and ordinary XP is passed through. A
+separate hunter-pet check bounds its float-scaled `Rate.XP.Pet` award plus current pet XP;
+nonfinite/negative or overflowing results likewise withhold the added bonus. This check
+uses the full award as a conservative upper bound even in groups or when the pet is
+currently unable to gain XP. The
 eligible kill still advances the chain. This does not repair pre-existing extreme-rate
 core XP arithmetic. Additional modules that change this hook or the effective XP level
 need separate compatibility review; this V1 targets the exact core plus pinned Playerbots.
@@ -143,8 +148,9 @@ All steps are **PENDING**, on a disposable test server with one stock 3.3.5a cli
    critters, elites and dungeon enemies: none may advance/refresh a chain. Normal core
    rewards remain normal. XP-locked, dead and capped characters must get clear command
    feedback and no added XP. A valid credited outdoor kill can retry afterward.
-7. If the character has a pet or rested pool, inspect the documented core-derived
-   rewards. RAF behavior is source-reviewed; testing it is optional and must not require
+7. If the character has a hunter pet or rested pool, inspect the documented core-derived
+   rewards, including the operator's normal `Rate.XP.Pet` setting. RAF behavior is
+   source-reviewed; testing it is optional and must not require
    a second operated account for the primary demonstration. Record it untested if absent.
 8. Optionally repeat the whole loop with an already available ordinary bot party, using
    only supported grouping/combat controls. Only the human enters Rhythm commands.
