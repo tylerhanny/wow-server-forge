@@ -57,7 +57,7 @@ def main():
     text = config.read_text()
     settings = {'BindIP': '"127.0.0.1"', 'Console.Enable': '1', 'Ra.Enable': '0',
                 'SOAP.Enabled': '0', 'Cluster.Enabled': '0',
-                'Logger.module': '3,Console Server'}
+                'Logger.module': '4,Console Server'}
     for key, value in settings.items():
         text, count = re.subn(r'^' + re.escape(key) + r'\s*=.*$',
                              f'{key} = {value}', text, flags=re.MULTILINE)
