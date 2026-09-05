@@ -48,7 +48,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | Corrected frozen796e27e; official run33955341216 active; subordinate |
-| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | FIXING actual SendPlaySpellImpact compile error; primary repair priority |
+| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Corrected frozenbde390e; official run33955586542 active; primary priority |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
 The completed selection, creative ownership and one-human approvals are in
@@ -115,7 +115,13 @@ OnStartup hook, on the same already-built disposable server after existing check
 That run FAILED full compilation: project SendPlaySpellImpact call omitted the required
 pinned GUID argument. Install/SQL/runtime/unit/supplemental stages did not run. Wildcard
 owns the minimal project API repair and independent re-review; no dependency or judge
-change is authorized. Preserve faileda155817 evidence/package and do not release it.
+change is authorized. Independently reviewed repair
+`a65f162419c8d0c0cc1ddbad2f35b7b4450018c8` supplies each intended owned actor's GUID to
+the three impact packet calls, with no gameplay/rules/SQL/config/test changes. Final
+docs-only freeze `bde390e3ec1d9df764b5d4e6b0b0e00c40e0d7cc` is under official run
+`33955586542`, judge `8b87494de0261cd82c48c4a0dc11895611fb9d39`. It retains the complete
+gate and required supplemental normal-startup checks. Preserve faileda155817 evidence/
+package and do not release it; the corrected package is prepared but remains unaccepted.
 No extra control was launched. Field Camp original `ec9eea979c9344853aaf02d46ba9f6632636254b` had independent
 source/one-human PASS with source/config identical to reviewed `b1b8417`. Its official
 run `33952603462` used judge `e7a37fa` and FAILED full compilation: FieldCamp.cpp called
@@ -143,3 +149,12 @@ acceptance. Source ZIPs in ignored `.forge-local/deliveries/` have been checked 
 against the frozen Git blobs. The four completed disposable smoke branch refs were archived
 under `forge-controls/2026-09-05/*` tags with evidence in
 `prelaunch/evidence/control-archive.json`; no active candidate/run was affected.
+
+Current prepared, unreleased repair packages: Stormwright `mod-stormwright-bde390e.zip`,
+SHA256 `32b64076275458e7467ec418d4d439743ae49443dce41c540272caf46dcb996e`;
+Field Camp `mod-field-camp-796e27e.zip`, SHA256
+`0afa0e660d14a247776dad777d1ada8e7d4ecfa780b8b5885f7d4388d56bf8bf`.
+Their file blobs match their exact frozen commits; that packaging check is not compilation
+or acceptance. Earlier failed archives remain historical and unreleased. The existing
+continuity heartbeat now records Hunt's delivery and directs recovery to these current run
+bindings, preserving every deadline and avoiding superseded candidate restarts.
