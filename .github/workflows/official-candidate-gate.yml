@@ -382,20 +382,29 @@ jobs:
 
           # Reject destructive SQL. DROP TABLE IF EXISTS remains allowed for
           # module-owned repeat-safe migrations; other DROP TABLE forms do not.
-          if find "candidate/projects/$PROJECT" -type f -iname '*.sql' -print0 | \
-             xargs -0 -r grep -Pin '\b(TRUNCATE|DROP\s+DATABASE|DROP\s+TABLE\s+(?!IF\s+EXISTS))\b'; then
-            echo 'Potentially destructive SQL requires manual Reviewer disposition.' >&2
-            exit 1
+          sql_list="$(mktemp)"
+          find "candidate/projects/$PROJECT" -type f -iname '*.sql' -print0 > "$sql_list"
+          mapfile -d '' -t sql_files < "$sql_list"
+          if (( ${#sql_files[@]} > 0 )); then
+            if grep -Pin '\b(TRUNCATE|DROP\s+DATABASE|DROP\s+TABLE\s+(?!IF\s+EXISTS))\b' -- "${sql_files[@]}"; then
+              echo 'Potentially destructive SQL requires manual Reviewer disposition.' >&2
+              exit 1
+            else
+              grep_status=$?
+              [[ "$grep_status" -eq 1 ]] || { echo 'SQL scan failed.' >&2; exit "$grep_status"; }
+            fi
+          else
+            echo 'No module-owned SQL files; SQL checks are not applicable.'
           fi
 
           # Every SQL file must be non-empty and end in a newline.
-          while IFS= read -r -d '' sql; do
+          for sql in "${sql_files[@]}"; do
             [[ -s "$sql" ]] || { echo "Empty SQL file: $sql" >&2; exit 1; }
             [[ "$(tail -c1 "$sql" | wc -l)" -eq 1 ]] || {
               echo "SQL file lacks final newline: $sql" >&2
               exit 1
             }
-          done < <(find "candidate/projects/$PROJECT" -type f -iname '*.sql' -print0)
+          done
 
       - name: Prepare disposable runtime data and MySQL
         shell: bash
