@@ -47,7 +47,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 |---|---|---|---|
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
-| Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | Frozen reviewed subordinate candidate; official gate running |
+| Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | FIXING actual compile error fromrun33952603462; remains subordinate |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Frozen reviewed flagship; official gate running |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
@@ -115,9 +115,12 @@ OnStartup hook, on the same already-built disposable server after existing check
 Actual compilation/install/SQL/startup/gameplay results remain pending. No extra control
 was launched. Field Camp frozen `ec9eea979c9344853aaf02d46ba9f6632636254b` retains independent
 source/one-human PASS with source/config identical to reviewed `b1b8417`. Its official
-run `33952603462` uses judge `e7a37fa`; actual acceptance remains pending and subordinate
-to both primary modules. Both builders prepare concrete owner installation/test/rollback
-instructions while Reviewer watches actual execution. Every ready primary is delivered immediately.
+run `33952603462` used judge `e7a37fa` and FAILED full compilation: FieldCamp.cpp called
+private pinned `Player::HasDelayedTeleport`. This is a project API error; install/runtime/
+unit stages were skipped and no acceptance is claimed. Practical owns the minimal repair,
+followed by independent source review and a new exact-candidate full gate. The old failure
+and package remain preserved; do not deliver that package as ready. Field Camp remains
+subordinate to both primaries. Every accepted primary is delivered immediately.
 
 The owner directly authorized publishing reviewed cache revision
 `03002fb6c347925e10d08b6c741194f8569174dc`; its unchanged cherry-pick is `332eece`.
