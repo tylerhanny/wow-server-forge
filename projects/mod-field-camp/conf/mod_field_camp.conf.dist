@@ -1,0 +1,8 @@
+# Field Camp: one personal, same-map/phase camp for the current login.
+# No SQL, payment, persistent anchor or bot transport is used.
+# After any successful config reload all anchors and cooldowns are cleared.
+FieldCamp.Enable = 1
+
+# Seconds between accepted return requests. Default 600; clamped to 60..3600.
+# Clear/replacing a camp preserves the running cooldown during the session.
+FieldCamp.CooldownSeconds = 600
