@@ -53,3 +53,9 @@ The remaining edits preserve the failed SHA/run and mark new execution pending.
 Independent `git diff --check` passes. Actual full build and all applicable runtime gates
 remain required; client visuals, approach/navigation, encounter balance and bot competence
 remain unperformed manual checks.
+
+Final candidate `bde390e3ec1d9df764b5d4e6b0b0e00c40e0d7cc` changes only README,
+validation notes and handoff review status from that repaired source. Source, SQL,
+configuration and test byte identity and whitespace were independently checked.
+One complete official run was dispatched: `33955586542`, judge
+`8b87494de0261cd82c48c4a0dc11895611fb9d39`. Its execution result is pending.
