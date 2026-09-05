@@ -3,6 +3,14 @@
 Reviewed checkpoint: `fa31ee9713d634ed1cddde75ed62c9aa71607125`.
 Initial checkpoint: `432531a0c824d1db5f845fadfbe0628d0459ad4d`.
 
+Final frozen candidate: `4aaa3ae188e7bcdba2569676911e14142ac378e2`.
+Independent comparison with the reviewed checkpoint found changes only in
+README, VALIDATION and handoff review-status text; source and configuration
+are byte-identical. Those documents accurately retain pending execution and
+in-game evidence. The source and one-human dispositions therefore also apply
+to this final candidate. Official run `33951428776` is the execution attempt;
+its outcome is not inferred from this source review.
+
 **SOURCE_REVIEW=PASS. ONE_HUMAN_REVIEW=PASS.** These are implementation-source
 dispositions, not compile, install, runtime, gameplay or harvest certification.
 The exact candidate still requires its actual official gate and final evidence
