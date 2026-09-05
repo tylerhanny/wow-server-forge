@@ -9,7 +9,18 @@ Implementation is active from2026-09-05T06:40:42Z under the fixed provisional de
 review; see `prelaunch/clean-control-final-pass.md`. Earlier infrastructure failures below
 remain historical and do not block the two active gameplay projects.
 
-### Final documentation publication — awaiting direct owner approval
+### Final documentation publication — resolved after owner continuation
+
+The owner replied "please continue" to the explicit request to publish the completed
+documentation checkpoints through `e688f2a` to public Forge `main`. Root proceeded with
+that exact bounded action, which passed automatic approval review and succeeded. At
+2026-09-05T18:01:10Z, `git ls-remote` verified public `main` at
+`e688f2a74abeaa9cc652ee5200903d024e4f24f1` and `project/triage-night` unchanged at
+`b404a1bd4614a8b956187f17baf585eee6d16cf6`. Independent read-only scope review found only
+the eight prepared coordination, handoff, guide, review and evidence files; no source,
+policy, workflow, dependency change or concrete accidental sensitive disclosure. This
+publication block is resolved. Preserve the historical rejection below without restoring
+its approval wait. No new candidate, acceptance run or source publication was required.
 
 After the owner resumed, local checkpoint `02a0d9a` completed Triage's final handoff,
 guide and evidence and recorded all five modules READY FOR LIVE TEST. Automatic approval
@@ -21,10 +32,11 @@ policy changes. No alternate publication route was attempted.
 
 Local packages, guides and completed acceptance remain available. The already-approved
 Triage public source branch remains exact and its gate/review remain PASS. This is solely
-a public documentation-sync block, not a module acceptance failure. Request approval for
-these final documents and this truthful blocker record on `main` in the existing public
-Forge repository. Do not retry or publish them elsewhere until that approval arrives.
-Continue owner-feedback support and preserve the fixed schedule while this remains pending.
+a public documentation-sync block at that checkpoint, not a module acceptance failure.
+Root requested approval for those final documents and this truthful blocker record on
+`main` in the existing public Forge repository, then awaited the owner's reply. The reply
+and verified publication above resolved it. Owner-feedback support and all fixed deadlines
+remain unchanged; no further approval is pending for this completed publication.
 
 ### Triage Night exact candidate publication — resolved by direct owner approval
 

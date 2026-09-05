@@ -33,7 +33,7 @@ ADDITIONAL_PROJECT_SLOTS=FULLY_ALLOCATED
 HARD_DEADLINE_UTC=2026-09-06T18:34:32Z
 HARD_DEADLINE_AMERICA_NEW_YORK=2026-09-06T14:34:32-04:00
 HEARTBEAT_STATUS=ACTIVE
-PUBLIC_DOCUMENTATION_SYNC=BLOCKED_PENDING_DIRECT_OWNER_APPROVAL
+PUBLIC_DOCUMENTATION_SYNC=PUBLISHED_VERIFIED
 REVIEWED_JUDGE_SHA=dd283819da03e9ccbebdf9378b5fe3f1cf016380
 CLEAN_CONTROL_RUN=33947235843
 AUTHORITY_TAMPER_RUN=33947239092
@@ -60,10 +60,14 @@ fixes. A changed Triage SHA needs new public-source approval under the owner's n
 The continuity heartbeat is ACTIVE again and stays quiet without actionable changes.
 The original START, feature freeze, handoff and protected owner window remain unchanged.
 
-Local delivery checkpoint `02a0d9a` is complete. Automatic approval review rejected its
-documentation-only push to public `main`; see `BLOCKED.md`. Final guides, review and
-evidence are available locally, while the approved exact Triage source is already public.
-Do not repeat or route around the rejected documentation push without direct approval.
+Final delivery checkpoint `02a0d9a` and its pause/block records through `e688f2a` are now
+published to public `main`. The owner replied "please continue" to the explicit request
+to publish these documentation checkpoints. The same bounded publication passed automatic
+approval review; at2026-09-05T18:01:10Z the remote was verified at the exact checkpoint.
+Independent inspection confirmed only eight coordination/guide/handoff/review/evidence
+files, with no candidate source, policy, workflow or dependency changes. Triage's public
+branch remains exactb404a1b. The earlier rejection is resolved; do not repeat its approval
+question or restart validation. All five final guides and evidence are available for testing.
 
 ## Recorded implementation transition
 
