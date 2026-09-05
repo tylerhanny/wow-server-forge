@@ -1,7 +1,7 @@
 # Stormwright owner install / rollback / first test
 
 Prepared for Director delivery from frozen candidate
-`bde390e3ec1d9df764b5d4e6b0b0e00c40e0d7cc` on `project/stormwright`.
+`60c6a91925eed80049bec47994f87df739ac7725` on `project/stormwright`.
 This external installation guide does not change the candidate or the official judge.
 The final exact-candidate attestation in `HARVEST.md` controls readiness and supersedes
 the frozen package's honestly pending pre-run status. This guide is not acceptance.
@@ -10,8 +10,10 @@ the frozen package's honestly pending pre-run status. This guide is not acceptan
 ONE_HUMAN_REVIEW passed for the minimal three-call impact GUID repair. Corrected candidate
 `bde390e` passed full build/install/dry-runs/units in run `33955586542`, but the supplement
 FAILED because its fixture logger level3 suppressed the required INFO4 registrar message.
-Normal server ready was observed; registrar evidence was not. The fixture and mistaken
-logger documentation are being corrected for one full rerun. Original a155817 failed
+Normal server ready was observed; registrar evidence was not. The one-line fixture and
+logger documentation are corrected; this docs-only candidate60c6a91 is pending full
+official run `33960843535`, with all source/SQL/config/rules/tests identical to compiled
+bde390e. No acceptance is inferred from that earlier partial result. Original a155817 failed
 compilation in `33952393192`; both failures remain preserved. Neither source review nor
 these prepared instructions are acceptance. Director must
 attach the terminal exact-SHA gate and applicable normal-startup evidence before
@@ -49,10 +51,10 @@ test ! -e "$AC_SRC/modules/mod-playerbots"
 git clone https://github.com/mod-playerbots/mod-playerbots.git "$AC_SRC/modules/mod-playerbots"
 git -C "$AC_SRC/modules/mod-playerbots" checkout --detach 2f7d9f774987d0157c6a0d0cc08c40bec3db3945
 git clone --no-checkout https://github.com/tylerhanny/wow-server-forge.git "$CANDIDATE_SRC"
-git -C "$CANDIDATE_SRC" checkout --detach bde390e3ec1d9df764b5d4e6b0b0e00c40e0d7cc
+git -C "$CANDIDATE_SRC" checkout --detach 60c6a91925eed80049bec47994f87df739ac7725
 test "$(git -C "$AC_SRC" rev-parse HEAD)" = 47960183bb03b83e8943eb2f0f39c16df9710c9d
 test "$(git -C "$AC_SRC/modules/mod-playerbots" rev-parse HEAD)" = 2f7d9f774987d0157c6a0d0cc08c40bec3db3945
-test "$(git -C "$CANDIDATE_SRC" rev-parse HEAD)" = bde390e3ec1d9df764b5d4e6b0b0e00c40e0d7cc
+test "$(git -C "$CANDIDATE_SRC" rev-parse HEAD)" = 60c6a91925eed80049bec47994f87df739ac7725
 test ! -e "$AC_SRC/modules/mod-stormwright"
 cp -a "$CANDIDATE_SRC/projects/mod-stormwright" "$AC_SRC/modules/mod-stormwright"
 ```

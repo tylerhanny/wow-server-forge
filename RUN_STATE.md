@@ -48,7 +48,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | READY FOR LIVE TEST at796e27e; delivered early; remains subordinate |
-| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Correcting logger documentation after runtime-fixture failure; source remains frozen; primary priority |
+| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Frozen60c6a91 with corrected documentation; official run33960843535 active; primary priority |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
 The completed selection, creative ownership and one-human approvals are in
@@ -127,9 +127,14 @@ FAILED its five-minute supplemental observation: the fixture incorrectly set mod
 logging to3, suppressing required INFO output. Exact pinned logging defines WARN=3/INFO=4,
 with native module default4 already enabling INFO. Normal server ready was observed;
 registrar spawning was not observed and cannot be inferred. Final runtime integrity/cache
-save were skipped. Reviewer owns a separate one-line fixture3-to4 correction; Wildcard
-corrects the same mistaken README advice in a docs-only candidate for one required full
-rerun. No source/gameplay/SQL/config change, removed check or extra control is authorized.
+save were skipped. Reviewer proposed the independently inspected one-line fixture3-to4
+correction, published as `e5fd277de515dbda983993e6f8a52b48cb0816b4`. Corrected helper SHA256
+is `980804f2e54e32550d1f9329935bf71987e97336265163c5b027a60397c1493a`.
+Wildcard's independently reviewed docs-only candidate
+`60c6a91925eed80049bec47994f87df739ac7725` has identical source/SQL/config/rules/tests
+to compiled bde390e. Exactly one complete official rerun `33960843535` is active under
+judge `e5fd277de515dbda983993e6f8a52b48cb0816b4`, with all existing requirements retained.
+Reviewer owns execution/evidence review. No removed check or extra control is authorized.
 Preserve both failed runs/packages as historical and unreleased.
 No extra control was launched. Field Camp original `ec9eea979c9344853aaf02d46ba9f6632636254b` had independent
 source/one-human PASS with source/config identical to reviewed `b1b8417`. Its official
@@ -169,8 +174,8 @@ against the frozen Git blobs. The four completed disposable smoke branch refs we
 under `forge-controls/2026-09-05/*` tags with evidence in
 `prelaunch/evidence/control-archive.json`; no active candidate/run was affected.
 
-Current prepared, unreleased repair package: Stormwright `mod-stormwright-bde390e.zip`,
-SHA256 `32b64076275458e7467ec418d4d439743ae49443dce41c540272caf46dcb996e`;
+Current prepared, unreleased package: Stormwright `mod-stormwright-60c6a91.zip`,
+SHA256 `2b773f50d90f926194b0be5e6f04ba3274bd8aee7c8ab3b178cff9d46d0efac9`;
 Delivered Field Camp `mod-field-camp-796e27e.zip`, SHA256
 `0afa0e660d14a247776dad777d1ada8e7d4ecfa780b8b5885f7d4388d56bf8bf`.
 Their file blobs match their exact frozen commits; that packaging check is not compilation
@@ -183,3 +188,8 @@ Earlier advice to set3 suppressed INFO and was incorrect. All external guides ar
 Field Camp's final handoff explicitly supersedes its frozen README's false default-threshold
 claim. Independent Reviewer approved this observation-guidance correction: both accepted
 project trees remain unchanged and their actual successful runs used the native setting.
+Both GitHub release guide assets and release notes were corrected; source ZIPs, exact
+candidate tags and evidence assets remain unchanged and their published digests verified.
+The required helper correction changes the existing cache namespace because protected
+validation files are hashed into it. Preserve that reviewed namespace; expect a cold run
+unless actual evidence says otherwise. No cache-key change or cache-only control is authorized.
