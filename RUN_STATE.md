@@ -43,6 +43,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 |---|---|---|---|
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | Frozen reviewed candidate; official gate running |
+| Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | Approved next slice; separate ownership/worktree |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | BUILDING independent flagship |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
