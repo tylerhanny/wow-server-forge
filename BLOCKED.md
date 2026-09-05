@@ -20,10 +20,10 @@ dispatch and actual artifact review. This publication block is resolved; do not 
 for the same SHA/branch/destination. A changed SHA has no publication approval under this
 narrow instruction. The historical rejection record below remains truthful.
 
-Complete frozen local candidate `b404a1bd4614a8b956187f17baf585eee6d16cf6` on
+At the rejection checkpoint, complete frozen local candidate `b404a1bd4614a8b956187f17baf585eee6d16cf6` on
 `project/triage-night` has independent source/one-human review and a separate SQL/reference
 PASS. Final review-status documentation is equivalent to reviewed source
-`e8907bd72940628148150621d7c8143624c47045`. No remote push or official run exists yet.
+`e8907bd72940628148150621d7c8143624c47045`. No remote push or official run existed then.
 
 Automatic approval review rejected `git push -u origin project/triage-night` from its
 isolated worktree. It interpreted the owner authorization as local-only and the remote as
@@ -36,13 +36,13 @@ facts and the direct owner requirement for this exact candidate's official gate.
 The retry was rejected too: the reviewer treated Director/tool evidence as untrusted and
 said publication remained unapproved sensitive egress. No alternate route or bypass was
 attempted. Root requested direct approval for this exact SHA/branch/destination in the
-conversation while continuing Field Repairs acceptance/delivery. Wait for that reply
-before dependent publication; the direct owner reply above now resolves that wait.
+conversation while continuing Field Repairs acceptance/delivery. Publication waited
+for that reply; the direct owner reply above resolved that wait.
 This is distinct from the already-resolved branch/worktree
 creation block; do not recreate local implementation or seek its approval again.
 
-The complete candidate reached its source cutoff early. Its acceptance still requires
-publication, its own full official gate and independent artifact review. All original
+The complete candidate reached its source cutoff early. Exact publication is now verified;
+its acceptance still requires its own full official gate and independent artifact review. All original
 deadlines, one-human/creative rules, pins, warnings and live-server isolation remain.
 
 ### Optional cache publication — approval block resolved
