@@ -656,5 +656,6 @@
     "commit": "e8920811e79fa5bc5a40801a533647c2844887be",
     "report": "prelaunch/clean-control-pinned-unit-test-blocker.md"
   },
-  "execution_status": "PAUSED_BY_OWNER"
+  "execution_status": "BLOCKED_PINNED_UPSTREAM_UNIT_TEST_SOURCE",
+  "owner_resume_reconciled_utc": "2026-09-05T01:06:37.050300Z"
 }

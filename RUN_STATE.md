@@ -6,28 +6,33 @@ The 36-hour sprint has NOT started yet.
 
 The Director must record the launch timestamps immediately before sprint implementation begins.
 
-## Current safe pause
+## Current resume and prelaunch blocker
 
-Owner requested a temporary pause at the first available opportunity; recorded 2026-09-05T00:55:39.347769Z.
-All internal workers are stopped or idle and the existing continuity heartbeat is PAUSED.
-Do not resume diagnosis, dispatch builds, implement projects or start the clock until explicit
-owner resume. The standing upstream-warning authorization remains intact.
+Owner explicitly resumed; reconciled 2026-09-05T01:06:37.050300Z. The prior safe pause is lifted.
+The existing continuity heartbeat is ACTIVE and stays quiet while this blocker is unchanged.
+Practical Hunt Rhythm and Wildcard Stormwright ownership/selections are preserved; neither
+implementation nor the 36-hour clock has started. All sprint timestamps remain UNSET.
 
-Both current control runs finished before this pause. Tamper 33929247980 was rejected as
-required. Clean 33929246418 failed full compilation on pinned upstream WorldMock missing
-pure virtual methods; both server targets built, but the unit-test target did not. Later
-install/SQL/runtime/unit-test stages were skipped. Reviewer disposition is FAIL, preserved
-in `prelaunch/clean-control-pinned-unit-test-blocker.md` (source e892081). This is an actual
-compiler error, outside the warning authorization. No dependency/pin or gate change was made.
-All sprint timestamps remain UNSET. Earlier active/resume instructions below are historical
-and do not override this pause.
+Tamper run 33929247980 was rejected as required. Clean 33929246418 failed on actual
+pinned upstream WorldMock compile errors: missing GetPlayerbotsDBRevision and
+AddQueryHolderCallback overrides. Both server targets built, but the required whole build
+failed and install/SQL/runtime/unit-test execution were skipped. The standing upstream-warning
+policy worked and remains authorized. No additional warning approval is required.
+
+Evidence: `prelaunch/clean-control-pinned-unit-test-blocker.md`, Reviewer source e892081.
+The Director independently checked the saved raw build hash/diagnostics and reconciled
+GitHub completion at the exact judge SHA. Reviewer found no supported configuration fix preserving the suite. The exact unapplied
+two-method proposal is `prelaunch/worldmock-test-fixture-proposal.md` with adjacent patch
+(Reviewer source b4724d4); it requires explicit owner authorization for that test-only delta. No dependency/test
+source, judge, pin or acceptance requirement has been changed. No identical retry is justified.
+Earlier pause/active instructions below are historical; this current disposition controls.
 
 ## Launch record
 
 ```text
 STATUS=ARMED_NOT_STARTED
-EXECUTION_STATUS=PAUSED_BY_OWNER
-BLOCKER_IDENTIFIED_UTC=2026-09-04T22:33:12Z
+EXECUTION_STATUS=BLOCKED_PINNED_UPSTREAM_UNIT_TEST_SOURCE
+BLOCKER_IDENTIFIED_UTC=2026-09-05T00:47:37Z
 OWNER_EXCEPTION_RECONCILED_UTC=2026-09-04T21:16:15Z
 OWNER_EXCEPTION_POLICY=UPSTREAM_WARNING_EXCEPTION.md
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
@@ -41,9 +46,9 @@ ALLOWLIST_TAMPER_RUN=33927019176
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
 CLEAN_CONTROL_REVIEW=FAIL_PINNED_UPSTREAM_UNIT_TEST_SOURCE
 PAUSE_UTC=2026-09-05T00:55:39.347769Z
-RESUME_UTC=2026-09-04T20:10:30Z
-RESUME_POLICY=WAIT_FOR_EXPLICIT_OWNER_RESUME
-HEARTBEAT_STATUS=PAUSED
+RESUME_UTC=2026-09-05T01:06:37.050300Z
+RESUME_POLICY=AUTONOMOUS_WITHIN_EXISTING_AUTHORITY
+HEARTBEAT_STATUS=ACTIVE_QUIET_WHILE_BLOCKED
 START_UTC=UNSET
 CONVERGENCE_START_UTC=UNSET
 HARVEST_START_UTC=UNSET
@@ -61,10 +66,10 @@ CURRENT_PHASE=SETUP
 
 | Lane | Agent role | Current project | Branch/worktree | State |
 |---|---|---|---|---|
-| Director | Persistent orchestrator | Apply standing upstream policy, rerun controls and launch immediately on existing gate success | main | PAUSED BY OWNER |
-| Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | PAUSED BY OWNER |
-| Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | PAUSED BY OWNER |
-| Reviewer | Independent internal Reviewer / Closer | Implement provenance warning policy and review complete control evidence | lane/reviewer / .worktrees/reviewer | PAUSED BY OWNER |
+| Director | Persistent orchestrator | Apply standing upstream policy, rerun controls and launch immediately on existing gate success | main | AWAITS AUTHORIZED PRELAUNCH RESOLUTION |
+| Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | AWAITS AUTHORIZED PRELAUNCH RESOLUTION |
+| Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | AWAITS AUTHORIZED PRELAUNCH RESOLUTION |
+| Reviewer | Independent internal Reviewer / Closer | Implement provenance warning policy and review complete control evidence | lane/reviewer / .worktrees/reviewer | AWAITS AUTHORIZED PRELAUNCH RESOLUTION |
 
 Prelaunch evidence and next actions are recorded in `prelaunch/STATUS.md`.
 Internal worker lanes are managed by the Director; Tyler need not create worker tasks.

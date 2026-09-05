@@ -2,14 +2,32 @@
 
 This file preserves honest non-harvest outcomes so blocked work does not consume the whole sprint or masquerade as complete.
 
-## PRELAUNCH infrastructure — owner policy resolved; revised validation pending
+## Current resume and prelaunch blocker
 
-**Current disposition:** `UPSTREAM_WARNING_POLICY.md` supplies standing owner authorization
-for all exclusively verified-unchanged pinned upstream warnings, fully visible and
-non-fatal. The former owner-decision blocker is resolved. Implement/review the revised
-judge and immediately rerun the required controls, then start the clock on complete
-reviewed success. Project warnings and all other existing gates remain strict. No new
-prelaunch requirements or further approvals for qualifying upstream warnings are needed.
+Owner explicitly resumed; reconciled 2026-09-05T01:06:37.050300Z. The prior safe pause is lifted.
+The existing continuity heartbeat is ACTIVE and stays quiet while this blocker is unchanged.
+Practical Hunt Rhythm and Wildcard Stormwright ownership/selections are preserved; neither
+implementation nor the 36-hour clock has started. All sprint timestamps remain UNSET.
+
+Tamper run 33929247980 was rejected as required. Clean 33929246418 failed on actual
+pinned upstream WorldMock compile errors: missing GetPlayerbotsDBRevision and
+AddQueryHolderCallback overrides. Both server targets built, but the required whole build
+failed and install/SQL/runtime/unit-test execution were skipped. The standing upstream-warning
+policy worked and remains authorized. No additional warning approval is required.
+
+Evidence: `prelaunch/clean-control-pinned-unit-test-blocker.md`, Reviewer source e892081.
+The Director independently checked the saved raw build hash/diagnostics and reconciled
+GitHub completion at the exact judge SHA. Reviewer found no supported configuration fix preserving the suite. The exact unapplied
+two-method proposal is `prelaunch/worldmock-test-fixture-proposal.md` with adjacent patch
+(Reviewer source b4724d4); it requires explicit owner authorization for that test-only delta. No dependency/test
+source, judge, pin or acceptance requirement has been changed. No identical retry is justified.
+Earlier pause/active instructions below are historical; this current disposition controls.
+
+
+## Historical warning-policy blocker
+
+The earlier warning-policy conflict was resolved by standing `UPSTREAM_WARNING_POLICY.md`.
+It does not resolve the distinct current pinned unit-test source error recorded above.
 
 ### Historical failure record under the previous policy
 

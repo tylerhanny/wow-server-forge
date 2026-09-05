@@ -1,31 +1,31 @@
 # Prelaunch validation record
 
-## Current safe pause
+## Current resume and prelaunch blocker
 
-Owner requested a temporary pause at the first available opportunity; recorded 2026-09-05T00:55:39.347769Z.
-All internal workers are stopped or idle and the existing continuity heartbeat is PAUSED.
-Do not resume diagnosis, dispatch builds, implement projects or start the clock until explicit
-owner resume. The standing upstream-warning authorization remains intact.
+Owner explicitly resumed; reconciled 2026-09-05T01:06:37.050300Z. The prior safe pause is lifted.
+The existing continuity heartbeat is ACTIVE and stays quiet while this blocker is unchanged.
+Practical Hunt Rhythm and Wildcard Stormwright ownership/selections are preserved; neither
+implementation nor the 36-hour clock has started. All sprint timestamps remain UNSET.
 
-Both current control runs finished before this pause. Tamper 33929247980 was rejected as
-required. Clean 33929246418 failed full compilation on pinned upstream WorldMock missing
-pure virtual methods; both server targets built, but the unit-test target did not. Later
-install/SQL/runtime/unit-test stages were skipped. Reviewer disposition is FAIL, preserved
-in `prelaunch/clean-control-pinned-unit-test-blocker.md` (source e892081). This is an actual
-compiler error, outside the warning authorization. No dependency/pin or gate change was made.
-All sprint timestamps remain UNSET. Earlier active/resume instructions below are historical
-and do not override this pause.
+Tamper run 33929247980 was rejected as required. Clean 33929246418 failed on actual
+pinned upstream WorldMock compile errors: missing GetPlayerbotsDBRevision and
+AddQueryHolderCallback overrides. Both server targets built, but the required whole build
+failed and install/SQL/runtime/unit-test execution were skipped. The standing upstream-warning
+policy worked and remains authorized. No additional warning approval is required.
+
+Evidence: `prelaunch/clean-control-pinned-unit-test-blocker.md`, Reviewer source e892081.
+The Director independently checked the saved raw build hash/diagnostics and reconciled
+GitHub completion at the exact judge SHA. Reviewer found no supported configuration fix preserving the suite. The exact unapplied
+two-method proposal is `prelaunch/worldmock-test-fixture-proposal.md` with adjacent patch
+(Reviewer source b4724d4); it requires explicit owner authorization for that test-only delta. No dependency/test
+source, judge, pin or acceptance requirement has been changed. No identical retry is justified.
+Earlier pause/active instructions below are historical; this current disposition controls.
 
 The sprint remains **ARMED_NOT_STARTED**. No timestamps have been started.
 
-**Current disposition: ACTIVE PRELAUNCH.** The owner has supplied standing authorization
-in `UPSTREAM_WARNING_POLICY.md` for all warnings exclusively from verified-unchanged
-pinned upstream source to be non-fatal and fully visible. Every project-owned warning
-remains fatal. The protected provenance judge is published and both required controls are running.
-Practical performs the existing independent check concurrently. Start the clock as soon
-as the existing minimum gate passes.
-Do not add new prelaunch review, cleanup, hardening, test expansion or policy gates.
-No repeated owner approval is needed for additional qualifying upstream warnings.
+**Current disposition: BLOCKED_PINNED_UPSTREAM_UNIT_TEST_SOURCE.** Both required controls
+finished. Tampering was rejected; the legitimate control failed on actual upstream test
+fixture errors. The warning policy remains valid, and the clock remains unset.
 
 The records below describe earlier judges and their then-current warning policies.
 Those failed runs remain failed; the standing policy supersedes their warning restrictions.
@@ -35,12 +35,13 @@ Those failed runs remain failed; the standing policy supersedes their warning re
 Judge `6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed` integrates Reviewer implementation
 `e7afa692992b2fcaaef885d1c4473e9fa4352616` and independently approved workflow
 `d31e425a3fa6bd731a180c171727730219d8760a`. Local regressions: 15 passed;
-the real Ubuntu compiler probe is pending inside the existing clean workflow.
+the real Ubuntu compiler probe passed in the completed clean workflow.
 Practical APPROVED the exact committed implementation/workflow: all 35 existing independent
 cases passed, including the alias/generated-header checks. No outstanding source finding.
 
 - Clean: [33929246418](https://github.com/tylerhanny/wow-server-forge/actions/runs/33929246418),
-  frozen candidate `87b822fd41bb6013358aa6f5e16ca252ad79761c`, dispatched 23:22 UTC.
+  frozen candidate `87b822fd41bb6013358aa6f5e16ca252ad79761c`, FAIL at full build;
+  pinned WorldMock lacks two overrides. Required later install/runtime/unit stages skipped.
 - Authority tamper: [33929247980](https://github.com/tylerhanny/wow-server-forge/actions/runs/33929247980),
   frozen candidate `2d74a0b1599313a9b09c7baf5b961d3744f48ed6`, REJECTED at scope
   before dependency checkout/build. Director verified exact candidate/judge/pins/protected

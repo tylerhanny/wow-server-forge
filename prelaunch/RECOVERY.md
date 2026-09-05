@@ -1,20 +1,25 @@
 # Director recovery and launch procedure
 
-## Current safe pause
+## Current resume and prelaunch blocker
 
-Owner requested a temporary pause at the first available opportunity; recorded 2026-09-05T00:55:39.347769Z.
-All internal workers are stopped or idle and the existing continuity heartbeat is PAUSED.
-Do not resume diagnosis, dispatch builds, implement projects or start the clock until explicit
-owner resume. The standing upstream-warning authorization remains intact.
+Owner explicitly resumed; reconciled 2026-09-05T01:06:37.050300Z. The prior safe pause is lifted.
+The existing continuity heartbeat is ACTIVE and stays quiet while this blocker is unchanged.
+Practical Hunt Rhythm and Wildcard Stormwright ownership/selections are preserved; neither
+implementation nor the 36-hour clock has started. All sprint timestamps remain UNSET.
 
-Both current control runs finished before this pause. Tamper 33929247980 was rejected as
-required. Clean 33929246418 failed full compilation on pinned upstream WorldMock missing
-pure virtual methods; both server targets built, but the unit-test target did not. Later
-install/SQL/runtime/unit-test stages were skipped. Reviewer disposition is FAIL, preserved
-in `prelaunch/clean-control-pinned-unit-test-blocker.md` (source e892081). This is an actual
-compiler error, outside the warning authorization. No dependency/pin or gate change was made.
-All sprint timestamps remain UNSET. Earlier active/resume instructions below are historical
-and do not override this pause.
+Tamper run 33929247980 was rejected as required. Clean 33929246418 failed on actual
+pinned upstream WorldMock compile errors: missing GetPlayerbotsDBRevision and
+AddQueryHolderCallback overrides. Both server targets built, but the required whole build
+failed and install/SQL/runtime/unit-test execution were skipped. The standing upstream-warning
+policy worked and remains authorized. No additional warning approval is required.
+
+Evidence: `prelaunch/clean-control-pinned-unit-test-blocker.md`, Reviewer source e892081.
+The Director independently checked the saved raw build hash/diagnostics and reconciled
+GitHub completion at the exact judge SHA. Reviewer found no supported configuration fix preserving the suite. The exact unapplied
+two-method proposal is `prelaunch/worldmock-test-fixture-proposal.md` with adjacent patch
+(Reviewer source b4724d4); it requires explicit owner authorization for that test-only delta. No dependency/test
+source, judge, pin or acceptance requirement has been changed. No identical retry is justified.
+Earlier pause/active instructions below are historical; this current disposition controls.
 
 The durable user mandate is in the repository authorities and this task. Internal workers
 are approved and preferred; never wait for Tyler to create separate lane tasks.
