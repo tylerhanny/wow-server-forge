@@ -118,10 +118,13 @@ a MISS with1830 misses/0hits and successful save; no acceleration is claimed.
 
 ### Field Repairs — additional Practical
 
-**Accepted for early delivery on 2026-09-05.** Explicitly confirmed native personal-gold
+**Delivered early on 2026-09-05.** Explicitly confirmed native personal-gold
 repairs save a vendor detour while preserving real repair costs and possible partial
 results. One ordinary human operates the full request/confirm/outcome/retry/cancel loop.
 No SQL, NPC, free repair, guild spending, automatic payment or bot repair is added.
+
+[Download Field Repairs, owner guide and evidence](https://github.com/tylerhanny/wow-server-forge/releases/tag/mod-field-repairs-v1).
+The tag targets the exact accepted SHA and all three uploaded asset digests match local files.
 
 - Exact candidate `1450d92f8bcf3a8282526120753ed5f750939722`, branch `project/field-repairs`;
   tested project source is integrated unchanged. Same exact target pins/client/OS as above.

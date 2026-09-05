@@ -52,7 +52,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | READY FOR LIVE TEST at796e27e; delivered early; remains subordinate |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | READY FOR LIVE TEST at60c6a91; official33960843535 and independent review PASS; delivered early |
-| Practical | Field Repairs / mod-field-repairs | project/field-repairs / .worktrees/field-repairs | READY FOR LIVE TEST — exact1450d92; official33970121674 and independent source/artifact/one-human PASS; early packaging complete |
+| Practical | Field Repairs / mod-field-repairs | project/field-repairs / .worktrees/field-repairs | READY FOR LIVE TEST — exact1450d92; official33970121674 and independent source/artifact/one-human PASS; delivered as mod-field-repairs-v1, exact tag/asset digests verified |
 | Wildcard | Triage Night / mod-triage-night | project/triage-night / .worktrees/triage-night | BLOCKED_PUBLICATION — complete frozen localb404a1b; source/one-human/SQL review PASS; exact remote push approval requested after two automatic rejections; no gate dispatched |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
