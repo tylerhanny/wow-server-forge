@@ -20,7 +20,9 @@
     "reviewer": "Reproduced actual empty-list false positive; bounded correction checks passed; no added test or policy gate."
   },
   "independent_clean_review": {
-    "disposition": "PENDING"
+    "disposition": "FAIL",
+    "detail": "Full build, exact fixture lifecycle, integrity, install, SQL and auth dry-run passed; world initialization stalled waiting for 1000 generated bot characters. Normal cancellation preserved logs; unit execution/final integrity skipped.",
+    "evidence": "prelaunch/clean-control-playerbots-population-stall.md"
   },
   "controls": [
     {
@@ -29,10 +31,10 @@
       "branch": "project/forge-smoke-clean",
       "expected": "complete existing gate PASS with exact fixture correction evidence",
       "run_id": 33941967266,
-      "result": "RUNNING",
+      "result": "CANCELLED_STALLED_PLAYERBOTS_DEFAULT_POPULATION_INITIALIZATION",
       "url": "https://github.com/tylerhanny/wow-server-forge/actions/runs/33941967266",
-      "status": "in_progress",
-      "conclusion": "",
+      "status": "completed",
+      "conclusion": "cancelled",
       "jobs": [
         {
           "completedAt": "2026-09-05T03:29:09Z",
@@ -78,12 +80,12 @@
           "url": "https://github.com/tylerhanny/wow-server-forge/actions/runs/33941967266/job/101241044639"
         },
         {
-          "completedAt": "0001-01-01T00:00:00Z",
-          "conclusion": "",
+          "completedAt": "2026-09-05T05:20:50Z",
+          "conclusion": "cancelled",
           "databaseId": 101241058328,
           "name": "Validate project/forge-smoke-clean",
           "startedAt": "2026-09-05T03:29:11Z",
-          "status": "in_progress",
+          "status": "completed",
           "steps": [
             {
               "completedAt": "2026-09-05T03:29:12Z",
@@ -166,129 +168,219 @@
               "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T03:31:27Z",
+              "conclusion": "success",
               "name": "Configure exact target with project warnings as errors",
               "number": 11,
               "startedAt": "2026-09-05T03:30:30Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:06:54Z",
+              "conclusion": "success",
               "name": "Compile complete pinned target",
               "number": 12,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T03:31:27Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:06:55Z",
+              "conclusion": "success",
               "name": "Verify dependency integrity after fixture restoration",
               "number": 13,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:06:54Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:06:55Z",
+              "conclusion": "success",
               "name": "Install into disposable server tree",
               "number": 14,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:06:55Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:06:55Z",
+              "conclusion": "success",
               "name": "Validate module-owned SQL and repository data",
               "number": 15,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:06:55Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:07:01Z",
+              "conclusion": "success",
               "name": "Prepare disposable runtime data and MySQL",
               "number": 16,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:06:55Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:20:44Z",
+              "conclusion": "cancelled",
               "name": "Dry-run authserver and worldserver",
               "number": 17,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:07:01Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:20:44Z",
+              "conclusion": "skipped",
               "name": "Run required pinned unit tests",
               "number": 18,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:20:44Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:20:44Z",
+              "conclusion": "skipped",
               "name": "Recheck dependency integrity after install and runtime",
               "number": 19,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:20:44Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:20:46Z",
+              "conclusion": "success",
               "name": "Preserve gate logs",
               "number": 20,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:20:44Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:20:46Z",
+              "conclusion": "success",
               "name": "Publish validation evidence",
               "number": 21,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:20:46Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:20:46Z",
+              "conclusion": "success",
               "name": "Post Checkout exact pinned Playerbots",
               "number": 39,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:20:46Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:20:46Z",
+              "conclusion": "success",
               "name": "Post Checkout exact pinned AzerothCore",
               "number": 40,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:20:46Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:20:46Z",
+              "conclusion": "success",
               "name": "Post Checkout candidate as inert input",
               "number": 41,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:20:46Z",
+              "status": "completed"
             },
             {
-              "completedAt": "0001-01-01T00:00:00Z",
-              "conclusion": "",
+              "completedAt": "2026-09-05T05:20:47Z",
+              "conclusion": "success",
               "name": "Post Checkout exact judge version for evidence",
               "number": 42,
-              "startedAt": "0001-01-01T00:00:00Z",
-              "status": "pending"
+              "startedAt": "2026-09-05T05:20:46Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-09-05T05:20:47Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 43,
+              "startedAt": "2026-09-05T05:20:47Z",
+              "status": "completed"
             }
           ],
           "url": "https://github.com/tylerhanny/wow-server-forge/actions/runs/33941967266/job/101241058328"
         }
-      ]
+      ],
+      "protected_hashes": {
+        ".github/workflows/official-candidate-gate.yml": "afbcb46b6d891a5526864939979bc38ba880c297563e0c41e0432f0e45f151de",
+        "UPSTREAM_WARNING_POLICY.md": "eeaf3ac4907d2b479f3cb02a184c276b6e5609239d6241a9e222a03d130134d9",
+        "WORLDMOCK_FIXTURE_EXCEPTION.md": "81c44f7f4635531260cac483d2861a7a53a329dd23fa6c994b237922be097d8f",
+        "validation/upstream-warning-policy.json": "a63facb5291f8d48f2cd2351f891ec7ac61df14086ef2e24ce50f76b62bea822",
+        "validation/worldmock-fixture.json": "d3f8a57d2865e7e10ddbea358d9eb63651c4f47ed20cdd515aa60938c63a9e7b",
+        "validation/worldmock-fixture.patch": "ccb5de156d833f050764a086260d3603f459932872974e5a85dd36e5c8c93bc5",
+        "validation/upstream-warning-hook.cmake": "74bc5b793ddd8a84ae466ed1512b4de8b74bd82860ca3bfa0bf991fff5abcc1e",
+        "validation/verify_build.py": "d6f7b2e07bba9a30236fb7f6cd486ed40db742f0eebbe983685cfc98f5f397d7",
+        "validation/test_verify_build.py": "463e3ac808aaa376a23b94247041c32aa55326e0b47cdca269fb238fae3a0ffb"
+      },
+      "artifact_files_sha256": {
+        "authserver-dry-run.log": "dd2b8ed83ab4f1634bfeb802e059f6c04a25decced1ac717ae1aa343701a9993",
+        "build-receipt.json": "c84c487db33e5ed566e9409ce0386b21a9e3227282b6a07b6434770d0c567eef",
+        "build.log": "256040d4314bacaa6e760237bcedbf33d8b144cd9900043aeead38392bd8e2bf",
+        "candidate-sha.txt": "4cc989b0e596000d6bfb0a4dee98ce7941e175ac22b3f2c5f527378c5c88a509",
+        "compile-command-provenance.json": "de2392de8b3e9f09cd60b93d6b8f22eb9d61010e286d4cbd608b0edde90ee5e1",
+        "compile_commands.json": "6d7caaede652ff90161c2761a4efd15b2a1a3c9b8e92af05d652a5f425bd2683",
+        "configure.log": "6065b88a0b95e519c32250d54b3f71bb60a58e40c8d4cc84f1beec5c58dfaf68",
+        "dependency-pins.txt": "44fdf862130e0975859e909ddc1de3cb29587582088544594fe95ab7b0d6936a",
+        "install.log": "7f5ddb3ebdf67bc478969b9ac2352575cbf4b29e257e410d87ad43fdaf312965",
+        "judge-sha.txt": "75c577d02274b41e955e67cca4ba90838e2f6f29fa5f3795b136bd3456ab8fe4",
+        "judge-workflow.sha256": "ee07f0d03bfbfd55c249830d1a26624a51d3bafa329e3a293276bdded6323f85",
+        "ModulesLoader.cpp": "2f0069d344d846e2fd5d3782d32e9c4d9e898e0fcfe6149ea7e915651633613b",
+        "protected-validation.sha256": "35eeee3519eb62282c25244f0bee2ef612490063f6a2339ea119ccfa3a094881",
+        "runtime-data-sha.txt": "acff5f375f8dfc0086e5155e605c8f2955058774fa6cf58e8614e5820a86892a",
+        "source-identity-before.json": "7eaf31092176036002c194e6f356a22328ae43bade0a3e4debf02d4a168866bc",
+        "upstream-source-inventory.json": "7108dbe672a72d727ef3d90896b6f8f14000a17dd3e3658e90634f604a695280",
+        "upstream-warning-verdict.json": "5b834e583f0e40b6fe7b5d9e0f60c974da5b270b5edfc375754d53347541e61d",
+        "validation-selftests.log": "a3297119b4210958a8519f33644ea7adb9e44145fa85034049a2a8fd9af72ba2",
+        "worldmock-fixture.patch": "ccb5de156d833f050764a086260d3603f459932872974e5a85dd36e5c8c93bc5",
+        "worldserver-dry-run.log": "b7866a421a42539a623a73ae27fe4cc6c8459604475727655d96402b7d06ed5c"
+      },
+      "artifacts": {
+        "total_count": 1,
+        "artifacts": [
+          {
+            "id": 9963623959,
+            "node_id": "MDg6QXJ0aWZhY3Q5OTYzNjIzOTU5",
+            "name": "official-gate-87b822fd41bb6013358aa6f5e16ca252ad79761c-1",
+            "size_in_bytes": 680619,
+            "url": "https://api.github.com/repos/tylerhanny/wow-server-forge/actions/artifacts/9963623959",
+            "archive_download_url": "https://api.github.com/repos/tylerhanny/wow-server-forge/actions/artifacts/9963623959/zip",
+            "expired": false,
+            "digest": "sha256:094f89d4fa4708472cc9bb23a5a8ceef3022d1f4af90cf42d62885e4c13ad6d0",
+            "created_at": "2026-09-05T05:20:46Z",
+            "updated_at": "2026-09-05T05:20:46Z",
+            "expires_at": "2026-12-04T03:29:02Z",
+            "workflow_run": {
+              "id": 33941967266,
+              "repository_id": 1357466861,
+              "head_repository_id": 1357466861,
+              "head_branch": "main",
+              "head_sha": "04f15bd01c7d49813053a5737f9141885c000ce6"
+            }
+          }
+        ]
+      },
+      "build_exit": 0,
+      "build_log_sha256": "256040d4314bacaa6e760237bcedbf33d8b144cd9900043aeead38392bd8e2bf",
+      "dependency_identity_before_after_equal": true,
+      "test_fixture": {
+        "schema": 1,
+        "authorization": "OWNER-AUTHORIZED TEST-ONLY WORLDMOCK CORRECTION; not unchanged upstream source",
+        "core_commit": "47960183bb03b83e8943eb2f0f39c16df9710c9d",
+        "path": "src/test/mocks/WorldMock.h",
+        "original_git_blob": "23cc8998295ad6ec70fc1264e193185ed50c9322",
+        "original_sha256": "0908566bb6f2ec3875992c73e28204d4c0a1271624b2b75fa99357f30b579ce1",
+        "corrected_git_blob": "78df3ce2cfb77e03db6c78c063955ca81d4c7816",
+        "corrected_sha256": "f8bd0eb555aab8ab93369f47f662b65cb7d78b3a87800d243bbd1ed109d426e6",
+        "patch_sha256": "ccb5de156d833f050764a086260d3603f459932872974e5a85dd36e5c8c93bc5",
+        "applied": true,
+        "applied_sha256": "f8bd0eb555aab8ab93369f47f662b65cb7d78b3a87800d243bbd1ed109d426e6",
+        "compiled_fixture": "AUTHORIZED_CORRECTED_TEST_FIXTURE_NOT_UNCHANGED_UPSTREAM",
+        "build_started": true,
+        "restored_before_install": true,
+        "post_compile_sha256": "f8bd0eb555aab8ab93369f47f662b65cb7d78b3a87800d243bbd1ed109d426e6",
+        "all_other_tracked_files_unchanged": true,
+        "post_compile_exact_delta_verified": true,
+        "restored_sha256": "0908566bb6f2ec3875992c73e28204d4c0a1271624b2b75fa99357f30b579ce1"
+      },
+      "director_disposition": "FAIL: preserve actual failed stage; no clock start"
     },
     {
       "kind": "authority-tamper",

@@ -1,5 +1,31 @@
 # WoW Server Forge — Run State
 
+## Current controls after disposable Playerbots startup-fixture correction
+
+Clean `33941967266` passed full compile, authorized fixture restoration, dependency
+integrity, install, SQL, runtime preparation and authserver dry-run. Worldserver reached
+Playerbots startup, generated 100 accounts / 1000 characters, then waited for the character
+database queue. It exceeded both nominal five-minute dry-run timeouts. A normal cancellation
+preserved its artifacts; world completion, unit execution and final integrity did not pass.
+The run remains CANCELLED, with exact evidence in `prelaunch/evidence/sql-repair-controls.json`
+and `prelaunch/clean-control-playerbots-population-stall.md`.
+
+Reviewer correction `ed2357393262a97b9bf30ce3b6e6eb3378326e02`, independently approved by
+Practical and Director, is published as judge `dd283819da03e9ccbebdf9378b5fe3f1cf016380`.
+Only installed disposable `playerbots.conf` gets the supported enabled/zero-population
+fixture: Enabled=1, RandomBotAutologin=0, MinRandomBots=0, MaxRandomBots=0,
+RandomBotAccountCount=0 (AUTO), AddClassAccountPoolSize=0. Effective settings are retained
+in the existing artifact. Both five-minute limits remain, with kill-after=30s to terminate
+the observed TERM-resistant startup wait. Production/dependency source, pins, all tests,
+initialization/smoke sentinels, error checks and final integrity requirements are unchanged.
+
+Fresh clean `33947235843` and authority-tamper `33947239092` are running against the same
+frozen candidates. Current exact evidence is `prelaunch/evidence/startup-fixture-controls.json`.
+All sprint timestamps remain UNSET. Complete only these existing controls and required
+independent evidence review, then record the actual 36-hour clock and begin both selected
+projects immediately. Earlier pairs below are historical, never retroactive successes.
+
+
 ## Current controls after the empty-SQL judge correction
 
 Clean `33937007702` passed the complete pinned build, exact authorized WorldMock
@@ -54,7 +80,7 @@ below are historical and do not override the current explicit authorization.
 
 ```text
 STATUS=ARMED_NOT_STARTED
-EXECUTION_STATUS=ACTIVE_PRELAUNCH_SQL_JUDGE_REPAIR
+EXECUTION_STATUS=ACTIVE_PRELAUNCH_STARTUP_FIXTURE_REPAIR
 BLOCKER_IDENTIFIED_UTC=2026-09-05T00:47:37Z
 OWNER_EXCEPTION_RECONCILED_UTC=2026-09-04T21:16:15Z
 OWNER_EXCEPTION_POLICY=UPSTREAM_WARNING_EXCEPTION.md
@@ -62,11 +88,11 @@ STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 FIXTURE_EXCEPTION_RECONCILED_UTC=2026-09-05T01:36:02.615039Z
 STANDING_WARNING_POLICY_RECONCILED_UTC=2026-09-04T23:07:16Z
-CURRENT_POLICY_CONTROLS=RUNNING_SQL_CORRECTED_JUDGE
-REVIEWED_JUDGE_SHA=04f15bd01c7d49813053a5737f9141885c000ce6
-LAST_FULL_CLEAN_JUDGE_SHA=60953d65185a231650c8c1050dbd6a182016ef66
-CLEAN_CONTROL_RUN=33941967266
-AUTHORITY_TAMPER_RUN=33941974575
+CURRENT_POLICY_CONTROLS=RUNNING_STARTUP_FIXTURE_CORRECTED_JUDGE
+REVIEWED_JUDGE_SHA=dd283819da03e9ccbebdf9378b5fe3f1cf016380
+LAST_FULL_CLEAN_JUDGE_SHA=04f15bd01c7d49813053a5737f9141885c000ce6
+CLEAN_CONTROL_RUN=33947235843
+AUTHORITY_TAMPER_RUN=33947239092
 ALLOWLIST_TAMPER_RUN=33927019176
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
 CLEAN_CONTROL_REVIEW=PENDING_CURRENT_CONTROLS
