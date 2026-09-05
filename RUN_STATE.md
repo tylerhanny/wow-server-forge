@@ -53,7 +53,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | READY FOR LIVE TEST at796e27e; delivered early; remains subordinate |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | READY FOR LIVE TEST at60c6a91; official33960843535 and independent review PASS; delivered early |
 | Practical | Field Repairs / mod-field-repairs | project/field-repairs / .worktrees/field-repairs | BUILDING — released after durable decisions/field-repairs-selection.md and independent proposal review; cutoff22:34:32Z |
-| Wildcard | Triage Night / mod-triage-night | project/triage-night / .worktrees/triage-night | Owner-authorized; comparative creative/one-human/feasibility PASS; Wildcard chose; record completed gates then implement |
+| Wildcard | Triage Night / mod-triage-night | project/triage-night / .worktrees/triage-night | BUILDING — decisions/triage-night-selection.md and independent proposal review recorded; Wildcard chose after all gates; cutoff22:34:32Z |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
 The completed selection, creative ownership and one-human approvals are in
@@ -227,5 +227,7 @@ unless actual evidence says otherwise. No cache-key change or cache-only control
 Field Repairs implementation release: its complete comparative/one-human/pinned-feasibility
 record is decisions/field-repairs-selection.md; independent dispositions for both additional
 proposals are reviews/additional-project-proposal-review.md. Both Director and Reviewer
-passed Field Repairs at proposal level before this release. Triage Night waits only for its
-completed full tournament transcription to be durable, not a new selection or approval.
+passed Field Repairs at proposal level before this release. Triage Night now has its complete five-concept/three-shortlist tournament, independent
+Reviewer and Director dispositions, all mandatory tests and Wildcard final choice recorded
+in decisions/triage-night-selection.md before its implementation release. Both proposals
+are approved; each actual implementation still requires independent source and full gate PASS.
