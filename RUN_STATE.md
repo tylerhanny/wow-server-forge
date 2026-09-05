@@ -33,6 +33,7 @@ ADDITIONAL_PROJECT_SLOTS=FULLY_ALLOCATED
 HARD_DEADLINE_UTC=2026-09-06T18:34:32Z
 HARD_DEADLINE_AMERICA_NEW_YORK=2026-09-06T14:34:32-04:00
 HEARTBEAT_STATUS=ACTIVE
+PUBLIC_DOCUMENTATION_SYNC=BLOCKED_PENDING_DIRECT_OWNER_APPROVAL
 REVIEWED_JUDGE_SHA=dd283819da03e9ccbebdf9378b5fe3f1cf016380
 CLEAN_CONTROL_RUN=33947235843
 AUTHORITY_TAMPER_RUN=33947239092
@@ -58,6 +59,11 @@ for owner installation/playtesting feedback, and independently re-review/revalid
 fixes. A changed Triage SHA needs new public-source approval under the owner's narrow rule.
 The continuity heartbeat is ACTIVE again and stays quiet without actionable changes.
 The original START, feature freeze, handoff and protected owner window remain unchanged.
+
+Local delivery checkpoint `02a0d9a` is complete. Automatic approval review rejected its
+documentation-only push to public `main`; see `BLOCKED.md`. Final guides, review and
+evidence are available locally, while the approved exact Triage source is already public.
+Do not repeat or route around the rejected documentation push without direct approval.
 
 ## Recorded implementation transition
 

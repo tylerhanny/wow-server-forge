@@ -9,6 +9,23 @@ Implementation is active from2026-09-05T06:40:42Z under the fixed provisional de
 review; see `prelaunch/clean-control-final-pass.md`. Earlier infrastructure failures below
 remain historical and do not block the two active gameplay projects.
 
+### Final documentation publication — awaiting direct owner approval
+
+After the owner resumed, local checkpoint `02a0d9a` completed Triage's final handoff,
+guide and evidence and recorded all five modules READY FOR LIVE TEST. Automatic approval
+review rejected `git push origin main`: it considered public coordination/evidence/handoff
+document publication outside the owner's exact Triage source-SHA/project-branch approval.
+The rejected push included only eight coordination, delivery, review and evidence files,
+including the preceding safe-pause checkpoint `92571a3`; no candidate source or validation
+policy changes. No alternate publication route was attempted.
+
+Local packages, guides and completed acceptance remain available. The already-approved
+Triage public source branch remains exact and its gate/review remain PASS. This is solely
+a public documentation-sync block, not a module acceptance failure. Request approval for
+these final documents and this truthful blocker record on `main` in the existing public
+Forge repository. Do not retry or publish them elsewhere until that approval arrives.
+Continue owner-feedback support and preserve the fixed schedule while this remains pending.
+
 ### Triage Night exact candidate publication — resolved by direct owner approval
 
 At2026-09-05T14:28:20Z the owner's direct conversation instruction explicitly approved
