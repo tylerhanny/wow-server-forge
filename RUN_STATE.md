@@ -48,7 +48,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | Frozen reviewed candidate; official gate running |
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | Approved next slice; separate ownership/worktree |
-| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | BUILDING independent flagship |
+| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Frozen reviewed flagship; official gate running |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
 The completed selection, creative ownership and one-human approvals are in
@@ -101,8 +101,20 @@ proven workflow. Actual compilation, installation, runtime and final acceptance 
 Reviewer owns execution/evidence review; Practical may scout a distinct next project while
 keeping this candidate frozen and available for actual findings. Stormwright implementation continues.
 
+Stormwright candidate `a1558178ceee2b92e020928ecb8fd3f59c3c34a2` is frozen; independent
+source/one-human review passed, with source/SQL/config/tests identical to reviewed `c1f3926`.
+Official run `33952393192` uses judge `aea0f034d9e4767e96891fdf24c6260cd959218f`.
+It includes the independently approved normal-startup evidence required by Stormwright's
+OnStartup hook, on the same already-built disposable server after existing checks.
+Actual compilation/install/SQL/startup/gameplay results remain pending. No extra control
+was launched. Field Camp source checkpoint `b1b8417` awaits final review/official validation,
+subordinate to both primary modules. Every ready primary must be delivered immediately.
+
 The owner directly authorized publishing reviewed cache revision
 `03002fb6c347925e10d08b6c741194f8569174dc`; its unchanged cherry-pick is `332eece`.
 The earlier tool-approval block is resolved. Hunt Rhythm run33951428776 continues under
 its original judge; observe cache effectiveness only on the next required real-candidate run.
+An actual dispatch HTTP422 exposed invalid job-level runner.temp expressions. Independently
+reviewed correction `aea0f034` exports the identical paths through GITHUB_ENV at step scope;
+the failed request created no run. Stormwright's required run now exercises the cache.
 All acceptance checks, source/pin protections and WorldMock exception boundaries remain.

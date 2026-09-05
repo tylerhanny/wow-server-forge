@@ -66,8 +66,8 @@ another project, and BUILD must still permit it.
 | Project | Owner | Branch/worktree | Claim time | Finish-gate target | Status |
 |---|---|---|---|---|---|
 | mod-hunt-rhythm | Practical | project/hunt-rhythm / .worktrees/practical | 2026-09-05T06:40:42Z | Complete solo loop and full independent acceptance | REVIEW — frozen 4aaa3ae; official run33951428776 active |
-| mod-stormwright | Wildcard | project/stormwright / .worktrees/wildcard | 2026-09-05T06:40:42Z | Complete Solo Pilot flagship and full independent acceptance | BUILDING |
-| mod-field-camp | Practical | project/field-camp / .worktrees/field-camp | 2026-09-05 BUILD, decision in decisions/field-camp-selection.md | Complete safe solo supply-trip loop and full acceptance | CLAIMED — design/one-human review passed |
+| mod-stormwright | Wildcard | project/stormwright / .worktrees/wildcard | 2026-09-05T06:40:42Z | Complete Solo Pilot flagship and full independent acceptance | REVIEW — frozen a1558178; official run33952393192 active |
+| mod-field-camp | Practical | project/field-camp / .worktrees/field-camp | 2026-09-05 BUILD, decision in decisions/field-camp-selection.md | Complete safe solo supply-trip loop and full acceptance | REVIEW — source b1b8417; subordinate to both primaries |
 
 ## Project decision template
 

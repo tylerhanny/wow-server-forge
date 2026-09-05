@@ -6,7 +6,10 @@ Only projects that pass the mandatory finish gate in `AGENTS.md` may appear in t
 
 ## READY FOR LIVE TEST
 
-None yet. Sprint not started.
+None yet. Implementation is active; Hunt Rhythm and Stormwright are source-reviewed
+and undergoing actual official validation. Field Camp remains subordinate. Pending
+candidates are not ready. Deliver each independently accepted primary as soon as it passes;
+the latest DEADLINE.md requires handoff by2026-09-06T12:34:32Z before owner testing.
 
 For every ready project, record:
 
@@ -31,10 +34,10 @@ Exact manual in-game smoke-test checklist:
 Remaining uncertainty:
 ```
 
-## Final run totals
+## Current run totals (not final)
 
 ```text
-Attempted: 0
+Attempted: 3
 Ready for live test: 0
 Blocked: 0
 Abandoned: 0
