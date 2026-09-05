@@ -1,25 +1,44 @@
 # Field Camp validation
 
-Candidate state: source implementation complete, independently reviewed, awaiting official validation.
+Candidate state: minimal compilation repair awaiting independent review and revalidation.
 No local C++ compiler is available. No build/install/runtime/test success is claimed.
 
 | Check | Actual result |
 |---|---|
 | Director and independent one-human proposal review | PASS, before implementation; `decisions/field-camp-selection.md` |
-| Independent implementation/source review | PASS at `b1b84172b96b41e230bae5f8c6564b3195eb61a7`; later changes record review status only |
-| ONE_HUMAN_REVIEW for implementation | PASS at the same source checkpoint, complete solo path; actual execution/client evidence pending |
+| Independent implementation/source review | Historical PASS at `b1b84172b96b41e230bae5f8c6564b3195eb61a7`; compilation repair review PENDING |
+| ONE_HUMAN_REVIEW for implementation | Historical source PASS at the same checkpoint; repair disposition and actual execution/client evidence pending |
 | Exact pinned API inspection | Source-only: signatures and caveats below verified |
 | Whitespace hygiene | PASS: `git diff --cached --check` on the complete initial candidate; rechecked at commit |
-| Module discovery/configure/compile | NOT_RUN |
+| Module discovery/configure | PASS in failed candidate run `33952603462`; repaired candidate requires its own run |
+| Compilation | FAIL for `ec9eea979c9344853aaf02d46ba9f6632636254b`, run `33952603462`; repair NOT_RUN |
 | Disposable install/config loading | NOT_RUN |
 | SQL/data | Not applicable: no module SQL or authored world data |
-| Official candidate gate | NOT_RUN |
+| Official candidate gate | FAIL for `ec9eea979c9344853aaf02d46ba9f6632636254b`, run `33952603462`; repair NOT_RUN |
 | Disposable startup/module load | NOT_RUN; expected INFO marker `FIELD_CAMP_CONFIG` |
 | In-game manual checklist | PENDING LIVE/IN-GAME VALIDATION |
 
 The external Director attestation must name the frozen candidate SHA, exact judge SHA/hash,
 AC/PB pins, run/build/install/SQL/config/startup results and independent Reviewer disposition.
 A configuration marker alone is not arrival or gameplay evidence.
+
+## Actual compilation failure and minimal repair
+
+Official run `33952603462` against `ec9eea979c9344853aaf02d46ba9f6632636254b`
+failed at `FieldCamp.cpp:79:48`: `HasDelayedTeleport` is private in pinned `Player.h:3019`.
+The actual complete build log records that diagnostic at lines 245–249. Configure and
+source/compile-command provenance passed; full compile failed, and install/runtime/unit
+execution did not run. The prior source review missed member accessibility and is not
+retroactively treated as a compile pass. Failed SHA and run remain preserved.
+
+The code repair only removes that private call and retains public `IsBeingTeleported()`.
+Pinned `Player.h:2125` checks both near/far semaphores. The delayed same-map branch at
+`Player.cpp:1509–1516` sets its near semaphore before returning; the delayed far branch
+at `1574–1581` likewise sets the far semaphore. `PlayerUpdates.cpp:419–423` later consumes
+the private queued state and calls `TeleportTo`. Thus the public predicate already rejects
+those pending requests; no safety policy, dependency source, pin or judge change is needed.
+All three cached raw source hashes were rechecked against exact-pin inventory and matched.
+The repaired candidate still requires an independent exact-source review and full official run.
 
 ## Pinned API evidence and implementation choices
 
@@ -31,8 +50,9 @@ inventory from disposable control evidence; no downloaded dependency file is com
   `Player.cpp:1401–1646` validates maps, applies default movement/control/transport cleanup,
   invokes `OnPlayerBeforeTeleport`, and can return true for a delayed same-map request.
   Client acknowledgement/arrival remains separate. No privileged options are used.
-- `Player.h:2125,3019` exposes active and delayed teleport checks. `Player::CanTeleport`
-  is internal acknowledgement bookkeeping and is deliberately not used for eligibility.
+- `Player.h:2125` exposes the public near/far teleport-state check, including the delayed
+  branches described above. `HasDelayedTeleport` at 3019 is private and must not be used
+  by modules. `Player::CanTeleport` is acknowledgement bookkeeping, not eligibility.
 - `Player.cpp:2191–2195` implements `IsFalling()` with previous Z; explicit movement
   FALLING/FALLING_FAR checks also reject jumping/falling. `Unit.h` exposes flying including
   disabled gravity, hover, water, combat, vehicle and control state getters.

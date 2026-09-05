@@ -4,13 +4,20 @@ PROJECT=mod-field-camp
 OWNER=Practical
 BRANCH=project/field-camp
 CANDIDATE_SHA=UNSET
-STATE=VALIDATING
+STATE=READY_FOR_REVIEW
 CLAIMED_SCOPE=One safe same-map/exact-phase session camp, normal-player set/status/return/clear, bounded session cooldown, no SQL/payment/bot transport
-BUILD_RESULT=NOT_RUN
-OFFICIAL_GATE=NOT_RUN
-ONE_HUMAN_REVIEW=PASS for source-level complete solo path at b1b84172b96b41e230bae5f8c6564b3195eb61a7; actual execution/client evidence pending
-REVIEWER=SOURCE_REVIEW PASS at b1b84172b96b41e230bae5f8c6564b3195eb61a7; final execution evidence pending
-NEXT_ACTION=Director dispatches the frozen exact candidate through the official gate behind primary project priorities
+BUILD_RESULT=Previous ec9eea9 FAIL in run33952603462; minimal API repair NOT_RUN
+OFFICIAL_GATE=Previous ec9eea9 FAIL in run33952603462; repaired candidate NOT_RUN
+ONE_HUMAN_REVIEW=Historical source PASS at b1b84172b96b41e230bae5f8c6564b3195eb61a7; repair review and actual execution/client evidence pending
+REVIEWER=Minimal API repair awaiting independent exact-source disposition
+NEXT_ACTION=Independent review of repaired source, then Director dispatches its new exact SHA once
+
+Official run `33952603462` compiled failed candidate `ec9eea979c9344853aaf02d46ba9f6632636254b`
+far enough to diagnose private `Player::HasDelayedTeleport` access. Configure/provenance
+passed; install/runtime/unit execution did not run. The minimal correction removes only
+that redundant private call: public `IsBeingTeleported()` covers the near/far semaphores
+set by both delayed teleport branches. Dependencies, pins and official judge are unchanged.
+Failed history stays preserved; the repaired source is not yet compiled.
 
 The commit containing this handoff cannot contain its own SHA. Director records its frozen
 SHA and exact independent judge/run/evidence in a later external main attestation. This
@@ -35,8 +42,9 @@ No bot count/type is required, no bot menu/action is assumed, and regrouping/pet
 remain PENDING LIVE/IN-GAME VALIDATION. Solo delivers the full useful loop with no bots.
 Director and independent Reviewer approved the design in `decisions/field-camp-selection.md`;
 independent ONE_HUMAN_REVIEW for the implementation's complete solo source path is PASS
-at `b1b84172b96b41e230bae5f8c6564b3195eb61a7`. This final documentation update changes no
-source/configuration behavior. Actual execution and client evidence remain pending.
+at `b1b84172b96b41e230bae5f8c6564b3195eb61a7`. The later compiler exposed an inaccessible
+API; the minimal public-predicate correction is awaiting its own independent review.
+Actual execution and client evidence remain pending.
 
 Exact manual steps, not yet performed:
 

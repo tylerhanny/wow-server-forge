@@ -4,8 +4,9 @@ Save one personal outdoor camp, take a normal same-continent supply trip, and re
 a return when you are safe. Field Camp is a small travel convenience for ordinary
 players, with no gold charge, database rows, shared portals or persistent travel network.
 
-**Source-reviewed candidate awaiting official validation. Compilation, installation and disposable startup
-are NOT_RUN. Actual client arrival and gameplay are PENDING LIVE/IN-GAME VALIDATION.**
+**Compilation repair awaiting independent review and a new official run. The prior candidate
+failed compilation; installation and disposable startup did not run. Actual client arrival
+and gameplay are PENDING LIVE/IN-GAME VALIDATION.**
 
 Exact target: WoW 3.3.5a build 12340; Ubuntu Server 24.04 x86-64;
 AzerothCore `47960183bb03b83e8943eb2f0f39c16df9710c9d` and mod-playerbots
@@ -109,8 +110,9 @@ primary solo loop. There is no party-size or difficulty scaling because no encou
 Director and independent Reviewer approved this solo proposal before implementation in
 `decisions/field-camp-selection.md`. Independent Reviewer inspected the complete implementation
 at `b1b84172b96b41e230bae5f8c6564b3195eb61a7`: **SOURCE_REVIEW=PASS; ONE_HUMAN_REVIEW=PASS
-(source-level solo path)**. Later changes record only those dispositions. Official execution
-and actual client behavior remain pending; source PASS does not certify the official gate.
+(source-level solo path)**. Official run `33952603462` later exposed a private API call
+missed by source review. The repair uses the public teleport-state check; its independent
+review and new official run are pending. Source PASS does not certify compilation or arrival.
 
 Exact one-human manual smoke checklist (not yet performed):
 

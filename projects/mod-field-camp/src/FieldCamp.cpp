@@ -76,7 +76,8 @@ char const* UnsafePlayer(Player* player)
         return "leave combat first";
     if (player->IsPvP() || player->IsFFAPvP() || player->duel)
         return "PvP flags and duels must be cleared first";
-    if (player->IsBeingTeleported() || player->HasDelayedTeleport())
+    // Pinned delayed teleports set the near/far semaphore before returning too.
+    if (player->IsBeingTeleported())
         return "wait for your existing teleport to finish";
     if (player->GetTransport() || player->GetVehicle() || player->IsInFlight())
         return "leave the transport, vehicle or taxi first";
