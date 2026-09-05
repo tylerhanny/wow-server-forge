@@ -65,7 +65,7 @@ another project, and BUILD must still permit it.
 
 | Project | Owner | Branch/worktree | Claim time | Finish-gate target | Status |
 |---|---|---|---|---|---|
-| mod-hunt-rhythm | Practical | project/hunt-rhythm / .worktrees/practical | 2026-09-05T06:40:42Z | Complete solo loop and full independent acceptance | BUILDING |
+| mod-hunt-rhythm | Practical | project/hunt-rhythm / .worktrees/practical | 2026-09-05T06:40:42Z | Complete solo loop and full independent acceptance | REVIEW — frozen 4aaa3ae; official run33951428776 active |
 | mod-stormwright | Wildcard | project/stormwright / .worktrees/wildcard | 2026-09-05T06:40:42Z | Complete Solo Pilot flagship and full independent acceptance | BUILDING |
 
 ## Project decision template

@@ -42,7 +42,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Lane | Project | Branch/worktree | State |
 |---|---|---|---|
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
-| Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | BUILDING |
+| Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | Frozen reviewed candidate; official gate running |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | BUILDING independent flagship |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
@@ -75,3 +75,17 @@ remains active; report meaningful transitions/results, not unchanged compile sta
 
 Complete prelaunch evidence and native test-skip disclosure: `prelaunch/clean-control-final-pass.md`.
 This certifies only the control; Hunt Rhythm and Stormwright acceptance remains pending.
+
+Hunt Rhythm candidate `4aaa3ae188e7bcdba2569676911e14142ac378e2` is frozen and pushed.
+Independent source and one-human review passed at source checkpoint `fa31ee9713d634ed1cddde75ed62c9aa71607125`;
+the final candidate changes only review-status documentation. Official run
+`33951428776` was dispatched once on main at 2026-09-05T07:02Z, using the existing
+proven workflow. Actual compilation, installation, runtime and final acceptance remain pending.
+Reviewer owns execution/evidence review; Practical may scout a distinct next project while
+keeping this candidate frozen and available for actual findings. Stormwright implementation continues.
+
+The owner directly authorized publishing reviewed cache revision
+`03002fb6c347925e10d08b6c741194f8569174dc`; its unchanged cherry-pick is `332eece`.
+The earlier tool-approval block is resolved. Hunt Rhythm run33951428776 continues under
+its original judge; observe cache effectiveness only on the next required real-candidate run.
+All acceptance checks, source/pin protections and WorldMock exception boundaries remain.

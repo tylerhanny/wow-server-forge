@@ -2,7 +2,27 @@
 
 This file preserves honest non-harvest outcomes so blocked work does not consume the whole sprint or masquerade as complete.
 
-## Current authorized fixture correction and controls
+## Current disposition
+
+Implementation is active from2026-09-05T06:40:42Z under the fixed provisional deadline
+2026-09-06T18:34:32Z. Clean33947235843 and tamper33947239092 passed complete independent
+review; see `prelaunch/clean-control-final-pass.md`. Earlier infrastructure failures below
+remain historical and do not block the two active gameplay projects.
+
+### Optional cache publication — approval block resolved
+
+Reviewer revision `03002fb6c347925e10d08b6c741194f8569174dc` was independently
+reviewed. Automatic approval review initially rejected the exact
+`git cherry-pick` twice, including a direct retry after rereading the owner's explicit cache
+authorization and verifying the repository is PUBLIC. Its stated reason is that the attached
+authorization is not trusted for a sensitive official-workflow/cache change. Direct approval
+was requested asynchronously. The owner then directly authorized publication of this exact
+commit in the conversation, preserving all checks and exception boundaries. The unchanged
+cherry-pick succeeded as `332eece`. This approval block is resolved; no workaround was used.
+Hunt Rhythm's already-running run33951428776 continues under its original judge. Observe
+cache behavior on the next required real-candidate run; no cache-only smoke cycle is needed.
+
+## Historical authorized fixture correction and controls
 
 At 2026-09-05T01:36:02.615039Z, the Director reconciled the owner's explicit authorization in
 `WORLDMOCK_FIXTURE_EXCEPTION.md`. The exact reviewed WorldMock two-method delta may be
