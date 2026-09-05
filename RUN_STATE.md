@@ -35,7 +35,7 @@ CLEAN_CONTROL_RUN=33947235843
 AUTHORITY_TAMPER_RUN=33947239092
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
 CLEAN_CONTROL_REVIEW=PASS_COMPLETE_EXISTING_GATE
-VALIDATION_STATUS=THREE_ACCEPTED_ADDITIONAL_CANDIDATES_REQUIRE_OWN_FULL_GATES
+VALIDATION_STATUS=FOUR_ACCEPTED_TRIAGE_LOCAL_COMPLETE_AWAITING_PUBLICATION_AND_OWN_GATE
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 ```
@@ -52,8 +52,8 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | READY FOR LIVE TEST at796e27e; delivered early; remains subordinate |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | READY FOR LIVE TEST at60c6a91; official33960843535 and independent review PASS; delivered early |
-| Practical | Field Repairs / mod-field-repairs | project/field-repairs / .worktrees/field-repairs | VALIDATING — frozen1450d92; independent source/one-human PASS; official33970121674 under judge8d21e8b; no acceptance yet |
-| Wildcard | Triage Night / mod-triage-night | project/triage-night / .worktrees/triage-night | REVIEW — local source checkpointfb5abd8; independent actual source review and final documentation in progress; cutoff22:34:32Z |
+| Practical | Field Repairs / mod-field-repairs | project/field-repairs / .worktrees/field-repairs | READY FOR LIVE TEST — exact1450d92; official33970121674 and independent source/artifact/one-human PASS; early packaging complete |
+| Wildcard | Triage Night / mod-triage-night | project/triage-night / .worktrees/triage-night | BLOCKED_PUBLICATION — complete frozen localb404a1b; source/one-human/SQL review PASS; exact remote push approval requested after two automatic rejections; no gate dispatched |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
 The completed selection, creative ownership and one-human approvals are in

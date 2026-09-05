@@ -9,6 +9,32 @@ Implementation is active from2026-09-05T06:40:42Z under the fixed provisional de
 review; see `prelaunch/clean-control-final-pass.md`. Earlier infrastructure failures below
 remain historical and do not block the two active gameplay projects.
 
+### Triage Night exact candidate publication — owner reply pending
+
+Complete frozen local candidate `b404a1bd4614a8b956187f17baf585eee6d16cf6` on
+`project/triage-night` has independent source/one-human review and a separate SQL/reference
+PASS. Final review-status documentation is equivalent to reviewed source
+`e8907bd72940628148150621d7c8143624c47045`. No remote push or official run exists yet.
+
+Automatic approval review rejected `git push -u origin project/triage-night` from its
+isolated worktree. It interpreted the owner authorization as local-only and the remote as
+unverified. Director then checked the exact scope (ten project files and one handoff only),
+origin `https://github.com/tylerhanny/wow-server-forge.git`, and read-only GitHub API facts:
+authenticated login `tylerhanny`; repository `tylerhanny/wow-server-forge`, public, main,
+with admin/maintain/push/pull permissions. One retry of the identical action cited those
+facts and the direct owner requirement for this exact candidate's official gate.
+
+The retry was rejected too: the reviewer treated Director/tool evidence as untrusted and
+said publication remained unapproved sensitive egress. No alternate route or bypass was
+attempted. Root requested direct approval for this exact SHA/branch/destination in the
+conversation while continuing Field Repairs acceptance/delivery. Wait for that reply
+before dependent publication. This is distinct from the already-resolved branch/worktree
+creation block; do not recreate local implementation or seek its approval again.
+
+The complete candidate reached its source cutoff early. Its acceptance still requires
+publication, its own full official gate and independent artifact review. All original
+deadlines, one-human/creative rules, pins, warnings and live-server isolation remain.
+
 ### Optional cache publication — approval block resolved
 
 Reviewer revision `03002fb6c347925e10d08b6c741194f8569174dc` was independently

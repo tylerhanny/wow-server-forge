@@ -1,0 +1,7 @@
+# Field Repairs: explicit paid personal repairs, never automatic.
+# Commands: .fieldrepair status | request | confirm | cancel
+# Consent expires after 30 seconds. Successful config reload clears all consent.
+FieldRepairs.Enable = 1
+
+# Native Rate.RepairCost applies without vendor reputation discounts.
+# No module surcharge, free-repair switch, guild funds or SQL is used.

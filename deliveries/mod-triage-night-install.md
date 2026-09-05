@@ -174,7 +174,7 @@ shift, normal casts and channels are allowed. Remain within20horizontal yards an
 yards of the start, on the same map and exact phase, with normal footing.
 
 Three named patients and their ordinary target/friendly-nameplate health displays show
-competing health states. Read incoming-injury warnings, choose spells/targets, and spend
+competing health states, starting at12000health each. Read incoming-injury warnings, choose spells/targets, and spend
 stabilization when its six seconds buy time. Health persists between rounds; the module
 never refills player mana or health. After a success/failure result, recover through
 normal gameplay and retry. There is no extra operator, helper healer, custom UI or addon.
@@ -218,6 +218,13 @@ Optional bots do not heal patients or operate commands. Other healer classes, gr
 healing and bot assistance are outside the qualifying claim. Report patient number,
 round/preset, initial/final health and mana, spell/action, candidate SHA and relevant logs
 for a mismatch. No second human or GM intervention is needed to complete the primary test.
+
+For a short owner-recorded demonstration, the source package's `docs/DEMO.md` gives a
+90-second sequence: start and frame the numbered patients, show direct healing and mana
+use during round1, retain wounds through the55–65second recovery break, then show round2's
+first warning/impact around73/77seconds and spend one stabilization while healing another
+patient. Finish with status and continue the full shift or stop cleanly. Timing assumes
+ordinary server updates. This is a future capture plan, not an executed gameplay test.
 
 ## Disable and full removal
 

@@ -116,15 +116,50 @@ warnings remain visible; project warnings remain fatal. Native units:5909 passed
 5486 native conditional skips, one pre-existing disabled test. Current cache restore was
 a MISS with1830 misses/0hits and successful save; no acceleration is claimed.
 
-All three current modules are independently accepted and delivered early. The fixed
-handoff remains2026-09-06T12:34:32Z, followed by the protected six-hour owner feedback window.
+### Field Repairs — additional Practical
+
+**Accepted for early delivery on 2026-09-05.** Explicitly confirmed native personal-gold
+repairs save a vendor detour while preserving real repair costs and possible partial
+results. One ordinary human operates the full request/confirm/outcome/retry/cancel loop.
+No SQL, NPC, free repair, guild spending, automatic payment or bot repair is added.
+
+- Exact candidate `1450d92f8bcf3a8282526120753ed5f750939722`, branch `project/field-repairs`;
+  tested project source is integrated unchanged. Same exact target pins/client/OS as above.
+- [Official run33970121674](https://github.com/tylerhanny/wow-server-forge/actions/runs/33970121674)
+  PASS under judge `8d21e8b1b4920b4966760ba621751725bd411444`: full configure/build/install,
+  config/SQL applicability, auth/world dry-runs, native units and final source integrity.
+- Actual marker `FIELD_REPAIRS_CONFIG reload=0 enabled=1 consent=30`; Errors.log empty.
+  Independent source, actual artifact and **ONE_HUMAN_REVIEW=PASS**.
+- [Final attestation](handoffs/mod-field-repairs.md),
+  [independent review](reviews/mod-field-repairs-final-review.md),
+  [evidence](deliveries/evidence/mod-field-repairs-33970121674.json), and
+  [exact install/config/rollback and one-human guide](deliveries/mod-field-repairs-install.md).
+- Source ZIP `mod-field-repairs-1450d92.zip`, six exact Git-blob files; SHA256
+  `6e266bc2dd1becb1ae0b036e521f4f3d31d5e8a13a8c8fb862bb4732215372d3`.
+
+Use `.fieldrepair status`, request, confirm within 30 seconds and compare real gear/gold.
+Cancel or let consent expire without payment; earn gold normally and retry partial/no-fund
+results. Safely outdoors, alive, out of combat/PvP and without active casts or travel/control
+restrictions; the guide lists the exact conditions. No second human/client/account needed.
+
+**PENDING LIVE/IN-GAME VALIDATION:** native pricing/partial ordering, actual durability/stat
+updates, consent usability, other modules' callbacks and bot-party coexistence. No quote,
+atomic repair-all transaction or refund is promised. Disabling/removing does not reverse
+completed native repairs/payments. Four upstream warnings remain visible and project
+warnings remain fatal. Native units: 5909 pass / 5486 native skip / one pre-existing disabled.
+The existing cache produced 1826 preprocessed hits / 4 misses and a 7m02s full compile;
+all current-candidate validation still ran. No per-warning cache-hit attribution is claimed.
+
+Four modules are independently accepted. Triage Night is complete and source-reviewed
+locally but awaits exact publication approval and its own official gate; it is not READY.
+The fixed handoff remains2026-09-06T12:34:32Z, followed by the protected six-hour owner window.
 
 ## Current run totals (not final)
 
 ```text
-Attempted: 3
-Ready for live test: 3
-Blocked: 0
+Attempted: 5
+Ready for live test: 4
+Blocked: 1 (Triage Night publication approval; complete local source)
 Abandoned: 0
 Research only: 0
 Wildcard-ready projects: 1

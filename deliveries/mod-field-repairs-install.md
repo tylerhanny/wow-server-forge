@@ -1,10 +1,12 @@
 # Field Repairs — owner installation, testing and rollback
 
-**PREPARED, NOT RELEASED.** Frozen candidate
-`1450d92f8bcf3a8282526120753ed5f750939722` has passed independent source and one-human
-implementation review. Official run `33970121674` under judge
-`8d21e8b1b4920b4966760ba621751725bd411444` is in progress. Compilation, installation
-and startup remain unproven; release requires complete independently reviewed evidence.
+**READY FOR LIVE TEST — accepted for early delivery on 2026-09-05.** Frozen candidate
+`1450d92f8bcf3a8282526120753ed5f750939722` passed full official run
+[33970121674](https://github.com/tylerhanny/wow-server-forge/actions/runs/33970121674)
+under judge `8d21e8b1b4920b4966760ba621751725bd411444`, plus independent source,
+one-human and actual-artifact review. Build/install/config, both server dry-runs, native
+units and final source integrity passed. Actual player repairs remain PENDING LIVE/IN-GAME
+VALIDATION. This external final status supersedes the frozen source's truthful pre-run status.
 No commands in this guide have been executed by the Forge against an owner's server.
 
 Field Repairs provides explicitly confirmed paid repair of the human character's
@@ -22,15 +24,14 @@ Stock WoW3.3.5a build12340; Ubuntu24.04x86-64; AzerothCore
 Use an already working disposable checkout at these pins, ordinary build dependencies,
 local disposable databases and extracted stock-client data. The Forge does not operate
 the live installation. Keep the previous working binaries/configuration and normal backup.
-Replace the path placeholders. The UNSET candidate deliberately stops this draft.
+Replace the path placeholders. Use the exact accepted candidate below.
 
 ```bash
 set -euo pipefail
 AC=/absolute/path/to/disposable/azerothcore
 FORGE=/absolute/path/to/wow-server-forge
 WORK=/absolute/path/to/new/field-repairs-test
-CANDIDATE=UNSET
-test "$CANDIDATE" != UNSET
+CANDIDATE=1450d92f8bcf3a8282526120753ed5f750939722
 PB="$AC/modules/mod-playerbots"
 AC_PIN=47960183bb03b83e8943eb2f0f39c16df9710c9d
 PB_PIN=2f7d9f774987d0157c6a0d0cc08c40bec3db3945
@@ -119,6 +120,8 @@ The module does not promise a binding price quote. Current native costs apply at
 Report actual wallet/durability outcomes, including zero or partial repair. Fully repaired
 gear incurs no charge. Unaffordable items remain damaged; earn gold through normal solo
 play, then request and confirm again. Native repair order and affordability remain in use.
+The current `Rate.RepairCost` and native one-copper minimum apply. Bank, buyback and key
+slots are excluded. Unsafe item/pricing data refuses the entire service before payment.
 
 Eligibility requires alive/in-world, outdoors on a normal-world/non-instance map,
 out-of-combat/non-PvP/non-duel state, with no trade, taxi, vehicle, transport, pending
@@ -144,9 +147,10 @@ Exact manual sequence, **PENDING LIVE/IN-GAME VALIDATION**:
    remaining counts and any restored broken-item stats. This is the success/outcome loop.
 4. Repeat on repaired gear: no charge. When naturally low on gold, verify honest no-repair
    or partial repair. Earn money normally and retry; no refund or atomic-repair promise.
-5. Request then let consent expire. Repeat request before ordinary combat, map travel,
-   death or logout; confirmation should reject or require fresh consent as documented.
-   Recover normally and retry. Check that no delayed automatic charge occurs.
+5. Request then let consent expire. Request again and confirm while ordinary combat or
+   a cast is active: refusal consumes consent without payment. Merely entering and leaving
+   combat before an unexpired confirmation does not cancel consent. Map change, death or
+   logout clears consent; recover normally and request again. No delayed charge occurs.
 6. Cancel to exit. Test owner-admin disable/reload/re-enable in disposable staging and
    require a fresh request. Optionally repeat with normal bots; only the human is serviced.
 
@@ -163,7 +167,8 @@ the ordinary player's required loop.
 
 For full removal, stop the disposable server normally. Archive this module and its config,
 move only `mod-field-repairs` out of the AC modules directory, then reconfigure/rebuild
-and install the server without it. Keep Playerbots and unrelated modules intact. Use the
+and install the server without it into a new separate prefix; retire the old module config.
+Keep Playerbots and unrelated modules intact. Use the
 owner's prior working binaries/configuration if reverting an installation failure.
 
 There is no module SQL or persistent record to delete. Actual native repairs and spent
