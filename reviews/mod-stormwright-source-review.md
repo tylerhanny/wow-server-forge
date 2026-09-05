@@ -15,7 +15,7 @@ acceptance are pending. No gameplay, navigation, client or bot behavior was run.
 The implementation, rules/checks, SQL/config, reference record, README and handoff
 were inspected. The diff from launch base `72ce4e0` contains only the single module
 and matching handoff; `git diff --check` passed. There is no candidate CMake hook,
-production dependency edit, client change, permanent stock spawn edit or runtime API.
+production dependency edit, client change, permanent stock spawn edit or external API requirement.
 The target remains exact AC `47960183bb03b83e8943eb2f0f39c16df9710c9d` and PB
 `2f7d9f774987d0157c6a0d0cc08c40bec3db3945`.
 
