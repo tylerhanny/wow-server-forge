@@ -1,13 +1,13 @@
 # Field Camp validation
 
-Candidate state: minimal compilation repair awaiting independent review and revalidation.
+Candidate state: independently reviewed minimal compilation repair awaiting revalidation.
 No local C++ compiler is available. No build/install/runtime/test success is claimed.
 
 | Check | Actual result |
 |---|---|
 | Director and independent one-human proposal review | PASS, before implementation; `decisions/field-camp-selection.md` |
-| Independent implementation/source review | Historical PASS at `b1b84172b96b41e230bae5f8c6564b3195eb61a7`; compilation repair review PENDING |
-| ONE_HUMAN_REVIEW for implementation | Historical source PASS at the same checkpoint; repair disposition and actual execution/client evidence pending |
+| Independent implementation/source review | PASS for exact repair `6ce52323b96be5dba4f4dfea5668032d17acdc3a`; final changes record review/source evidence only |
+| ONE_HUMAN_REVIEW for implementation | PASS at the same repair checkpoint for the complete solo source path; actual execution/client evidence pending |
 | Exact pinned API inspection | Source-only: signatures and caveats below verified |
 | Whitespace hygiene | PASS: `git diff --cached --check` on the complete initial candidate; rechecked at commit |
 | Module discovery/configure | PASS in failed candidate run `33952603462`; repaired candidate requires its own run |
@@ -38,7 +38,17 @@ at `1574–1581` likewise sets the far semaphore. `PlayerUpdates.cpp:419–423` 
 the private queued state and calls `TeleportTo`. Thus the public predicate already rejects
 those pending requests; no safety policy, dependency source, pin or judge change is needed.
 All three cached raw source hashes were rechecked against exact-pin inventory and matched.
-The repaired candidate still requires an independent exact-source review and full official run.
+Independent Reviewer approved the exact repair `6ce52323b96be5dba4f4dfea5668032d17acdc3a`
+for source correctness and the unchanged complete one-human loop. A full official run is
+still required for the frozen final candidate.
+
+The bounded dispatch check also verified `Opcodes.cpp:280`: `CMSG_MESSAGECHAT` is
+`PROCESS_THREADUNSAFE`; `WorldSession.cpp:65–106` excludes it from the map packet filter
+and routes it through the world session filter. `ChatHandler.cpp:307` invokes the command
+parser. There is no callback or command dispatch between the inline private-flag and
+near/far semaphore assignments in either delayed branch. The two newly read public source
+files match pinned inventory: Opcodes Git blob `c2d99161e6220ac6012e4a63cf293278a22660a5`,
+ChatHandler Git blob `e5381d13b68a4ddc157f1d70a5eefbf310b04fdb`.
 
 ## Pinned API evidence and implementation choices
 

@@ -4,15 +4,15 @@ PROJECT=mod-field-camp
 OWNER=Practical
 BRANCH=project/field-camp
 CANDIDATE_SHA=UNSET
-STATE=READY_FOR_REVIEW
+STATE=VALIDATING
 CLAIMED_SCOPE=One safe same-map/exact-phase session camp, normal-player set/status/return/clear, bounded session cooldown, no SQL/payment/bot transport
 BUILD_RESULT=Previous ec9eea9 FAIL in run33952603462; minimal API repair NOT_RUN
 OFFICIAL_GATE=Previous ec9eea9 FAIL in run33952603462; repaired candidate NOT_RUN
-ONE_HUMAN_REVIEW=Historical source PASS at b1b84172b96b41e230bae5f8c6564b3195eb61a7; repair review and actual execution/client evidence pending
-REVIEWER=Minimal API repair awaiting independent exact-source disposition
-NEXT_ACTION=Independent review of repaired source, then Director dispatches its new exact SHA once
+ONE_HUMAN_REVIEW=PASS for repaired complete solo source path at6ce52323b96be5dba4f4dfea5668032d17acdc3a; actual execution/client evidence pending
+REVIEWER=SOURCE_REVIEW PASS for exact repair6ce52323b96be5dba4f4dfea5668032d17acdc3a; new official execution pending
+NEXT_ACTION=Dispatch one full official gate for the frozen final repaired candidate
 
-Official run `33952603462` compiled failed candidate `ec9eea979c9344853aaf02d46ba9f6632636254b`
+Official run `33952603462` attempted to compile candidate `ec9eea979c9344853aaf02d46ba9f6632636254b`
 far enough to diagnose private `Player::HasDelayedTeleport` access. Configure/provenance
 passed; install/runtime/unit execution did not run. The minimal correction removes only
 that redundant private call: public `IsBeingTeleported()` covers the near/far semaphores
@@ -43,7 +43,9 @@ remain PENDING LIVE/IN-GAME VALIDATION. Solo delivers the full useful loop with 
 Director and independent Reviewer approved the design in `decisions/field-camp-selection.md`;
 independent ONE_HUMAN_REVIEW for the implementation's complete solo source path is PASS
 at `b1b84172b96b41e230bae5f8c6564b3195eb61a7`. The later compiler exposed an inaccessible
-API; the minimal public-predicate correction is awaiting its own independent review.
+API; independent Reviewer approved the minimal public-predicate correction at
+`6ce52323b96be5dba4f4dfea5668032d17acdc3a` with SOURCE_REVIEW=PASS and ONE_HUMAN_REVIEW=PASS
+for the complete solo source path. Final changes record only review/source evidence.
 Actual execution and client evidence remain pending.
 
 Exact manual steps, not yet performed:

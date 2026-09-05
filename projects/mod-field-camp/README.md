@@ -4,7 +4,7 @@ Save one personal outdoor camp, take a normal same-continent supply trip, and re
 a return when you are safe. Field Camp is a small travel convenience for ordinary
 players, with no gold charge, database rows, shared portals or persistent travel network.
 
-**Compilation repair awaiting independent review and a new official run. The prior candidate
+**Source-reviewed compilation repair awaiting a new official run. The prior candidate
 failed compilation; installation and disposable startup did not run. Actual client arrival
 and gameplay are PENDING LIVE/IN-GAME VALIDATION.**
 
@@ -111,8 +111,11 @@ Director and independent Reviewer approved this solo proposal before implementat
 `decisions/field-camp-selection.md`. Independent Reviewer inspected the complete implementation
 at `b1b84172b96b41e230bae5f8c6564b3195eb61a7`: **SOURCE_REVIEW=PASS; ONE_HUMAN_REVIEW=PASS
 (source-level solo path)**. Official run `33952603462` later exposed a private API call
-missed by source review. The repair uses the public teleport-state check; its independent
-review and new official run are pending. Source PASS does not certify compilation or arrival.
+missed by source review. The repair uses the public teleport-state check; independent
+Reviewer approved `6ce52323b96be5dba4f4dfea5668032d17acdc3a` with **SOURCE_REVIEW=PASS;
+ONE_HUMAN_REVIEW=PASS (source-level solo path)**. Final changes record only this review and
+supporting source evidence. The new official run is pending; source PASS does not certify
+compilation or arrival.
 
 Exact one-human manual smoke checklist (not yet performed):
 
