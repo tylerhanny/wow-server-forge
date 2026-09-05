@@ -48,6 +48,9 @@ test; no Forge test was removed or weakened. See final evidence for exact identi
 loop: set a camp, travel normally to a same-map town, sell/repair, step outdoors and return
 with a bounded cooldown. It requires no SQL, payment, custom NPC or companion.
 
+[Download Field Camp, owner guide and evidence](https://github.com/tylerhanny/wow-server-forge/releases/tag/mod-field-camp-v1).
+The release targets the exact accepted SHA; its uploaded source digest matches the package below.
+
 - Exact candidate `796e27e9cfcd05f4c4e4c627e26834ea7be72155`, branch `project/field-camp`;
   tested project source is integrated unchanged on main. Same exact AC/Playerbots/client/
   Ubuntu target as Hunt Rhythm above.

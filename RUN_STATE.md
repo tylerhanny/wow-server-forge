@@ -134,6 +134,8 @@ Final docs-only freeze `796e27e9cfcd05f4c4e4c627e26834ea7be72155` is **READY FOR
 official run `33955341216`, judge `1ea9a4b3671c763b286f681e983e9499c7cb35af`, completed
 SUCCESS at 2026-09-05T10:07:34Z. Independent source/one-human/actual-artifact review PASS.
 The exact source is integrated unchanged and its ZIP/owner guide were delivered early.
+GitHub release `mod-field-camp-v1` targets that exact candidate and provides the module,
+guide and evidence; the uploaded ZIP digest matches the verified package.
 Final attestation/evidence: `handoffs/mod-field-camp.md` and
 `deliveries/evidence/mod-field-camp-33955341216.json`. The old failure/package remain
 historical and unreleased. Field Camp remains subordinate to both primaries; actual client
