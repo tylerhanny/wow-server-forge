@@ -124,6 +124,10 @@ jobs:
     env:
       CANDIDATE_BRANCH: ${{ matrix.branch }}
       CANDIDATE_SHA: ${{ matrix.sha }}
+      # Every step, including the protected build wrapper, uses the same cache.
+      CCACHE_DIR: ${{ github.workspace }}/.forge-ccache
+      CCACHE_TEMPDIR: ${{ runner.temp }}/forge-ccache-tmp
+      CCACHE_CONFIGPATH: ${{ runner.temp }}/forge-ccache.conf
     steps:
       - name: Checkout exact judge version for evidence
         uses: actions/checkout@v4
@@ -296,15 +300,38 @@ jobs:
           python3 -B judge/validation/test_verify_build.py --integration 2>&1 | tee evidence/validation-selftests.log
           python3 -B judge/validation/verify_build.py identity --ac ac --evidence evidence --project "$PROJECT"
 
+      - name: Restore compiler outputs for the same protected build policy
+        uses: actions/cache@v4
+        with:
+          # Only compiler outputs/diagnostics are persisted. Transient preprocessed
+          # source, the corrected WorldMock header and build/source trees are excluded.
+          path: ${{ env.CCACHE_DIR }}
+          key: forge-ccache-v1-ubuntu24-${{ runner.arch }}-${{ env.AC_COMMIT }}-${{ env.PLAYERBOTS_COMMIT }}-${{ hashFiles('judge/validation/**', 'judge/.github/workflows/official-candidate-gate.yml') }}-${{ github.run_id }}-${{ matrix.sha }}
+          restore-keys: |
+            forge-ccache-v1-ubuntu24-${{ runner.arch }}-${{ env.AC_COMMIT }}-${{ env.PLAYERBOTS_COMMIT }}-${{ hashFiles('judge/validation/**', 'judge/.github/workflows/official-candidate-gate.yml') }}-
+
       - name: Configure exact target with project warnings as errors
         shell: bash
         env:
           PROJECT: ${{ steps.scope.outputs.project }}
         run: |
           set -euo pipefail
-          export CCACHE_DIR="$GITHUB_WORKSPACE/.ccache"
-          mkdir -p "$CCACHE_DIR"
-          ccache --max-size=1500M
+          mkdir -p "$CCACHE_DIR" "$CCACHE_TEMPDIR"
+          # Hash compiler bytes and actual preprocessing output; retain original
+          # source compilation on misses so warning/macro diagnostics are unchanged.
+          # The config is outside the restored cache and overrides system defaults.
+          cat > "$CCACHE_CONFIGPATH" <<'CONF'
+          max_size = 1500M
+          compiler_check = content
+          direct_mode = false
+          run_second_cpp = true
+          sloppiness =
+          base_dir =
+          debug = false
+          remote_storage =
+          CONF
+          ccache --show-config | tee evidence/ccache-config.log
+          ccache --zero-stats
 
           cmake -S ac -B ac/build \
             -DCMAKE_C_COMPILER=clang-18 \
@@ -348,6 +375,7 @@ jobs:
           # inside this build wrapper before the existing install/runtime stages.
           sha256sum -c evidence/protected-validation.sha256
           python3 -B judge/validation/verify_build.py build --ac ac --evidence evidence --project "$PROJECT"
+          ccache --show-stats | tee evidence/ccache-stats.log
 
       - name: Verify dependency integrity after fixture restoration
         shell: bash
