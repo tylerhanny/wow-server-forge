@@ -3,6 +3,11 @@
 Reviewed checkpoint: `c1f3926dcc8988d6f1461affeee0c817c97f911d`.
 Initial source checkpoint: `d41563ef97f2c09d851785542cddec186758194a`.
 
+Final frozen candidate: `a1558178ceee2b92e020928ecb8fd3f59c3c34a2`.
+Independent comparison found only README, validation and handoff review-status
+changes; source, SQL, configuration and tests are byte-identical. The dispositions
+below also apply to that final candidate, whose actual execution remains pending.
+
 **SOURCE_REVIEW=PASS. ONE_HUMAN_REVIEW=PASS — implementation source only.**
 Compilation, installed data, normal server startup and final exact-candidate
 acceptance are pending. No gameplay, navigation, client or bot behavior was run.
