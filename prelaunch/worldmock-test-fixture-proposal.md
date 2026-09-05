@@ -82,3 +82,13 @@ reviewed under that explicit exception. Restoring the original header after comp
 must never be used to hide the fact that the tested fixture was modified. This proposal
 adds no prelaunch gate. Until the owner grants the precise test-fixture exception, leave
 the patch unapplied and do not repeat the known-failing full run.
+
+## Independent proposal review
+
+Practical independently APPROVED the exact proposal at Reviewer commit
+`b4724d425e9710a5a96e15bf155ec1d1a8556d0d`: both method signatures and the conditional
+Playerbots guard match pinned IWorld; its QueryHolder include supplies the callback type.
+The diff adds only the two GoogleMock overrides, with no runtime source, test assertion,
+test selection or fabricated return change. Director inspected the same exact patch and
+pinned headers and concurs. This is source review only, not a compilation or unit-test pass.
+The patch remains unapplied pending explicit owner authorization.
