@@ -2,6 +2,11 @@
 
 Reviewed checkpoint: `b1b84172b96b41e230bae5f8c6564b3195eb61a7`.
 
+Final frozen candidate: `ec9eea979c9344853aaf02d46ba9f6632636254b`.
+Independent comparison found only README, validation and handoff review-status
+changes; source and configuration are byte-identical. The dispositions below
+also apply to the final candidate; official run `33952603462` remains pending.
+
 **SOURCE_REVIEW=PASS. ONE_HUMAN_REVIEW=PASS — implementation source only.**
 All five project/handoff files were read. No actionable remaining source finding
 was identified. `git diff --check` passed. Compilation, installation, startup,
