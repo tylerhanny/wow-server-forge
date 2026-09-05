@@ -86,6 +86,9 @@ routes tracking lightning into capacitors, dodges the locked strike, and chooses
 ward repair or an offensive discharge and armor opening. Three presets change the cadence.
 Optional ordinary bots fight; the human operates every custom mechanic.
 
+[Download Stormwright, owner guide and evidence](https://github.com/tylerhanny/wow-server-forge/releases/tag/mod-stormwright-v1).
+The tag targets exact60c6a91 and all uploaded asset digests match the reviewed local files.
+
 - Exact candidate `60c6a91925eed80049bec47994f87df739ac7725`, branch `project/stormwright`;
   its tested project tree is integrated unchanged. Same exact target pins/client/OS as above.
 - [Official run33960843535](https://github.com/tylerhanny/wow-server-forge/actions/runs/33960843535)

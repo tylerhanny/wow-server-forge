@@ -94,11 +94,14 @@ disposable evidence. One living level80 human and one stock client can start Nor
 Solo Pilot without bots, bait/evade lightning, operate all rods, win/fail, inspect the
 outcome, retry and abort. No second human/client/operated account is required.
 Solo retains the complete mechanic, one pursuing add maximum and personal healing.
+Each missed catch removes one ward point; Ground restores one. Three cumulative misses
+with recovery need not fail. The no-recovery condition clarifies the frozen README smoke step.
 
-Manual primary test: walk to Nix; start Normal Solo Pilot; see the12-second first warning;
+Manual primary test: walk to Nix; start Normal Solo Pilot; the first mark arrives12seconds
+after start, then Normal gives4seconds tracking and2seconds locked escape;
 route tracking into a ready rod and dodge after lock; Discharge for boss damage, armor
 opening and nearby owned-add elimination; catch again and Ground while injured; miss
-and repair ward; win, observe one result/cleanup and retry. Then fail by three misses,
+and repair ward; win, observe one result/cleanup and retry. Then fail by three misses without Ground recovery (ward reaches zero),
 exit and abort; test death/logout and12-minute timeout, cleanup and fresh retry. Try
 higher presets after the base loop. The linked guide provides exact ordered steps.
 

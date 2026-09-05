@@ -207,8 +207,8 @@ human. Lead a tracking spark into a ready capacitor; when it locks, move away. C
 the charged large crystal: Ground heals the pilot and repairs ward; Discharge removes
 6% boss maximum health, opens armor for eight seconds, and kills owned pursuers within
 eight yards. Spent small crystals cool, forcing new routes. Fight normally between
-marks. Three misses, pilot failure/exit/abort, missing actors/evade or twelve minutes
-end the attempt; boss death while the pilot remains valid wins. Read the result, recover
+marks. Each missed catch removes one of three ward points; Ground restores one. Ward
+reaching zero, pilot failure/exit/abort, missing actors/evade or twelve minutes end the attempt; boss death while the pilot remains valid wins. Read the result, recover
 normally, return to Nix, and retry. The latest result is in memory/chat/log, not persistent
 economy or fair rankings. One public attempt runs at a time.
 
@@ -255,15 +255,16 @@ installation remains subject to the manual-updater distinction above.
 
 1. Walk in and out normally; inspect nearby racing/quest actors, terrain, water,
    collision and LOS. Confirm Nix and all three capacitor locations are reachable.
-2. Start **Normal Solo Pilot, no bots**, using ordinary gossip. Read the first 12-second
-   warning and see the moving spark, fixed enlarged lock, impact and charge state.
+2. Start **Normal Solo Pilot, no bots**, using ordinary gossip. The first mark arrives
+   12 seconds after starting; Normal then gives 4 seconds of tracking and 2 seconds of
+   locked escape. Observe the moving spark, fixed enlarged lock, impact and charge state.
 3. Catch, dodge, and Discharge in combat. Lure the pursuer into the eight-yard blast;
    verify its death, boss health loss and eight-second normal-damage window.
 4. While injured at full ward, catch and Ground; verify healing. At full health/full
    ward, Ground must preserve the charge. Miss once, then Ground to repair ward.
 5. Win a full solo attempt; verify one result, cleanup, ordinary return/recovery, and
    a fresh retry with no carried ward/charge. Record class, gear, time and deaths.
-6. Fail by three misses, exit and abort; test death/logout/reconnect and eventual
+6. Fail by three misses without Ground recovery (ward reaches zero), exit and abort; test death/logout/reconnect and eventual
    twelve-minute timeout. Verify cleanup, no duplicate result or dead-pilot recovery.
 7. Repeat a higher preset; then add normally controllable bots if desired. The human
    must still handle every custom mechanic. Repeat no-bots afterward. Report bots'

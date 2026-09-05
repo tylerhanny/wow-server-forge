@@ -23,7 +23,7 @@ CANDIDATE_HANDOFF_AMERICA_NEW_YORK=2026-09-06T08:34:32-04:00
 OWNER_TESTING_START_UTC=2026-09-06T12:34:32Z
 OWNER_TESTING_END_UTC=2026-09-06T18:34:32Z
 PRIMARY_MODULES_INDEPENDENTLY_ACCEPTED=YES
-ADDITIONAL_PROJECT_WINDOW_REVIEW=NOT_GRANTED
+ADDITIONAL_PROJECT_WINDOW_REVIEW=PASS
 HARD_DEADLINE_UTC=2026-09-06T18:34:32Z
 HARD_DEADLINE_AMERICA_NEW_YORK=2026-09-06T14:34:32-04:00
 HEARTBEAT_STATUS=ACTIVE
@@ -48,7 +48,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | READY FOR LIVE TEST at796e27e; delivered early; remains subordinate |
-| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | READY FOR LIVE TEST at60c6a91; official33960843535 and independent review PASS; delivering early |
+| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | READY FOR LIVE TEST at60c6a91; official33960843535 and independent review PASS; delivered early |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
 The completed selection, creative ownership and one-human approvals are in
@@ -56,6 +56,15 @@ The completed selection, creative ownership and one-human approvals are in
 `prelaunch/reviewer-one-human-dispositions.md`. No new tournament is needed for these scopes.
 
 ## Fixed calendar and acceptance
+
+All three current candidates are independently accepted and delivered as separate releases.
+Stormwright release `mod-stormwright-v1` targets exact60c6a91; its uploaded source ZIP,
+guide and evidence digests match local files. `decisions/post-primary-window.md` records
+the bounded Director window-safety PASS: at most one further Practical and one Wildcard
+selection, mandatory independent proposal/one-human/creative gates before code, and an
+earlier22:34:32Z September5 source cutoff. No automatic concept approval or unrestricted
+queue turnover. Owner feedback preempts; accepted modules remain frozen unless fixing
+an actual finding. The final six-hour owner window is fully preserved.
 
 The latest owner schedule amendment supersedes the old internal convergence/harvest split.
 Keep all current builders/runs active. Hunt Rhythm is the primary Practical candidate;
