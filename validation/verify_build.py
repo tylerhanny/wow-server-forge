@@ -2,6 +2,7 @@
 """Independent pinned-file warning provenance gate; candidate policy is never used."""
 
 import argparse
+import difflib
 import hashlib
 import json
 import os
@@ -13,6 +14,8 @@ import sys
 import time
 
 POLICY_PATH = Path(__file__).with_name("upstream-warning-policy.json")
+FIXTURE_POLICY_PATH = Path(__file__).with_name("worldmock-fixture.json")
+FIXTURE_PATCH_PATH = Path(__file__).with_name("worldmock-fixture.patch")
 DEMOTION = "-Wno-error"
 SOURCE_SUFFIXES = {".c", ".cc", ".cpp", ".cxx", ".h", ".hh", ".hpp", ".hxx", ".inc", ".inl", ".ipp", ".tcc"}
 PHYSICAL_FLAGS = ["-Xclang", "-fno-diagnostics-use-presumed-location", "-fdiagnostics-absolute-paths",
@@ -53,6 +56,96 @@ def git(repo, *args):
         env={**os.environ, "GIT_NO_REPLACE_OBJECTS": "1"})
     require(result.returncode == 0, f"Git identity/integrity check failed: {' '.join(args)}")
     return result.stdout
+
+
+def fixture_policy():
+    value = json.loads(FIXTURE_POLICY_PATH.read_text(encoding="utf-8"))
+    require(value["schema"] == 1 and value["path"] == "src/test/mocks/WorldMock.h",
+            "Unsupported test-fixture exception")
+    require(digest(FIXTURE_PATCH_PATH.read_bytes()) == value["patch_sha256"],
+            "Protected WorldMock patch identity changed")
+    return value
+
+
+def corrected_fixture_bytes(original, fixture):
+    """Pure in-memory transformation; never export the complete corrected header."""
+    require(digest(original) == fixture["original_sha256"], "WorldMock original bytes changed")
+    require(hashlib.sha1(b"blob " + str(len(original)).encode() + b"\0" + original).hexdigest() ==
+            fixture["original_git_blob"], "WorldMock original Git blob changed")
+    before = original.decode("utf-8")
+    after = before
+    for anchor, addition in (
+        ('    MOCK_METHOD(char const *, GetDBVersion, (), (const));\n',
+         '#ifdef MOD_PLAYERBOTS\n'
+         '    MOCK_METHOD(char const*, GetPlayerbotsDBRevision, (), (const, override));\n'
+         '#endif\n'),
+        ('    MOCK_METHOD(void, SetRealmName, (std::string name), ());\n',
+         '    MOCK_METHOD(SQLQueryHolderCallback&, AddQueryHolderCallback, (SQLQueryHolderCallback&& callback), (override));\n'),
+    ):
+        require(after.count(anchor) == 1, "WorldMock correction anchor is absent or ambiguous")
+        after = after.replace(anchor, anchor + addition)
+    corrected = after.encode("utf-8")
+    require(digest(corrected) == fixture["corrected_sha256"], "WorldMock corrected bytes differ from authorized result")
+    require(hashlib.sha1(b"blob " + str(len(corrected)).encode() + b"\0" + corrected).hexdigest() ==
+            fixture["corrected_git_blob"], "WorldMock corrected Git blob differs from authorization")
+    delta = "".join(difflib.unified_diff(before.splitlines(keepends=True), after.splitlines(keepends=True),
+                    fromfile="a/" + fixture["path"], tofile="b/" + fixture["path"])).encode()
+    require(delta == FIXTURE_PATCH_PATH.read_bytes(), "WorldMock delta differs from the exact approved patch")
+    return corrected
+
+
+def apply_test_fixture(ac, policy, evidence):
+    require(os.environ.get("GITHUB_ACTIONS") == "true" and os.environ.get("RUNNER_OS") == "Linux",
+            "Corrected WorldMock may exist only inside the disposable Linux CI job")
+    fixture = fixture_policy()
+    require(fixture["core_commit"] == policy["core_commit"], "WorldMock exception pin differs from target")
+    target = ac / fixture["path"]
+    require(target.resolve() == target and target.is_file() and not target.is_symlink(), "WorldMock fixture is aliased or missing")
+    original = target.read_bytes()
+    corrected = corrected_fixture_bytes(original, fixture)
+    require(git(ac, "show", policy["core_commit"] + ":" + fixture["path"]) == original,
+            "WorldMock original differs from exact pinned source")
+    # Evidence contains the small approved delta and identities, never the full header.
+    (evidence / "worldmock-fixture.patch").write_bytes(FIXTURE_PATCH_PATH.read_bytes())
+    target.write_bytes(corrected)
+    report = {**fixture, "applied": True, "applied_sha256": digest(target.read_bytes()),
+              "compiled_fixture": "AUTHORIZED_CORRECTED_TEST_FIXTURE_NOT_UNCHANGED_UPSTREAM",
+              "build_started": False, "restored_before_install": False}
+    require(report["applied_sha256"] == fixture["corrected_sha256"], "WorldMock application failed")
+    return original, report
+
+
+def verify_and_restore_test_fixture(ac, policy, original, report):
+    """Verify the compiled delta before restoration; restoration never erases its receipt."""
+    target = ac / report["path"]
+    require(target.resolve() == target and target.is_file() and not target.is_symlink(), "Compiled WorldMock is aliased or missing")
+    require(digest(target.read_bytes()) == report["corrected_sha256"], "WorldMock changed during compilation")
+    require(git(ac, "rev-parse", "HEAD").decode().strip() == policy["core_commit"], "Core pin changed during fixture build")
+    git(ac, "diff", "--cached", "--exit-code", policy["core_commit"], "--", ".")
+    git(ac, "diff", "--exit-code", policy["core_commit"], "--", ".", ":(exclude)" + report["path"])
+    bots = ac / "modules/mod-playerbots"
+    require(git(bots, "rev-parse", "HEAD").decode().strip() == policy["playerbots_commit"], "Playerbots pin changed during fixture build")
+    git(bots, "diff", "--exit-code", policy["playerbots_commit"], "--", ".")
+    require(not git(bots, "status", "--porcelain", "--untracked-files=no").strip(), "Playerbots index/tree changed during fixture build")
+    require(git(ac, "diff", "--name-only", policy["core_commit"], "--", ".").decode().splitlines() == [report["path"]],
+            "Compiled dependency delta is not exactly the authorized fixture")
+    report.update({"post_compile_sha256": digest(target.read_bytes()), "all_other_tracked_files_unchanged": True,
+                   "post_compile_exact_delta_verified": True})
+    require(digest(original) == report["original_sha256"], "Original fixture restoration bytes changed")
+    target.write_bytes(original)
+    report.update({"restored_sha256": digest(target.read_bytes()), "restored_before_install": True})
+    require(report["restored_sha256"] == report["original_sha256"], "WorldMock restoration failed")
+
+
+def verify_fixture_receipt(receipt):
+    report = receipt.get("test_fixture", {})
+    expected = fixture_policy()
+    require(all(report.get(key) == value for key, value in expected.items()), "WorldMock receipt policy/identity changed")
+    require(report.get("applied") is True and report.get("build_started") is True and report.get("post_compile_exact_delta_verified") is True and
+            report.get("all_other_tracked_files_unchanged") is True and report.get("restored_before_install") is True,
+            "WorldMock application/verification/restoration evidence is incomplete")
+    require(report.get("applied_sha256") == report.get("post_compile_sha256") == expected["corrected_sha256"] and
+            report.get("restored_sha256") == expected["original_sha256"], "WorldMock before/after receipt is inconsistent")
 
 
 def verify_identity(ac, policy):
@@ -264,6 +357,10 @@ def validate_capture(raw, receipt, policy, inventory):
     require(not CONTROL.search(text), "Terminal/control bytes in build log")
     require("\r" not in text.replace("\r\n", ""), "Carriage-return overwrite in build log")
     lines = text.splitlines()
+    # The source tree has been restored before install, but this header was corrected
+    # during compilation. Its diagnostics must never inherit unchanged-upstream status.
+    inventory = {**inventory, "files": {path: entry for path, entry in inventory["files"].items()
+                 if not (entry.get("repository") == "azerothcore" and entry.get("path") == "src/test/mocks/WorldMock.h")}}
     header = re.compile(r"^(.*):(\d+):(\d+): (warning|note): (.+)$")
     allowed = []
     summaries = 0
@@ -349,6 +446,7 @@ def build(ac, evidence, policy, project):
     receipt = {"capture_complete": False, "started_at_unix": time.time(), "project": project}
     verdict = {"status": "FAIL", "authorization": policy["authorization"]}
     process = None
+    fixture_original = None
     try:
         inventory = verify_identity(ac, policy)
         receipt["identity_before"] = inventory_identity(inventory)
@@ -358,11 +456,13 @@ def build(ac, evidence, policy, project):
         command = ["cmake", "--build", str(ac / "build"), "--config", "Release",
                    "-j", str((os.cpu_count() or 1) + 1)]
         receipt["command"] = command
+        fixture_original, receipt["test_fixture"] = apply_test_fixture(ac, policy, evidence)
         log_path = evidence / "build.log"
         # One reader owns raw stdout+stderr capture; write failure is fatal.
         with log_path.open("xb") as log:
             stream_hash = hashlib.sha256()
             process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            receipt["test_fixture"]["build_started"] = True
             while chunk := process.stdout.read1(65536):
                 stream_hash.update(chunk)
                 log.write(chunk)
@@ -374,6 +474,9 @@ def build(ac, evidence, policy, project):
         receipt["stream_sha256"] = stream_hash.hexdigest()
         raw = log_path.read_bytes()
         receipt["log_sha256"] = digest(raw)
+        verify_and_restore_test_fixture(ac, policy, fixture_original, receipt["test_fixture"])
+        fixture_original = None
+        verify_fixture_receipt(receipt)
         after = verify_identity(ac, policy)
         receipt["identity_after"] = inventory_identity(after)
         require(receipt["identity_before"] == receipt["identity_after"], "Source identity changed during build")
@@ -388,6 +491,15 @@ def build(ac, evidence, policy, project):
             process.terminate()
             process.wait()
     finally:
+        if fixture_original is not None:
+            try:
+                verify_and_restore_test_fixture(ac, policy, fixture_original, receipt["test_fixture"])
+            except (GateFailure, OSError, ValueError, KeyError) as error:
+                receipt["test_fixture"]["cleanup_failure"] = str(error)
+                verdict["status"] = "FAIL"
+                verdict.setdefault("failure", str(error))
+        if "test_fixture" in receipt:
+            verdict["test_fixture"] = receipt["test_fixture"]
         receipt["finished_at_unix"] = time.time()
         if verdict["status"] == "FAIL":
             # Preserve observations in the existing JSON job summary, even when an
@@ -415,6 +527,9 @@ def main():
     policy = load_policy()
     if args.action == "identity":
         value = verify_identity(args.ac, policy)
+        fixture = fixture_policy()
+        require(fixture["core_commit"] == policy["core_commit"], "Fixture proposal pin differs from target")
+        corrected_fixture_bytes((args.ac / fixture["path"]).read_bytes(), fixture)
         write_json(args.evidence / "upstream-source-inventory.json", value)
         write_json(args.evidence / "source-identity-before.json", inventory_identity(value))
         print(json.dumps(inventory_identity(value)))
@@ -427,6 +542,7 @@ def main():
     else:
         current = verify_identity(args.ac, policy)
         receipt = json.loads((args.evidence / "build-receipt.json").read_text(encoding="utf-8"))
+        verify_fixture_receipt(receipt)
         require(receipt.get("project") == args.project, "Candidate identity in build receipt changed")
         require(receipt.get("identity_before") == inventory_identity(current) == receipt.get("identity_after"),
                 "Pre/post identity receipts do not match verified source")

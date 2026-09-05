@@ -142,8 +142,11 @@ jobs:
           sha256sum judge/.github/workflows/official-candidate-gate.yml > evidence/judge-workflow.sha256
           sha256sum \
             judge/.github/workflows/official-candidate-gate.yml \
-            judge/UPSTREAM_WARNING_EXCEPTION.md \
-            judge/validation/upstream-warning-allowlist.json \
+            judge/UPSTREAM_WARNING_POLICY.md \
+            judge/WORLDMOCK_FIXTURE_EXCEPTION.md \
+            judge/validation/upstream-warning-policy.json \
+            judge/validation/worldmock-fixture.json \
+            judge/validation/worldmock-fixture.patch \
             judge/validation/upstream-warning-hook.cmake \
             judge/validation/verify_build.py \
             judge/validation/test_verify_build.py > evidence/protected-validation.sha256
@@ -283,7 +286,7 @@ jobs:
             libssl-dev libtool openssl zlib1g-dev google-perftools \
             libmysqlclient-dev libncurses-dev rsync mysql-server
 
-      - name: Test protected exception and real compiler file scope
+      - name: Test protected upstream policy and real compiler file scope
         shell: bash
         env:
           PROJECT: ${{ steps.scope.outputs.project }}
@@ -293,7 +296,7 @@ jobs:
           python3 -B judge/validation/test_verify_build.py --integration 2>&1 | tee evidence/validation-selftests.log
           python3 -B judge/validation/verify_build.py identity --ac ac --evidence evidence --project "$PROJECT"
 
-      - name: Configure exact target with warnings as errors
+      - name: Configure exact target with project warnings as errors
         shell: bash
         env:
           PROJECT: ${{ steps.scope.outputs.project }}
@@ -307,6 +310,7 @@ jobs:
             -DCMAKE_C_COMPILER=clang-18 \
             -DCMAKE_CXX_COMPILER=clang++-18 \
             -DCMAKE_PROJECT_AzerothCore_INCLUDE="$GITHUB_WORKSPACE/judge/validation/upstream-warning-hook.cmake" \
+            -DFORGE_UPSTREAM_INVENTORY="$GITHUB_WORKSPACE/evidence/upstream-source-inventory.json" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DCMAKE_COLOR_MAKEFILE=OFF \
             -DCMAKE_COLOR_DIAGNOSTICS=OFF \
@@ -338,12 +342,14 @@ jobs:
           PROJECT: ${{ steps.scope.outputs.project }}
         run: |
           set -euo pipefail
-          # OWNER-AUTHORIZED BASELINE EXCEPTION: complete raw capture, exact count,
-          # source/command identities, and exit status are checked fail-closed.
+          # OWNER-AUTHORIZED UPSTREAM POLICY: complete raw capture, verified physical
+          # source provenance, command identities and exit status are checked fail-closed.
+          # The exact authorized WorldMock delta is recorded, verified and restored
+          # inside this build wrapper before the existing install/runtime stages.
           sha256sum -c evidence/protected-validation.sha256
           python3 -B judge/validation/verify_build.py build --ac ac --evidence evidence --project "$PROJECT"
 
-      - name: Verify dependencies remained immutable
+      - name: Verify dependency integrity after fixture restoration
         shell: bash
         env:
           PROJECT: ${{ steps.scope.outputs.project }}
@@ -483,11 +489,12 @@ jobs:
             echo "- Judge workflow SHA-256: \`$(cut -d' ' -f1 evidence/judge-workflow.sha256)\`"
             echo "- Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
             echo
-            echo 'A green job means scope integrity, exact-pin configure/build/install, dependency immutability, SQL static checks, and disposable dry-run startup all completed successfully.'
+            echo 'A green job means scope integrity, exact-pin configure/build/install, dependency integrity with the disclosed test-fixture exception, SQL static checks, and disposable dry-run startup all completed successfully.'
             echo 'It does **not** mean Tyler has performed live/in-game gameplay validation.'
             echo 'Pinned dry-run initializes scripts, module configuration, databases, and world data, but exits before WorldScript::OnStartup, network service, and the world update loop. Candidates depending on those paths require additional Reviewer runtime evidence.'
             echo
-            echo 'OWNER-AUTHORIZED BASELINE EXCEPTION: only the immutable Playerbots BTHelpers.cpp:107 unused botAI parameter warning may occur, exactly once. All other warnings or errors and incomplete captures fail.'
+            echo 'STANDING OWNER-AUTHORIZED UPSTREAM POLICY: warnings exclusively from verified-unchanged pinned AzerothCore/Playerbots source are non-fatal and fully visible below. Project-owned or unknown warnings, actual errors and incomplete captures fail. Both pins and all other gates remain unchanged.'
+            echo 'OWNER-AUTHORIZED TEST FIXTURE: the exact two-method WorldMock correction is used only during disposable CI compilation, separately attested below, and restored before install. It is never classified as unchanged upstream. No test or assertion is removed.'
             echo 'Protected validation file hashes are preserved in evidence/protected-validation.sha256.'
             if [[ -f evidence/upstream-warning-verdict.json ]]; then
               echo
