@@ -50,15 +50,14 @@ Current Wildcard disposition: **SELECTED FOR LAUNCH — Stormwright (`mod-stormw
 Five-option tournament, Director comparison, independent Reviewer quality/one-human
 dispositions and Wildcard's final creative choice are recorded in
 `decisions/initial-project-selection.md` and `prelaunch/wildcard-final-choice.md`.
-The complete Solo Pilot/ordinary-bot paths are mandatory. Implementation awaits the proven
-clean gate and formal launch. Hunt Rhythm (`mod-hunt-rhythm`) is the distinct Practical
-launch choice with independent solo-path proposal approval. No gameplay implementation has begun.
+The complete Solo Pilot/ordinary-bot paths are mandatory. Implementation is active after current clean33947235843 reached a terminal result under the owner sequencing amendment. Hunt Rhythm (`mod-hunt-rhythm`) is the distinct Practical
+launch choice with independent solo-path proposal approval. Both approved lanes have been released for actual module implementation.
 The Small Council is **NOT APPROVED** and is retained only in `IDEA_VAULT.md`.
 
 Wildcard selection records must cover all five concepts and eleven fields, compare the
 shortlisted three against the quality dimensions and mandatory YES tests, record Director and
 Reviewer dispositions, and preserve Wildcard's own final choice/rationale. Use
-SELECT / REJECT / FRESH_PASS. Selection does not permit prelaunch implementation.
+SELECT / REJECT / FRESH_PASS. The approved first assignments begin after the current control terminates, regardless of its outcome; acceptance remains independent.
 The first flagship must pass independent review and the official gate before Wildcard begins
 another project, and BUILD must still permit it.
 
@@ -66,7 +65,8 @@ another project, and BUILD must still permit it.
 
 | Project | Owner | Branch/worktree | Claim time | Finish-gate target | Status |
 |---|---|---|---|---|---|
-| — | — | — | — | — | — |
+| mod-hunt-rhythm | Practical | project/hunt-rhythm / .worktrees/practical | 2026-09-05T06:40:42Z | Complete solo loop and full independent acceptance | BUILDING |
+| mod-stormwright | Wildcard | project/stormwright / .worktrees/wildcard | 2026-09-05T06:40:42Z | Complete Solo Pilot flagship and full independent acceptance | BUILDING |
 
 ## Project decision template
 

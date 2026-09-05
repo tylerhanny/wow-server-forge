@@ -1,231 +1,74 @@
 # WoW Server Forge — Run State
 
-## Current controls after disposable Playerbots startup-fixture correction
-
-Clean `33941967266` passed full compile, authorized fixture restoration, dependency
-integrity, install, SQL, runtime preparation and authserver dry-run. Worldserver reached
-Playerbots startup, generated 100 accounts / 1000 characters, then waited for the character
-database queue. It exceeded both nominal five-minute dry-run timeouts. A normal cancellation
-preserved its artifacts; world completion, unit execution and final integrity did not pass.
-The run remains CANCELLED, with exact evidence in `prelaunch/evidence/sql-repair-controls.json`
-and `prelaunch/clean-control-playerbots-population-stall.md`.
-
-Reviewer correction `ed2357393262a97b9bf30ce3b6e6eb3378326e02`, independently approved by
-Practical and Director, is published as judge `dd283819da03e9ccbebdf9378b5fe3f1cf016380`.
-Only installed disposable `playerbots.conf` gets the supported enabled/zero-population
-fixture: Enabled=1, RandomBotAutologin=0, MinRandomBots=0, MaxRandomBots=0,
-RandomBotAccountCount=0 (AUTO), AddClassAccountPoolSize=0. Effective settings are retained
-in the existing artifact. Both five-minute limits remain, with kill-after=30s to terminate
-the observed TERM-resistant startup wait. Production/dependency source, pins, all tests,
-initialization/smoke sentinels, error checks and final integrity requirements are unchanged.
-
-Fresh clean `33947235843` and authority-tamper `33947239092` are running against the same
-frozen candidates. Current exact evidence is `prelaunch/evidence/startup-fixture-controls.json`.
-All sprint timestamps remain UNSET. Complete only these existing controls and required
-independent evidence review, then record the actual 36-hour clock and begin both selected
-projects immediately. Earlier pairs below are historical, never retroactive successes.
-
-
-## Current controls after the empty-SQL judge correction
-
-Clean `33937007702` passed the complete pinned build, exact authorized WorldMock
-correction/restoration, dependency integrity and install. It remains overall FAIL: the
-existing SQL scanner incorrectly rejected a candidate with no SQL files, leaving runtime
-and unit-test execution unrun. Independent evidence and the reproduced defect are in
-`prelaunch/clean-control-empty-sql-judge-defect.md`; original artifact identities remain in
-`prelaunch/evidence/fixture-exception-controls.json`.
-
-Reviewer SQL-only correction `6caa073b8b10d1716d130894076193431db5a83e`, independently
-approved by Practical and Director, is published as judge
-`04f15bd01c7d49813053a5737f9141885c000ce6`. It preserves the existing destructive regex,
-file checks and all other stages, treating an empty SQL list as inapplicable and scanner
-errors as fatal. No source/pin/warning-policy change or additional gate was introduced.
-
-Fresh clean `33941967266` and authority-tamper `33941974575` were dispatched immediately
-at 2026-09-05T03:29 UTC against the same frozen candidates. Current exact evidence is
-`prelaunch/evidence/sql-repair-controls.json`. Review the complete existing controls, then
-record the actual 36-hour clock and start both selected lanes immediately. All sprint
-timestamps remain UNSET until that complete evidence passes. Earlier controls below are
-historical and must not be repeated or mistaken for the current pair.
-
-
-Status: `ARMED_NOT_STARTED`
-
-The 36-hour sprint has NOT started yet.
-
-The Director must record the launch timestamps immediately before sprint implementation begins.
-
-## Current authorized fixture correction and controls
-
-At 2026-09-05T01:36:02.615039Z, the Director reconciled the owner's explicit authorization in
-`WORLDMOCK_FIXTURE_EXCEPTION.md`. The exact reviewed WorldMock two-method delta may be
-applied only inside disposable CI after verifying its original hash. No other upstream
-source change is authorized; production source, pins, tests/assertions/coverage and all
-remaining gate requirements are preserved. Record the exact patch and before/after hashes;
-the modified full fixture must never be committed, installed or persisted outside CI.
-
-The prior clean run 33929246418 remains FAIL, with both server targets built and the
-required unit-test target failing. Tamper 33929247980 was rejected as required. The
-source-policy blocker is now resolved by this exact owner exception. Reviewed adapter source `ff0e5807` is published as judge `60953d65185a231650c8c1050dbd6a182016ef66`.
-Clean `33937007702` and tamper `33937008812` are dispatched. Practical and Director
-approved the exact adapter; Reviewer now inspects actual complete control evidence.
-Exact identities and outcomes: `prelaunch/evidence/fixture-exception-controls.json`. No new prelaunch gate or test expansion is authorized.
-
-The heartbeat is ACTIVE. Hunt Rhythm and Stormwright selections/ownership are preserved.
-All sprint timestamps remain UNSET until complete reviewed prelaunch success, then record
-the actual clock and launch both lanes immediately. Earlier blocker/pause instructions
-below are historical and do not override the current explicit authorization.
-
-## Launch record
+Implementation started at 2026-09-05T06:40:42Z after control33947235843 reached terminal
+SUCCESS. Required artifact review continues independently. The fixed provisional
+deadline remains2026-09-06T18:34:32Z; it was not reset at implementation start.
 
 ```text
-STATUS=ARMED_NOT_STARTED
-EXECUTION_STATUS=ACTIVE_PRELAUNCH_STARTUP_FIXTURE_REPAIR
-BLOCKER_IDENTIFIED_UTC=2026-09-05T00:47:37Z
-OWNER_EXCEPTION_RECONCILED_UTC=2026-09-04T21:16:15Z
-OWNER_EXCEPTION_POLICY=UPSTREAM_WARNING_EXCEPTION.md
-STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
-WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
-FIXTURE_EXCEPTION_RECONCILED_UTC=2026-09-05T01:36:02.615039Z
-STANDING_WARNING_POLICY_RECONCILED_UTC=2026-09-04T23:07:16Z
-CURRENT_POLICY_CONTROLS=RUNNING_STARTUP_FIXTURE_CORRECTED_JUDGE
+STATUS=RUNNING
+EXECUTION_STATUS=AUTONOMOUS_IMPLEMENTATION_AND_VALIDATION
+CURRENT_PHASE=BUILD
+IMPLEMENTATION_PERMISSION=GRANTED_OWNER_TERMINAL_RESULT_DIRECTIVE
+IMPLEMENTATION_STATUS=ACTIVE
+DIRECTIVE_RECEIVED_UTC=2026-09-05T06:34:32Z
+DIRECTIVE_RECEIVED_AMERICA_NEW_YORK=2026-09-05T02:34:32-04:00
+DEADLINE_BASIS=PROVISIONAL_OWNER_RECEIPT_PLUS_36H
+CONFIRMED_ACCESS_CUTOFF_UTC=UNKNOWN
+START_UTC=2026-09-05T06:40:42Z
+START_AMERICA_NEW_YORK=2026-09-05T02:40:42-04:00
+CONVERGENCE_START_UTC=2026-09-06T06:34:32Z
+CONVERGENCE_START_AMERICA_NEW_YORK=2026-09-06T02:34:32-04:00
+HARVEST_START_UTC=2026-09-06T12:34:32Z
+HARVEST_START_AMERICA_NEW_YORK=2026-09-06T08:34:32-04:00
+HARD_DEADLINE_UTC=2026-09-06T18:34:32Z
+HARD_DEADLINE_AMERICA_NEW_YORK=2026-09-06T14:34:32-04:00
+HEARTBEAT_STATUS=ACTIVE
 REVIEWED_JUDGE_SHA=dd283819da03e9ccbebdf9378b5fe3f1cf016380
-LAST_FULL_CLEAN_JUDGE_SHA=04f15bd01c7d49813053a5737f9141885c000ce6
 CLEAN_CONTROL_RUN=33947235843
 AUTHORITY_TAMPER_RUN=33947239092
-ALLOWLIST_TAMPER_RUN=33927019176
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
-CLEAN_CONTROL_REVIEW=PENDING_CURRENT_CONTROLS
-PAUSE_UTC=2026-09-05T00:55:39.347769Z
-RESUME_UTC=2026-09-05T01:06:37.050300Z
-RESUME_POLICY=AUTONOMOUS_WITHIN_EXISTING_AUTHORITY
-HEARTBEAT_STATUS=ACTIVE
-START_UTC=UNSET
-CONVERGENCE_START_UTC=UNSET
-HARVEST_START_UTC=UNSET
-HARD_DEADLINE_UTC=UNSET
-
-START_AMERICA_NEW_YORK=UNSET
-CONVERGENCE_START_AMERICA_NEW_YORK=UNSET
-HARVEST_START_AMERICA_NEW_YORK=UNSET
-HARD_DEADLINE_AMERICA_NEW_YORK=UNSET
-
-CURRENT_PHASE=SETUP
+CLEAN_CONTROL_REVIEW=SUCCESS_PENDING_REQUIRED_ARTIFACT_REVIEW
+VALIDATION_STATUS=PENDING_REQUIRED_REVIEW
+STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
+WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 ```
 
-## Active ownership
+## Recorded implementation transition
 
-| Lane | Agent role | Current project | Branch/worktree | State |
-|---|---|---|---|---|
-| Director | Persistent orchestrator | Apply standing upstream policy, rerun controls and launch immediately on existing gate success | main | PRELAUNCH |
-| Practical | Internal Practical Builder | Hunt Rhythm selected; complete solo design approved; awaits launch | lane/practical / .worktrees/practical | PRELAUNCH |
-| Wildcard | Internal AI Auteur / Flagship Gameplay | Stormwright chosen after both floors; complete Solo Pilot mandatory; awaits launch | lane/wildcard / .worktrees/wildcard | PRELAUNCH |
-| Reviewer | Independent internal Reviewer / Closer | Implement provenance warning policy and review complete control evidence | lane/reviewer / .worktrees/reviewer | PRELAUNCH |
+Current run33947235843 is terminal SUCCESS. Both approved builders begin
+actual module source now. Required evidence review and any harness repair continue
+concurrently. No new full control may idle both lanes. Preserve existing start and deadlines.
 
-Prelaunch evidence and next actions are recorded in `prelaunch/STATUS.md`.
-Internal worker lanes are managed by the Director; Tyler need not create worker tasks.
+| Lane | Project | Branch/worktree | State |
+|---|---|---|---|
+| Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
+| Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | BUILDING |
+| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | BUILDING independent flagship |
+| Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
-## Pause and explicit resume record
+The completed selection, creative ownership and one-human approvals are in
+`decisions/initial-project-selection.md`, `prelaunch/wildcard-final-choice.md` and
+`prelaunch/reviewer-one-human-dispositions.md`. No new tournament is needed for these scopes.
 
-At `2026-09-04T19:56:13Z`, the owner requested a safe temporary pause. Internal workers
-and local monitoring were stopped, and heartbeat `wow-forge-director-continuity` was paused.
-The already-running external clean-control run `33911646203` is left to finish and preserve
-its evidence. All sprint timestamps remain UNSET.
+## Fixed calendar and acceptance
 
-The owner explicitly resumed on 2026-09-04; current state was reconciled at
-`2026-09-04T20:10:30Z`. Run `33911646203` was still in full compilation. One-human
-playability is now mandatory across every lane under `ONE_HUMAN_PLAYABILITY.md`.
-Workers have resumed prelaunch only. Reconcile real CI results, finish any legitimate repair,
-complete independent one-human/Auteur review and choice, then reactivate the existing
-heartbeat and launch only after all prelaunch requirements pass. The bounded selection is now
-complete: Practical `mod-hunt-rhythm`, Wildcard `mod-stormwright`. Both have independent
-one-human proposal approval. Substantive implementation remains forbidden until formal launch.
-The existing 15-minute Director continuity heartbeat has been reactivated with the mandatory
-one-human policy. This does not start the sprint clock.
+The current control wait consumes the fixed provisional window. Actual access cutoff is
+unknown; 36h of access is not verified. Keep the last12h for convergence and final6h for
+harvest. If an unusually late start leaves insufficient time, finish the strongest coherent
+candidate; never extend the ceiling or lower acceptance. At the deadline finalize truthful
+HARVEST/BLOCKED/IDEA_VAULT and handoff. Use tools/Get-ForgePhase.ps1 on every resume.
 
-## Historical warning failures and earlier owner resolution
+Every exact harvest candidate still needs official real compile/link, install, config/data/SQL,
+startup, tests, dependency integrity and independent review. DEVELOPMENT-ONLY checks are
+not acceptance. Live gameplay and bot competence remain pending manual validation.
+All live-server/Adventure Nexus/source/pin prohibitions, visible upstream warnings,
+project-owned warnings-as-errors and exact disposable WorldMock exception remain binding.
 
-This section records the policies and dispositions at the time of those runs. The current
-standing authorization below supersedes every earlier restriction on additional verified
-upstream warnings; historical failures and evidence remain unchanged.
+## Evidence and continuity
 
-Clean run `33911646203` failed full compilation at `2026-09-04T20:56:03Z`.
-The exact pinned Playerbots source has an unused `botAI` parameter in
-`src/Ai/Raid/BT/BTHelpers.cpp:107`, fatal under the unchanged warnings-as-errors gate.
-Independent Reviewer and Practical source audits found no smoke-induced flags or source
-mutation and no evidenced supported-toolchain repair. The owner has now explicitly authorized
-only the exact mechanically enforced allowance in `UPSTREAM_WARNING_EXCEPTION.md`.
-Implement/review that protected policy and rerun both controls; no dependency edit, additional
-warning waiver, identical failing rerun or gameplay implementation is authorized.
-Full independent evidence and owner alternatives are recorded in
-`prelaunch/clean-control-compile-blocker.md` (Reviewer source commit `ec81c2e`).
-
-The protected policy is published as judge `78a5da6d5aed19a932fae53e74226ac5afc2e204`.
-Practical independently passed all 73 adversarial cases on the exact committed files;
-Director and Wildcard reviewed requirement preservation. Fresh authority tamper `33922543117`
-and protected-allowlist tamper `33922549107` were rejected at scope before build, with
-independent review and exact artifact identities recorded in `prelaunch/STATUS.md`.
-Clean run `33922537362` passed the real Ubuntu compiler-scope probe and configure/command
-provenance, then failed compilation at `2026-09-04T22:33:12Z`. The authorized BTHelpers warning
-appeared once; new fatal unused `botAI` diagnostics occurred in Playerbots
-`Hyjal/Util/HyjalHelpers.cpp:168:61` and `Hyjal/Util/HyjalScripts.cpp:39:63`. Reviewer and
-Practical independently verified the pinned source and narrow compiler scope. The wrapper
-captured the full failed build and checked equal pre/post dependency identity/Git-clean state.
-Install, SQL, dry-runs, unit tests and later standalone integrity steps were skipped.
-The exact failure evidence is in `prelaunch/evidence/clean-33922537362-director-audit.json`.
-Both failed clean runs remain failed. Do not rerun unchanged known-failing validation.
-
-These are fresh owner-required blockers under `UPSTREAM_WARNING_EXCEPTION.md`; no additional
-warning or source/pin edit is authorized. A third unused parameter at HyjalHelpers line 209
-is a source-only finding, not an observed CI diagnostic. Pinned `-Wfatal-errors` means the
-observed failures are not an exhaustive warning inventory. Preserve that distinction.
-The bounded failure-summary reporting correction is complete and independently reviewed
-at revision `5269391836586137f983d79122ad9dd8a09fa1fd`; acceptance is unchanged. Its actual
-failed-artifact replay and tests are in `prelaunch/failure-summary-reporting-review.md`.
-Await explicit owner resolution. No gameplay implementation or clock initialization.
-
-The heartbeat remains ACTIVE for continuity, quiet while this owner-required blocker is
-unchanged. Both launch selections are preserved, all timestamps remain UNSET, and no
-live-server work has occurred. Launch waits for a complete reviewed passing clean control.
-
-## Current standing owner authorization
-
-At reconciliation `2026-09-04T23:07:16Z`, the owner authorized the standing policy in
-`UPSTREAM_WARNING_POLICY.md`: all warnings exclusively from verified-unchanged pinned
-upstream source are non-fatal and fully visible. Project-owned warnings remain fatal.
-This resolves the earlier owner-decision blocker without passing either failed run.
-The revised judge `6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed` is published.
-Clean `33929246418` and tamper `33929247980` were dispatched at 23:22 UTC.
-Practical completes its exact-revision check concurrently; Reviewer inspects the full clean
-gate. All required evidence must pass before launch.
-No approval is needed for additional qualifying upstream warnings. Resolve ordinary
-in-scope defects autonomously. Do not add new prelaunch review, cleanup, hardening,
-test expansion or policy gates. Once the existing minimum gate passes with required
-reviewed evidence, record actual launch timestamps and begin both selected projects
-immediately. Every sprint timestamp remains UNSET until then.
-
-## Director launch instructions
-
-At launch:
-
-1. Determine the current wall-clock time.
-2. Record START in UTC and America/New_York.
-3. Calculate +24h, +30h, and +36h timestamps.
-4. Set `STATUS=RUNNING` and `CURRENT_PHASE=BUILD`.
-5. Commit the timestamped state before substantial implementation starts.
-6. Keep this file sufficiently current that another agent can recover mission state after interruption.
-
-Do not reset the sprint clock after launch merely because an agent restarts or loses context.
-
-## Phase transitions
-
-At or after each recorded boundary, the Director must change `CURRENT_PHASE` accordingly:
-
-```text
-BUILD
-CONVERGENCE
-HARVEST
-COMPLETE
-```
-
-The clock, not subjective project readiness, controls the latest permissible phase.
+Current exact pair/evidence: `prelaunch/evidence/startup-fixture-controls.json`.
+Historical failed/cancelled controls remain preserved in `prelaunch/STATUS.md`, its linked
+audits/manifests, and Git history through50ac30e. They are never retroactive successes.
+The owner sequencing amendment in AGENTS.md and DEADLINE.md supersedes historical
+prelaunch launch-prerequisite language in those records. The existing15-minute heartbeat
+remains active; report meaningful transitions/results, not unchanged compile status.

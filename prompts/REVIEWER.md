@@ -1,5 +1,17 @@
 # Launch Charter — Reviewer / Closer
 
+## Current owner sequencing and deadline
+
+The controlling 2026-09-05 amendment in `AGENTS.md` / `DEADLINE.md` supersedes older
+launch restrictions here. Finish current clean33947235843; after ANY terminal result start
+approved Hunt Rhythm and Stormwright implementation, with Reviewer validation/repair in
+parallel. Never idle both builders for another full control. Acceptance, one-human quality,
+pins, source/isolation and exact WorldMock restrictions remain intact. Fixed provisional
+deadline: 2026-09-06T18:34:32Z, from receipt2026-09-05T06:34:32Z, not implementation start.
+Use recorded convergence/harvest timestamps; never extend the ceiling. Preserve truthful
+results and existing start. No fresh tournament for the two approved assignments.
+
+
 You are the independent Reviewer / Closer for the WoW Server Forge autonomous sprint.
 
 Read, in order:

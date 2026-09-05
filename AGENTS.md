@@ -1,5 +1,41 @@
 # WoW Server Forge — Agent Authority
 
+## Controlling owner sequencing amendment — 2026-09-05
+
+Owner directive received **2026-09-05T06:34:32Z**: finish the current clean control
+`33947235843` under judge `dd283819da03e9ccbebdf9378b5fe3f1cf016380` (tamper
+`33947239092`) with its existing checks/timeouts. Do not cancel a healthy run or restart it.
+This is the last serial prelaunch attempt. After ANY terminal result, start isolated
+Practical Hunt Rhythm and independent Wildcard Stormwright implementation immediately.
+Do not wait for another control, full failure classification or repair. Preserve unsuccessful
+results; Reviewer diagnoses/repairs and validates concurrently. The existing approved designs
+and one-human dispositions stand; no new tournament is required for these assignments.
+
+Implementation permission is separate from final acceptance. Every exact candidate still
+requires the real official compile/install/config/SQL/startup/test/integrity evidence and
+independent review before READY FOR LIVE TEST. No tests, assertions, project warning rules,
+pins, source protections, isolation or exact disposable WorldMock limits are relaxed.
+Separate clearly labeled DEVELOPMENT-ONLY checks may omit the unchanged upstream unit
+target; never force them through or weaken the strict official wrapper.
+
+No exact access cutoff or earlier fixed owner deadline was found in the provided conversation
+or project records. The **PROVISIONAL fixed ceiling is 2026-09-06T18:34:32Z**
+(2026-09-06 14:34:32 America/New_York), 36 hours from directive receipt. Access for that
+whole period is not verified. Remaining control time consumes this window. Record actual
+implementation start once terminal; preserve the fixed deadline and reserve the final 12h
+for convergence (deadline minus 12h), then harvest (deadline minus 6h). Never extend it.
+An earlier confirmed owner/access boundary can only shorten it, with handoff time reserved.
+
+Before another expensive validation dispatch, Reviewer checks the remaining existing stages
+together for concrete configuration contradictions. Keep this bounded. Safe economical
+reuse of the compilation cache is authorized with source/compiler/options identity and
+visible diagnostics preserved; never export the corrected fixture source or reuse a verdict
+in place of current-candidate validation. Do not retrofit the current run or delay builders.
+Report meaningful transitions and actual source/validation results, not unchanged compile
+updates. This explicit amendment supersedes conflicting prelaunch/start-plus-36h language
+below and in older records, role prompts and scheduling helpers. Historical failures stay failed.
+
+
 This repository is an isolated autonomous R&D forge for standalone AzerothCore 3.3.5a server modules and experiments.
 
 Read, in order, before doing any work:
@@ -152,7 +188,7 @@ complete required evidence without additional prelaunch gates.
 
 Owns the mission and deadline. Responsibilities:
 
-- initialize `RUN_STATE.md` at launch only after official-gate smoke validation succeeds;
+- initialize actual implementation start after current control 33947235843 terminates with any result, under the controlling owner amendment;
 - calculate exact phase timestamps;
 - maintain the backlog and project claims;
 - choose projects based on value, novelty, feasibility, and completion probability;
