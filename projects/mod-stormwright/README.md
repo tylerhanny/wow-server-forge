@@ -73,7 +73,9 @@ The human performs every menu, route choice, capture, spend and abort. Optional
 pinned bots perform ordinary tank/heal/DPS/follow only; no custom item use, gossip,
 object interaction, damage stopping or precise positioning is expected. No second
 client, operated account or human is required for success, recovery, outcome or retry.
-**ONE_HUMAN_REVIEW: proposal PASS; implementation review PENDING.**
+**ONE_HUMAN_REVIEW=PASS at source level** for implementation
+`c1f3926dcc8988d6f1461affeee0c817c97f911d`, independently inspected by the Reviewer.
+Actual solo/client/bot execution remains pending; this is not runtime validation.
 
 ### Scaling and difficulty
 
@@ -101,7 +103,11 @@ the same charge/ward mechanic and Ground recovery, not an empty demonstration mo
 - Selected C++ method signatures were checked against those exact source files.
 - Full compilation, installation, startup, executable rules tests and official candidate gate:
   **NOT RUN for this checkpoint**. Compile-time rules checks run during module compilation.
-- Independent implementation review: **PENDING**.
+- Independent implementation review: **PASS** for source
+  `c1f3926dcc8988d6f1461affeee0c817c97f911d`; the Reviewer inspected API/state,
+  owned actors, charge/cleanup logic and the full solo recovery/retry/exit path.
+  Practical's separate exact-schema SQL review also passed. This final checkpoint
+  changes documentation only; it does not claim compilation or runtime success.
 - Actual gameplay, terrain, visuals, class balance and bot feel: **PENDING IN-GAME VALIDATION**.
 
 ## Install and configuration
