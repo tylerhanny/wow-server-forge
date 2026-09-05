@@ -126,8 +126,6 @@ jobs:
       CANDIDATE_SHA: ${{ matrix.sha }}
       # Every step, including the protected build wrapper, uses the same cache.
       CCACHE_DIR: ${{ github.workspace }}/.forge-ccache
-      CCACHE_TEMPDIR: ${{ runner.temp }}/forge-ccache-tmp
-      CCACHE_CONFIGPATH: ${{ runner.temp }}/forge-ccache.conf
     steps:
       - name: Checkout exact judge version for evidence
         uses: actions/checkout@v4
@@ -300,6 +298,13 @@ jobs:
           sha256sum -c evidence/protected-validation.sha256
           python3 -B judge/validation/test_verify_build.py --integration 2>&1 | tee evidence/validation-selftests.log
           python3 -B judge/validation/verify_build.py identity --ac ac --evidence evidence --project "$PROJECT"
+
+      - name: Set disposable compiler-cache paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'CCACHE_TEMPDIR=%s/forge-ccache-tmp\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
+          printf 'CCACHE_CONFIGPATH=%s/forge-ccache.conf\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
 
       - name: Restore compiler outputs for the same protected build policy
         uses: actions/cache@v4
