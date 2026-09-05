@@ -16,10 +16,14 @@ DEADLINE_BASIS=PROVISIONAL_OWNER_RECEIPT_PLUS_36H
 CONFIRMED_ACCESS_CUTOFF_UTC=UNKNOWN
 START_UTC=2026-09-05T06:40:42Z
 START_AMERICA_NEW_YORK=2026-09-05T02:40:42-04:00
-CONVERGENCE_START_UTC=2026-09-06T06:34:32Z
-CONVERGENCE_START_AMERICA_NEW_YORK=2026-09-06T02:34:32-04:00
-HARVEST_START_UTC=2026-09-06T12:34:32Z
-HARVEST_START_AMERICA_NEW_YORK=2026-09-06T08:34:32-04:00
+FEATURE_FREEZE_UTC=2026-09-06T06:34:32Z
+FEATURE_FREEZE_AMERICA_NEW_YORK=2026-09-06T02:34:32-04:00
+CANDIDATE_HANDOFF_UTC=2026-09-06T12:34:32Z
+CANDIDATE_HANDOFF_AMERICA_NEW_YORK=2026-09-06T08:34:32-04:00
+OWNER_TESTING_START_UTC=2026-09-06T12:34:32Z
+OWNER_TESTING_END_UTC=2026-09-06T18:34:32Z
+PRIMARY_MODULES_INDEPENDENTLY_ACCEPTED=NO
+ADDITIONAL_PROJECT_WINDOW_REVIEW=NOT_GRANTED
 HARD_DEADLINE_UTC=2026-09-06T18:34:32Z
 HARD_DEADLINE_AMERICA_NEW_YORK=2026-09-06T14:34:32-04:00
 HEARTBEAT_STATUS=ACTIVE
@@ -53,11 +57,23 @@ The completed selection, creative ownership and one-human approvals are in
 
 ## Fixed calendar and acceptance
 
-The current control wait consumes the fixed provisional window. Actual access cutoff is
-unknown; 36h of access is not verified. Keep the last12h for convergence and final6h for
-harvest. If an unusually late start leaves insufficient time, finish the strongest coherent
-candidate; never extend the ceiling or lower acceptance. At the deadline finalize truthful
-HARVEST/BLOCKED/IDEA_VAULT and handoff. Use tools/Get-ForgePhase.ps1 on every resume.
+The latest owner schedule amendment supersedes the old internal convergence/harvest split.
+Keep all current builders/runs active. Hunt Rhythm is the primary Practical candidate;
+Stormwright is the primary Wildcard candidate. Field Camp proceeds only while it does not
+threaten either primary's completion, validation, documentation or early delivery. No project
+beyond this active set starts unless both primaries are independently accepted and Director
+records that it cannot threaten the protected owner window.
+
+At FEATURE_FREEZE (2026-09-06 02:34:32 America/New_York), no new projects or optional
+features: finish, cut, validate, fix, document and package existing work only. By
+CANDIDATE_HANDOFF (08:34:32), deliver every available READY FOR LIVE TEST module with
+exact install/config/SQL/rollback, one-human smoke steps, commands/NPCs/flow/logs and honest
+verified-versus-pending status. Deliver each ready module early; never hold one for another.
+The final six hours, 08:34:32–14:34:32, are OWNER_TESTING: reserve capacity for Tyler's
+installation/playtesting feedback, bug diagnosis/fixes, independent re-review and changed-
+candidate revalidation. No new projects or optional features. Hard deadline is unchanged.
+Actual access cutoff remains unknown; never extend the ceiling or lower acceptance.
+Use tools/Get-ForgePhase.ps1 on every resume; preserve actual START and fixed timestamps.
 
 Every exact harvest candidate still needs official real compile/link, install, config/data/SQL,
 startup, tests, dependency integrity and independent review. DEVELOPMENT-ONLY checks are

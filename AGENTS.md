@@ -1,5 +1,13 @@
 # WoW Server Forge — Agent Authority
 
+**Latest owner schedule controls:** `DEADLINE.md` now requires feature freeze at
+2026-09-06T06:34:32Z, ready-candidate handoff by12:34:32Z, and a protected six-hour
+owner installation/playtesting/feedback-fix window until the unchanged18:34:32Z ceiling.
+Keep current work/runs active; deliver each primary early. Field Camp is subordinate to
+Hunt Rhythm and Stormwright. No further project unless both primaries are independently
+accepted and the testing window is protected; none after feature freeze. This supersedes
+older internal convergence/harvest/new-project wording below and in other charters.
+
 ## Controlling owner sequencing amendment — 2026-09-05
 
 Owner directive received **2026-09-05T06:34:32Z**: finish the current clean control

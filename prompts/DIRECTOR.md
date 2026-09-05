@@ -1,5 +1,13 @@
 # Launch Charter — Director / Producer
 
+On every continuation enforce the latest owner schedule in `DEADLINE.md` and
+`RUN_STATE.md`: feature freeze06:34:32Z, ready-candidate handoff12:34:32Z, protected owner
+testing/feedback fixes through18:34:32Z on2026-09-06. These replace internal convergence/
+harvest behavior. Preserve running work and START. Deliver Hunt Rhythm and Stormwright
+independently as soon as each is ready; Field Camp must not threaten them. No additional
+project before both primaries are independently accepted and the window is protected,
+and none after feature freeze. Never restore the older twelve-hour internal closure plan.
+
 ## Current owner sequencing and deadline
 
 The controlling 2026-09-05 amendment in `AGENTS.md` / `DEADLINE.md` supersedes older

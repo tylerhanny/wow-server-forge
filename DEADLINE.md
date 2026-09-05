@@ -1,5 +1,26 @@
 # WoW Server Forge — Hard Deadline Policy
 
+## Latest owner schedule amendment — protected testing window
+
+Keep every current builder, candidate validation and GitHub Actions run moving. Preserve
+the existing actual START and hard deadline. This schedule supersedes all older internal
+convergence/harvest wording in repository authority, role prompts and recovery records.
+
+| Boundary, 2026-09-06 | UTC | America/New_York |
+|---|---|---|
+| FEATURE FREEZE | 06:34:32Z | 02:34:32 EDT |
+| CANDIDATE HANDOFF / OWNER TESTING START | 12:34:32Z | 08:34:32 EDT |
+| HARD DEADLINE / OWNER TESTING END | 18:34:32Z | 14:34:32 EDT |
+
+Hunt Rhythm and Stormwright are the primary Practical and Wildcard modules. Field Camp
+continues only while it does not threaten their completion, validation, documentation or
+early delivery. No additional project starts beyond the current active set unless both
+primaries are independently accepted and Director records that the owner window is safe.
+Deliver each READY FOR LIVE TEST module immediately; never hold one primary for another.
+By handoff deliver all available ready modules with exact install/config/SQL/rollback,
+one-human smoke steps, commands/NPCs/gameplay flow/useful logs, and explicit verified
+versus PENDING LIVE/IN-GAME behavior. Acceptance requirements remain unchanged.
+
 ## Controlling owner sequencing amendment — 2026-09-05
 
 Owner directive received **2026-09-05T06:34:32Z**: finish the current clean control
@@ -22,8 +43,8 @@ No exact access cutoff or earlier fixed owner deadline was found in the provided
 or project records. The **PROVISIONAL fixed ceiling is 2026-09-06T18:34:32Z**
 (2026-09-06 14:34:32 America/New_York), 36 hours from directive receipt. Access for that
 whole period is not verified. Remaining control time consumes this window. Record actual
-implementation start once terminal; preserve the fixed deadline and reserve the final 12h
-for convergence (deadline minus 12h), then harvest (deadline minus 6h). Never extend it.
+implementation start once terminal; preserve the fixed deadline. The latest schedule above
+replaces the earlier internal-closure allocation with handoff before six hours of owner testing.
 An earlier confirmed owner/access boundary can only shorten it, with handoff time reserved.
 
 Before another expensive validation dispatch, Reviewer checks the remaining existing stages
@@ -45,8 +66,9 @@ Use these fixed boundaries and record the actual implementation start without re
 ```text
 DIRECTIVE_RECEIVED = 2026-09-05T06:34:32Z
 START = actual implementation start after current control terminates
-CONVERGENCE_START = 2026-09-06T06:34:32Z
-HARVEST_START = 2026-09-06T12:34:32Z
+FEATURE_FREEZE = 2026-09-06T06:34:32Z
+CANDIDATE_HANDOFF = OWNER_TESTING_START = 2026-09-06T12:34:32Z
+OWNER_TESTING_END = 2026-09-06T18:34:32Z
 HARD_DEADLINE = 2026-09-06T18:34:32Z (PROVISIONAL access ceiling)
 ```
 
@@ -54,26 +76,28 @@ Use UTC in machine-readable state and include America/New_York equivalents for T
 
 ## Phase A — BUILD
 
-From actual implementation START until the recorded CONVERGENCE_START; the remaining control wait compresses this phase.
+From actual implementation START until FEATURE_FREEZE.
 
 Goals:
 
 - research pinned capabilities;
-- invent/select projects;
+- focus on the current approved projects;
 - implement aggressively;
 - compile early and repeatedly;
 - independently review promising candidates;
 - finish as many strong vertical slices as possible.
 
-New projects are allowed when the Director estimates a credible path to completion.
+No additional project without both primaries independently accepted and an explicit
+Director finding that it cannot threaten the protected owner testing window.
 
 Do not hoard ideas. Do not continue a weak project merely because work was already spent on it.
 
-## Phase B — CONVERGENCE
+## Phase B — FEATURE_FREEZE
 
-From the recorded CONVERGENCE_START until HARVEST_START (final 12h through final 6h).
+From FEATURE_FREEZE until CANDIDATE_HANDOFF (02:34:32–08:34:32 EDT).
 
-Default rule: no large/high-risk new implementation projects.
+No new projects and no optional feature expansion. Finish, cut, validate, fix, document
+and package existing work only. This is the six-hour internal closure period.
 
 For every active project, the Director must choose one:
 
@@ -85,31 +109,25 @@ Reviewer/Closer priority increases substantially.
 
 The objective is to turn promising work into complete candidates, not broaden features.
 
-A small low-risk project may still start only if the Director has high confidence it can pass the full gate before HARVEST_START without endangering stronger candidates.
+There is no exception for a new small or low-risk project after feature freeze.
 
-## Phase C — HARVEST
+## Phase C — OWNER_TESTING
 
-From the recorded HARVEST_START until the fixed HARD_DEADLINE (final 6h).
+From CANDIDATE_HANDOFF until HARD_DEADLINE (08:34:32–14:34:32 EDT).
 
-ABSOLUTELY NO NEW IMPLEMENTATION PROJECTS.
+The full six-hour window is reserved for Tyler's installation/playtesting and feedback fixes.
+No new projects or optional features. Do not spend this window as another internal harvest phase.
 
 Allowed work:
 
-- compiler/build fixes;
-- integration corrections inside existing projects;
-- SQL/config/data completion;
-- deterministic validation;
-- disposable install/startup checks;
-- independent code review;
-- review fixes;
-- documentation;
-- Git cleanup/checkpoints;
-- classification into HARVEST/BLOCKED/IDEA_VAULT;
-- final reporting.
+- support installation and playtesting from the exact delivered instructions;
+- diagnose and fix bugs Tyler reports;
+- independently re-review and revalidate every changed candidate;
+- communicate corrected candidate SHAs, instructions and evidence clearly;
+- remain available for actionable owner feedback, preserving the hard deadline.
 
-Do not add major optional features during Harvest.
-
-If a project cannot pass the finish gate before the deadline, stop pretending it will. Preserve it honestly as blocked/research and spend remaining capacity closing stronger candidates.
+An unfinished module must remain honestly blocked/research at handoff; never label it ready
+to fill the package. Early delivery does not remove the reserved owner-feedback capacity.
 
 ## Hard deadline behavior
 
@@ -146,7 +164,7 @@ Suggested threshold behavior:
 
 - Build phase: calculated experiments are acceptable.
 - Final 6 hours of Build: strongly favor credible completion paths.
-- Convergence: require high confidence or cut scope.
-- Harvest: completion work only.
+- Feature freeze: finish/cut/fix/validate/document/package existing work only.
+- Owner testing: installation/playtesting support and feedback fixes only.
 
 No exact numerical estimate is required, but the Director should make the tradeoff explicit in project notes when the decision is non-obvious.
