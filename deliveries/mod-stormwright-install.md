@@ -6,19 +6,21 @@ This external installation guide does not change the candidate or the official j
 The final exact-candidate attestation in `HARVEST.md` controls readiness and supersedes
 the frozen package's honestly pending pre-run status. This guide is not acceptance.
 
-**Release status at preparation:** independent source review and source-level
-ONE_HUMAN_REVIEW passed for the minimal three-call impact GUID repair. Corrected candidate
-`bde390e` passed full build/install/dry-runs/units in run `33955586542`, but the supplement
-FAILED because its fixture logger level3 suppressed the required INFO4 registrar message.
-Normal server ready was observed; registrar evidence was not. The one-line fixture and
-logger documentation are corrected; this docs-only candidate60c6a91 is pending full
-official run `33960843535`, with all source/SQL/config/rules/tests identical to compiled
-bde390e. No acceptance is inferred from that earlier partial result. Original a155817 failed
-compilation in `33952393192`; both failures remain preserved. Neither source review nor
-these prepared instructions are acceptance. Director must
-attach the terminal exact-SHA gate and applicable normal-startup evidence before
-calling this READY FOR LIVE TEST. No client gameplay, public walking route, visual
-readability, class balance or bot competence has been tested by this note.
+**READY FOR LIVE TEST — delivered early on 2026-09-05.** Exact candidate
+60c6a91925eed80049bec47994f87df739ac7725 passed complete official run
+[33960843535](https://github.com/tylerhanny/wow-server-forge/actions/runs/33960843535)
+under judge e5fd277de515dbda983993e6f8a52b48cb0816b4. Independent source, actual artifact
+and ONE_HUMAN_REVIEW all PASS. Compilation, install, config/SQL, both dry-runs,
+native units, executable rules and final dependency integrity passed. Normal startup
+observed the actual registrar at map1 XY(-6250,-3790), derived Z=-58.700077, followed
+by console shutdown exit0 and an empty Errors.log. The exact project tree is unchanged.
+
+Original a155817 failed compilation in33952393192; bde390e failed the normal-startup
+observation in33955586542 because its fixture logger3 suppressed required INFO4.
+Both failures remain failed. The current run uses the separately reviewed fixture
+correction and corrected candidate documentation. No client encounter playthrough,
+walking route, visual readability, class balance or bot competence is claimed:
+these remain **PENDING LIVE/IN-GAME VALIDATION**.
 
 All commands below are for a local disposable Ubuntu staging environment first.
 Tyler controls any later owner installation; Forge agents do not access the live server.

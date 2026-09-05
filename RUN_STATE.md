@@ -22,7 +22,7 @@ CANDIDATE_HANDOFF_UTC=2026-09-06T12:34:32Z
 CANDIDATE_HANDOFF_AMERICA_NEW_YORK=2026-09-06T08:34:32-04:00
 OWNER_TESTING_START_UTC=2026-09-06T12:34:32Z
 OWNER_TESTING_END_UTC=2026-09-06T18:34:32Z
-PRIMARY_MODULES_INDEPENDENTLY_ACCEPTED=NO
+PRIMARY_MODULES_INDEPENDENTLY_ACCEPTED=YES
 ADDITIONAL_PROJECT_WINDOW_REVIEW=NOT_GRANTED
 HARD_DEADLINE_UTC=2026-09-06T18:34:32Z
 HARD_DEADLINE_AMERICA_NEW_YORK=2026-09-06T14:34:32-04:00
@@ -32,7 +32,7 @@ CLEAN_CONTROL_RUN=33947235843
 AUTHORITY_TAMPER_RUN=33947239092
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
 CLEAN_CONTROL_REVIEW=PASS_COMPLETE_EXISTING_GATE
-VALIDATION_STATUS=HUNT_RHYTHM_AND_FIELD_CAMP_ACCEPTED_STORMWRIGHT_PENDING
+VALIDATION_STATUS=ALL_THREE_CURRENT_CANDIDATES_INDEPENDENTLY_ACCEPTED
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 ```
@@ -48,7 +48,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | READY FOR LIVE TEST at796e27e; delivered early; remains subordinate |
-| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Frozen60c6a91 with corrected documentation; official run33960843535 active; primary priority |
+| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | READY FOR LIVE TEST at60c6a91; official33960843535 and independent review PASS; delivering early |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
 The completed selection, creative ownership and one-human approvals are in
@@ -92,8 +92,7 @@ remains active; report meaningful transitions/results, not unchanged compile sta
 
 Complete prelaunch evidence and native test-skip disclosure: `prelaunch/clean-control-final-pass.md`.
 This certifies only the control. Hunt Rhythm's separate candidate acceptance is recorded below;
-Field Camp also has separate candidate acceptance below; Stormwright remains pending its
-actual result and independent evidence review.
+Field Camp and Stormwright also have separate exact-candidate acceptance below.
 
 Hunt Rhythm candidate `4aaa3ae188e7bcdba2569676911e14142ac378e2` is **READY FOR LIVE TEST**.
 Official run `33951428776` passed every required stage at2026-09-05T08:05:00Z under judge
@@ -132,9 +131,15 @@ correction, published as `e5fd277de515dbda983993e6f8a52b48cb0816b4`. Corrected h
 is `980804f2e54e32550d1f9329935bf71987e97336265163c5b027a60397c1493a`.
 Wildcard's independently reviewed docs-only candidate
 `60c6a91925eed80049bec47994f87df739ac7725` has identical source/SQL/config/rules/tests
-to compiled bde390e. Exactly one complete official rerun `33960843535` is active under
-judge `e5fd277de515dbda983993e6f8a52b48cb0816b4`, with all existing requirements retained.
-Reviewer owns execution/evidence review. No removed check or extra control is authorized.
+to compiled bde390e. The complete official rerun `33960843535` PASSED at2026-09-05T12:12:24Z under
+judge `e5fd277de515dbda983993e6f8a52b48cb0816b4`, retaining every required check.
+Independent source, actual artifact and ONE_HUMAN_REVIEW all PASS. Normal startup
+observed the registrar at derived Z=-58.700077, clean console exit0 and empty Errors.log.
+Stormwright is READY FOR LIVE TEST and is delivered immediately, separately from the other
+modules. Its exact project tree is integrated unchanged; final handoff and compact evidence
+are in handoffs/mod-stormwright.md and deliveries/evidence/mod-stormwright-33960843535.json.
+Both primary modules are now independently accepted. Further project authorization still
+requires a separate Director window-safety finding; it is not automatically granted. No removed check or extra control is authorized.
 Preserve both failed runs/packages as historical and unreleased.
 No extra control was launched. Field Camp original `ec9eea979c9344853aaf02d46ba9f6632636254b` had independent
 source/one-human PASS with source/config identical to reviewed `b1b8417`. Its official
@@ -168,13 +173,12 @@ Hunt's58m54s. This demonstrates use/save, not acceleration or cached-warning rep
 do not infer a cause from the timing difference or launch a cache-only control.
 
 Owner installation/config/SQL/rollback and one-human test guides are in `deliveries/`.
-Hunt Rhythm and Field Camp guides and exact source ZIPs are delivered; Stormwright remains
-pending actual acceptance. Source ZIPs in ignored `.forge-local/deliveries/` have been checked file-by-file
+All three exact source ZIPs and installation/test/rollback guides are accepted for early delivery. Source ZIPs in ignored `.forge-local/deliveries/` have been checked file-by-file
 against the frozen Git blobs. The four completed disposable smoke branch refs were archived
 under `forge-controls/2026-09-05/*` tags with evidence in
 `prelaunch/evidence/control-archive.json`; no active candidate/run was affected.
 
-Current prepared, unreleased package: Stormwright `mod-stormwright-60c6a91.zip`,
+Accepted early-delivery package: Stormwright `mod-stormwright-60c6a91.zip`,
 SHA256 `2b773f50d90f926194b0be5e6f04ba3274bd8aee7c8ab3b178cff9d46d0efac9`;
 Delivered Field Camp `mod-field-camp-796e27e.zip`, SHA256
 `0afa0e660d14a247776dad777d1ada8e7d4ecfa780b8b5885f7d4388d56bf8bf`.

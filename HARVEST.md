@@ -79,19 +79,52 @@ retains equivalent public delayed-teleport rejection. Four upstream warnings rem
 project warnings remain fatal, and native unit counts are 5,909 pass / 5,486 native skip /
 one pre-existing disabled, with no Forge weakening. See exact evidence for full scope.
 
-Stormwright remains pending actual validation and independent evidence review and is not
-included in READY. Deliver each ready candidate independently; handoff is due
-by 2026-09-06T12:34:32Z, followed by the protected six-hour owner feedback window.
+### Stormwright — Wildcard flagship
+
+**Delivered early on 2026-09-05.** A repeatable level80 encounter where one human pilot
+routes tracking lightning into capacitors, dodges the locked strike, and chooses healing/
+ward repair or an offensive discharge and armor opening. Three presets change the cadence.
+Optional ordinary bots fight; the human operates every custom mechanic.
+
+- Exact candidate `60c6a91925eed80049bec47994f87df739ac7725`, branch `project/stormwright`;
+  its tested project tree is integrated unchanged. Same exact target pins/client/OS as above.
+- [Official run33960843535](https://github.com/tylerhanny/wow-server-forge/actions/runs/33960843535)
+  PASS under judge `e5fd277de515dbda983993e6f8a52b48cb0816b4`: full build/install/config/SQL,
+  both dry-runs, native units, executable rules, normal startup and final dependency integrity.
+- Actual registrar spawn observed at map1 XY(-6250,-3790), derived Z=-58.700077;
+  owned SQL identities verified, clean console shutdown exit0, Errors.log empty.
+- Independent source, actual artifact and **ONE_HUMAN_REVIEW=PASS**.
+- [Final attestation](handoffs/mod-stormwright.md), [independent review](reviews/mod-stormwright-final-review.md),
+  [evidence](deliveries/evidence/mod-stormwright-33960843535.json), and
+  [exact install/config/SQL/rollback and one-human tests](deliveries/mod-stormwright-install.md).
+- Source package `mod-stormwright-60c6a91.zip`, SHA256
+  `2b773f50d90f926194b0be5e6f04ba3274bd8aee7c8ab3b178cff9d46d0efac9`.
+
+Travel normally to Nix Stormwright north of Mirage Raceway. Start Normal Solo Pilot
+without bots, catch/evade lightning, choose Ground or Discharge, defeat the storm, read
+the result, retry and abort through ordinary gossip. No second human/client/account is
+needed. Optional party scaling never assigns custom decisions to bots. No persistent
+power, economy or ranking reward is added; results are session-only.
+
+**PENDING LIVE/IN-GAME VALIDATION:** the complete player encounter, ordinary access and
+navigation, visual readability, class/gear balance and bot competence/feel. Server startup
+is not a client playthrough. Both prior failures remain preserved. Four verified upstream
+warnings remain visible; project warnings remain fatal. Native units:5909 passed,
+5486 native conditional skips, one pre-existing disabled test. Current cache restore was
+a MISS with1830 misses/0hits and successful save; no acceleration is claimed.
+
+All three current modules are independently accepted and delivered early. The fixed
+handoff remains2026-09-06T12:34:32Z, followed by the protected six-hour owner feedback window.
 
 ## Current run totals (not final)
 
 ```text
 Attempted: 3
-Ready for live test: 2
+Ready for live test: 3
 Blocked: 0
 Abandoned: 0
 Research only: 0
-Wildcard-ready projects: 0
+Wildcard-ready projects: 1
 Live server changes: 0 (must remain 0)
 ```
 
