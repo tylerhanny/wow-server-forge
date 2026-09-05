@@ -418,6 +418,34 @@ jobs:
           mysql --host=127.0.0.1 --user=root --password=root --execute='SELECT 1'
           mkdir -p ac/env/dist/logs
 
+          # Keep Playerbots enabled without generating a random/addclass population
+          # during the disposable startup check. AccountCount=0 is AUTO at this pin,
+          # so both population pools must also be zero on this fresh database.
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          config = Path('ac/env/dist/etc/modules/playerbots.conf')
+          text = config.read_text()
+          values = {
+              'AiPlayerbot.Enabled': 1,
+              'AiPlayerbot.RandomBotAutologin': 0,
+              'AiPlayerbot.MinRandomBots': 0,
+              'AiPlayerbot.MaxRandomBots': 0,
+              'AiPlayerbot.RandomBotAccountCount': 0,
+              'AiPlayerbot.AddClassAccountPoolSize': 0,
+          }
+          for key, value in values.items():
+              text, count = re.subn(r'^' + re.escape(key) + r'\s*=.*$',
+                                   f'{key} = {value}', text, flags=re.MULTILINE)
+              if count != 1:
+                  raise SystemExit(f'Expected one installed Playerbots setting: {key}')
+          config.write_text(text)
+          effective = ''.join(f'{key} = {value}\n' for key, value in values.items())
+          Path('evidence/playerbots-runtime-fixture.conf').write_text(effective)
+          print(effective, end='')
+          PY
+
       - name: Dry-run authserver and worldserver
         shell: bash
         env:
@@ -430,9 +458,9 @@ jobs:
           AC_LOGS_DIR: ${{ github.workspace }}/ac/env/dist/logs
         run: |
           set -euo pipefail
-          timeout 5m ac/env/dist/bin/authserver --dry-run 2>&1 | tee evidence/authserver-dry-run.log
+          timeout --kill-after=30s 5m ac/env/dist/bin/authserver --dry-run 2>&1 | tee evidence/authserver-dry-run.log
           grep -F 'Dry run completed, terminating.' evidence/authserver-dry-run.log
-          timeout 5m ac/env/dist/bin/worldserver --dry-run 2>&1 | tee evidence/worldserver-dry-run.log
+          timeout --kill-after=30s 5m ac/env/dist/bin/worldserver --dry-run 2>&1 | tee evidence/worldserver-dry-run.log
           grep -F 'WORLD: World Initialized In ' evidence/worldserver-dry-run.log
           grep -F 'AzerothCore Dry Run Completed, Terminating.' evidence/worldserver-dry-run.log
           if [[ "$PROJECT" == mod-forge-smoke ]]; then
