@@ -42,6 +42,8 @@ constexpr float ArenaRadius = 45.0f;
 constexpr float CaptureRadius = 4.5f;
 constexpr uint32 OwnedLifetimeMs = TimeLimitMs + 60000;
 constexpr uint32 OrbVisualKit = 12201; // Packet-only; never cast spell 62186.
+constexpr uint32 LightningCastKit = 321; // SpellVisual 36 casting kit; not spell 421.
+constexpr uint32 LightningImpactKit = 283; // SpellVisual 173 impact kit; not spell 403.
 constexpr uint32 AbortAction = 20;
 constexpr uint32 StatusAction = 21;
 constexpr uint32 DischargeAction = 30;
@@ -272,12 +274,15 @@ public:
         {
             uint64 const healing = uint64(player->GetMaxHealth()) * _rules.Settings().healPercent / 100;
             player->SetHealth(static_cast<uint32>(std::min<uint64>(player->GetMaxHealth(), uint64(player->GetHealth()) + healing)));
+            rod->SendPlaySpellImpact(LightningImpactKit);
             Tell(player, "GROUNDED. Health recovered; " + Status());
         }
         else
         {
+            rod->SendPlaySpellVisual(LightningCastKit);
             if (Creature* boss = Owned(_boss))
             {
+                boss->SendPlaySpellImpact(LightningImpactKit);
                 uint32 const damage = static_cast<uint32>(uint64(boss->GetMaxHealth()) * _rules.Settings().damagePercent / 100);
                 Unit::DealDamage(rod, boss, damage, nullptr, DIRECT_DAMAGE, SPELL_SCHOOL_MASK_NATURE);
             }
@@ -300,16 +305,17 @@ public:
     {
         if (!Active())
             return;
-        if (_won)
-        {
-            Finish(true, "storm broken");
-            return;
-        }
         Player* pilot = Pilot();
         if (!Enabled.load() || !pilot || !pilot->IsAlive() ||
+            pilot->GetMap() != me->GetMap() ||
             Distance2D(pilot->GetPosition(), _site.center) > ArenaRadius || !_abort.empty())
         {
             Finish(false, !_abort.empty() ? _abort : "pilot died, left, disconnected, or module disabled");
+            return;
+        }
+        if (_won)
+        {
+            Finish(true, "storm broken");
             return;
         }
         Creature* boss = Owned(_boss);
@@ -326,8 +332,16 @@ public:
             }
 
         if (_rules.CurrentPhase() == Phase::Tracking)
-            if (Creature* marker = Owned(_marker))
-                marker->NearTeleportTo(pilot->GetPositionX(), pilot->GetPositionY(), pilot->GetPositionZ(), 0.0f);
+        {
+            if (_markerMoveMs <= diff)
+            {
+                _markerMoveMs = 100;
+                if (Creature* marker = Owned(_marker))
+                    marker->NearTeleportTo(pilot->GetPositionX(), pilot->GetPositionY(), pilot->GetPositionZ(), 0.0f);
+            }
+            else
+                _markerMoveMs -= diff;
+        }
         Event const event = _rules.Tick(diff);
         switch (event)
         {
@@ -340,6 +354,7 @@ public:
                     return;
                 }
                 _marker = marker->GetGUID();
+                _markerMoveMs = 100;
                 marker->SendPlaySpellVisual(OrbVisualKit);
                 Tell(pilot, "TRACKING YOU: lead the storm into an available capacitor.");
                 break;
@@ -347,6 +362,7 @@ public:
             case Event::Lock:
                 if (Creature* marker = Owned(_marker))
                 {
+                    marker->NearTeleportTo(pilot->GetPositionX(), pilot->GetPositionY(), pilot->GetPositionZ(), 0.0f);
                     _locked = marker->GetPosition();
                     marker->SetObjectScale(2.0f);
                     Tell(pilot, "LOCKED: move away from the marker now!");
@@ -368,7 +384,10 @@ public:
                     }
                 bool const success = _rules.Resolve(caught);
                 if (Creature* marker = Owned(_marker))
-                    marker->DespawnOrUnsummon(1ms);
+                {
+                    marker->SendPlaySpellImpact(LightningImpactKit);
+                    marker->DespawnOrUnsummon(750ms);
+                }
                 _marker.Clear();
                 if (Distance2D(pilot->GetPosition(), _locked) <= 3.5f)
                     Unit::DealDamage(boss, pilot, static_cast<uint32>(uint64(pilot->GetMaxHealth()) * 15 / 100), nullptr,
@@ -495,6 +514,7 @@ private:
     std::vector<ObjectGuid> _adds;
     uint32 _serial = 0;
     uint32 _pilotMaxHealth = 0;
+    uint32 _markerMoveMs = 0;
     uint64 _nextAdd = 0;
     bool _won = false;
     std::string _abort;

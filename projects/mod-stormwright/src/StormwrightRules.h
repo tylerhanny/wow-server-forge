@@ -43,7 +43,7 @@ struct Rod
 class Rules
 {
 public:
-    bool Begin(std::size_t preset)
+    constexpr bool Begin(std::size_t preset)
     {
         if (Active() || preset >= Presets.size())
             return false;
@@ -54,7 +54,7 @@ public:
         return true;
     }
 
-    Event Tick(std::uint32_t diff)
+    constexpr Event Tick(std::uint32_t diff)
     {
         if (!Active())
             return Event::None;
@@ -85,7 +85,7 @@ public:
     }
 
     // A value outside [0,3) is a miss. A cooling/charged rod cannot catch again.
-    bool Resolve(std::size_t rod)
+    constexpr bool Resolve(std::size_t rod)
     {
         if (_phase != Phase::Resolving)
             return false;
@@ -103,7 +103,7 @@ public:
         return caught;
     }
 
-    bool Activate(std::size_t rod, Spend action, bool pilotInjured)
+    constexpr bool Activate(std::size_t rod, Spend action, bool pilotInjured)
     {
         if (!Active() || _ward == 0 || rod >= _rods.size() || !_rods[rod].charged)
             return false;
@@ -126,28 +126,28 @@ public:
         return true;
     }
 
-    bool Active() const { return _phase != Phase::Idle; }
-    bool Ready(std::size_t rod) const
+    constexpr bool Active() const { return _phase != Phase::Idle; }
+    constexpr bool Ready(std::size_t rod) const
     {
         return Active() && rod < _rods.size() && !_rods[rod].charged &&
             _rods[rod].coolingUntil <= _elapsed;
     }
-    bool Charged(std::size_t rod) const { return rod < _rods.size() && _rods[rod].charged; }
-    bool Vulnerable() const { return Active() && _elapsed < _vulnerableUntil; }
-    std::uint32_t CoolingSeconds(std::size_t rod) const
+    constexpr bool Charged(std::size_t rod) const { return rod < _rods.size() && _rods[rod].charged; }
+    constexpr bool Vulnerable() const { return Active() && _elapsed < _vulnerableUntil; }
+    constexpr std::uint32_t CoolingSeconds(std::size_t rod) const
     {
         if (rod >= _rods.size() || _rods[rod].coolingUntil <= _elapsed)
             return 0;
         return static_cast<std::uint32_t>((_rods[rod].coolingUntil - _elapsed + 999) / 1000);
     }
-    void End() { _phase = Phase::Idle; }
-    Phase CurrentPhase() const { return _phase; }
-    Preset const& Settings() const { return Presets[_preset]; }
-    std::uint64_t Elapsed() const { return _elapsed; }
-    std::uint32_t Ward() const { return _ward; }
-    std::uint32_t Misses() const { return _misses; }
-    std::uint32_t Grounds() const { return _grounds; }
-    std::uint32_t Discharges() const { return _discharges; }
+    constexpr void End() { _phase = Phase::Idle; }
+    constexpr Phase CurrentPhase() const { return _phase; }
+    constexpr Preset const& Settings() const { return Presets[_preset]; }
+    constexpr std::uint64_t Elapsed() const { return _elapsed; }
+    constexpr std::uint32_t Ward() const { return _ward; }
+    constexpr std::uint32_t Misses() const { return _misses; }
+    constexpr std::uint32_t Grounds() const { return _grounds; }
+    constexpr std::uint32_t Discharges() const { return _discharges; }
 
 private:
     Phase _phase = Phase::Idle;
