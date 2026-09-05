@@ -7,7 +7,10 @@ The final exact-candidate attestation in `HARVEST.md` controls readiness and sup
 the frozen package's honestly pending pre-run status. This guide is not acceptance.
 
 **Release status at preparation:** independent source review and source-level
-ONE_HUMAN_REVIEW passed; official run `33952393192` is still pending. Director must
+ONE_HUMAN_REVIEW passed, but official run `33952393192` FAILED compilation because the
+impact-visual call omitted a required pinned API argument. No install/runtime/unit or
+supplemental check ran. Wildcard is repairing this candidate; this original package must
+not be installed as an accepted release. Director must
 attach the terminal exact-SHA gate and applicable normal-startup evidence before
 calling this READY FOR LIVE TEST. No client gameplay, public walking route, visual
 readability, class balance or bot competence has been tested by this note.

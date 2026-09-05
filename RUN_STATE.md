@@ -47,8 +47,8 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 |---|---|---|---|
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
-| Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | FIXING actual compile error fromrun33952603462; remains subordinate |
-| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Frozen reviewed flagship; official gate running |
+| Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | Corrected frozen796e27e; official run33955341216 active; subordinate |
+| Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | FIXING actual SendPlaySpellImpact compile error; primary repair priority |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
 The completed selection, creative ownership and one-human approvals are in
@@ -112,14 +112,20 @@ source/one-human review passed, with source/SQL/config/tests identical to review
 Official run `33952393192` uses judge `aea0f034d9e4767e96891fdf24c6260cd959218f`.
 It includes the independently approved normal-startup evidence required by Stormwright's
 OnStartup hook, on the same already-built disposable server after existing checks.
-Actual compilation/install/SQL/startup/gameplay results remain pending. No extra control
-was launched. Field Camp frozen `ec9eea979c9344853aaf02d46ba9f6632636254b` retains independent
+That run FAILED full compilation: project SendPlaySpellImpact call omitted the required
+pinned GUID argument. Install/SQL/runtime/unit/supplemental stages did not run. Wildcard
+owns the minimal project API repair and independent re-review; no dependency or judge
+change is authorized. Preserve faileda155817 evidence/package and do not release it.
+No extra control was launched. Field Camp original `ec9eea979c9344853aaf02d46ba9f6632636254b` had independent
 source/one-human PASS with source/config identical to reviewed `b1b8417`. Its official
 run `33952603462` used judge `e7a37fa` and FAILED full compilation: FieldCamp.cpp called
 private pinned `Player::HasDelayedTeleport`. This is a project API error; install/runtime/
-unit stages were skipped and no acceptance is claimed. Practical owns the minimal repair,
-followed by independent source review and a new exact-candidate full gate. The old failure
-and package remain preserved; do not deliver that package as ready. Field Camp remains
+unit stages were skipped and no acceptance is claimed. Independently reviewed repair
+`6ce52323b96be5dba4f4dfea5668032d17acdc3a` removes only the redundant private call;
+the retained public IsBeingTeleported predicate covers both delayed near/far semaphores.
+Final docs-only freeze `796e27e9cfcd05f4c4e4c627e26834ea7be72155` is under official run
+`33955341216`, judge `1ea9a4b3671c763b286f681e983e9499c7cb35af`. The old failure
+and package remain preserved; do not deliver either Field Camp package as ready yet. Field Camp remains
 subordinate to both primaries. Every accepted primary is delivered immediately.
 
 The owner directly authorized publishing reviewed cache revision

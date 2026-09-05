@@ -1,9 +1,10 @@
 # Field Camp — owner install, testing and rollback
 
 Prepared external installation guide, 2026-09-05, for exact candidate
-`ec9eea979c9344853aaf02d46ba9f6632636254b` (`project/field-camp`).
-Independent source and source-level one-human review passed; official run `33952603462`
-is pending at preparation. The final exact-candidate attestation in `HARVEST.md` controls
+`796e27e9cfcd05f4c4e4c627e26834ea7be72155` (`project/field-camp`).
+Independent source and source-level one-human review passed for the minimal compiler repair;
+official run `33955341216` is pending. Original ec9eea9 failed compilation inrun33952603462;
+that failure remains preserved and is not acceptance. The final exact-candidate attestation in `HARVEST.md` controls
 readiness and supersedes the frozen package's pre-run status. This guide is not acceptance.
 **These commands have not been executed.**
 
@@ -23,9 +24,9 @@ untouched. Replace the three path placeholders with local disposable paths.
 set -euo pipefail
 AC=/path/to/disposable/azerothcore
 FORGE=/path/to/wow-server-forge
-WORK=/path/to/new/field-camp-ec9eea9-test
+WORK=/path/to/new/field-camp-796e27e-test
 PB="$AC/modules/mod-playerbots"
-CANDIDATE=ec9eea979c9344853aaf02d46ba9f6632636254b
+CANDIDATE=796e27e9cfcd05f4c4e4c627e26834ea7be72155
 AC_PIN=47960183bb03b83e8943eb2f0f39c16df9710c9d
 PB_PIN=2f7d9f774987d0157c6a0d0cc08c40bec3db3945
 BUILD="$WORK/build-with-camp"
