@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #include "TriageNightRules.h"
 #include "Chat.h"
+#include "CommandScript.h"
 #include "Config.h"
 #include "Creature.h"
 #include "CreatureScript.h"
