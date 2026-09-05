@@ -1,0 +1,138 @@
+{
+  "run": 33955341216,
+  "judge": "1ea9a4b3671c763b286f681e983e9499c7cb35af",
+  "candidate": "796e27e9cfcd05f4c4e4c627e26834ea7be72155",
+  "build_bytes": 203040,
+  "build_sha256": "a6343cd280846d62785bfe7f1797432be6c78234622971bb6f8c7f90308a0d59",
+  "receipt_sha256": "e1888c4529f1e58a5a223698f60cf8a771ea49f70346b07c42e9a4580caa4160",
+  "verdict_sha256": "64b1878322d4f945a6287ca337da8d08cc5df69384c573e48daf10a82fbdccfd",
+  "install_bytes": 7712,
+  "install_sha256": "a4f8fd3174710d57d7c115899509a5f180e022ede7e999fe9f44810306ff7747",
+  "inventory": {
+    "core_commit": "47960183bb03b83e8943eb2f0f39c16df9710c9d",
+    "playerbots_commit": "2f7d9f774987d0157c6a0d0cc08c40bec3db3945",
+    "tracked_source_files": 3634,
+    "inventory_sha256": "c0a0a00c908bd7ac8e7063021360b32fb7b9c32c023590ae343b98e33980fec9"
+  },
+  "commands": 1829,
+  "demotions": 1822,
+  "compile_commands_sha256": "bbdddcdaf049613ca1aa6d44452b988080f699613c478f1afd28cbc476367060",
+  "fixture": {
+    "schema": 1,
+    "authorization": "OWNER-AUTHORIZED TEST-ONLY WORLDMOCK CORRECTION; not unchanged upstream source",
+    "core_commit": "47960183bb03b83e8943eb2f0f39c16df9710c9d",
+    "path": "src/test/mocks/WorldMock.h",
+    "original_git_blob": "23cc8998295ad6ec70fc1264e193185ed50c9322",
+    "original_sha256": "0908566bb6f2ec3875992c73e28204d4c0a1271624b2b75fa99357f30b579ce1",
+    "corrected_git_blob": "78df3ce2cfb77e03db6c78c063955ca81d4c7816",
+    "corrected_sha256": "f8bd0eb555aab8ab93369f47f662b65cb7d78b3a87800d243bbd1ed109d426e6",
+    "patch_sha256": "ccb5de156d833f050764a086260d3603f459932872974e5a85dd36e5c8c93bc5",
+    "applied": true,
+    "applied_sha256": "f8bd0eb555aab8ab93369f47f662b65cb7d78b3a87800d243bbd1ed109d426e6",
+    "compiled_fixture": "AUTHORIZED_CORRECTED_TEST_FIXTURE_NOT_UNCHANGED_UPSTREAM",
+    "build_started": true,
+    "restored_before_install": true,
+    "post_compile_sha256": "f8bd0eb555aab8ab93369f47f662b65cb7d78b3a87800d243bbd1ed109d426e6",
+    "all_other_tracked_files_unchanged": true,
+    "post_compile_exact_delta_verified": true,
+    "restored_sha256": "0908566bb6f2ec3875992c73e28204d4c0a1271624b2b75fa99357f30b579ce1"
+  },
+  "warnings": [
+    "/home/runner/work/wow-server-forge/wow-server-forge/ac/modules/mod-playerbots/src/Ai/Raid/BT/BTHelpers.cpp:107:60: warning: unused parameter 'botAI' [-Wunused-parameter]",
+    "/home/runner/work/wow-server-forge/wow-server-forge/ac/modules/mod-playerbots/src/Ai/Raid/Hyjal/Util/HyjalHelpers.cpp:168:61: warning: unused parameter 'botAI' [-Wunused-parameter]",
+    "/home/runner/work/wow-server-forge/wow-server-forge/ac/modules/mod-playerbots/src/Ai/Raid/Hyjal/Util/HyjalHelpers.cpp:209:60: warning: unused parameter 'botAI' [-Wunused-parameter]",
+    "/home/runner/work/wow-server-forge/wow-server-forge/ac/modules/mod-playerbots/src/Ai/Raid/Hyjal/Util/HyjalScripts.cpp:39:63: warning: unused parameter 'botAI' [-Wunused-parameter]"
+  ],
+  "protected": [
+    {
+      "path": ".github/workflows/official-candidate-gate.yml",
+      "sha256": "550fc47bc810b165707bb70f2c1f7ebfeab478466055deda3ab96f9e99aaf635"
+    },
+    {
+      "path": "UPSTREAM_WARNING_POLICY.md",
+      "sha256": "eeaf3ac4907d2b479f3cb02a184c276b6e5609239d6241a9e222a03d130134d9"
+    },
+    {
+      "path": "WORLDMOCK_FIXTURE_EXCEPTION.md",
+      "sha256": "81c44f7f4635531260cac483d2861a7a53a329dd23fa6c994b237922be097d8f"
+    },
+    {
+      "path": "validation/upstream-warning-policy.json",
+      "sha256": "a63facb5291f8d48f2cd2351f891ec7ac61df14086ef2e24ce50f76b62bea822"
+    },
+    {
+      "path": "validation/worldmock-fixture.json",
+      "sha256": "d3f8a57d2865e7e10ddbea358d9eb63651c4f47ed20cdd515aa60938c63a9e7b"
+    },
+    {
+      "path": "validation/worldmock-fixture.patch",
+      "sha256": "ccb5de156d833f050764a086260d3603f459932872974e5a85dd36e5c8c93bc5"
+    },
+    {
+      "path": "validation/upstream-warning-hook.cmake",
+      "sha256": "74bc5b793ddd8a84ae466ed1512b4de8b74bd82860ca3bfa0bf991fff5abcc1e"
+    },
+    {
+      "path": "validation/verify_build.py",
+      "sha256": "d6f7b2e07bba9a30236fb7f6cd486ed40db742f0eebbe983685cfc98f5f397d7"
+    },
+    {
+      "path": "validation/stormwright_runtime.py",
+      "sha256": "4595abbbd9b92d1b5289e07a6a109090db51b3a7a18c6f5d4970c2d5174cae61"
+    },
+    {
+      "path": "validation/test_verify_build.py",
+      "sha256": "463e3ac808aaa376a23b94247041c32aa55326e0b47cdca269fb238fae3a0ffb"
+    }
+  ],
+  "overall_gate": "SUCCESS",
+  "reviewed_build_and_fixture": "PASS",
+  "reviewed_install": "PASS",
+  "independent_review": "PASS",
+  "artifact_id": 9967556076,
+  "artifact_api_digest": "sha256:e147d0f4112c7102d2c26b4210041b3170dac6c46b2e38abbf815346c525106a",
+  "artifact_bytes": 877076,
+  "completed_at": "2026-09-05T10:07:34Z",
+  "module_config_marker": "FIELD_CAMP_CONFIG reload=0 enabled=1 cooldown=600; session camps and cooldowns cleared",
+  "module_loader_call_verified": true,
+  "errors_log_bytes": 0,
+  "units_selected": 11395,
+  "units_passed": 5909,
+  "units_native_skipped": 5486,
+  "units_native_disabled": 1,
+  "runtime_data_sha": "74643b700b1cd806845a1dfd926a2c46e7890dbe",
+  "source_review": "PASS",
+  "one_human_review": "PASS",
+  "live_in_game_behavior": "PENDING; not inferred from CI",
+  "runtime_hashes": {
+    "authserver-dry-run.log": "dd2b8ed83ab4f1634bfeb802e059f6c04a25decced1ac717ae1aa343701a9993",
+    "worldserver-dry-run.log": "f80a939b8063d514f974505cd6afcb4a747b3fff2d563870dc333aa548dd7c6a",
+    "unit-tests.log": "5f4b0507028e5b6d0f33ad8f07412c2927c8dc0f71dfba3217d2c1ecbc17c5a9",
+    "ModulesLoader.cpp": "75b5b26623415f214b9800dc1fa7786e1c6a3c5c015ced980ecf3035c181e6e3",
+    "playerbots-runtime-fixture.conf": "f3201d5e1da6d9880d9edf4075abfa80651e70c00289036f28f48db8e2c1e958"
+  },
+  "cache": {
+    "restore": "MISS: Cache not found for input keys, actual Actions log",
+    "save": "SUCCESS: exact key reported in Actions log",
+    "cacheable_calls": 1829,
+    "hits": 0,
+    "misses": 1829,
+    "cache_size_reported": "0.1 GB / 1.5 GB (5.08%)",
+    "config_sha256": "a71db3f8223193fffa9b22600d0ab86f1044ed53fd49c9be99436d8430871391",
+    "stats_sha256": "112ab3a2c7a530b3bd87607074c2ae5603a02907fba18cc82fadf5f62dc0ff21",
+    "compile_started_at": "2026-09-05T08:30:53Z",
+    "compile_completed_at": "2026-09-05T10:05:58Z",
+    "compile_duration_seconds": 5705.0,
+    "comparison": "Hunt full compile 3534 seconds; this cold run provides no evidence of cache acceleration or replay"
+  },
+  "build_command": [
+    "cmake",
+    "--build",
+    "/home/runner/work/wow-server-forge/wow-server-forge/ac/build",
+    "--config",
+    "Release",
+    "-j",
+    "5"
+  ],
+  "package_sha256": "0afa0e660d14a247776dad777d1ada8e7d4ecfa780b8b5885f7d4388d56bf8bf"
+}

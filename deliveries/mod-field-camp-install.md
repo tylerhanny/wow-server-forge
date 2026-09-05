@@ -1,11 +1,14 @@
 # Field Camp — owner install, testing and rollback
 
-Prepared external installation guide, 2026-09-05, for exact candidate
+Released external installation guide, 2026-09-05, for exact candidate
 `796e27e9cfcd05f4c4e4c627e26834ea7be72155` (`project/field-camp`).
-Independent source and source-level one-human review passed for the minimal compiler repair;
-official run `33955341216` is pending. Original ec9eea9 failed compilation inrun33952603462;
-that failure remains preserved and is not acceptance. The final exact-candidate attestation in `HARVEST.md` controls
-readiness and supersedes the frozen package's pre-run status. This guide is not acceptance.
+**READY FOR LIVE TEST:** official run `33955341216` and independent source/one-human/
+artifact review passed. Original ec9eea9 failed compilation in run33952603462; that result
+remains failed. [Final attestation](../handoffs/mod-field-camp.md) and
+[evidence](evidence/mod-field-camp-33955341216.json) establish exact-candidate readiness
+and supersede the frozen package's pending pre-run status without changing its tested source.
+Source ZIP `mod-field-camp-796e27e.zip`, SHA256
+`0afa0e660d14a247776dad777d1ada8e7d4ecfa780b8b5885f7d4388d56bf8bf`.
 **These commands have not been executed.**
 
 Use a disposable Ubuntu 24.04 x86-64 checkout/database setup and stock WoW 3.3.5a build

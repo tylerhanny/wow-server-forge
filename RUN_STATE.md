@@ -32,7 +32,7 @@ CLEAN_CONTROL_RUN=33947235843
 AUTHORITY_TAMPER_RUN=33947239092
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
 CLEAN_CONTROL_REVIEW=PASS_COMPLETE_EXISTING_GATE
-VALIDATION_STATUS=HUNT_RHYTHM_ACCEPTED_STORMWRIGHT_AND_FIELD_CAMP_PENDING
+VALIDATION_STATUS=HUNT_RHYTHM_AND_FIELD_CAMP_ACCEPTED_STORMWRIGHT_PENDING
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 ```
@@ -47,7 +47,7 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 |---|---|---|---|
 | Director | Fixed deadline and persistent orchestration | main | Active orchestration and independent closure |
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
-| Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | Corrected frozen796e27e; official run33955341216 active; subordinate |
+| Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | READY FOR LIVE TEST at796e27e; delivered early; remains subordinate |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | Corrected frozenbde390e; official run33955586542 active; primary priority |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
@@ -92,7 +92,8 @@ remains active; report meaningful transitions/results, not unchanged compile sta
 
 Complete prelaunch evidence and native test-skip disclosure: `prelaunch/clean-control-final-pass.md`.
 This certifies only the control. Hunt Rhythm's separate candidate acceptance is recorded below;
-Stormwright and Field Camp remain pending their actual results and independent evidence review.
+Field Camp also has separate candidate acceptance below; Stormwright remains pending its
+actual result and independent evidence review.
 
 Hunt Rhythm candidate `4aaa3ae188e7bcdba2569676911e14142ac378e2` is **READY FOR LIVE TEST**.
 Official run `33951428776` passed every required stage at2026-09-05T08:05:00Z under judge
@@ -129,30 +130,38 @@ private pinned `Player::HasDelayedTeleport`. This is a project API error; instal
 unit stages were skipped and no acceptance is claimed. Independently reviewed repair
 `6ce52323b96be5dba4f4dfea5668032d17acdc3a` removes only the redundant private call;
 the retained public IsBeingTeleported predicate covers both delayed near/far semaphores.
-Final docs-only freeze `796e27e9cfcd05f4c4e4c627e26834ea7be72155` is under official run
-`33955341216`, judge `1ea9a4b3671c763b286f681e983e9499c7cb35af`. The old failure
-and package remain preserved; do not deliver either Field Camp package as ready yet. Field Camp remains
-subordinate to both primaries. Every accepted primary is delivered immediately.
+Final docs-only freeze `796e27e9cfcd05f4c4e4c627e26834ea7be72155` is **READY FOR LIVE TEST**:
+official run `33955341216`, judge `1ea9a4b3671c763b286f681e983e9499c7cb35af`, completed
+SUCCESS at 2026-09-05T10:07:34Z. Independent source/one-human/actual-artifact review PASS.
+The exact source is integrated unchanged and its ZIP/owner guide were delivered early.
+Final attestation/evidence: `handoffs/mod-field-camp.md` and
+`deliveries/evidence/mod-field-camp-33955341216.json`. The old failure/package remain
+historical and unreleased. Field Camp remains subordinate to both primaries; actual client
+landing, terrain, pets and bots remain PENDING LIVE/IN-GAME VALIDATION.
 
 The owner directly authorized publishing reviewed cache revision
 `03002fb6c347925e10d08b6c741194f8569174dc`; its unchanged cherry-pick is `332eece`.
-The earlier tool-approval block is resolved. Hunt Rhythm run33951428776 continues under
-its original judge; observe cache effectiveness only on the next required real-candidate run.
+The earlier tool-approval block is resolved. Hunt Rhythm run33951428776 completed under
+its original judge. Observe cache effectiveness only on required real-candidate runs.
 An actual dispatch HTTP422 exposed invalid job-level runner.temp expressions. Independently
 reviewed correction `aea0f034` exports the identical paths through GITHUB_ENV at step scope;
 the failed request created no run. Stormwright's required run now exercises the cache.
 All acceptance checks, source/pin protections and WorldMock exception boundaries remain.
+Field Camp's successful repair run observed a cold restore MISS, 1,829 cacheable misses,
+zero hits and successful save, with approved effective config. Compile took 95m05s versus
+Hunt's58m54s. This demonstrates use/save, not acceleration or cached-warning replay;
+do not infer a cause from the timing difference or launch a cache-only control.
 
 Owner installation/config/SQL/rollback and one-human test guides are in `deliveries/`.
-Hunt Rhythm's guide and exact source ZIP are delivered; the other two remain pending actual
-acceptance. Source ZIPs in ignored `.forge-local/deliveries/` have been checked file-by-file
+Hunt Rhythm and Field Camp guides and exact source ZIPs are delivered; Stormwright remains
+pending actual acceptance. Source ZIPs in ignored `.forge-local/deliveries/` have been checked file-by-file
 against the frozen Git blobs. The four completed disposable smoke branch refs were archived
 under `forge-controls/2026-09-05/*` tags with evidence in
 `prelaunch/evidence/control-archive.json`; no active candidate/run was affected.
 
-Current prepared, unreleased repair packages: Stormwright `mod-stormwright-bde390e.zip`,
+Current prepared, unreleased repair package: Stormwright `mod-stormwright-bde390e.zip`,
 SHA256 `32b64076275458e7467ec418d4d439743ae49443dce41c540272caf46dcb996e`;
-Field Camp `mod-field-camp-796e27e.zip`, SHA256
+Delivered Field Camp `mod-field-camp-796e27e.zip`, SHA256
 `0afa0e660d14a247776dad777d1ada8e7d4ecfa780b8b5885f7d4388d56bf8bf`.
 Their file blobs match their exact frozen commits; that packaging check is not compilation
 or acceptance. Earlier failed archives remain historical and unreleased. The existing

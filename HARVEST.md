@@ -42,15 +42,49 @@ The gate retained four visible verified upstream warnings and no project warning
 tests selected 11,395: 5,909 passed, 5,486 native conditional skips, one pre-existing disabled
 test; no Forge test was removed or weakened. See final evidence for exact identities.
 
-Stormwright and Field Camp remain pending actual validation and independent evidence review.
-Neither is included in READY. Deliver each ready candidate independently; handoff is due
+### Field Camp — Practical, subordinate
+
+**Delivered early on 2026-09-05.** A personal session camp completes a solo supply-trip
+loop: set a camp, travel normally to a same-map town, sell/repair, step outdoors and return
+with a bounded cooldown. It requires no SQL, payment, custom NPC or companion.
+
+- Exact candidate `796e27e9cfcd05f4c4e4c627e26834ea7be72155`, branch `project/field-camp`;
+  tested project source is integrated unchanged on main. Same exact AC/Playerbots/client/
+  Ubuntu target as Hunt Rhythm above.
+- [Official run33955341216](https://github.com/tylerhanny/wow-server-forge/actions/runs/33955341216)
+  PASS under judge `1ea9a4b3671c763b286f681e983e9499c7cb35af`: complete compilation,
+  installation, config/data/SQL applicability, auth/world dry-runs, units and final integrity.
+  Native loader/config marker observed; Errors.log empty.
+- Independent source, artifact and **ONE_HUMAN_REVIEW=PASS**.
+- [Final attestation](handoffs/mod-field-camp.md), [independent review](reviews/mod-field-camp-final-review.md),
+  [evidence](deliveries/evidence/mod-field-camp-33955341216.json), and
+  [exact install/config/rollback and one-human smoke guide](deliveries/mod-field-camp-install.md).
+- Source package `mod-field-camp-796e27e.zip`; SHA256
+  `0afa0e660d14a247776dad777d1ada8e7d4ecfa780b8b5885f7d4388d56bf8bf`.
+
+One ordinary character uses `.camp set`, makes the supply trip, `.camp return`, observes
+actual arrival separately from the request message, waits the default 600-second cooldown,
+retries, and `.camp clear` to exit. The guide covers restriction failures and lifecycle.
+No second human/client/operated account is needed. Bots are optional and are not transported.
+
+Remaining **PENDING LIVE/IN-GAME VALIDATION**: actual landing/terrain/phase behavior,
+other teleport hooks, pets, bots and travel feel. Same-map/exact-phase/session-only;
+accepted requests consume cooldown before client acknowledgement. Ground checks do not
+guarantee universal collision/navigation safety. No SQL or saved-position rollback exists.
+The earlier failed private API call is preserved in its review record; the accepted repair
+retains equivalent public delayed-teleport rejection. Four upstream warnings remain visible,
+project warnings remain fatal, and native unit counts are 5,909 pass / 5,486 native skip /
+one pre-existing disabled, with no Forge weakening. See exact evidence for full scope.
+
+Stormwright remains pending actual validation and independent evidence review and is not
+included in READY. Deliver each ready candidate independently; handoff is due
 by 2026-09-06T12:34:32Z, followed by the protected six-hour owner feedback window.
 
 ## Current run totals (not final)
 
 ```text
 Attempted: 3
-Ready for live test: 1
+Ready for live test: 2
 Blocked: 0
 Abandoned: 0
 Research only: 0

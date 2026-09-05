@@ -67,7 +67,7 @@ another project, and BUILD must still permit it.
 |---|---|---|---|---|---|
 | mod-hunt-rhythm | Practical | project/hunt-rhythm / .worktrees/practical | 2026-09-05T06:40:42Z | Complete solo loop and full independent acceptance | READY_FOR_HARVEST — exact4aaa3ae; official run33951428776 and independent evidence PASS; delivered early |
 | mod-stormwright | Wildcard | project/stormwright / .worktrees/wildcard | 2026-09-05T06:40:42Z | Complete Solo Pilot flagship and full independent acceptance | REVIEW — correctedbde390e; source/one-human PASS; official run33955586542 active; primary priority |
-| mod-field-camp | Practical | project/field-camp / .worktrees/field-camp | 2026-09-05 BUILD, decision in decisions/field-camp-selection.md | Complete safe solo supply-trip loop and full acceptance | REVIEW — corrected796e27e; source/one-human PASS; official run33955341216 active; subordinate to primaries |
+| mod-field-camp | Practical | project/field-camp / .worktrees/field-camp | 2026-09-05 BUILD, decision in decisions/field-camp-selection.md | Complete safe solo supply-trip loop and full acceptance | READY_FOR_HARVEST — exact796e27e; official33955341216 and independent review PASS; delivered early; subordinate |
 
 ## Project decision template
 
