@@ -1,13 +1,13 @@
 # Field Camp validation
 
-Candidate state: source implementation complete, independent review requested.
+Candidate state: source implementation complete, independently reviewed, awaiting official validation.
 No local C++ compiler is available. No build/install/runtime/test success is claimed.
 
 | Check | Actual result |
 |---|---|
 | Director and independent one-human proposal review | PASS, before implementation; `decisions/field-camp-selection.md` |
-| Independent implementation/source review | PENDING |
-| ONE_HUMAN_REVIEW for implementation | PENDING |
+| Independent implementation/source review | PASS at `b1b84172b96b41e230bae5f8c6564b3195eb61a7`; later changes record review status only |
+| ONE_HUMAN_REVIEW for implementation | PASS at the same source checkpoint, complete solo path; actual execution/client evidence pending |
 | Exact pinned API inspection | Source-only: signatures and caveats below verified |
 | Whitespace hygiene | PASS: `git diff --cached --check` on the complete initial candidate; rechecked at commit |
 | Module discovery/configure/compile | NOT_RUN |
