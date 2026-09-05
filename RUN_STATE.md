@@ -24,6 +24,9 @@ OWNER_TESTING_START_UTC=2026-09-06T12:34:32Z
 OWNER_TESTING_END_UTC=2026-09-06T18:34:32Z
 PRIMARY_MODULES_INDEPENDENTLY_ACCEPTED=YES
 ADDITIONAL_PROJECT_WINDOW_REVIEW=PASS
+ADDITIONAL_PROJECT_AUTHORIZATION=DIRECT_OWNER_TWO_EXACT_LANES
+ADDITIONAL_PROJECT_SOURCE_CUTOFF_UTC=2026-09-05T22:34:32Z
+ADDITIONAL_PROJECT_SLOTS=FULLY_ALLOCATED
 HARD_DEADLINE_UTC=2026-09-06T18:34:32Z
 HARD_DEADLINE_AMERICA_NEW_YORK=2026-09-06T14:34:32-04:00
 HEARTBEAT_STATUS=ACTIVE
@@ -32,7 +35,7 @@ CLEAN_CONTROL_RUN=33947235843
 AUTHORITY_TAMPER_RUN=33947239092
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
 CLEAN_CONTROL_REVIEW=PASS_COMPLETE_EXISTING_GATE
-VALIDATION_STATUS=ALL_THREE_CURRENT_CANDIDATES_INDEPENDENTLY_ACCEPTED
+VALIDATION_STATUS=THREE_ACCEPTED_ADDITIONAL_CANDIDATES_REQUIRE_OWN_FULL_GATES
 STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 ```
@@ -49,6 +52,8 @@ concurrently. No new full control may idle both lanes. Preserve existing start a
 | Practical | Hunt Rhythm / mod-hunt-rhythm | project/hunt-rhythm / .worktrees/practical | READY FOR LIVE TEST at4aaa3ae; delivered early; available for owner feedback |
 | Practical | Field Camp / mod-field-camp | project/field-camp / .worktrees/field-camp | READY FOR LIVE TEST at796e27e; delivered early; remains subordinate |
 | Wildcard | Stormwright / mod-stormwright | project/stormwright / .worktrees/wildcard | READY FOR LIVE TEST at60c6a91; official33960843535 and independent review PASS; delivered early |
+| Practical | Field Repairs / mod-field-repairs | project/field-repairs / .worktrees/field-repairs | BUILDING — released after durable decisions/field-repairs-selection.md and independent proposal review; cutoff22:34:32Z |
+| Wildcard | Triage Night / mod-triage-night | project/triage-night / .worktrees/triage-night | Owner-authorized; comparative creative/one-human/feasibility PASS; Wildcard chose; record completed gates then implement |
 | Reviewer | Official harness and independent candidate review | lane/reviewer / .worktrees/reviewer | Independent evidence/source review and concurrent validation |
 
 The completed selection, creative ownership and one-human approvals are in
@@ -66,14 +71,17 @@ earlier22:34:32Z September5 source cutoff. No automatic concept approval or unre
 queue turnover. Owner feedback preempts; accepted modules remain frozen unless fixing
 an actual finding. The final six-hour owner window is fully preserved.
 
-Execution boundary,2026-09-05T12:28Z: automatic approval review rejected Wildcard's new
-concept-branch creation twice, including after current BUILD/primary acceptance evidence,
-citing insufficient explicit owner authorization for an additional concept lane. Do not
-bypass the rejected mutation through another branch, worktree, agent or file-write route.
-Further proposals/reviews continue read-only and by message; no additional implementation
-or proposal-writing mutation proceeds unless the approval block is resolved. Director's
-calendar finding remains a schedule assessment, not an override of that execution block.
-The three delivered modules and owner-feedback capacity are unaffected.
+The earlier automatic-review branch/worktree block is **RESOLVED** by direct owner
+authorization recorded2026-09-05T13:27:10Z in `decisions/additional-project-authorization.md`.
+The two exact lanes may now create/use branches and worktrees and implement their reviewed
+scopes after the completed proposal records are durable. No new permission request is needed.
+Practical owns Field Repairs; Wildcard owns its selected Triage Night. Both had independent
+quality/one-human/pinned-feasibility PASS; the five-concept/three-shortlist Wildcard comparison
+and final creative choice are preserved before code. The two slots are fully allocated;
+no further projects or substitutes. Complete frozen candidates are dueTODAY22:34:32Z;
+cut/abandon unfinished work then. The accepted three remain frozen except actual
+owner-reported fixes, which immediately preempt these additions. Every exact new candidate
+still needs its own full official and independent acceptance; no earlier verdict is reused.
 
 The latest owner schedule amendment supersedes the old internal convergence/harvest split.
 Keep all current builders/runs active. Hunt Rhythm is the primary Practical candidate;
@@ -215,3 +223,9 @@ candidate tags and evidence assets remain unchanged and their published digests 
 The required helper correction changes the existing cache namespace because protected
 validation files are hashed into it. Preserve that reviewed namespace; expect a cold run
 unless actual evidence says otherwise. No cache-key change or cache-only control is authorized.
+
+Field Repairs implementation release: its complete comparative/one-human/pinned-feasibility
+record is decisions/field-repairs-selection.md; independent dispositions for both additional
+proposals are reviews/additional-project-proposal-review.md. Both Director and Reviewer
+passed Field Repairs at proposal level before this release. Triage Night waits only for its
+completed full tournament transcription to be durable, not a new selection or approval.

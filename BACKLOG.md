@@ -68,6 +68,13 @@ another project, and BUILD must still permit it.
 | mod-hunt-rhythm | Practical | project/hunt-rhythm / .worktrees/practical | 2026-09-05T06:40:42Z | Complete solo loop and full independent acceptance | READY_FOR_HARVEST — exact4aaa3ae; official run33951428776 and independent evidence PASS; delivered early |
 | mod-stormwright | Wildcard | project/stormwright / .worktrees/wildcard | 2026-09-05T06:40:42Z | Complete Solo Pilot flagship and full independent acceptance | READY_FOR_HARVEST — exact60c6a91; official33960843535 and independent source/artifact/one-human PASS; delivered early; earlier failures preserved |
 | mod-field-camp | Practical | project/field-camp / .worktrees/field-camp | 2026-09-05 BUILD, decision in decisions/field-camp-selection.md | Complete safe solo supply-trip loop and full acceptance | READY_FOR_HARVEST — exact796e27e; official33955341216 and independent review PASS; delivered early; subordinate |
+| mod-field-repairs | Practical | project/field-repairs / .worktrees/field-repairs | 2026-09-05T13:27:10Z owner authorization | Complete frozen candidate by22:34:32Z today; full independent acceptance | BUILDING — decisions/field-repairs-selection.md and independent proposal review recorded; Director/Reviewer PASS before code |
+| mod-triage-night | Wildcard | project/triage-night / .worktrees/triage-night | 2026-09-05T13:27:10Z owner authorization | Complete frozen candidate by22:34:32Z today; full independent acceptance | CLAIMED — five concepts/three shortlist reviewed; Director/Reviewer PASS; Wildcard selected Triage Night; durable record before code |
+
+These consume the entire additional-project authorization. No further project/substitute;
+accepted Hunt Rhythm, Stormwright and Field Camp remain frozen except owner-reported fixes,
+which immediately preempt the additions. Existing complete proposal dispositions are being
+recorded; authorization does not itself certify code or waive any gate.
 
 ## Project decision template
 

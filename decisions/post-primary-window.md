@@ -1,5 +1,10 @@
 # Bounded additional selection after early primary delivery
 
+**Owner authorization now explicit:** `additional-project-authorization.md` resolves
+the tool block only for the reviewed Field Repairs and Triage Night lanes. These consume
+the one additional slot per lane; no substitute or further project is authorized.
+Accepted modules are frozen except actual owner-reported fixes, which preempt this work.
+
 Director disposition,2026-09-05T12:25Z: **PASS for the bounded capacity described here**.
 Hunt Rhythm4aaa3ae, Stormwright60c6a91 and subordinate Field Camp796e27e have complete
 official and independent acceptance. All three exact modules/guides/evidence are already

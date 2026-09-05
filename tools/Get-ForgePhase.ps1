@@ -15,7 +15,7 @@ foreach ($match in [regex]::Matches($stateText, '(?m)^([A-Z_]+)=([^\r\n]+)\r?$')
     $fields[$match.Groups[1].Value] = $match.Groups[2].Value.Trim()
 }
 
-$timeKeys = @('START_UTC', 'FEATURE_FREEZE_UTC', 'CANDIDATE_HANDOFF_UTC', 'OWNER_TESTING_START_UTC', 'OWNER_TESTING_END_UTC', 'HARD_DEADLINE_UTC')
+$timeKeys = @('START_UTC', 'ADDITIONAL_PROJECT_SOURCE_CUTOFF_UTC', 'FEATURE_FREEZE_UTC', 'CANDIDATE_HANDOFF_UTC', 'OWNER_TESTING_START_UTC', 'OWNER_TESTING_END_UTC', 'HARD_DEADLINE_UTC')
 if ($fields['STATUS'] -eq 'AWAITING_CURRENT_CONTROL') {
     if ($fields['START_UTC'] -ne 'UNSET') { throw 'Preserve an already recorded implementation start.' }
     $fixedDeadline = [DateTimeOffset]::Parse($fields['HARD_DEADLINE_UTC'])
@@ -47,6 +47,7 @@ foreach ($key in $timeKeys) {
 $receipt = [DateTimeOffset]::Parse($fields['DIRECTIVE_RECEIVED_UTC'])
 if ($times['HARD_DEADLINE_UTC'] -gt $receipt.AddHours(36) -or
     $times['START_UTC'] -lt $receipt -or
+    $times['ADDITIONAL_PROJECT_SOURCE_CUTOFF_UTC'] -gt $times['FEATURE_FREEZE_UTC'].AddHours(-8) -or
     $times['FEATURE_FREEZE_UTC'] -ne $times['HARD_DEADLINE_UTC'].AddHours(-12) -or
     $times['CANDIDATE_HANDOFF_UTC'] -ne $times['HARD_DEADLINE_UTC'].AddHours(-6) -or
     $times['OWNER_TESTING_START_UTC'] -ne $times['CANDIDATE_HANDOFF_UTC'] -or
@@ -76,9 +77,12 @@ $phase = if ($AtUtc -ge $times['HARD_DEADLINE_UTC']) { 'COMPLETE' }
     OwnerTestingStartUtc = $times['OWNER_TESTING_START_UTC'].ToString('o')
     OwnerTestingEndUtc = $times['OWNER_TESTING_END_UTC'].ToString('o')
     HardDeadlineUtc = $times['HARD_DEADLINE_UTC'].ToString('o')
+    AdditionalProjectSourceCutoffUtc = $times['ADDITIONAL_PROJECT_SOURCE_CUTOFF_UTC'].ToString('o')
+    AuthorizedAdditionalProjects = @('mod-field-repairs', 'mod-triage-night')
     RemainingHours = [math]::Max([double]0, [math]::Round(($times['HARD_DEADLINE_UTC'] - $AtUtc).TotalHours, 3))
-    NewProjectsAllowed = ($phase -eq 'BUILD' -and $fields['PRIMARY_MODULES_INDEPENDENTLY_ACCEPTED'] -eq 'YES' -and $fields['ADDITIONAL_PROJECT_WINDOW_REVIEW'] -eq 'PASS')
-    FeatureImplementationAllowed = ($phase -eq 'BUILD')
+    NewProjectsAllowed = $false # Both exact owner-authorized slots are already allocated.
+    FeatureImplementationAllowed = ($phase -eq 'BUILD' -and $AtUtc -lt $times['ADDITIONAL_PROJECT_SOURCE_CUTOFF_UTC'])
+    UnfrozenAdditionalProjectAction = $(if ($AtUtc -ge $times['ADDITIONAL_PROJECT_SOURCE_CUTOFF_UTC']) { 'CUT_OR_ABANDON' } else { 'COMPLETE_FROZEN_CANDIDATE_BEFORE_CUTOFF' })
     ExistingScopeCompletionAllowed = ($phase -in @('BUILD', 'FEATURE_FREEZE'))
     OwnerFeedbackFixesAllowed = ($phase -ne 'COMPLETE')
     ReserveCapacityForOwnerFeedback = ($phase -eq 'OWNER_TESTING')

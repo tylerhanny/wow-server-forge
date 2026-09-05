@@ -8,6 +8,13 @@ Hunt Rhythm and Stormwright. No further project unless both primaries are indepe
 accepted and the testing window is protected; none after feature freeze. This supersedes
 older internal convergence/harvest/new-project wording below and in other charters.
 
+**Direct owner authorization,2026-09-05:** the previously blocked additional lanes are
+authorized only for Practical Field Repairs and Wildcard Triage Night, one each, under
+`decisions/additional-project-authorization.md`. Preserve their already-required proposal
+gates before code. Complete frozen candidates are due2026-09-05T22:34:32Z; cut/abandon any
+unfinished project then. No further project slots. Hunt Rhythm, Stormwright and Field Camp
+remain frozen except actual owner-reported fixes, which immediately preempt these lanes.
+
 ## Controlling owner sequencing amendment — 2026-09-05
 
 Owner directive received **2026-09-05T06:34:32Z**: finish the current clean control

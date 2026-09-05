@@ -21,6 +21,14 @@ By handoff deliver all available ready modules with exact install/config/SQL/rol
 one-human smoke steps, commands/NPCs/gameplay flow/useful logs, and explicit verified
 versus PENDING LIVE/IN-GAME behavior. Acceptance requirements remain unchanged.
 
+The owner's later direct authorization allocates exactly Field Repairs and Triage Night,
+one additional project per lane. Their complete frozen source/candidates are due
+**2026-09-05T22:34:32Z (September5 18:34:32 America/New_York)**. Cut or abandon anything
+unable to meet that earlier cutoff; do not borrow validation, freeze, handoff or owner time.
+These are the only additional slots. Existing three accepted modules remain frozen except
+actual owner-reported fixes, which immediately preempt both additions. See
+`decisions/additional-project-authorization.md`; all other fixed times remain unchanged.
+
 ## Controlling owner sequencing amendment — 2026-09-05
 
 Owner directive received **2026-09-05T06:34:32Z**: finish the current clean control
