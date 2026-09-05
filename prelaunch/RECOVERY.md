@@ -1,5 +1,28 @@
 # Director recovery and launch procedure
 
+## Current controls after the empty-SQL judge correction
+
+Clean `33937007702` passed the complete pinned build, exact authorized WorldMock
+correction/restoration, dependency integrity and install. It remains overall FAIL: the
+existing SQL scanner incorrectly rejected a candidate with no SQL files, leaving runtime
+and unit-test execution unrun. Independent evidence and the reproduced defect are in
+`prelaunch/clean-control-empty-sql-judge-defect.md`; original artifact identities remain in
+`prelaunch/evidence/fixture-exception-controls.json`.
+
+Reviewer SQL-only correction `6caa073b8b10d1716d130894076193431db5a83e`, independently
+approved by Practical and Director, is published as judge
+`04f15bd01c7d49813053a5737f9141885c000ce6`. It preserves the existing destructive regex,
+file checks and all other stages, treating an empty SQL list as inapplicable and scanner
+errors as fatal. No source/pin/warning-policy change or additional gate was introduced.
+
+Fresh clean `33941967266` and authority-tamper `33941974575` were dispatched immediately
+at 2026-09-05T03:29 UTC against the same frozen candidates. Current exact evidence is
+`prelaunch/evidence/sql-repair-controls.json`. Review the complete existing controls, then
+record the actual 36-hour clock and start both selected lanes immediately. All sprint
+timestamps remain UNSET until that complete evidence passes. Earlier controls below are
+historical and must not be repeated or mistaken for the current pair.
+
+
 ## Current authorized fixture correction and controls
 
 At 2026-09-05T01:36:02.615039Z, the Director reconciled the owner's explicit authorization in

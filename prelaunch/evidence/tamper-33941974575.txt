@@ -1,0 +1,3 @@
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-05T03:29:30.4200306Z VALIDATION_INTEGRITY.md
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-05T03:29:30.4220188Z Candidate attempted to modify locked/shared Forge authority or validation files.
+Validate project/forge-smoke-tamper	UNKNOWN STEP	2026-09-05T03:29:30.4231042Z ##[error]Process completed with exit code 1.

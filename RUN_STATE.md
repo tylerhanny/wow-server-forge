@@ -1,5 +1,28 @@
 # WoW Server Forge — Run State
 
+## Current controls after the empty-SQL judge correction
+
+Clean `33937007702` passed the complete pinned build, exact authorized WorldMock
+correction/restoration, dependency integrity and install. It remains overall FAIL: the
+existing SQL scanner incorrectly rejected a candidate with no SQL files, leaving runtime
+and unit-test execution unrun. Independent evidence and the reproduced defect are in
+`prelaunch/clean-control-empty-sql-judge-defect.md`; original artifact identities remain in
+`prelaunch/evidence/fixture-exception-controls.json`.
+
+Reviewer SQL-only correction `6caa073b8b10d1716d130894076193431db5a83e`, independently
+approved by Practical and Director, is published as judge
+`04f15bd01c7d49813053a5737f9141885c000ce6`. It preserves the existing destructive regex,
+file checks and all other stages, treating an empty SQL list as inapplicable and scanner
+errors as fatal. No source/pin/warning-policy change or additional gate was introduced.
+
+Fresh clean `33941967266` and authority-tamper `33941974575` were dispatched immediately
+at 2026-09-05T03:29 UTC against the same frozen candidates. Current exact evidence is
+`prelaunch/evidence/sql-repair-controls.json`. Review the complete existing controls, then
+record the actual 36-hour clock and start both selected lanes immediately. All sprint
+timestamps remain UNSET until that complete evidence passes. Earlier controls below are
+historical and must not be repeated or mistaken for the current pair.
+
+
 Status: `ARMED_NOT_STARTED`
 
 The 36-hour sprint has NOT started yet.
@@ -31,7 +54,7 @@ below are historical and do not override the current explicit authorization.
 
 ```text
 STATUS=ARMED_NOT_STARTED
-EXECUTION_STATUS=ACTIVE_PRELAUNCH_FIXTURE_EXCEPTION
+EXECUTION_STATUS=ACTIVE_PRELAUNCH_SQL_JUDGE_REPAIR
 BLOCKER_IDENTIFIED_UTC=2026-09-05T00:47:37Z
 OWNER_EXCEPTION_RECONCILED_UTC=2026-09-04T21:16:15Z
 OWNER_EXCEPTION_POLICY=UPSTREAM_WARNING_EXCEPTION.md
@@ -39,11 +62,11 @@ STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 FIXTURE_EXCEPTION_RECONCILED_UTC=2026-09-05T01:36:02.615039Z
 STANDING_WARNING_POLICY_RECONCILED_UTC=2026-09-04T23:07:16Z
-CURRENT_POLICY_CONTROLS=RUNNING_EXACT_FIXTURE_EXCEPTION
-REVIEWED_JUDGE_SHA=60953d65185a231650c8c1050dbd6a182016ef66
-LAST_FULL_CLEAN_JUDGE_SHA=6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed
-CLEAN_CONTROL_RUN=33937007702
-AUTHORITY_TAMPER_RUN=33937008812
+CURRENT_POLICY_CONTROLS=RUNNING_SQL_CORRECTED_JUDGE
+REVIEWED_JUDGE_SHA=04f15bd01c7d49813053a5737f9141885c000ce6
+LAST_FULL_CLEAN_JUDGE_SHA=60953d65185a231650c8c1050dbd6a182016ef66
+CLEAN_CONTROL_RUN=33941967266
+AUTHORITY_TAMPER_RUN=33941974575
 ALLOWLIST_TAMPER_RUN=33927019176
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
 CLEAN_CONTROL_REVIEW=PENDING_CURRENT_CONTROLS
