@@ -12,7 +12,10 @@ Official run `33952393192` for candidate
 All three impact calls now supply the corresponding owned rod, boss or marker GUID.
 Pinned Unit.cpp:15210–15219 confirms the first value is the packet's target.
 The repair changes no gameplay rule, damage, timing, SQL, configuration, dependency
-or judge input. Independent repair review and the new full official rerun are pending.
+or judge input. Independent SOURCE_REVIEW=PASS and ONE_HUMAN_REVIEW=PASS were received
+for repair commit `a65f162419c8d0c0cc1ddbad2f35b7b4450018c8`; the new full official
+rerun remains pending. The final candidate changes review documentation only after
+that repaired source checkpoint.
 The failed candidate and its evidence are preserved.
 
 The failed run did not reach install, SQL/startup, unit execution or supplemental
@@ -30,8 +33,8 @@ validation, while prior source-review results retain their exact reviewed SHA.
 | Executable developer rules tests | tests/rules_test.cpp; NOT_RUN. In an available C++17 toolchain: `c++ -std=c++17 -Wall -Wextra -Werror tests/rules_test.cpp -o /tmp/stormwright-rules && /tmp/stormwright-rules`. |
 | Install / SQL import / startup | NOT_RUN. Exact-pin native updater location inspected; no claim of execution. |
 | Official independent gate | FAILED for a1558178 in run 33952393192; repaired candidate rerun pending. |
-| Independent implementation review | Prior PASS for c1f3926dcc8988d6f1461affeee0c817c97f911d carried to docs-only a1558178. Three-call compiler repair review PENDING. |
-| ONE_HUMAN_REVIEW | PASS at source level for implementation c1f3926dcc8988d6f1461affeee0c817c97f911d: one human controls every special action; no-bots recovery, success/failure, outcome, retry and exit are complete in source. Actual execution/feel remains pending. |
+| Independent implementation review | PASS for repaired source a65f162419c8d0c0cc1ddbad2f35b7b4450018c8. Reviewer verified all three target-GUID fixes against pinned packet semantics, unchanged rules/SQL/config/tests and diff --check. |
+| ONE_HUMAN_REVIEW | PASS at source level for repaired implementation a65f162419c8d0c0cc1ddbad2f35b7b4450018c8: one human controls every special action; no-bots recovery, success/failure, outcome, retry and exit are complete in source. Actual execution/feel remains pending. |
 | Terrain/public access/navmesh/LOS | PENDING applicable validation. Runtime height guards and offline coordinate/ground projections do not prove walking access, collision, navigation or client safety. |
 | Normal world update lifecycle | PENDING; official dry-run exits before OnStartup and world updates. Registrar/controller need additional applicable runtime evidence. |
 | Client visuals/class tuning/bots | PENDING IN-GAME VALIDATION, never implied by DBC references or CI. |

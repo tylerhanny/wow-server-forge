@@ -77,10 +77,10 @@ pinned bots perform ordinary tank/heal/DPS/follow only; no custom item use, goss
 object interaction, damage stopping or precise positioning is expected. No second
 client, operated account or human is required for success, recovery, outcome or retry.
 **ONE_HUMAN_REVIEW=PASS at source level** for implementation
-`c1f3926dcc8988d6f1461affeee0c817c97f911d`, independently inspected by the Reviewer.
+`a65f162419c8d0c0cc1ddbad2f35b7b4450018c8`, independently inspected by the Reviewer.
 Actual solo/client/bot execution remains pending; this is not runtime validation.
-The three-call compiler repair is awaiting independent review; custom human roles
-and the complete solo mechanics are unchanged.
+The three-call compiler repair passed independent source/one-human review; custom
+human roles and the complete solo mechanics are unchanged. Full rerun remains pending.
 
 ### Scaling and difficulty
 
@@ -110,11 +110,11 @@ the same charge/ward mechanic and Ground recovery, not an empty demonstration mo
   Repaired candidate full compilation: **NOT RUN**. Installation, startup and executable
   tests were skipped in the failed run; compile-time rules checks run during compilation.
 - Independent implementation review: **PASS** for source
-  `c1f3926dcc8988d6f1461affeee0c817c97f911d`; the Reviewer inspected API/state,
+  `a65f162419c8d0c0cc1ddbad2f35b7b4450018c8`; the Reviewer inspected API/state,
   owned actors, charge/cleanup logic and the full solo recovery/retry/exit path.
   Practical's separate exact-schema SQL review also passed. This final checkpoint
-  had documentation changes only. The subsequent impact-GUID repair requires review
-  and a full rerun; no compilation or runtime success is claimed.
+  has documentation changes only after the independently approved impact-GUID repair.
+  A full rerun is required; no compilation or runtime success is claimed.
 - Actual gameplay, terrain, visuals, class balance and bot feel: **PENDING IN-GAME VALIDATION**.
 
 ## Install and configuration

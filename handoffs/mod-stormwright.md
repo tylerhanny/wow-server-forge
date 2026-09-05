@@ -5,15 +5,15 @@ PROJECT=mod-stormwright
 OWNER=Wildcard
 BRANCH=project/stormwright
 CANDIDATE_SHA=Repaired candidate to be bound by the next official dispatch and immutable run evidence
-SOURCE_REVIEW_SHA=c1f3926dcc8988d6f1461affeee0c817c97f911d
-STATE=COMPILER_REPAIR_PENDING_REVIEW_AND_RERUN
+SOURCE_REVIEW_SHA=a65f162419c8d0c0cc1ddbad2f35b7b4450018c8
+STATE=REVIEWED_COMPILER_REPAIR_PENDING_FULL_RERUN
 CLAIMED_SCOPE=One public environmental encounter; complete Solo Pilot; three rods; optional ordinary bots
 BUILD_RESULT=Prior a1558178 FAILED in run33952393192; repaired candidate NOT_RUN
 OFFICIAL_GATE=Prior a1558178 FAILED; repaired candidate rerun pending
-SOURCE_REVIEW=Prior PASS; three-call compiler repair review PENDING
+SOURCE_REVIEW=PASS; exact repaired source a65f162419c8d0c0cc1ddbad2f35b7b4450018c8
 SQL_SCHEMA_REVIEW=PASS; Practical independent exact-schema inspection
 ONE_HUMAN_REVIEW=PASS; independent implementation source review, runtime/client execution pending
-REVIEWER=Independent Reviewer; c1f3926dcc8988d6f1461affeee0c817c97f911d
+REVIEWER=Independent Reviewer; a65f162419c8d0c0cc1ddbad2f35b7b4450018c8
 NEXT_ACTION=Official exact-candidate compile/install/SQL/startup gate and applicable normal-world runtime evidence
 ```
 
@@ -30,8 +30,9 @@ pending victory. Visual packets are feedback only; no existing encounter spell i
 The first official run33952393192 failed full compilation at a one-argument
 SendPlaySpellImpact call. All three impact calls now provide the corresponding owned
 actor's GUID, matching exact Unit.h:2034 and Unit.cpp:15210–15219. No gameplay, SQL,
-configuration, dependency or judge changes were made. Independent repair review and
-the required full rerun are pending; failed a1558178 history/evidence is preserved.
+configuration, dependency or judge changes were made. Independent repair SOURCE_REVIEW
+and ONE_HUMAN_REVIEW passed for a65f162419c8d0c0cc1ddbad2f35b7b4450018c8. The required
+full rerun is pending; failed a1558178 history/evidence is preserved.
 
 ## One-Human Playability
 
@@ -49,7 +50,8 @@ demo and later capture checklist. Independent ONE_HUMAN_REVIEW=PASS applies to t
 actual implementation at c1f3926dcc8988d6f1461affeee0c817c97f911d, with no remaining
 actionable source finding at that review. The later compiler repair changes three
 impact-call arguments only; SQL, config, tests and gameplay rules remain unchanged.
-Independent source/one-human carry-forward for that repair is pending.
+Independent source/one-human carry-forward passed for that repair. This final frozen
+checkpoint updates only README/validation/handoff review status after a65f162.
 
 The prior full compile FAILED; install/startup/executable tests and normal-world
 supplemental checks were skipped, and the repaired full rerun is NOT_RUN. Public venue safety,
