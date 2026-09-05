@@ -4,12 +4,12 @@
 PROJECT=mod-stormwright
 OWNER=Wildcard
 BRANCH=project/stormwright
-CANDIDATE_SHA=Repaired candidate to be bound by the next official dispatch and immutable run evidence
+CANDIDATE_SHA=Docs-only logger correction to be bound by the next official dispatch and immutable evidence
 SOURCE_REVIEW_SHA=a65f162419c8d0c0cc1ddbad2f35b7b4450018c8
-STATE=REVIEWED_COMPILER_REPAIR_PENDING_FULL_RERUN
+STATE=BUILT_AND_REVIEWED_PENDING_CORRECTED_SUPPLEMENTAL_RERUN
 CLAIMED_SCOPE=One public environmental encounter; complete Solo Pilot; three rods; optional ordinary bots
-BUILD_RESULT=Prior a1558178 FAILED in run33952393192; repaired candidate NOT_RUN
-OFFICIAL_GATE=Prior a1558178 FAILED; repaired candidate rerun pending
+BUILD_RESULT=PASS for bde390e3 in33955586542; first a1558178 compilation failure preserved
+OFFICIAL_GATE=33955586542 FAILED required supplemental observation; complete corrected-fixture rerun pending
 SOURCE_REVIEW=PASS; exact repaired source a65f162419c8d0c0cc1ddbad2f35b7b4450018c8
 SQL_SCHEMA_REVIEW=PASS; Practical independent exact-schema inspection
 ONE_HUMAN_REVIEW=PASS; independent implementation source review, runtime/client execution pending
@@ -20,10 +20,10 @@ NEXT_ACTION=Official exact-candidate compile/install/SQL/startup gate and applic
 The source implements the registrar controller, owned AI roles, explicit
 tracking/lock/impact transitions, charged/cooling rods, Ground/Discharge, fixed roster,
 bounded adds, outcome/cleanup paths and terrain-derived placement guards. It includes
-no production dependency edits, judge edits or claim of completed runtime validation.
+no production dependency edits or judge edits. Full gameplay runtime validation is not claimed.
 Owned SQL/model/config packaging is complete. Exact DBC inspection rejected invisible
 Tesla Coil/Crystal Spike models and selected a real PowerCrystal asset. Compile-time
-rules assertions and executable developer tests are present but not yet executed.
+rules assertions and executable developer tests passed in run33955586542.
 The Reviewer-identified terminal-order defect is fixed: pilot failure is checked before
 pending victory. Visual packets are feedback only; no existing encounter spell is cast.
 
@@ -32,7 +32,17 @@ SendPlaySpellImpact call. All three impact calls now provide the corresponding o
 actor's GUID, matching exact Unit.h:2034 and Unit.cpp:15210–15219. No gameplay, SQL,
 configuration, dependency or judge changes were made. Independent repair SOURCE_REVIEW
 and ONE_HUMAN_REVIEW passed for a65f162419c8d0c0cc1ddbad2f35b7b4450018c8. The required
-full rerun is pending; failed a1558178 history/evidence is preserved.
+rerun33955586542 passed full compile/install, both dry-runs and native units, then failed
+the required supplemental normal-startup observation. Failed a1558178 history/evidence
+is preserved alongside that second run's successful and failed stages.
+
+The second run verified all expected installed SQL rows and the standalone rules test.
+Its real worldserver reached ready/updates, but no registrar/site-outcome line was observed
+before the five-minute timeout. Reviewer confirmed the helper's Logger.module=3 setting
+was WARN, suppressing INFO=4; native default4 already permits INFO. This candidate fixes
+only the corresponding README guidance and records actual evidence. The independent
+judge owner corrects the helper separately. No registrar spawn is inferred from absent
+logs; a complete official rerun must produce the required observation.
 
 ## One-Human Playability
 
@@ -51,9 +61,11 @@ actual implementation at c1f3926dcc8988d6f1461affeee0c817c97f911d, with no remai
 actionable source finding at that review. The later compiler repair changes three
 impact-call arguments only; SQL, config, tests and gameplay rules remain unchanged.
 Independent source/one-human carry-forward passed for that repair. This final frozen
-checkpoint updates only README/validation/handoff review status after a65f162.
+checkpoint updates only README/validation/handoff after bde390e3; source, SQL, config,
+rules and tests remain byte-identical to the successfully compiled candidate.
 
-The prior full compile FAILED; install/startup/executable tests and normal-world
-supplemental checks were skipped, and the repaired full rerun is NOT_RUN. Public venue safety,
-normal-world registrar/controller lifecycle, client effects, class/gear tuning and bot competence remain
-unproven; nearby pinned spawn coordinates are not being represented as terrain validation.
+Full build/install, auth/world dry-runs, native units, installed SQL and developer rules
+tests PASS for bde390e3 do not constitute overall acceptance. Corrected supplemental
+registrar observation/continued run/shutdown remain pending, as do public access,
+client effects, class/gear tuning and bot competence. Nearby spawn coordinates and
+offline terrain projections are not being represented as gameplay validation.

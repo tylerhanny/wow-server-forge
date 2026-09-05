@@ -2,13 +2,16 @@
 
 **Turn the boss's storm into your weapon before it tears the arena apart.**
 
-Status: **COMPILER REPAIR — full rerun and acceptance pending.**
+Status: **BUILT — required normal-startup evidence and acceptance pending.**
 Source, stock model references, owned SQL/configuration, recovery/offense decisions,
 terminal cleanup and developer rules checks are present. This is not yet approved
 for installation on a live server. See [validation status](docs/VALIDATION.md).
 The first official build (`33952393192`, candidate `a1558178`) failed because
-impact visual packets require an explicit target GUID. The three calls are repaired;
-installation, runtime and executable tests were not reached in that failed run.
+impact visual packets require an explicit target GUID. The repaired source in
+`bde390e3` passed full compile/install, both dry-runs and native/developer tests in
+run `33955586542`. That run failed the required supplemental registrar observation:
+its logger fixture used WARN level 3 and hid INFO level 4. Registrar creation was
+not observed, so a corrected complete official rerun is still required.
 
 One human pilot leads tracking lightning into three capacitor rods, moves after the mark
 locks, then chooses what the stored charge buys: Ground restores pilot health and ward;
@@ -80,7 +83,8 @@ client, operated account or human is required for success, recovery, outcome or 
 `a65f162419c8d0c0cc1ddbad2f35b7b4450018c8`, independently inspected by the Reviewer.
 Actual solo/client/bot execution remains pending; this is not runtime validation.
 The three-call compiler repair passed independent source/one-human review; custom
-human roles and the complete solo mechanics are unchanged. Full rerun remains pending.
+human roles and the complete solo mechanics are unchanged. The logger documentation
+correction changes no source; the corrected complete official rerun remains pending.
 
 ### Scaling and difficulty
 
@@ -107,14 +111,17 @@ the same charge/ward mechanic and Ground recovery, not an empty demonstration mo
 - Ubuntu Server 24.04 x86-64; no production dependency/source edits or client modification.
 - Selected C++ method signatures were checked against those exact source files.
 - First full compilation: **FAILED**, official run `33952393192` for `a1558178`.
-  Repaired candidate full compilation: **NOT RUN**. Installation, startup and executable
-  tests were skipped in the failed run; compile-time rules checks run during compilation.
+  Repaired source `bde390e3`: **PASS** full compile, install, auth/world dry-runs,
+  native units, compiled rules assertions and executable developer rules tests in
+  `33955586542`. Installed owned SQL rows were also verified. The supplemental
+  normal-startup observation failed; no successful registrar observation is claimed.
 - Independent implementation review: **PASS** for source
   `a65f162419c8d0c0cc1ddbad2f35b7b4450018c8`; the Reviewer inspected API/state,
   owned actors, charge/cleanup logic and the full solo recovery/retry/exit path.
   Practical's separate exact-schema SQL review also passed. This final checkpoint
   has documentation changes only after the independently approved impact-GUID repair.
-  A full rerun is required; no compilation or runtime success is claimed.
+  A complete official rerun is required after the supplemental logger-fixture correction;
+  earlier successful stages do not constitute overall acceptance.
 - Actual gameplay, terrain, visuals, class balance and bot feel: **PENDING IN-GAME VALIDATION**.
 
 ## Install and configuration
@@ -144,9 +151,10 @@ world testing. The DBC-only official dry-run cannot exercise the encounter.
    No invented Z or GM-only substitute is supported.
 
 For registrar/outcome log evidence, set the existing `Logger.module` severity in
-the disposable `worldserver.conf` to INFO (`3`), retaining its configured appenders.
-The pinned default warning threshold hides these INFO records. Chat and registrar
-results remain available without changing logger settings.
+the disposable `worldserver.conf` to INFO (`4`), retaining its configured appenders.
+The pinned default `Logger.module=4,Console Server` already permits these records.
+WARN (`3`) suppresses INFO; the earlier guidance calling 3 INFO was incorrect.
+Chat and registrar results remain available without changing logger settings.
 
 `Stormwright.Enable = 1` enables the encounter at startup. Reloading it to `0`
 ends an active attempt on its next controller update and rejects new attempts.
