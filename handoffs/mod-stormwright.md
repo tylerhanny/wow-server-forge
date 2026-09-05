@@ -4,13 +4,13 @@
 PROJECT=mod-stormwright
 OWNER=Wildcard
 BRANCH=project/stormwright
-CANDIDATE_SHA=Bound by the official dispatch and immutable run evidence for this final docs-only checkpoint
+CANDIDATE_SHA=Repaired candidate to be bound by the next official dispatch and immutable run evidence
 SOURCE_REVIEW_SHA=c1f3926dcc8988d6f1461affeee0c817c97f911d
-STATE=IMPLEMENTED_VALIDATION_PENDING
+STATE=COMPILER_REPAIR_PENDING_REVIEW_AND_RERUN
 CLAIMED_SCOPE=One public environmental encounter; complete Solo Pilot; three rods; optional ordinary bots
-BUILD_RESULT=NOT_RUN
-OFFICIAL_GATE=NOT_RUN
-SOURCE_REVIEW=PASS
+BUILD_RESULT=Prior a1558178 FAILED in run33952393192; repaired candidate NOT_RUN
+OFFICIAL_GATE=Prior a1558178 FAILED; repaired candidate rerun pending
+SOURCE_REVIEW=Prior PASS; three-call compiler repair review PENDING
 SQL_SCHEMA_REVIEW=PASS; Practical independent exact-schema inspection
 ONE_HUMAN_REVIEW=PASS; independent implementation source review, runtime/client execution pending
 REVIEWER=Independent Reviewer; c1f3926dcc8988d6f1461affeee0c817c97f911d
@@ -27,6 +27,12 @@ rules assertions and executable developer tests are present but not yet executed
 The Reviewer-identified terminal-order defect is fixed: pilot failure is checked before
 pending victory. Visual packets are feedback only; no existing encounter spell is cast.
 
+The first official run33952393192 failed full compilation at a one-argument
+SendPlaySpellImpact call. All three impact calls now provide the corresponding owned
+actor's GUID, matching exact Unit.h:2034 and Unit.cpp:15210–15219. No gameplay, SQL,
+configuration, dependency or judge changes were made. Independent repair review and
+the required full rerun are pending; failed a1558178 history/evidence is preserved.
+
 ## One-Human Playability
 
 The human chooses preset/start, baits every mark, dodges after lock, operates every rod,
@@ -41,9 +47,11 @@ README contains full ordinary access, start, rules, recovery/offense, outcome, r
 exit steps; all custom actions belong to the human. It also includes the exact 75-second
 demo and later capture checklist. Independent ONE_HUMAN_REVIEW=PASS applies to the
 actual implementation at c1f3926dcc8988d6f1461affeee0c817c97f911d, with no remaining
-actionable source finding. This final candidate changes only README/validation/handoff
-review status; code, SQL, config and tests are unchanged from that reviewed source.
+actionable source finding at that review. The later compiler repair changes three
+impact-call arguments only; SQL, config, tests and gameplay rules remain unchanged.
+Independent source/one-human carry-forward for that repair is pending.
 
-All official compile/install/startup/test evidence is NOT_RUN. Public venue safety,
+The prior full compile FAILED; install/startup/executable tests and normal-world
+supplemental checks were skipped, and the repaired full rerun is NOT_RUN. Public venue safety,
 normal-world registrar/controller lifecycle, client effects, class/gear tuning and bot competence remain
 unproven; nearby pinned spawn coordinates are not being represented as terrain validation.

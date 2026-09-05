@@ -274,7 +274,7 @@ public:
         {
             uint64 const healing = uint64(player->GetMaxHealth()) * _rules.Settings().healPercent / 100;
             player->SetHealth(static_cast<uint32>(std::min<uint64>(player->GetMaxHealth(), uint64(player->GetHealth()) + healing)));
-            rod->SendPlaySpellImpact(LightningImpactKit);
+            rod->SendPlaySpellImpact(rod->GetGUID(), LightningImpactKit);
             Tell(player, "GROUNDED. Health recovered; " + Status());
         }
         else
@@ -282,7 +282,7 @@ public:
             rod->SendPlaySpellVisual(LightningCastKit);
             if (Creature* boss = Owned(_boss))
             {
-                boss->SendPlaySpellImpact(LightningImpactKit);
+                boss->SendPlaySpellImpact(boss->GetGUID(), LightningImpactKit);
                 uint32 const damage = static_cast<uint32>(uint64(boss->GetMaxHealth()) * _rules.Settings().damagePercent / 100);
                 Unit::DealDamage(rod, boss, damage, nullptr, DIRECT_DAMAGE, SPELL_SCHOOL_MASK_NATURE);
             }
@@ -385,7 +385,7 @@ public:
                 bool const success = _rules.Resolve(caught);
                 if (Creature* marker = Owned(_marker))
                 {
-                    marker->SendPlaySpellImpact(LightningImpactKit);
+                    marker->SendPlaySpellImpact(marker->GetGUID(), LightningImpactKit);
                     marker->DespawnOrUnsummon(750ms);
                 }
                 _marker.Clear();
