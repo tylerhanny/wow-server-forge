@@ -12,6 +12,9 @@ Only projects that pass the mandatory finish gate in `AGENTS.md` may appear in t
 and sustaining ordinary eligible kills, with a modest base kill-XP bonus capped at 10%
 by default. It provides a repeatable solo leveling loop without custom SQL, NPCs or economy.
 
+[Download the accepted module, owner guide and evidence](https://github.com/tylerhanny/wow-server-forge/releases/tag/mod-hunt-rhythm-v1).
+Release tag targets the exact accepted SHA; the uploaded ZIP digest matches the source package below.
+
 - Exact candidate: `4aaa3ae188e7bcdba2569676911e14142ac378e2`, branch `project/hunt-rhythm`;
   its unchanged project tree is integrated on main.
 - Exact target: AC `47960183bb03b83e8943eb2f0f39c16df9710c9d`, Playerbots

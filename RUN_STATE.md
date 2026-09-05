@@ -101,6 +101,8 @@ artifact review all PASS. Director delivered its exact source ZIP and installati
 guide immediately, without waiting for the other candidates. Final attestation is
 `handoffs/mod-hunt-rhythm.md`; evidence is `deliveries/evidence/mod-hunt-rhythm-33951428776.json`.
 The exact tested project tree is integrated on main without source/config/SQL changes.
+The early download is published at GitHub release `mod-hunt-rhythm-v1`, targeting that
+exact candidate; uploaded source ZIP SHA256 matches the independently packaged archive.
 Gameplay/XP/class/pet/bot behavior remains PENDING LIVE/IN-GAME VALIDATION. Practical is
 available for findings; no further project is allowed until both primary modules are accepted
 and Director records that it cannot threaten the protected owner testing window.
