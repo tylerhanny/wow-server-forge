@@ -50,3 +50,24 @@ These checks do not sandbox malicious same-user CMake/build hooks that rewrite t
 verifier, native vendor material or the runner itself. Independent candidate source review
 remains necessary. Dynamic/computed project includes require explicit provenance rather
 than assumed ownership. This limitation does not authorize hidden project warnings.
+
+The exact owner-authorized `WORLDMOCK_FIXTURE_EXCEPTION.md` is the sole test-source
+exception. `worldmock-fixture.json` and `worldmock-fixture.patch` bind the original and
+corrected header hashes and the exact two mock declarations. Before configuration, the
+original complete pinned inventory is verified and the correction is checked only in
+memory. Immediately before the existing full build, the protected wrapper writes the
+corrected header only inside the disposable Linux GitHub Actions job. No complete corrected
+header is copied to evidence, installed, committed, or exported in artifacts/cache.
+
+After the build, the wrapper verifies the exact corrected header and every other tracked
+dependency file before restoring the original header for the existing install/runtime
+stages. The receipt and visible verdict separately record application, whether the build
+started, the verified compiled delta, and restoration. Restored clean bytes never imply
+that the unmodified fixture was compiled. Every build-log recheck excludes WorldMock from
+unchanged-upstream warning eligibility even after restoration. Original source inventory
+identities remain complete; the diagnostic-eligible inventory omits this corrected fixture.
+
+Only the small approved patch and identity metadata are exported. The complete upstream
+unit-test executable, direct unfiltered test invocation, production code, Playerbots,
+both pins, assertions, coverage and all later checks remain unchanged. The fixture exception
+is not a warning waiver or an exception for any other source modification or actual error.

@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "authorization": "OWNER-AUTHORIZED TEST-ONLY WORLDMOCK CORRECTION; not unchanged upstream source",
+  "core_commit": "47960183bb03b83e8943eb2f0f39c16df9710c9d",
+  "path": "src/test/mocks/WorldMock.h",
+  "original_git_blob": "23cc8998295ad6ec70fc1264e193185ed50c9322",
+  "original_sha256": "0908566bb6f2ec3875992c73e28204d4c0a1271624b2b75fa99357f30b579ce1",
+  "corrected_git_blob": "78df3ce2cfb77e03db6c78c063955ca81d4c7816",
+  "corrected_sha256": "f8bd0eb555aab8ab93369f47f662b65cb7d78b3a87800d243bbd1ed109d426e6",
+  "patch_sha256": "ccb5de156d833f050764a086260d3603f459932872974e5a85dd36e5c8c93bc5"
+}
