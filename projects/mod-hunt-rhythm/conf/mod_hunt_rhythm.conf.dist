@@ -1,0 +1,16 @@
+# Hunt Rhythm: opt-in outdoor leveling streaks. Every session starts opted out.
+# Commands: .rhythm start | .rhythm status | .rhythm stop
+# Successful config reload clears opt-in and all chains.
+HuntRhythm.Enable = 1
+
+# Chain breaks when elapsed time is >= this value. Range: 15..300 seconds.
+HuntRhythm.WindowSeconds = 60
+
+# First kill: 0%. Each later eligible kill adds this many percentage points.
+# Range: 1..5. Out-of-range numeric values are clamped and logged.
+HuntRhythm.StepPercent = 2
+
+# Range: 1..20%. Bonus is floor(base kill XP * percentage / 100).
+# Core group, pet, favored-area, rested and RAF rules still apply afterward.
+# Unsafe added bonuses are declined; baseline core XP is never saturated.
+HuntRhythm.MaxBonusPercent = 10
