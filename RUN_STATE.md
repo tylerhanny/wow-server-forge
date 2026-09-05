@@ -17,10 +17,10 @@ the modified full fixture must never be committed, installed or persisted outsid
 
 The prior clean run 33929246418 remains FAIL, with both server targets built and the
 required unit-test target failing. Tamper 33929247980 was rejected as required. The
-source-policy blocker is now resolved by this exact owner exception. Reviewer implements
-the minimum protected adapter; Director publishes authority and dispatches both existing
-controls immediately. Practical checks containment/adapter scope within the existing
-independent review. No new prelaunch gate or test expansion is authorized.
+source-policy blocker is now resolved by this exact owner exception. Reviewed adapter source `ff0e5807` is published as judge `60953d65185a231650c8c1050dbd6a182016ef66`.
+Clean `33937007702` and tamper `33937008812` are dispatched. Practical and Director
+approved the exact adapter; Reviewer now inspects actual complete control evidence.
+Exact identities and outcomes: `prelaunch/evidence/fixture-exception-controls.json`. No new prelaunch gate or test expansion is authorized.
 
 The heartbeat is ACTIVE. Hunt Rhythm and Stormwright selections/ownership are preserved.
 All sprint timestamps remain UNSET until complete reviewed prelaunch success, then record
@@ -39,14 +39,14 @@ STANDING_WARNING_POLICY=UPSTREAM_WARNING_POLICY.md
 WORLDMOCK_FIXTURE_EXCEPTION=WORLDMOCK_FIXTURE_EXCEPTION.md
 FIXTURE_EXCEPTION_RECONCILED_UTC=2026-09-05T01:36:02.615039Z
 STANDING_WARNING_POLICY_RECONCILED_UTC=2026-09-04T23:07:16Z
-CURRENT_POLICY_CONTROLS=RERUN_PENDING_AUTHORIZED_FIXTURE_ADAPTER
-REVIEWED_JUDGE_SHA=6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed
+CURRENT_POLICY_CONTROLS=RUNNING_EXACT_FIXTURE_EXCEPTION
+REVIEWED_JUDGE_SHA=60953d65185a231650c8c1050dbd6a182016ef66
 LAST_FULL_CLEAN_JUDGE_SHA=6f0582572ceb1c0a16c4234fd6b97e896d3cf0ed
-CLEAN_CONTROL_RUN=33929246418
-AUTHORITY_TAMPER_RUN=33929247980
+CLEAN_CONTROL_RUN=33937007702
+AUTHORITY_TAMPER_RUN=33937008812
 ALLOWLIST_TAMPER_RUN=33927019176
 TAMPER_CONTROL_REVIEW=PASS_REJECTED_BEFORE_BUILD
-CLEAN_CONTROL_REVIEW=FAIL_PINNED_UPSTREAM_UNIT_TEST_SOURCE
+CLEAN_CONTROL_REVIEW=PENDING_CURRENT_CONTROLS
 PAUSE_UTC=2026-09-05T00:55:39.347769Z
 RESUME_UTC=2026-09-05T01:06:37.050300Z
 RESUME_POLICY=AUTONOMOUS_WITHIN_EXISTING_AUTHORITY

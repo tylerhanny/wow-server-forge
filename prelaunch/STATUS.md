@@ -11,10 +11,10 @@ the modified full fixture must never be committed, installed or persisted outsid
 
 The prior clean run 33929246418 remains FAIL, with both server targets built and the
 required unit-test target failing. Tamper 33929247980 was rejected as required. The
-source-policy blocker is now resolved by this exact owner exception. Reviewer implements
-the minimum protected adapter; Director publishes authority and dispatches both existing
-controls immediately. Practical checks containment/adapter scope within the existing
-independent review. No new prelaunch gate or test expansion is authorized.
+source-policy blocker is now resolved by this exact owner exception. Reviewed adapter source `ff0e5807` is published as judge `60953d65185a231650c8c1050dbd6a182016ef66`.
+Clean `33937007702` and tamper `33937008812` are dispatched. Practical and Director
+approved the exact adapter; Reviewer now inspects actual complete control evidence.
+Exact identities and outcomes: `prelaunch/evidence/fixture-exception-controls.json`. No new prelaunch gate or test expansion is authorized.
 
 The heartbeat is ACTIVE. Hunt Rhythm and Stormwright selections/ownership are preserved.
 All sprint timestamps remain UNSET until complete reviewed prelaunch success, then record
